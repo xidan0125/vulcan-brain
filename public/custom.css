@@ -1,0 +1,303 @@
+/* custom.css - V4 Bloomberg Terminal Style */
+/*
+Vulcan Brain V4 - Executive Dashboard
+设计灵感: Bloomberg Terminal + Industrial Precision
+*/
+
+/* ===== 全局配置 ===== */
+:root {
+    /* Bloomberg 经典配色 */
+    --bloomberg-black: #000000;
+    --bloomberg-orange: #ff8000;
+    --bloomberg-blue: #00a0e3;
+    --bloomberg-green: #00ff00;
+    --bloomberg-red: #ff0000;
+    --bloomberg-yellow: #ffff00;
+    
+    /* 背景色阶 */
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #141414;
+    --bg-tertiary: #1e1e1e;
+    --bg-card: #252525;
+    
+    /* 文本色阶 */
+    --text-primary: #f0f0f0;
+    --text-secondary: #b0b0b0;
+    --text-muted: #707070;
+    
+    /* 边框 */
+    --border-color: #333333;
+    --border-highlight: var(--bloomberg-orange);
+    
+    /* 阴影 */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.7);
+    
+    /* 字体 */
+    --font-mono: JetBrains Mono, Fira Code, Consolas, monospace;
+    --font-sans: Inter, Helvetica, Arial, sans-serif;
+}
+
+/* ===== 全局样式 ===== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+    font-family: var(--font-sans) !important;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* ===== Chainlit 容器覆盖 ===== */
+#root {
+    background-color: var(--bg-primary) !important;
+}
+
+/* 主聊天容器 */
+.step {
+    background-color: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
+    margin: 12px 0 !important;
+    padding: 16px !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+/* 消息气泡 */
+.message {
+    background-color: var(--bg-card) !important;
+    border-left: 3px solid var(--bloomberg-orange) !important;
+    padding: 12px 16px !important;
+    margin: 8px 0 !important;
+    border-radius: 0 4px 4px 0 !important;
+}
+
+/* 用户消息 */
+.message.user {
+    border-left-color: var(--bloomberg-blue) !important;
+    background-color: var(--bg-tertiary) !important;
+}
+
+/* ===== 代码块样式 ===== */
+pre, code {
+    font-family: var(--font-mono) !important;
+    background-color: var(--bloomberg-black) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 2px !important;
+}
+
+pre {
+    padding: 12px !important;
+    overflow-x: auto !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+code {
+    padding: 2px 6px !important;
+    color: var(--bloomberg-green) !important;
+}
+
+/* ===== 按钮样式 ===== */
+button {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--bloomberg-orange) !important;
+    border: 1px solid var(--bloomberg-orange) !important;
+    border-radius: 2px !important;
+    padding: 8px 16px !important;
+    font-family: var(--font-sans) !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    font-size: 12px !important;
+    letter-spacing: 0.5px !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+}
+
+button:hover {
+    background-color: var(--bloomberg-orange) !important;
+    color: var(--bloomberg-black) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+/* ===== 输入框样式 ===== */
+input, textarea {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 2px !important;
+    padding: 10px !important;
+    font-family: var(--font-mono) !important;
+    font-size: 14px !important;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--bloomberg-orange) !important;
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(255, 128, 0, 0.2) !important;
+}
+
+/* ===== GPU 监控面板 ===== */
+#gpu-monitor-panel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 320px;
+    background-color: var(--bg-card);
+    border: 2px solid var(--bloomberg-orange);
+    border-radius: 4px;
+    padding: 16px;
+    box-shadow: var(--shadow-lg);
+    z-index: 9999;
+    font-family: var(--font-mono);
+    font-size: 12px;
+}
+
+#gpu-monitor-panel .panel-header {
+    color: var(--bloomberg-orange);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+#gpu-monitor-panel .gpu-card {
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#gpu-monitor-panel .gpu-card .gpu-name {
+    color: var(--bloomberg-blue);
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+#gpu-monitor-panel .stat-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 4px 0;
+}
+
+#gpu-monitor-panel .stat-label {
+    color: var(--text-secondary);
+}
+
+#gpu-monitor-panel .stat-value {
+    color: var(--bloomberg-green);
+    font-weight: bold;
+}
+
+/* 显存使用率进度条 */
+#gpu-monitor-panel .progress-bar {
+    width: 100%;
+    height: 6px;
+    background-color: var(--bg-primary);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 4px;
+}
+
+#gpu-monitor-panel .progress-fill {
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        var(--bloomberg-green) 0%,
+        var(--bloomberg-yellow) 50%,
+        var(--bloomberg-red) 100%
+    );
+    transition: width 0.3s ease;
+}
+
+/* ===== 滚动条样式 ===== */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--bloomberg-orange);
+}
+
+/* ===== 响应式设计 ===== */
+@media (max-width: 768px) {
+    #gpu-monitor-panel {
+        width: 280px;
+        right: 10px;
+        top: 10px;
+        font-size: 11px;
+    }
+}
+
+/* ===== 动画效果 ===== */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.thinking {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* ===== 标题栏样式 ===== */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--bloomberg-orange) !important;
+    font-family: var(--font-sans) !important;
+    font-weight: 700 !important;
+    margin: 16px 0 !important;
+}
+
+/* ===== 链接样式 ===== */
+a {
+    color: var(--bloomberg-blue) !important;
+    text-decoration: none !important;
+    border-bottom: 1px solid transparent !important;
+    transition: border-color 0.2s !important;
+}
+
+a:hover {
+    border-bottom-color: var(--bloomberg-blue) !important;
+}
+
+/* ===== 表格样式 ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--bg-secondary);
+    margin: 16px 0;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid var(--border-color);
+}
+
+th {
+    background-color: var(--bg-tertiary);
+    color: var(--bloomberg-orange);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+tr:hover {
+    background-color: var(--bg-tertiary);
+}

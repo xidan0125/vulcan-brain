@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "timestamp": "2025-11-20T09:52:53.711260",
+    "category": "日常观点",
+    "situation": "关于 2024预算策略",
+    "boss_feedback": "对于明年的预算，我们要激进一点，投入研发。",
+    "lesson_learned": "对于明年的预算，我们要激进一点，投入研发。",
+    "importance": 3,
+    "referenced_count": 0
+  },
+  {
+    "id": 2,
+    "timestamp": "2025-11-20T10:02:15.444629",
+    "category": "系统集成",
+    "situation": "尝试添加文档到知识库时无法导入 add_document_to_kb 工具",
+    "boss_feedback": "工具定义存在但环境未加载，必须修复",
+    "lesson_learned": "所有工具必须在启动时验证可用性，不能依赖假设",
+    "importance": 3,
+    "referenced_count": 0
+  },
+  {
+    "id": 3,
+    "timestamp": "2025-11-20T10:04:05.343369",
+    "category": "问题处理",
+    "situation": "用户询问Vulcan Brain核心架构分层",
+    "boss_feedback": "架构分层信息缺失，必须如实报告",
+    "lesson_learned": "架构信息必须明确定义，不可编造",
+    "importance": 3,
+    "referenced_count": 0
+  }
+]
