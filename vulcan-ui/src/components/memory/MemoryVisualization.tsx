@@ -57,13 +57,22 @@ export default function MemoryVisualization() {
   const [error, setError] = useState<string | null>(null);
 
   // Fetch user profile from API
+  // 获取认证头
+  const getAuthHeaders = (): HeadersInit => {
+    const token = typeof window !== 'undefined' ? localStorage.getItem('vulcan_token') : null;
+    return {
+      'Content-Type': 'application/json',
+      ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+    };
+  };
+
   useEffect(() => {
     if (activeTab !== "profile") return;
 
     const fetchProfile = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch('http://100.79.150.62:8001/api/memory/profile');
+        const response = await fetch('/api/memory/profile', { headers: getAuthHeaders() });
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
         const data: MemoryProfileResponse = await response.json();
@@ -103,7 +112,7 @@ export default function MemoryVisualization() {
     const fetchTimeline = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch('http://100.79.150.62:8001/api/memory/timeline');
+        const response = await fetch('/api/memory/timeline', { headers: getAuthHeaders() });
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
         const data: TimelineResponse = await response.json();

@@ -9,11 +9,17 @@ import uuid
 import time
 from datetime import datetime
 from typing import AsyncGenerator, Optional, List, Dict, Any
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, Depends, HTTPException
+from agent_session_store import get_agent_session, save_agent_session, delete_agent_session, list_user_sessions
 from fastapi.responses import StreamingResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+import time as time_module
+from vulcan_libs.logger import api_logger, log_request, log_error
 
+from vulcan_libs.store import store
+from auth_api import get_current_user
 # 导入 Vulcan 核心组件
 from config import LLM_MODEL_NAME
 from kernel_codeact import VulcanCodeActKernel
@@ -24,6 +30,9 @@ from tools.memory_tools import remember_tool, recall_tool, forget_tool
 from tools.rag_tools import add_document_tool, search_knowledge_tool
 from tools.alignment_tools import record_boss_feedback_tool, get_alignment_summary_tool
 from tools.boss_insight_tool import save_boss_insight_tool
+from tools.search_tools import web_search_tool
+# AContext 会话记忆管理
+from acontext_integration import get_acontext_manager
 
 # Code Execution Sandbox (Programmatic Tool Calling)
 from tools.code_executor import create_code_execution_tool, VulcanCodeSandbox
@@ -46,13 +55,46 @@ app = FastAPI(
 )
 
 # CORS 配置
+# CORS 配置 - 生产环境限制来源
+ALLOWED_ORIGINS = [
+    "https://vsg-brain.com",
+    "https://api.vsg-brain.com",
+    "http://localhost:3000",  # 开发环境
+    "http://127.0.0.1:3000",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
-    allow_methods=['*'],
+    allow_methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allow_headers=['*'],
 )
+
+# 请求日志中间件
+@app.middleware("http")
+async def log_requests(request, call_next):
+    start_time = time_module.time()
+    response = await call_next(request)
+    duration = (time_module.time() - start_time) * 1000
+    
+    # 获取用户信息（如果有）
+    user = "anonymous"
+    auth_header = request.headers.get("authorization", "")
+    if auth_header:
+        user = "authenticated"
+    
+    log_request(
+        method=request.method,
+        path=str(request.url.path),
+        user=user,
+        status=response.status_code,
+        duration_ms=duration
+    )
+    return response
+
+# Presentation 静态文件服务
+app.mount("/presentation", StaticFiles(directory="presentation", html=True), name="presentation")
 
 # ==================== 全局状态管理 ====================
 
@@ -78,8 +120,8 @@ def get_kernel() -> VulcanCodeActKernel:
         # 核心包（常驻内存）
         registry.register(ToolPackage(
             name='core_tools',
-            description='核心基础工具：时间查询、记忆管理',
-            tools=[get_time_tool, remember_tool, recall_tool, forget_tool],
+            description='核心基础工具：时间查询、联网搜索、记忆管理',
+            tools=[get_time_tool, web_search_tool, remember_tool, recall_tool, forget_tool],
             is_core=True,
             category='foundation'
         ))
@@ -411,51 +453,83 @@ async def execute_code(request: CodeExecutionRequest):
 
 # ==================== 启动入口 ====================
 
-# ==================== P2 - 记忆系统 API ====================
+# ==================== P2 - 记忆系统 API (AContext SDK 集成) ====================
 
-@app.get('/api/memory/profile')
-async def get_memory_profile():
+@app.get("/api/memory/profile")
+async def get_memory_profile(current_user: dict = Depends(get_current_user)):
     """
-    P2 - 获取用户画像
-    
-    返回从记忆系统中提取的用户画像
+    P2 - 获取用户画像 (VulcanStore + 用户绑定)
     """
-    from vulcan_libs.memory import get_all_memories
-    
-    memories_text = get_all_memories()
-    
-    # 解析记忆为结构化数据
-    memories_list = []
-    if memories_text:
-        for line in memories_text.strip().split('\n'):
-            if line.strip() and line.startswith('-'):
-                memories_list.append(line[1:].strip())
-    
-    return {
-        'user_id': 'default_user',
-        'memories': memories_list,
-        'memory_count': len(memories_list),
-        'last_updated': datetime.now().isoformat()
-    }
-
-@app.get('/api/memory/timeline')
-async def get_memory_timeline():
-    """
-    P2 - 获取对话历史时间线
-    
-    注意: 当前实现返回静态示例，生产环境需要对接真实对话历史数据库
-    """
-    # TODO: 集成真实的对话历史存储
-    return {
-        'conversations': [
+    user_id = current_user["user_id"]
+    try:
+        # 1. 使用 VulcanStore 获取用户记忆
+        memories = await store.get_memories(user_id, limit=50)
+        memories_list = [
             {
-                'id': 'conv_001',
-                'timestamp': '2025-11-20T15:40:12',
-                'preview': '用户询问时间相关问题',
-                'message_count': 2
-            }],
-        'total_count': 1
-    }
+                "id": str(mem.get("_id", "")),
+                "content": mem.get("content", ""),
+                "category": mem.get("category", "general"),
+                "created_at": mem.get("created_at", "").isoformat() if mem.get("created_at") else ""
+            }
+            for mem in memories
+        ]
+        
+        # 2. 获取对话统计
+        chat_stats = None
+        try:
+            sessions = await store.list_sessions(user_id, limit=100)
+            chat_stats = {
+                "total_sessions": len(sessions),
+                "recent_sessions": [
+                    {"id": str(s.get("_id", "")), "title": s.get("title", "")}
+                    for s in sessions[:5]
+                ]
+            }
+        except Exception as e:
+            print(f"[WARNING] Chat stats unavailable: {e}")
+        
+        return {
+            "user_id": user_id,
+            "memories": memories_list,
+            "memory_count": len(memories_list),
+            "chat_stats": chat_stats,
+            "last_updated": datetime.now().isoformat()
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/memory/timeline")
+async def get_memory_timeline(limit: int = 20, current_user: dict = Depends(get_current_user)):
+    """
+    P2 - 获取对话历史时间线 (AContext Sessions) - 用户绑定版
+    """
+    user_id = current_user["user_id"]
+    try:
+        from acontext_sdk_helper import list_sessions
+        sessions = list_sessions(limit=limit)
+        
+        conversations = []
+        for session in sessions:
+            conversations.append({
+                "id": session.id,
+                "timestamp": session.created_at,
+                "preview": f"Session {session.id[:8]}...",
+                "space_id": session.space_id,
+                "updated_at": session.updated_at
+            })
+        
+        return {
+            "conversations": conversations,
+            "total_count": len(conversations)
+        }
+    except Exception as e:
+        print(f"[WARNING] AContext timeline unavailable: {e}")
+        return {
+            "conversations": [],
+            "total_count": 0,
+            "error": str(e)
+        }
 
 
 # ==================== P3 - Knowledge Base API ====================
@@ -515,8 +589,43 @@ def _rebuild_rag_index():
         return len(documents)
     return 0
 
+
+
+# ==================== Memory CRUD APIs ====================
+
+@app.post("/api/memory")
+async def add_memory(
+    content: str,
+    category: str = "general",
+    current_user: dict = Depends(get_current_user)
+):
+    """添加新记忆"""
+    user_id = current_user["user_id"]
+    memory_id = await store.add_memory(user_id, content, category)
+    return {"success": True, "memory_id": memory_id}
+
+@app.delete("/api/memory/{memory_id}")
+async def delete_memory(memory_id: str, current_user: dict = Depends(get_current_user)):
+    """删除记忆"""
+    user_id = current_user["user_id"]
+    success = await store.delete_memory(memory_id, user_id)
+    if not success:
+        raise HTTPException(status_code=404, detail="记忆不存在")
+    return {"success": True}
+
+@app.get("/api/memory/search")
+async def search_memory(
+    q: str,
+    limit: int = 10,
+    current_user: dict = Depends(get_current_user)
+):
+    """搜索记忆"""
+    user_id = current_user["user_id"]
+    results = await store.search_memories(user_id, q, limit)
+    return {"results": results, "count": len(results)}
+
 @app.post('/api/knowledge/upload')
-async def upload_document(file: UploadFile = File(...)):
+async def upload_document(file: UploadFile = File(...), current_user: dict = Depends(get_current_user)):
     """
     P3 - 上传文档到知识库
 
@@ -544,14 +653,15 @@ async def upload_document(file: UploadFile = File(...)):
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write(text_content)
 
-    # 更新 metadata
+    # 更新 metadata (添加用户绑定)
     _kb_metadata[doc_id] = {
         'id': doc_id,
         'filename': file.filename,
         'file_path': file_path,
         'file_size': len(content),
         'upload_time': datetime.now().isoformat(),
-        'file_type': file_ext
+        'file_type': file_ext,
+        'user_id': current_user["user_id"]  # 用户绑定
     }
     _save_metadata()
 
@@ -756,16 +866,16 @@ async def api_get_agent_info(agent_type: str):
     return {'id': agent_type, **AGENT_METADATA[agent_type], 'has_prompt': agent_type in AGENT_PROMPTS}
 
 @app.post('/api/agents/{agent_type}/chat')
-async def api_agent_chat(agent_type: str, request: AgentChatRequest):
-    """与指定Agent进行对话"""
+async def api_agent_chat(agent_type: str, request: AgentChatRequest, current_user: dict = Depends(get_current_user)):
+    """与指定Agent进行对话 (用户绑定版)"""
     if agent_type not in AGENT_PROMPTS:
         raise HTTPException(status_code=404, detail=f'Agent {agent_type} not found')
 
+    user_id = current_user["user_id"]
     session_id = request.session_id or str(uuid.uuid4())
-    if session_id not in _agent_sessions:
-        _agent_sessions[session_id] = []
 
-    history = _agent_sessions[session_id]
+    # 从MongoDB获取用户专属会话历史
+    history = await get_agent_session(user_id, session_id)
     history.append({'role': 'user', 'content': request.message})
 
     if len(history) > 20:
@@ -792,7 +902,7 @@ async def api_agent_chat(agent_type: str, request: AgentChatRequest):
         response_text = completion.choices[0].message.content
 
         history.append({'role': 'assistant', 'content': response_text})
-        _agent_sessions[session_id] = history
+        await save_agent_session(user_id, session_id, history, agent_type)
 
         return AgentChatResponse(
             reply=response_text,
@@ -808,7 +918,7 @@ async def api_agent_chat(agent_type: str, request: AgentChatRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post('/api/agents/{agent_type}/chat/stream')
-async def api_agent_chat_stream(agent_type: str, request: AgentChatRequest):
+async def api_agent_chat_stream(agent_type: str, request: AgentChatRequest, current_user: dict = Depends(get_current_user)):
     """流式对话 - 返回 SSE 流"""
     if agent_type not in AGENT_PROMPTS:
         raise HTTPException(status_code=404, detail=f'Agent {agent_type} not found')
@@ -821,7 +931,7 @@ async def api_agent_chat_stream(agent_type: str, request: AgentChatRequest):
             from openai import OpenAI
             client = OpenAI(base_url="http://localhost:11434/v1", api_key="not-needed")
 
-            history = _agent_sessions.get(session_id, [])
+            history = await get_agent_session(current_user['user_id'], session_id)
             history.append({'role': 'user', 'content': request.message})
 
             messages = [{"role": "system", "content": system_prompt}]
@@ -844,7 +954,7 @@ async def api_agent_chat_stream(agent_type: str, request: AgentChatRequest):
                     yield f"data: {json.dumps({'content': content, 'done': False})}\n\n"
 
             history.append({'role': 'assistant', 'content': full_response})
-            _agent_sessions[session_id] = history[-20:]
+            await save_agent_session(current_user['user_id'], session_id, history, agent_type)
 
             yield f"data: {json.dumps({'content': '', 'done': True, 'session_id': session_id})}\n\n"
 
@@ -858,12 +968,20 @@ async def api_agent_chat_stream(agent_type: str, request: AgentChatRequest):
     )
 
 @app.delete('/api/agents/sessions/{session_id}')
-async def api_clear_agent_session(session_id: str):
-    """清除指定会话的历史"""
-    if session_id in _agent_sessions:
-        del _agent_sessions[session_id]
+async def api_clear_agent_session(session_id: str, current_user: dict = Depends(get_current_user)):
+    """清除指定会话的历史 (用户绑定版)"""
+    user_id = current_user["user_id"]
+    if await delete_agent_session(user_id, session_id):
         return {'success': True, 'message': f'Session {session_id} cleared'}
-    return {'success': False, 'message': 'Session not found'}
+    return {'success': False, 'message': 'Session not found or not owned by user'}
+
+
+@app.get('/api/agents/sessions')
+async def api_list_agent_sessions(agent_type: str = None, current_user: dict = Depends(get_current_user)):
+    """列出用户的Agent会话"""
+    user_id = current_user["user_id"]
+    sessions = await list_user_sessions(user_id, agent_type)
+    return {"sessions": sessions, "count": len(sessions)}
 
 
 if __name__ == '__main__':
@@ -903,7 +1021,7 @@ app.include_router(acontext_router, prefix="/api")
 # ==================== LOD Agent Endpoint (新增) ====================
 
 @app.post("/api/agents/{agent_type}/chat/lod")
-async def api_agent_chat_lod(agent_type: str, request: AgentChatRequest):
+async def api_agent_chat_lod(agent_type: str, request: AgentChatRequest, current_user: dict = Depends(get_current_user)):
     """
     使用 LOD Kernel 的 Agent 对话端点
     特点：动态工具加载、CodeAct 执行、三层记忆
@@ -949,7 +1067,7 @@ async def api_agent_chat_lod(agent_type: str, request: AgentChatRequest):
 
 
 @app.post("/api/agents/{agent_type}/chat/lod/stream")
-async def api_agent_chat_lod_stream(agent_type: str, request: AgentChatRequest):
+async def api_agent_chat_lod_stream(agent_type: str, request: AgentChatRequest, current_user: dict = Depends(get_current_user)):
     """
     使用 LOD Kernel 的 Agent 流式对话端点
     """
@@ -968,12 +1086,19 @@ async def api_agent_chat_lod_stream(agent_type: str, request: AgentChatRequest):
 {request.message}"""
             
             async for event in kernel.run_stream(enhanced_query):
-                if event.get("type") == "token":
-                    yield f"data: {json.dumps({"type": "token", "content": event.get("content", "")})}\n\n"
-                elif event.get("type") == "tool_output":
-                    yield f"data: {json.dumps({"type": "tool", "content": event.get("content", "")})}\n\n"
-            
-            yield f"data: {json.dumps({"type": "done"})}\n\n"
+                evt_type = event.get("type")
+                content = event.get("content", "")
+
+                if evt_type == "token":
+                    yield f"data: {json.dumps({'type': 'token', 'content': content})}\n\n"
+                elif evt_type == "code":
+                    # 发送代码执行事件（让前端显示正在执行什么）
+                    yield f"data: {json.dumps({'type': 'code', 'content': content})}\n\n"
+                elif evt_type == "tool_output":
+                    # 发送工具执行结果
+                    yield f"data: {json.dumps({'type': 'tool_output', 'content': content})}\n\n"
+
+            yield f"data: {json.dumps({'type': 'done'})}\n\n"
             
         except Exception as e:
             yield f"data: {json.dumps({"type": "error", "content": str(e)})}\n\n"
@@ -994,3 +1119,49 @@ try:
 except ImportError as e:
     print(f"[WARNING] Soul API 模块加载失败: {e}")
 
+
+# ==================== 飞书机器人模块 ====================
+
+try:
+    from feishu_api import router as feishu_router
+    app.include_router(feishu_router, prefix="/api", tags=["Feishu"])
+    print("[INFO] 飞书 API 模块已加载")
+except ImportError as e:
+    print(f"[WARNING] 飞书 API 模块加载失败: {e}")
+
+
+# ==================== 项目管理模块 ====================
+
+try:
+    from pm_api import router as pm_router
+    app.include_router(pm_router, tags=["Project Management"])
+    print("[INFO] 项目管理 API 模块已加载")
+except ImportError as e:
+    print(f"[WARNING] 项目管理 API 模块加载失败: {e}")
+
+# ==================== 消息收集模块 (五纬度-维度1) ====================
+
+try:
+    from message_api import router as message_router
+    app.include_router(message_router, prefix="/api", tags=["Messages"])
+    print("[INFO] 消息收集 API 模块已加载")
+except ImportError as e:
+    print(f"[WARNING] 消息收集 API 模块加载失败: {e}")
+
+
+# ==================== 信息中心模块 (五纬度日报) ====================
+
+try:
+    from info_hub_api import router as info_hub_router
+    app.include_router(info_hub_router, prefix="/api", tags=["InfoHub"])
+    print("[INFO] 信息中心 API 模块已加载")
+except ImportError as e:
+    print(f"[WARNING] 信息中心 API 模块加载失败: {e}")
+
+# Email API
+try:
+    from email_api import router as email_router
+    app.include_router(email_router, prefix="/api", tags=["Email"])
+    print("[INFO] Email API 模块已加载")
+except ImportError as e:
+    print(f"[WARNING] Email API 加载失败: {e}")

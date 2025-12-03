@@ -316,5 +316,316 @@ class VulcanStore:
             return {"status": "unhealthy", "error": str(e)}
 
 
+    # =========================================================================
+    # User Extended Operations (用户扩展操作)
+    # =========================================================================
+
+    async def update_user(self, username: str, updates: Dict) -> bool:
+        """更新用户信息"""
+        updates["updated_at"] = datetime.now()
+        result = await self.db.users.update_one(
+            {"username": username},
+            {"$set": updates}
+        )
+        return result.modified_count > 0
+
+    async def get_user_genesis(self, user_id: str) -> Optional[Dict]:
+        """获取用户 Genesis 数据"""
+        return await self.db.user_genesis.find_one({"user_id": user_id}, {"_id": 0})
+
+    async def update_user_genesis(self, user_id: str, data: Dict):
+        """更新 Genesis 数据"""
+        data["updated_at"] = datetime.now()
+        await self.db.user_genesis.update_one(
+            {"user_id": user_id},
+            {"$set": data},
+            upsert=True
+        )
+
+    async def get_user_constitution(self, user_id: str) -> Optional[Dict]:
+        """获取用户宪法"""
+        return await self.db.user_constitution.find_one({"user_id": user_id}, {"_id": 0})
+
+    async def update_user_constitution(self, user_id: str, items: List[Dict]):
+        """更新用户宪法"""
+        await self.db.user_constitution.update_one(
+            {"user_id": user_id},
+            {
+                "$set": {
+                    "user_id": user_id,
+                    "items": items,
+                    "updated_at": datetime.now()
+                }
+            },
+            upsert=True
+        )
+
+    async def get_soul_twin(self, user_id: str) -> Optional[Dict]:
+        """获取 SoulTwin"""
+        return await self.db.soul_twin.find_one({"user_id": user_id}, {"_id": 0})
+
+    async def update_soul_twin(self, user_id: str, data: Dict):
+        """更新 SoulTwin"""
+        data["updated_at"] = datetime.now()
+        await self.db.soul_twin.update_one(
+            {"user_id": user_id},
+            {"$set": data},
+            upsert=True
+        )
+
+    async def add_user_alignment_response(self, user_id: str, response: Dict):
+        """添加用户对齐响应记录"""
+        await self.db.user_alignments.update_one(
+            {"user_id": user_id},
+            {
+                "$push": {"responses": response},
+                "$set": {"updated_at": datetime.now()}
+            },
+            upsert=True
+        )
+
+    async def delete_user_genesis(self, user_id: str):
+        """删除 Genesis 数据（重置用）"""
+        await self.db.user_genesis.delete_one({"user_id": user_id})
+
+    async def delete_user_constitution(self, user_id: str):
+        """删除宪法（重置用）"""
+        await self.db.user_constitution.delete_one({"user_id": user_id})
+
+    # =========================================================================
+    # Agent Session Management (Agent 会话)
+    # =========================================================================
+
+    async def get_agent_session(self, user_id: str, session_id: str) -> List[Dict]:
+        """获取用户的 Agent 会话历史"""
+        doc = await self.db.agent_sessions.find_one({
+            "user_id": user_id,
+            "session_id": session_id
+        })
+        return doc.get("messages", []) if doc else []
+
+    async def save_agent_session(self, user_id: str, session_id: str, messages: List[Dict], agent_type: str):
+        """保存用户的 Agent 会话"""
+        await self.db.agent_sessions.update_one(
+            {"user_id": user_id, "session_id": session_id},
+            {
+                "$set": {
+                    "user_id": user_id,
+                    "session_id": session_id,
+                    "agent_type": agent_type,
+                    "messages": messages[-20:],
+                    "updated_at": datetime.now()
+                },
+                "$setOnInsert": {"created_at": datetime.now()}
+            },
+            upsert=True
+        )
+
+    async def delete_agent_session(self, user_id: str, session_id: str) -> bool:
+        """删除用户的 Agent 会话"""
+        result = await self.db.agent_sessions.delete_one({
+            "user_id": user_id,
+            "session_id": session_id
+        })
+        return result.deleted_count > 0
+
+    async def list_user_agent_sessions(self, user_id: str, agent_type: str = None, limit: int = 50) -> List[Dict]:
+        """列出用户的所有 Agent 会话"""
+        query = {"user_id": user_id}
+        if agent_type:
+            query["agent_type"] = agent_type
+        
+        cursor = self.db.agent_sessions.find(
+            query,
+            {"_id": 0, "session_id": 1, "agent_type": 1, "updated_at": 1}
+        ).sort("updated_at", DESCENDING).limit(limit)
+        
+        return await cursor.to_list(length=limit)
+
+    # =========================================================================
+    # Soul Interaction & Prediction (Soul 交互和预测)
+    # =========================================================================
+
+    async def get_soul_interactions(self, user_id: str, interaction_type: str = None, limit: int = 20) -> List[Dict]:
+        """获取 Soul 交互记录"""
+        query = {"user_id": user_id}
+        if interaction_type:
+            query["type"] = interaction_type
+        
+        cursor = self.db.soul_interactions.find(query).sort("created_at", DESCENDING).limit(limit)
+        interactions = await cursor.to_list(length=limit)
+        for i in interactions:
+            i["_id"] = str(i["_id"])
+        return interactions
+
+    async def count_soul_interactions(self, user_id: str) -> int:
+        """统计 Soul 交互次数"""
+        return await self.db.soul_interactions.count_documents({"user_id": user_id})
+
+    async def get_sandbox_question(self, question_id: str) -> Optional[Dict]:
+        """获取沙盘题目"""
+        try:
+            doc = await self.db.sandbox_questions.find_one({"_id": ObjectId(question_id)})
+            if doc:
+                doc["_id"] = str(doc["_id"])
+            return doc
+        except:
+            return None
+
+
+
+    async def count_user_constitution(self, user_id: str) -> int:
+        """统计用户宪法条目数量"""
+        return await self.db.user_constitution.count_documents({"user_id": user_id})
+
+
+    async def get_sandbox_question_by_id(self, question_id: str) -> Optional[Dict]:
+        """获取沙盒题目（通过ObjectId）"""
+        from bson import ObjectId
+        try:
+            doc = await self.db.sandbox_questions.find_one({"_id": ObjectId(question_id)})
+            if doc:
+                doc["_id"] = str(doc["_id"])
+            return doc
+        except:
+            return None
+
+    async def get_soul_interactions_by_type(self, user_id: str, interaction_type: str = None, limit: int = 20) -> List[Dict]:
+        """获取用户灵魂交互记录（按类型过滤）"""
+        query = {"user_id": user_id}
+        if interaction_type:
+            query["type"] = interaction_type
+        cursor = self.db.soul_interactions.find(query).sort("created_at", -1).limit(limit)
+        results = []
+        async for doc in cursor:
+            doc["_id"] = str(doc["_id"])
+            results.append(doc)
+        return results
+
+    async def get_soul_interactions_with_match(self, user_id: str, limit: int = 20) -> List[Dict]:
+        """获取有匹配结果的灵魂交互记录"""
+        query = {"user_id": user_id, "is_match": {"$exists": True}}
+        cursor = self.db.soul_interactions.find(query).sort("created_at", -1).limit(limit)
+        results = []
+        async for doc in cursor:
+            doc["_id"] = str(doc["_id"])
+            results.append(doc)
+        return results
+
+
+# 全局单例导出
+
+    # =========================================================================
+    # Soul User Stats (灵魂用户统计)
+    # =========================================================================
+
+    async def get_soul_stats(self, user_id: str) -> Optional[Dict]:
+        """获取用户灵魂统计"""
+        doc = await self.db.soul_user_stats.find_one({"user_id": user_id})
+        if doc:
+            doc["_id"] = str(doc["_id"])
+        return doc
+
+    async def create_soul_stats(self, data: Dict) -> str:
+        """创建用户灵魂统计"""
+        if "created_at" not in data:
+            data["created_at"] = datetime.now()
+        result = await self.db.soul_user_stats.insert_one(data)
+        return str(result.inserted_id)
+
+    async def update_soul_stats(self, user_id: str, update: Dict) -> bool:
+        """更新用户灵魂统计"""
+        result = await self.db.soul_user_stats.update_one(
+            {"user_id": user_id},
+            update
+        )
+        return result.modified_count > 0
+
+    async def upsert_soul_stats(self, user_id: str, data: Dict) -> bool:
+        """更新或创建用户灵魂统计"""
+        data["updated_at"] = datetime.now()
+        await self.db.soul_user_stats.update_one(
+            {"user_id": user_id},
+            {"$set": data},
+            upsert=True
+        )
+        return True
+
+    # =========================================================================
+    # Sandbox Questions (沙盒题库)
+    # =========================================================================
+
+    async def get_sandbox_questions(self, query: Dict = {}, limit: int = 10, sort_field: str = "created_at", sort_dir: int = -1) -> List[Dict]:
+        """获取沙盒题目列表"""
+        cursor = self.db.sandbox_questions.find(query).sort(sort_field, sort_dir).limit(limit)
+        results = []
+        async for doc in cursor:
+            doc["_id"] = str(doc["_id"])
+            results.append(doc)
+        return results
+
+    async def insert_sandbox_question(self, data: Dict) -> str:
+        """插入单个沙盒题目"""
+        if "created_at" not in data:
+            data["created_at"] = datetime.now()
+        result = await self.db.sandbox_questions.insert_one(data)
+        return str(result.inserted_id)
+
+    async def insert_sandbox_questions_batch(self, questions: List[Dict]) -> int:
+        """批量插入沙盒题目"""
+        if not questions:
+            return 0
+        for q in questions:
+            if "created_at" not in q:
+                q["created_at"] = datetime.now()
+        result = await self.db.sandbox_questions.insert_many(questions)
+        return len(result.inserted_ids)
+
+    async def delete_all_sandbox_questions(self) -> int:
+        """删除所有沙盒题目"""
+        result = await self.db.sandbox_questions.delete_many({})
+        return result.deleted_count
+
+    async def count_sandbox_questions(self, query: Dict = {}) -> int:
+        """统计沙盒题目数量"""
+        return await self.db.sandbox_questions.count_documents(query)
+
+    # =========================================================================
+    # Soul Interactions Extended (灵魂交互扩展)
+    # =========================================================================
+
+    async def insert_soul_interaction(self, data: Dict) -> str:
+        """插入灵魂交互记录"""
+        if "created_at" not in data:
+            data["created_at"] = datetime.now()
+        result = await self.db.soul_interactions.insert_one(data)
+        return str(result.inserted_id)
+
+    async def get_soul_interactions_since(self, user_id: str, since: datetime, interaction_type: str = None) -> List[Dict]:
+        """获取指定日期后的交互记录"""
+        query = {"user_id": user_id, "created_at": {"$gte": since}}
+        if interaction_type:
+            query["type"] = interaction_type
+        cursor = self.db.soul_interactions.find(query)
+        results = []
+        async for doc in cursor:
+            doc["_id"] = str(doc["_id"])
+            results.append(doc)
+        return results
+
+    # =========================================================================
+    # News Cache (新闻缓存)
+    # =========================================================================
+
+    async def get_news_cache(self, limit: int = 10) -> List[Dict]:
+        """获取缓存的新闻"""
+        cursor = self.db.news_cache.find().sort("fetched_at", -1).limit(limit)
+        results = []
+        async for doc in cursor:
+            doc["_id"] = str(doc["_id"])
+            results.append(doc)
+        return results
+
+
 # 全局单例导出
 store = VulcanStore()

@@ -1,0 +1,216 @@
+{
+  "common": {
+    "loading": "加载中...",
+    "error": "出错了",
+    "retry": "重试",
+    "save": "保存",
+    "cancel": "取消",
+    "confirm": "确认",
+    "delete": "删除",
+    "edit": "编辑",
+    "back": "返回",
+    "next": "下一步",
+    "previous": "上一步",
+    "submit": "提交",
+    "search": "搜索",
+    "clear": "清除",
+    "close": "关闭",
+    "copy": "复制",
+    "copied": "已复制",
+    "online": "在线",
+    "offline": "离线",
+    "beta": "测试版"
+  },
+  "nav": {
+    "agent": "智能代理",
+    "gemini": "AI对话",
+    "projects": "项目管理",
+    "soul": "灵魂分析",
+    "memory": "记忆系统",
+    "knowledge": "知识库",
+    "settings": "系统设置",
+    "logout": "退出登录",
+    "presentation": "产品演示",
+    "infoHub": "信息中心"
+  },
+  "home": {
+    "title": "控制中心",
+    "subtitle": "Vulcan Brain v3.0",
+    "systemStatus": "系统状态",
+    "agentsOnline": "{count} 个代理在线",
+    "operational": "系统运行正常"
+  },
+  "agents": {
+    "title": "智能代理",
+    "financial": {
+      "name": "财务投资",
+      "code": "AGENT.FINANCE",
+      "description": "直连ERP/数据库，自动生成SQL查询，实时财务分析与智能预警",
+      "status": "就绪 | {count} 个连接",
+      "placeholder": "请输入财务分析问题，如：帮我计算一下投资回报率"
+    },
+    "hr": {
+      "name": "HR管理",
+      "code": "AGENT.HR",
+      "description": "员工画像、离职预测、邮件敏感词监控，守护团队稳定的智能助手",
+      "status": "测试版 | 限制访问",
+      "placeholder": "请输入人力资源问题，如：如何提升团队士气？"
+    },
+    "ghostwriter": {
+      "name": "替身写作",
+      "code": "AGENT.GHOST",
+      "description": "学习您的写作风格，完美模拟老板口吻生成公文、演讲稿、邮件",
+      "status": "就绪 | {count} 种风格已加载",
+      "placeholder": "请输入写作需求，如：帮我写一封年会总结邮件"
+    },
+    "watchdog": {
+      "name": "业务雷达",
+      "code": "AGENT.RADAR",
+      "description": "7x24小时监控业务指标，自动发现异常并通过多渠道预警",
+      "status": "监控 {count} 个数据流...",
+      "placeholder": "请输入业务监控问题，如：本周销售有异常吗？"
+    },
+    "metrics": {
+      "queriesToday": "今日查询",
+      "alerts": "警报",
+      "profiles": "档案",
+      "riskScore": "风险等级",
+      "documents": "文档",
+      "accuracy": "准确率",
+      "uptime": "运行时间",
+      "latency": "延迟"
+    }
+  },
+  "stats": {
+    "gpu": "GPU",
+    "model": "模型",
+    "vram": "显存",
+    "uptime": "在线率"
+  },
+  "chat": {
+    "placeholder": "输入消息...",
+    "send": "发送",
+    "thinking": "正在思考...",
+    "newChat": "新对话",
+    "clearHistory": "清空历史",
+    "stopGenerating": "停止生成"
+  },
+  "soul": {
+    "title": "灵魂分析",
+    "subtitle": "深入了解您的决策风格与价值取向",
+    "calibration": {
+      "title": "灵魂校准",
+      "progress": "校准进度",
+      "building": "正在构建初始模型... ({current}/{total})",
+      "complete": "校准完成"
+    },
+    "dimensions": {
+      "risk_appetite": {
+        "label": "风险阈值",
+        "desc": "面对未知的勇气与赌性"
+      },
+      "time_horizon": {
+        "label": "时间视界",
+        "desc": "即时满足 vs 延迟享受"
+      },
+      "strategic_drive": {
+        "label": "战略驱动",
+        "desc": "直觉行动 vs 深度谋划"
+      },
+      "people_philosophy": {
+        "label": "人际哲学",
+        "desc": "独狼领袖 vs 群体共生"
+      },
+      "control_style": {
+        "label": "控制风格",
+        "desc": "混沌适应 vs 秩序建立"
+      },
+      "ethical_boundary": {
+        "label": "伦理边界",
+        "desc": "绝对原则 vs 灰度决策"
+      }
+    },
+    "sandbox": {
+      "title": "灵魂沙盒",
+      "daily": "每日问题",
+      "answered": "已回答",
+      "remaining": "剩余"
+    }
+  },
+  "projects": {
+    "title": "项目管理",
+    "newProject": "新建项目",
+    "allProjects": "所有项目",
+    "myTasks": "我的任务",
+    "blocked": "阻塞中",
+    "inProgress": "进行中",
+    "completed": "已完成",
+    "priority": {
+      "high": "高优先级",
+      "medium": "中优先级",
+      "low": "低优先级"
+    },
+    "status": {
+      "todo": "待办",
+      "doing": "进行中",
+      "blocked": "阻塞",
+      "done": "完成"
+    }
+  },
+  "memory": {
+    "title": "记忆系统",
+    "subtitle": "AI的长期记忆与上下文理解",
+    "recent": "最近记忆",
+    "important": "重要记忆",
+    "search": "搜索记忆..."
+  },
+  "settings": {
+    "title": "系统设置",
+    "language": "语言设置",
+    "languageDesc": "选择界面显示语言",
+    "theme": "主题设置",
+    "themeDesc": "选择界面主题风格",
+    "dark": "深色模式",
+    "light": "浅色模式",
+    "system": "跟随系统",
+    "account": "账户设置",
+    "security": "安全设置",
+    "api": "API配置"
+  },
+  "auth": {
+    "login": "登录",
+    "logout": "退出",
+    "username": "用户名",
+    "password": "密码",
+    "rememberMe": "记住我",
+    "forgotPassword": "忘记密码？",
+    "loginSuccess": "登录成功",
+    "loginFailed": "登录失败，请检查用户名和密码"
+  },
+  "calibration": {
+    "questions": {
+      "q1": {
+        "text": "公司现有业务增长稳定但缓慢，您发现一个新兴市场潜力巨大，但进入壁垒高，竞争激烈，且技术尚不成熟。您会选择：",
+        "optionA": "谨慎评估，小规模试点，逐步投入，控制风险",
+        "optionA_impact": "稳健保守",
+        "optionB": "大胆投入，快速抢占市场份额，即使承担短期亏损也在所不惜",
+        "optionB_impact": "激进冒险"
+      },
+      "q2": {
+        "text": "竞争对手推出一款颠覆性产品，对您的核心业务造成威胁。您会选择：",
+        "optionA": "加强现有产品的优化和改进，稳固市场份额，密切关注对手动向",
+        "optionA_impact": "防守型",
+        "optionB": "积极研发类似产品，甚至尝试更激进的创新，直接与对手展开竞争",
+        "optionB_impact": "进攻型"
+      }
+    }
+  },
+  "genesis": {
+    "chapters": {
+      "strategy": "第一章：战略野心与风险",
+      "people": "第二章：人才与管理",
+      "ethics": "第三章：底线与灰度",
+      "communication": "第四章：沟通与控制"
+    }
+  }
+}

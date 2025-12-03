@@ -1,0 +1,41 @@
+{
+  "projects": [
+    {
+      "id": "vulcan-brain",
+      "name": "Vulcan Brain",
+      "description": "本地AI助手系统",
+      "owner": "Yu Xinyue",
+      "status": "in_progress",
+      "progress": 75,
+      "health_score": 90,
+      "risks": ["GPU内存优化待完成"],
+      "milestones": [],
+      "tags": ["ai", "infrastructure"]
+    },
+    {
+      "id": "storyfi-v6",
+      "name": "StoryFi V6",
+      "description": "Web3故事创作平台",
+      "owner": "Yu Xinyue",
+      "status": "at_risk",
+      "progress": 40,
+      "health_score": 60,
+      "risks": ["合约部署延迟", "前端性能问题"],
+      "milestones": [],
+      "tags": ["web3", "game"]
+    },
+    {
+      "id": "ngmi-game",
+      "name": "NGMI But Respawn",
+      "description": "模拟经营类游戏",
+      "owner": "Yu Xinyue",
+      "status": "in_progress",
+      "progress": 85,
+      "health_score": 95,
+      "risks": [],
+      "milestones": [],
+      "tags": ["game", "simulation"]
+    }
+  ],
+  "events": []
+}

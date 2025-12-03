@@ -1,0 +1,216 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "search": "Search",
+    "clear": "Clear",
+    "close": "Close",
+    "copy": "Copy",
+    "copied": "Copied",
+    "online": "Online",
+    "offline": "Offline",
+    "beta": "Beta"
+  },
+  "nav": {
+    "agent": "Agents",
+    "gemini": "AI Chat",
+    "projects": "Projects",
+    "soul": "Soul Analysis",
+    "memory": "Memory",
+    "knowledge": "Knowledge",
+    "settings": "Settings",
+    "logout": "Logout",
+    "presentation": "Presentation",
+    "infoHub": "Info Hub"
+  },
+  "home": {
+    "title": "Command Center",
+    "subtitle": "Vulcan Brain v3.0",
+    "systemStatus": "System Status",
+    "agentsOnline": "{count} Agents Online",
+    "operational": "System Operational"
+  },
+  "agents": {
+    "title": "AI Agents",
+    "financial": {
+      "name": "Financial Intelligence",
+      "code": "AGENT.FINANCE",
+      "description": "Direct ERP/DB connection, auto SQL generation, real-time financial analysis and smart alerts",
+      "status": "Ready | {count} connections",
+      "placeholder": "Enter a financial question, e.g., Calculate my ROI"
+    },
+    "hr": {
+      "name": "HR Management",
+      "code": "AGENT.HR",
+      "description": "Employee profiling, turnover prediction, email monitoring for team stability",
+      "status": "Beta | Limited access",
+      "placeholder": "Enter an HR question, e.g., How to improve team morale?"
+    },
+    "ghostwriter": {
+      "name": "Ghostwriter",
+      "code": "AGENT.GHOST",
+      "description": "Learns your writing style, generates documents, speeches, emails in your voice",
+      "status": "Ready | {count} styles loaded",
+      "placeholder": "Enter your writing request, e.g., Write an annual summary email"
+    },
+    "watchdog": {
+      "name": "Business Radar",
+      "code": "AGENT.RADAR",
+      "description": "24/7 business metrics monitoring, auto-detect anomalies with multi-channel alerts",
+      "status": "Monitoring {count} streams...",
+      "placeholder": "Enter a monitoring question, e.g., Any sales anomalies this week?"
+    },
+    "metrics": {
+      "queriesToday": "Queries Today",
+      "alerts": "Alerts",
+      "profiles": "Profiles",
+      "riskScore": "Risk Score",
+      "documents": "Documents",
+      "accuracy": "Accuracy",
+      "uptime": "Uptime",
+      "latency": "Latency"
+    }
+  },
+  "stats": {
+    "gpu": "GPU",
+    "model": "MODEL",
+    "vram": "VRAM",
+    "uptime": "UPTIME"
+  },
+  "chat": {
+    "placeholder": "Type a message...",
+    "send": "Send",
+    "thinking": "Thinking...",
+    "newChat": "New Chat",
+    "clearHistory": "Clear History",
+    "stopGenerating": "Stop"
+  },
+  "soul": {
+    "title": "Soul Analysis",
+    "subtitle": "Understand your decision-making style and values",
+    "calibration": {
+      "title": "Soul Calibration",
+      "progress": "Calibration Progress",
+      "building": "Building initial model... ({current}/{total})",
+      "complete": "Calibration Complete"
+    },
+    "dimensions": {
+      "risk_appetite": {
+        "label": "Risk Appetite",
+        "desc": "Courage and willingness to bet on the unknown"
+      },
+      "time_horizon": {
+        "label": "Time Horizon",
+        "desc": "Instant gratification vs delayed reward"
+      },
+      "strategic_drive": {
+        "label": "Strategic Drive",
+        "desc": "Intuitive action vs deep planning"
+      },
+      "people_philosophy": {
+        "label": "People Philosophy",
+        "desc": "Lone wolf vs collective symbiosis"
+      },
+      "control_style": {
+        "label": "Control Style",
+        "desc": "Chaos adaptation vs order establishment"
+      },
+      "ethical_boundary": {
+        "label": "Ethical Boundary",
+        "desc": "Absolute principles vs gray decisions"
+      }
+    },
+    "sandbox": {
+      "title": "Soul Sandbox",
+      "daily": "Daily Questions",
+      "answered": "Answered",
+      "remaining": "Remaining"
+    }
+  },
+  "projects": {
+    "title": "Project Management",
+    "newProject": "New Project",
+    "allProjects": "All Projects",
+    "myTasks": "My Tasks",
+    "blocked": "Blocked",
+    "inProgress": "In Progress",
+    "completed": "Completed",
+    "priority": {
+      "high": "High Priority",
+      "medium": "Medium Priority",
+      "low": "Low Priority"
+    },
+    "status": {
+      "todo": "To Do",
+      "doing": "In Progress",
+      "blocked": "Blocked",
+      "done": "Done"
+    }
+  },
+  "memory": {
+    "title": "Memory System",
+    "subtitle": "AI long-term memory and context understanding",
+    "recent": "Recent Memories",
+    "important": "Important Memories",
+    "search": "Search memories..."
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "languageDesc": "Select interface language",
+    "theme": "Theme",
+    "themeDesc": "Select interface theme",
+    "dark": "Dark Mode",
+    "light": "Light Mode",
+    "system": "System Default",
+    "account": "Account",
+    "security": "Security",
+    "api": "API Configuration"
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "username": "Username",
+    "password": "Password",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "loginSuccess": "Login successful",
+    "loginFailed": "Login failed, please check your credentials"
+  },
+  "calibration": {
+    "questions": {
+      "q1": {
+        "text": "Your company has stable but slow growth. You discover a high-potential emerging market, but barriers are high, competition fierce, and technology immature. You choose:",
+        "optionA": "Cautious evaluation, small-scale pilot, gradual investment, control risk",
+        "optionA_impact": "Conservative",
+        "optionB": "Bold investment, fast market capture, accept short-term losses",
+        "optionB_impact": "Aggressive"
+      },
+      "q2": {
+        "text": "A competitor launches a disruptive product threatening your core business. You choose:",
+        "optionA": "Strengthen existing products, solidify market share, monitor competitor",
+        "optionA_impact": "Defensive",
+        "optionB": "Aggressively develop similar products, pursue radical innovation",
+        "optionB_impact": "Offensive"
+      }
+    }
+  },
+  "genesis": {
+    "chapters": {
+      "strategy": "Chapter 1: Strategy & Risk",
+      "people": "Chapter 2: People & Management",
+      "ethics": "Chapter 3: Ethics & Gray Areas",
+      "communication": "Chapter 4: Communication & Control"
+    }
+  }
+}

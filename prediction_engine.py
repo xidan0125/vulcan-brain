@@ -1,6 +1,7 @@
-# prediction_engine.py - Vulcan Brain 预测引擎
+# prediction_engine.py - Vulcan Brain 预测引擎 (异步版)
 """
 基于 In-Context Learning 的用户决策预测引擎
+使用统一的 VulcanStore 进行数据库访问
 
 核心逻辑:
 1. 构建 Persona (画像): Genesis 20问 + 历史决策
@@ -17,21 +18,11 @@ import os
 import json
 from datetime import datetime
 from typing import Dict, List, Optional
-from bson import ObjectId
-from pymongo import MongoClient
 
-# MongoDB
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
-client = MongoClient(MONGO_URI)
-db = client["vulcan_brain"]
-
-soul_interactions_col = db["soul_interactions"]
-user_genesis_col = db["user_genesis"]
-sandbox_questions_col = db["sandbox_questions"]
+from vulcan_libs.store import store
+from config import LLM_API_URL, LLM_PREDICTION_MODEL as LLM_MODEL
 
 # LLM 配置
-LLM_API_URL = os.getenv("LLM_API_URL", "http://localhost:11434/api/generate")
-LLM_MODEL = os.getenv("LLM_MODEL", "qwen2.5:7b")
 
 
 async def predict_user_choice(question_id: str, user_id: str) -> Dict:
@@ -50,7 +41,7 @@ async def predict_user_choice(question_id: str, user_id: str) -> Dict:
         }
     """
     # 1. 获取题目
-    question = sandbox_questions_col.find_one({"_id": ObjectId(question_id)})
+    question = await store.get_sandbox_question_by_id(question_id)
     if not question:
         return {"option_id": "A", "confidence": 0.5, "reasoning": "题目不存在"}
 
@@ -85,34 +76,33 @@ async def _build_user_context(user_id: str) -> Dict:
     }
 
     # 1. Genesis 数据 (最高优先级)
-    genesis = user_genesis_col.find_one({"user_id": user_id})
+    genesis = await store.get_user_genesis(user_id)
     if genesis:
         context["genesis_traits"] = genesis.get("key_traits", [])
         context["dimension_summary"] = genesis.get("dimensions", {})
 
     # 2. 最近决策 (Few-Shot 样本)
-    recent = list(soul_interactions_col.find({
-        "user_id": user_id,
-        "type": "sandbox"
-    }).sort("created_at", -1).limit(20))
+    recent = await store.get_soul_interactions_by_type(user_id, interaction_type="sandbox", limit=20)
 
     for r in recent:
         # 获取对应题目
-        q = sandbox_questions_col.find_one({"_id": r.get("target_id")})
-        if q:
-            # 找到用户选择的选项文本
-            user_choice_text = ""
-            for opt in q.get("options", []):
-                if opt.get("id") == r.get("user_choice"):
-                    user_choice_text = opt.get("text", "")
-                    break
+        target_id = r.get("target_id")
+        if target_id:
+            q = await store.get_sandbox_question_by_id(str(target_id))
+            if q:
+                # 找到用户选择的选项文本
+                user_choice_text = ""
+                for opt in q.get("options", []):
+                    if opt.get("id") == r.get("user_choice"):
+                        user_choice_text = opt.get("text", "")
+                        break
 
-            context["recent_decisions"].append({
-                "scenario": q.get("scenario", "")[:100],
-                "category": q.get("category", ""),
-                "user_choice": user_choice_text,
-                "was_predicted_correctly": r.get("is_match", False)
-            })
+                context["recent_decisions"].append({
+                    "scenario": q.get("scenario", "")[:100],
+                    "category": q.get("category", ""),
+                    "user_choice": user_choice_text,
+                    "was_predicted_correctly": r.get("is_match", False)
+                })
 
     return context
 
@@ -145,9 +135,9 @@ def _build_prediction_prompt(question: Dict, context: Dict) -> str:
         elif dims.get("risk_appetite", 0.5) < 0.4:
             prompt_parts.append("- 风险偏好: 偏保守")
 
-        if dims.get("empathy", 0.5) > 0.6:
+        if dims.get("social_tendency", 0.5) > 0.6:
             prompt_parts.append("- 人际决策: 重视情感")
-        elif dims.get("empathy", 0.5) < 0.4:
+        elif dims.get("social_tendency", 0.5) < 0.4:
             prompt_parts.append("- 人际决策: 结果导向")
         prompt_parts.append("")
 
@@ -251,20 +241,16 @@ def _fallback_prediction(question: Dict, context: Dict) -> Dict:
     # 基于维度和类别的简单规则
     if category == "RISK_DECISION":
         if dims.get("risk_appetite", 0.5) > 0.6:
-            # 激进倾向，选第一个选项（通常是激进选项）
             return {"option_id": options[0].get("id", "A"), "confidence": 0.6, "reasoning": "基于您的风险偏好"}
         else:
-            # 保守倾向，选中间或最后
             idx = min(2, len(options) - 1)
             return {"option_id": options[idx].get("id", "C"), "confidence": 0.6, "reasoning": "基于您的稳健风格"}
 
     elif category == "HR_DECISION":
-        if dims.get("empathy", 0.5) > 0.6:
-            # 重情感，选温和选项
+        if dims.get("social_tendency", 0.5) > 0.6:
             idx = min(1, len(options) - 1)
             return {"option_id": options[idx].get("id", "B"), "confidence": 0.6, "reasoning": "基于您对团队的重视"}
         else:
-            # 结果导向
             idx = min(2, len(options) - 1)
             return {"option_id": options[idx].get("id", "C"), "confidence": 0.6, "reasoning": "基于您的效率优先原则"}
 
@@ -275,13 +261,13 @@ def _fallback_prediction(question: Dict, context: Dict) -> Dict:
 
 # ==================== 校准期逻辑 ====================
 
-def get_calibration_status(user_id: str) -> Dict:
+async def get_calibration_status(user_id: str) -> Dict:
     """
     获取校准状态
 
     前 7 天为校准期，预测准确率低是正常的
     """
-    interactions_count = soul_interactions_col.count_documents({"user_id": user_id})
+    interactions_count = await store.count_soul_interactions(user_id)
 
     if interactions_count < 7:
         return {
@@ -291,10 +277,7 @@ def get_calibration_status(user_id: str) -> Dict:
         }
     else:
         # 计算最近准确率
-        recent = list(soul_interactions_col.find({
-            "user_id": user_id,
-            "is_match": {"$exists": True}
-        }).sort("created_at", -1).limit(20))
+        recent = await store.get_soul_interactions_with_match(user_id, limit=20)
 
         if recent:
             accuracy = sum(1 for r in recent if r.get("is_match")) / len(recent)

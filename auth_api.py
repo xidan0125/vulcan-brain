@@ -1,22 +1,23 @@
 """
-Vulcan Brain - 用户认证与灵魂API
+Vulcan Brain - 用户认证与灵魂API (异步版)
+使用统一的 VulcanStore 进行数据库访问
 """
+import os
+from config import JWT_SECRET, JWT_ALGORITHM, JWT_EXPIRE_HOURS
 import jwt
 import hashlib
+from passlib.context import CryptContext
+
+# 密码加密上下文 - 使用bcrypt（行业标准）
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 from datetime import datetime, timedelta
 from typing import Optional, Dict, List
 from fastapi import APIRouter, HTTPException, Depends, Header
 from pydantic import BaseModel
-from pymongo import MongoClient
 
-# MongoDB 连接
-mongo_client = MongoClient("mongodb://localhost:27017")
-db = mongo_client["vulcan_brain"]
+from vulcan_libs.store import store
 
 # JWT 配置
-JWT_SECRET = "vulcan_brain_secret_2024"
-JWT_ALGORITHM = "HS256"
-JWT_EXPIRE_HOURS = 24 * 7  # 7天
 
 router = APIRouter()
 
@@ -51,16 +52,31 @@ class ConstitutionUpdate(BaseModel):
 # ==================== Helper Functions ====================
 
 def hash_password(password: str) -> str:
-    """简单的密码hash（生产环境应用bcrypt）"""
-    return hashlib.sha256(password.encode()).hexdigest()
+    """使用bcrypt对密码进行安全hash"""
+    return pwd_context.hash(password)
 
 def verify_password(password: str, stored_hash: str) -> bool:
-    """验证密码 - 支持明文和hash两种方式"""
-    # 先尝试明文比较（开发阶段）
-    if password == stored_hash:
-        return True
-    # 再尝试hash比较
-    return hash_password(password) == stored_hash
+    """
+    验证密码 - 兼容旧SHA256和新bcrypt
+    迁移策略：登录成功后自动升级为bcrypt
+    """
+    # 新格式：bcrypt hash 以 $2b$ 开头
+    if stored_hash.startswith("$2b$") or stored_hash.startswith("$2a$"):
+        return pwd_context.verify(password, stored_hash)
+    
+    # 旧格式：SHA256 (64位hex字符串)
+    if len(stored_hash) == 64:
+        return hashlib.sha256(password.encode()).hexdigest() == stored_hash
+    
+    return False
+
+
+async def upgrade_password_hash_if_needed(username: str, password: str, stored_hash: str):
+    """如果使用旧hash格式，自动升级为bcrypt"""
+    if not (stored_hash.startswith("$2b$") or stored_hash.startswith("$2a$")):
+        new_hash = hash_password(password)
+        await store.update_user(username, {"password_hash": new_hash})
+        print(f"[SECURITY] 用户 {username} 密码已升级为bcrypt")
 
 def create_token(user_id: str, username: str) -> str:
     """创建JWT token"""
@@ -85,14 +101,13 @@ async def get_current_user(authorization: str = Header(None)) -> dict:
     if not authorization:
         raise HTTPException(status_code=401, detail="未提供认证token")
 
-    # 支持 "Bearer xxx" 和 "xxx" 两种格式
     token = authorization.replace("Bearer ", "") if authorization.startswith("Bearer ") else authorization
 
     payload = decode_token(token)
     if not payload:
         raise HTTPException(status_code=401, detail="token无效或已过期")
 
-    user = db.users.find_one({"username": payload["username"]})
+    user = await store.get_user(payload["username"])
     if not user:
         raise HTTPException(status_code=401, detail="用户不存在")
 
@@ -108,7 +123,7 @@ async def get_current_user(authorization: str = Header(None)) -> dict:
 @router.post("/auth/login", response_model=LoginResponse)
 async def login(req: LoginRequest):
     """用户登录"""
-    user = db.users.find_one({"username": req.username})
+    user = await store.get_user(req.username)
     if not user:
         raise HTTPException(status_code=401, detail="用户名或密码错误")
 
@@ -116,13 +131,13 @@ async def login(req: LoginRequest):
         raise HTTPException(status_code=401, detail="用户名或密码错误")
 
     # 更新最后登录时间
-    db.users.update_one(
-        {"username": req.username},
-        {"$set": {"last_login": datetime.now()}}
-    )
+    await store.update_user(req.username, {"last_login": datetime.now()})
+    
+    # 自动升级旧密码hash为bcrypt
+    await upgrade_password_hash_if_needed(req.username, req.password, user.get("password_hash", ""))
 
     # 获取用户灵魂配置
-    soul = db.user_souls.find_one({"user_id": req.username}, {"_id": 0})
+    soul = await store.get_soul(req.username)
 
     token = create_token(str(user["_id"]), user["username"])
 
@@ -140,7 +155,10 @@ async def login(req: LoginRequest):
 @router.get("/auth/me")
 async def get_me(current_user: dict = Depends(get_current_user)):
     """获取当前用户信息"""
-    soul = db.user_souls.find_one({"user_id": current_user["user_id"]}, {"_id": 0})
+    soul = await store.get_soul(current_user["user_id"])
+    # 清理 MongoDB ObjectId
+    if soul and "_id" in soul:
+        soul["_id"] = str(soul["_id"])
     return {
         **current_user,
         "soul": soul
@@ -151,14 +169,15 @@ async def get_me(current_user: dict = Depends(get_current_user)):
 @router.get("/soul/status")
 async def get_soul_status(current_user: dict = Depends(get_current_user)):
     """获取灵魂状态"""
-    soul = db.user_souls.find_one({"user_id": current_user["user_id"]}, {"_id": 0})
-    genesis = db.user_genesis.find_one({"user_id": current_user["user_id"]}, {"_id": 0})
+    soul = await store.get_soul(current_user["user_id"])
+    genesis = await store.get_user_genesis(current_user["user_id"])
+    constitution_count = await store.count_user_constitution(current_user["user_id"])
 
     return {
         "user_id": current_user["user_id"],
         "genesis_completed": soul.get("genesis_completed", False) if soul else False,
         "sync_rate": soul.get("sync_rate", 0) if soul else 0,
-        "has_constitution": db.user_constitution.count_documents({"user_id": current_user["user_id"]}) > 0
+        "has_constitution": constitution_count > 0
     }
 
 @router.post("/soul/genesis")
@@ -171,7 +190,6 @@ async def submit_genesis(req: GenesisSubmit, current_user: dict = Depends(get_cu
     risk_score = 0
     management_score = 0
 
-    # 简单的画像计算逻辑
     risk_keywords = ["risk_seeking", "speed_first", "aggressive_growth", "proactive_change"]
     management_keywords = ["culture_over_talent", "performance_first", "strict_rules", "wolf_culture"]
 
@@ -187,38 +205,29 @@ async def submit_genesis(req: GenesisSubmit, current_user: dict = Depends(get_cu
             management_score += 5
 
     # 保存创世问答记录
-    db.user_genesis.update_one(
-        {"user_id": user_id},
-        {
-            "$set": {
-                "user_id": user_id,
-                "answers": answers_list,
-                "completed_at": datetime.now(),
-                "computed_profile": {
-                    "risk_tendency": min(risk_score / 50, 1.0),
-                    "management_tendency": min(management_score / 50, 1.0)
-                }
-            }
-        },
-        upsert=True
-    )
+    genesis_data = {
+        "user_id": user_id,
+        "answers": answers_list,
+        "completed_at": datetime.now(),
+        "computed_profile": {
+            "risk_tendency": min(risk_score / 50, 1.0),
+            "management_tendency": min(management_score / 50, 1.0)
+        }
+    }
+    await store.update_user_genesis(user_id, genesis_data)
 
     # 更新 user_souls
     risk_label = "激进型" if risk_score > 30 else ("中等" if risk_score > 15 else "保守型")
     mgmt_label = "铁腕型" if management_score > 30 else ("平衡型" if management_score > 15 else "人性化")
 
-    db.user_souls.update_one(
-        {"user_id": user_id},
-        {
-            "$set": {
-                "genesis_completed": True,
-                "risk_profile": {"score": risk_score * 2, "label": risk_label},
-                "management_style": {"score": management_score * 2, "label": mgmt_label},
-                "sync_rate": 50.0,  # 初始同步率
-                "updated_at": datetime.now()
-            }
-        }
-    )
+    soul_update = {
+        "genesis_completed": True,
+        "risk_profile": {"score": risk_score * 2, "label": risk_label},
+        "management_style": {"score": management_score * 2, "label": mgmt_label},
+        "sync_rate": 50.0,
+        "updated_at": datetime.now()
+    }
+    await store.update_soul(user_id, soul_update)
 
     # 生成默认宪法
     default_constitution = [
@@ -230,24 +239,14 @@ async def submit_genesis(req: GenesisSubmit, current_user: dict = Depends(get_cu
         {"id": "s2", "category": "style", "content": f"管理风格: {mgmt_label}"}
     ]
 
-    db.user_constitution.update_one(
-        {"user_id": user_id},
-        {
-            "$set": {
-                "user_id": user_id,
-                "items": default_constitution,
-                "updated_at": datetime.now()
-            }
-        },
-        upsert=True
-    )
+    await store.update_user_constitution(user_id, default_constitution)
 
     return {"success": True, "message": "创世对齐完成", "sync_rate": 50.0}
 
 @router.get("/soul/constitution")
 async def get_constitution(current_user: dict = Depends(get_current_user)):
     """获取宪法条目"""
-    doc = db.user_constitution.find_one({"user_id": current_user["user_id"]}, {"_id": 0})
+    doc = await store.get_user_constitution(current_user["user_id"])
     if not doc:
         return {"user_id": current_user["user_id"], "items": []}
     return doc
@@ -256,41 +255,26 @@ async def get_constitution(current_user: dict = Depends(get_current_user)):
 async def update_constitution(req: ConstitutionUpdate, current_user: dict = Depends(get_current_user)):
     """更新宪法条目"""
     items = [item.dict() for item in req.items]
-
-    db.user_constitution.update_one(
-        {"user_id": current_user["user_id"]},
-        {
-            "$set": {
-                "user_id": current_user["user_id"],
-                "items": items,
-                "updated_at": datetime.now()
-            }
-        },
-        upsert=True
-    )
+    
+    await store.update_user_constitution(current_user["user_id"], items)
 
     # 同步核心条目到 user_souls
     redlines = [i["content"] for i in items if i["category"] == "redline"]
     core_values = [i["content"] for i in items if i["category"] == "core"]
 
-    db.user_souls.update_one(
-        {"user_id": current_user["user_id"]},
-        {
-            "$set": {
-                "redlines": redlines,
-                "core_values": core_values,
-                "updated_at": datetime.now()
-            }
-        }
-    )
+    await store.update_soul(current_user["user_id"], {
+        "redlines": redlines,
+        "core_values": core_values,
+        "updated_at": datetime.now()
+    })
 
     return {"success": True, "message": "宪法已更新"}
 
 @router.get("/soul/profile")
 async def get_soul_profile(current_user: dict = Depends(get_current_user)):
     """获取完整灵魂档案（用于AI System Prompt）"""
-    soul = db.user_souls.find_one({"user_id": current_user["user_id"]}, {"_id": 0})
-    constitution = db.user_constitution.find_one({"user_id": current_user["user_id"]}, {"_id": 0})
+    soul = await store.get_soul(current_user["user_id"])
+    constitution = await store.get_user_constitution(current_user["user_id"])
 
     if not soul:
         return {"error": "灵魂档案不存在"}
@@ -307,30 +291,26 @@ def build_system_prompt_snippet(soul: dict, constitution: dict) -> str:
     """构建注入System Prompt的片段"""
     lines = ["### 用户价值观对齐配置 ###"]
 
-    # 红线
     redlines = soul.get("redlines", [])
     if redlines:
         lines.append("\n【红线 - 绝对禁止】")
         for r in redlines:
             lines.append(f"- {r}")
 
-    # 核心价值观
     core_values = soul.get("core_values", [])
     if core_values:
         lines.append("\n【核心价值观】")
         for v in core_values:
             lines.append(f"- {v}")
 
-    # 沟通风格
     style = soul.get("communication_style", {})
     if style:
         tone_map = {"brief_and_direct": "简洁直接", "detailed": "详细全面", "technical": "技术型", "casual": "轻松随意"}
-        lines.append(f"\n【沟通风格】{tone_map.get(style.get('tone', ''), '默认')}")
+        lines.append(f"\n【沟通风格】{tone_map.get(style.get(tone, ), 默认)}")
 
-    # 风险偏好
     risk = soul.get("risk_profile", {})
     if risk.get("label"):
-        lines.append(f"【风险偏好】{risk['label']}")
+        lines.append(f"【风险偏好】{risk[label]}")
 
     return "\n".join(lines)
 
@@ -339,40 +319,33 @@ def build_system_prompt_snippet(soul: dict, constitution: dict) -> str:
 @router.post("/soul/alignment/submit")
 async def submit_alignment(
     card_id: str,
-    selected: str,  # "A" or "B"
-    expected: str,  # "A" or "B"
+    selected: str,
+    expected: str,
     current_user: dict = Depends(get_current_user)
 ):
     """提交对齐测试答案"""
     is_correct = selected == expected
     delta = 2.5 if is_correct else -0.5
 
-    # 更新同步率
-    soul = db.user_souls.find_one({"user_id": current_user["user_id"]})
+    # 获取当前同步率
+    soul = await store.get_soul(current_user["user_id"])
     new_sync_rate = max(0, min(100, (soul.get("sync_rate", 50) if soul else 50) + delta))
 
-    db.user_souls.update_one(
-        {"user_id": current_user["user_id"]},
-        {"$set": {"sync_rate": new_sync_rate, "updated_at": datetime.now()}}
-    )
+    # 更新同步率
+    await store.update_soul(current_user["user_id"], {
+        "sync_rate": new_sync_rate, 
+        "updated_at": datetime.now()
+    })
 
     # 记录对齐历史
-    db.user_alignments.update_one(
-        {"user_id": current_user["user_id"]},
-        {
-            "$push": {
-                "responses": {
-                    "card_id": card_id,
-                    "selected": selected,
-                    "expected": expected,
-                    "is_correct": is_correct,
-                    "timestamp": datetime.now()
-                }
-            },
-            "$set": {"updated_at": datetime.now()}
-        },
-        upsert=True
-    )
+    alignment_response = {
+        "card_id": card_id,
+        "selected": selected,
+        "expected": expected,
+        "is_correct": is_correct,
+        "timestamp": datetime.now()
+    }
+    await store.add_user_alignment_response(current_user["user_id"], alignment_response)
 
     return {
         "is_correct": is_correct,
@@ -387,15 +360,12 @@ async def reset_genesis(current_user: dict = Depends(get_current_user)):
     user_id = current_user["user_id"]
     
     # 删除 genesis 记录
-    db.user_genesis.delete_one({"user_id": user_id})
+    await store.delete_user_genesis(user_id)
     
     # 重置 user_souls 状态
-    db.user_souls.update_one(
-        {"user_id": user_id},
-        {"$set": {"genesis_completed": False, "sync_rate": 0}}
-    )
+    await store.update_soul(user_id, {"genesis_completed": False, "sync_rate": 0})
     
     # 删除宪法
-    db.user_constitution.delete_one({"user_id": user_id})
+    await store.delete_user_constitution(user_id)
     
     return {"success": True, "message": "校准状态已重置"}

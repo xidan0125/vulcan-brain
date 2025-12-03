@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Send, StopCircle } from "lucide-react";
+import { Send, StopCircle, Check } from "lucide-react";
 import { useChatStore } from "@/store/useChatStore";
 import MessageBubble from "./MessageBubble";
 
@@ -11,14 +11,30 @@ export default function ChatWindow() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [abortController, setAbortController] = useState<AbortController | null>(null);
 
-  const { messages, isLoading, addMessage, setLoading, updateLastMessage } = useChatStore();
+  const { 
+    messages, 
+    isLoading, 
+    sessionId,
+    isSaving,
+    lastSavedAt,
+    unsavedCount,
+    addMessage, 
+    setLoading, 
+    updateLastMessage,
+    initSession,
+    autoSave 
+  } = useChatStore();
 
-  // Auto-scroll to bottom
+  useEffect(() => {
+    if (!sessionId) {
+      initSession("vulcan");
+    }
+  }, [sessionId, initSession]);
+
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // Auto-resize textarea
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = "auto";
@@ -33,26 +49,19 @@ export default function ChatWindow() {
     setInput("");
     setLoading(true);
 
-    // Add user message
     addMessage({
       role: "user",
       content: userMessage,
     });
 
-    // ========== 真实 SSE 集成开始 ==========
     const controller = new AbortController();
     setAbortController(controller);
 
     try {
-      const response = await fetch('http://100.79.150.62:8001/api/chat/stream', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          message: userMessage,
-          stream: true,
-        }),
+      const response = await fetch("/api/chat/stream", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userMessage, stream: true }),
         signal: controller.signal,
       });
 
@@ -60,8 +69,7 @@ export default function ChatWindow() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      // 创建 AI 消息占位
-      const aiMessageId = addMessage({
+      addMessage({
         role: "assistant",
         content: "",
         isStreaming: true,
@@ -71,67 +79,76 @@ export default function ChatWindow() {
       const decoder = new TextDecoder();
       let buffer = "";
 
-      if (!reader) {
-        throw new Error('Response body is null');
-      }
+      if (!reader) throw new Error("Response body is null");
 
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
 
         buffer += decoder.decode(value, { stream: true });
-        const lines = buffer.split('\n');
+        const lines = buffer.split("\n");
         buffer = lines.pop() || "";
 
         for (const line of lines) {
-          if (line.startsWith('data:')) {
+          if (line.startsWith("data:")) {
             try {
               const data = JSON.parse(line.slice(5).trim());
-              
-              if (data.type === 'token') {
-                // 流式追加 token
+
+              if (data.type === "token") {
                 updateLastMessage((prev) => ({
                   ...prev,
                   content: prev.content + data.content,
                   isStreaming: true,
                 }));
-              } else if (data.type === 'tool_output') {
-                // 工具执行结果
+              } else if (data.type === "thinking") {
                 updateLastMessage((prev) => ({
                   ...prev,
-                  content: prev.content + "\n\n```\n" + data.content + "\n```\n\n",
+                  thinkingSteps: [
+                    ...(prev.thinkingSteps || []),
+                    { type: "thinking", content: data.content, timestamp: Date.now() }
+                  ],
+                  isStreaming: true,
                 }));
-              } else if (data.type === 'done') {
-                // 结束流式
+              } else if (data.type === "code") {
                 updateLastMessage((prev) => ({
                   ...prev,
-                  isStreaming: false,
+                  thinkingSteps: [
+                    ...(prev.thinkingSteps || []),
+                    { type: "code", content: data.content, timestamp: Date.now() }
+                  ],
+                  isStreaming: true,
                 }));
+              } else if (data.type === "tool_output" || data.type === "tool") {
+                updateLastMessage((prev) => ({
+                  ...prev,
+                  thinkingSteps: [
+                    ...(prev.thinkingSteps || []),
+                    { type: "tool_output", content: data.content, timestamp: Date.now() }
+                  ],
+                  isStreaming: true,
+                }));
+              } else if (data.type === "done") {
+                updateLastMessage((prev) => ({ ...prev, isStreaming: false }));
+                setTimeout(() => autoSave(), 500);
               }
             } catch (e) {
-              console.warn('Failed to parse SSE data:', line, e);
+              console.warn("Failed to parse SSE data:", line, e);
             }
-          } else if (line.startsWith('event:')) {
-            // 处理 event 行（如果需要）
-            console.log('Event:', line.slice(6).trim());
           }
         }
       }
 
-      // 流结束
-      updateLastMessage((prev) => ({
-        ...prev,
-        isStreaming: false,
-      }));
+      updateLastMessage((prev) => ({ ...prev, isStreaming: false }));
+      setTimeout(() => autoSave(), 500);
 
     } catch (error: any) {
-      if (error.name === 'AbortError') {
-        console.log('Request aborted by user');
+      if (error.name === "AbortError") {
+        console.log("Request aborted");
       } else {
-        console.error('Chat stream error:', error);
+        console.error("Chat stream error:", error);
         addMessage({
           role: "assistant",
-          content: `❌ 错误：${error.message}\n\n请检查后端 API 服务是否正常运行。`,
+          content: `Error: ${error.message}`,
           isStreaming: false,
         });
       }
@@ -139,7 +156,6 @@ export default function ChatWindow() {
       setLoading(false);
       setAbortController(null);
     }
-    // ========== 真实 SSE 集成结束 ==========
   };
 
   const handleStop = () => {
@@ -159,12 +175,26 @@ export default function ChatWindow() {
 
   const handleFeedback = (messageId: string, feedback: "positive" | "negative") => {
     console.log(`Feedback for message ${messageId}: ${feedback}`);
-    // TODO: Send feedback to backend API
   };
 
   return (
     <div className="flex flex-col h-full">
-      {/* Messages Area */}
+      <div className="flex items-center justify-between px-6 py-2 border-b text-xs text-muted-foreground">
+        <span>Session: {sessionId?.slice(0, 8) || "Loading..."}</span>
+        <div className="flex items-center gap-2">
+          {isSaving && <span className="animate-pulse">Saving...</span>}
+          {lastSavedAt && !isSaving && (
+            <span className="flex items-center gap-1 text-green-600">
+              <Check className="w-3 h-3" />
+              Saved
+            </span>
+          )}
+          {unsavedCount > 0 && !isSaving && (
+            <span className="text-yellow-600">{unsavedCount} unsaved</span>
+          )}
+        </div>
+      </div>
+
       <div className="flex-1 overflow-y-auto px-6 py-4">
         {messages.length === 0 ? (
           <div className="flex items-center justify-center h-full">
@@ -172,68 +202,39 @@ export default function ChatWindow() {
               <div className="w-16 h-16 bg-primary/10 rounded-full mx-auto flex items-center justify-center">
                 <span className="text-3xl font-bold text-primary">V</span>
               </div>
-              <h2 className="text-xl font-semibold">Vulcan Brain Operations Center</h2>
-              <p className="text-muted-foreground text-sm">
-                高性能 AI Agent 对话系统 · 双 RTX 5090 · 72GB VRAM
-              </p>
-              <div className="flex gap-2 justify-center">
-                <div className="px-3 py-1.5 bg-accent rounded-lg text-xs">
-                  流式对话
-                </div>
-                <div className="px-3 py-1.5 bg-accent rounded-lg text-xs">
-                  代码执行
-                </div>
-                <div className="px-3 py-1.5 bg-accent rounded-lg text-xs">
-                  工具调用
-                </div>
-              </div>
+              <h2 className="text-xl font-semibold">Vulcan Brain</h2>
+              <p className="text-muted-foreground text-sm">AI Agent with Auto-Save</p>
             </div>
           </div>
         ) : (
           <>
             {messages.map((message) => (
-              <MessageBubble
-                key={message.id}
-                message={message}
-                onFeedback={handleFeedback}
-              />
+              <MessageBubble key={message.id} message={message} onFeedback={handleFeedback} />
             ))}
             <div ref={messagesEndRef} />
           </>
         )}
       </div>
 
-      {/* Input Area */}
       <div className="border-t p-4">
         <div className="flex gap-2 items-end">
-          <div className="flex-1 relative">
-            <textarea
-              ref={textareaRef}
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="输入消息... (Shift+Enter 换行)"
-              rows={1}
-              className="w-full px-4 py-3 bg-background border rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-primary max-h-32 overflow-y-auto"
-              disabled={isLoading}
-            />
-          </div>
+          <textarea
+            ref={textareaRef}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="Type message... (Shift+Enter for newline)"
+            rows={1}
+            className="flex-1 px-4 py-3 bg-background border rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-primary max-h-32"
+            disabled={isLoading}
+          />
           {isLoading ? (
-            <button
-              onClick={handleStop}
-              className="px-4 py-3 bg-destructive text-destructive-foreground rounded-xl hover:bg-destructive/90 transition-colors flex items-center gap-2"
-            >
+            <button onClick={handleStop} className="px-4 py-3 bg-destructive text-white rounded-xl">
               <StopCircle className="w-4 h-4" />
-              停止
             </button>
           ) : (
-            <button
-              onClick={handleSend}
-              disabled={!input.trim()}
-              className="px-4 py-3 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
-            >
+            <button onClick={handleSend} disabled={!input.trim()} className="px-4 py-3 bg-primary text-white rounded-xl disabled:opacity-50">
               <Send className="w-4 h-4" />
-              发送
             </button>
           )}
         </div>

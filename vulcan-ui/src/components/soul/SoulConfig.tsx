@@ -17,7 +17,7 @@ interface ConfigResponse {
   is_default: boolean;
 }
 
-const API_BASE = "http://100.79.150.62:8001";
+const API_BASE = "";
 
 export default function SoulConfig() {
   const [settings, setSettings] = useState<SoulSettings | null>(null);

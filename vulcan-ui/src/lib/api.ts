@@ -1,8 +1,7 @@
 /**
  * Vulcan Brain API Client
+ * 使用相对路径，通过 Next.js rewrites 代理到后端
  */
-
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || '';
 
 // Types
 export interface User {
@@ -95,6 +94,7 @@ export interface SubmitAnswerResponse {
 
 // Helper to get auth headers
 function getAuthHeaders(): HeadersInit {
+  if (typeof window === 'undefined') return { 'Content-Type': 'application/json' };
   const token = localStorage.getItem('vulcan_token');
   return {
     'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ function getAuthHeaders(): HeadersInit {
 
 // Auth APIs
 export async function login(username: string, password: string): Promise<LoginResponse> {
-  const res = await fetch(`${API_BASE}/api/auth/login`, {
+  const res = await fetch('/api/auth/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, password })
@@ -117,7 +117,7 @@ export async function login(username: string, password: string): Promise<LoginRe
 }
 
 export async function getMe(): Promise<User & { soul: any }> {
-  const res = await fetch(`${API_BASE}/api/auth/me`, {
+  const res = await fetch('/api/auth/me', {
     headers: getAuthHeaders()
   });
   if (!res.ok) {
@@ -128,7 +128,7 @@ export async function getMe(): Promise<User & { soul: any }> {
 
 // Soul APIs
 export async function getSoulStatus(): Promise<SoulStatus> {
-  const res = await fetch(`${API_BASE}/api/soul/status`, {
+  const res = await fetch('/api/soul/status', {
     headers: getAuthHeaders()
   });
   if (!res.ok) throw new Error('Failed to get soul status');
@@ -136,7 +136,7 @@ export async function getSoulStatus(): Promise<SoulStatus> {
 }
 
 export async function submitGenesis(answers: Record<number, string>): Promise<any> {
-  const res = await fetch(`${API_BASE}/api/soul/genesis`, {
+  const res = await fetch('/api/soul/genesis', {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify({ answers })
@@ -146,7 +146,7 @@ export async function submitGenesis(answers: Record<number, string>): Promise<an
 }
 
 export async function getConstitution(): Promise<{ user_id: string; items: ConstitutionItem[] }> {
-  const res = await fetch(`${API_BASE}/api/soul/constitution`, {
+  const res = await fetch('/api/soul/constitution', {
     headers: getAuthHeaders()
   });
   if (!res.ok) throw new Error('Failed to get constitution');
@@ -154,7 +154,7 @@ export async function getConstitution(): Promise<{ user_id: string; items: Const
 }
 
 export async function updateConstitution(items: ConstitutionItem[]): Promise<any> {
-  const res = await fetch(`${API_BASE}/api/soul/constitution`, {
+  const res = await fetch('/api/soul/constitution', {
     method: 'PUT',
     headers: getAuthHeaders(),
     body: JSON.stringify({ items })
@@ -164,7 +164,7 @@ export async function updateConstitution(items: ConstitutionItem[]): Promise<any
 }
 
 export async function getSoulProfile(): Promise<SoulProfile> {
-  const res = await fetch(`${API_BASE}/api/soul/profile`, {
+  const res = await fetch('/api/soul/profile', {
     headers: getAuthHeaders()
   });
   if (!res.ok) throw new Error('Failed to get soul profile');
@@ -178,7 +178,7 @@ export async function submitAlignment(
   expected: string
 ): Promise<{ is_correct: boolean; sync_delta: number; new_sync_rate: number }> {
   const res = await fetch(
-    `${API_BASE}/api/soul/alignment/submit?card_id=${cardId}&selected=${selected}&expected=${expected}`,
+    `/api/soul/alignment/submit?card_id=${cardId}&selected=${selected}&expected=${expected}`,
     { method: 'POST', headers: getAuthHeaders() }
   );
   if (!res.ok) throw new Error('Failed to submit alignment');
@@ -187,7 +187,7 @@ export async function submitAlignment(
 
 // 开发调试：重置校准状态
 export async function resetGenesis(): Promise<any> {
-  const res = await fetch(`${API_BASE}/api/soul/genesis/reset`, {
+  const res = await fetch('/api/soul/genesis/reset', {
     method: 'DELETE',
     headers: getAuthHeaders()
   });
@@ -201,7 +201,7 @@ export async function resetGenesis(): Promise<any> {
  * 获取用户 Soul 统计数据（数字孪生面板）
  */
 export async function getSoulStats(userId: string): Promise<SoulStats> {
-  const res = await fetch(`${API_BASE}/api/soul/stats?user_id=${userId}`, {
+  const res = await fetch(`/api/soul/stats?user_id=${userId}`, {
     headers: getAuthHeaders()
   });
   if (!res.ok) throw new Error('Failed to get soul stats');
@@ -212,7 +212,7 @@ export async function getSoulStats(userId: string): Promise<SoulStats> {
  * 获取每日沙盘题目（决策推演面板）
  */
 export async function getDailyQuestions(userId: string): Promise<DailyQuestionsResponse> {
-  const res = await fetch(`${API_BASE}/api/soul/sandbox/daily?user_id=${userId}`, {
+  const res = await fetch(`/api/soul/sandbox/daily?user_id=${userId}`, {
     headers: getAuthHeaders()
   });
   if (!res.ok) throw new Error('Failed to get daily questions');
@@ -227,7 +227,7 @@ export async function submitSandboxAnswer(
   selectedOptionId: string,
   userId: string
 ): Promise<SubmitAnswerResponse> {
-  const res = await fetch(`${API_BASE}/api/soul/sandbox/submit`, {
+  const res = await fetch('/api/soul/sandbox/submit', {
     method: 'POST',
     headers: getAuthHeaders(),
     body: JSON.stringify({
@@ -241,7 +241,7 @@ export async function submitSandboxAnswer(
 }
 
 /**
- * 获取校准状态（用于显示"正在构建模型"提示）
+ * 获取校准状态（用于显示正在构建模型提示）
  */
 export async function getCalibrationStatus(userId: string): Promise<{
   in_calibration: boolean;
@@ -249,7 +249,7 @@ export async function getCalibrationStatus(userId: string): Promise<{
   accuracy?: number;
   message: string;
 }> {
-  const res = await fetch(`${API_BASE}/api/soul/calibration?user_id=${userId}`, {
+  const res = await fetch(`/api/soul/calibration?user_id=${userId}`, {
     headers: getAuthHeaders()
   });
   if (!res.ok) throw new Error('Failed to get calibration status');

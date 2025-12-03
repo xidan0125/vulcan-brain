@@ -19,21 +19,27 @@ from .boss_insight_tool import save_boss_insight
 # RAG Tools
 from .rag_tools import add_document_to_kb, search_knowledge_base
 
+# Search Tools
+from .search_tools import searxng_search as web_search
+
 __all__ = [
     # Function Tools
     'get_current_time',
-    
+
     # Memory Tools
     'remember_info',
     'recall_info',
     'forget_info',
-    
+
     # Alignment Tools
     'record_boss_feedback',
     'get_alignment_summary',
     'save_boss_insight',
-    
+
     # RAG Tools
     'add_document_to_kb',
     'search_knowledge_base',
+
+    # Search Tools
+    'web_search',
 ]

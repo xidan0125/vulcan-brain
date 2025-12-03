@@ -18,7 +18,17 @@ interface AgentPageProps {
   placeholder: string;
 }
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://192.168.31.7:8002";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "";
+
+// 获取认证头
+const getAuthHeaders = (): Record<string, string> => {
+  const token = typeof window !== 'undefined' ? localStorage.getItem('vulcan_token') : null;
+  return {
+    'Content-Type': 'application/json',
+    ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+  };
+};
+
 
 export default function AgentChatPage({
   agentType,
@@ -49,7 +59,7 @@ export default function AgentChatPage({
     try {
       const response = await fetch(`${API_BASE}/api/agents/${agentType}/chat`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: getAuthHeaders(),
         body: JSON.stringify({ message: userMessage, session_id: sessionId }),
       });
 

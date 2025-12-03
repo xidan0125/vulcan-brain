@@ -34,7 +34,7 @@ interface UploadResponse {
   message: string;
 }
 
-const API_BASE = "http://100.79.150.62:8001";
+const API_BASE = "";
 
 export default function KnowledgeBase() {
   const [documents, setDocuments] = useState<Document[]>([]);

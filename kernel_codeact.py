@@ -25,7 +25,7 @@ from llama_index.core.llms import ChatMessage
 from llama_index.core.tools import BaseTool
 
 # 导入三层记忆系统
-from vulcan_libs.memory import get_all_memories
+# from vulcan_libs.memory import get_all_memories  # DISABLED
 from vulcan_libs.alignment import load_constitution, get_relevant_lessons
 
 # 导入 LOD 组件
@@ -162,7 +162,7 @@ class VulcanCodeActKernel:
         # 4. [灵魂注入] 加载三层记忆
         self.constitution = load_constitution()          # 宪法（价值观）
         self.alignment_lessons = get_relevant_lessons()  # 历史教训
-        self.user_memories = get_all_memories()          # 用户记忆
+        self.user_memories = ""  # DISABLED for stability          # 用户记忆
         
         # 5. 构建基础 System Prompt（不包含工具描述）
         self.base_system_prompt = self._build_base_prompt()
@@ -180,8 +180,16 @@ class VulcanCodeActKernel:
         print(f"   └─ 初始 Context: ~{len(self.system_prompt.split())} words")
     
     def _build_execution_env(self, tools: List[BaseTool]) -> Dict[str, Callable]:
-        """构建代码执行环境（工具函数注入）"""
-        env = {}
+        """构建代码执行环境（工具函数注入 + 模块访问）"""
+        import tools as tools_module
+
+        env = {
+            '__builtins__': __builtins__,
+            'tools': tools_module,  # 允许 from tools import xxx
+            'print': print,
+            'json': __import__('json'),
+        }
+        # 直接注入工具函数（可直接调用 web_search(query)）
         for tool in tools:
             func_name = tool.metadata.name
             env[func_name] = tool.fn
@@ -430,11 +438,17 @@ class VulcanCodeActKernel:
                 code = code_match.group(1).strip()
                 print(f"💻 [Code Detected] 长度: {len(code)}")
 
+                # ✅ 发送 'code' 事件（让前端显示正在执行的代码）
+                yield {
+                    "type": "code",
+                    "content": code
+                }
+
                 # 执行代码
                 output = self._execute_code(code)
                 print(f"✅ [Execution] {output[:50]}...")
 
-                # ✅ 协议对齐：发送 'tool_output' 事件
+                # ✅ 发送 'tool_output' 事件（工具执行结果）
                 yield {
                     "type": "tool_output",
                     "content": output

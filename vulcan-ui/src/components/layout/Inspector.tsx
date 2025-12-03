@@ -61,8 +61,7 @@ export default function Inspector({ isOpen, onClose }: InspectorProps) {
       try {
         // Try localhost first (for internal access), then Tailscale IP
         const urls = [
-          'http://localhost:8001/api/system/status',
-          'http://100.79.150.62:8001/api/system/status'
+          '/api/system/status'
         ];
 
         let success = false;

@@ -1,0 +1,520 @@
+"""
+信息中心 API - 直接读取数据库
+"""
+
+from datetime import datetime, timedelta
+from typing import Optional, List
+from fastapi import APIRouter, Query, HTTPException, BackgroundTasks
+from pydantic import BaseModel
+from motor.motor_asyncio import AsyncIOMotorClient
+import os
+
+router = APIRouter(prefix="/info-hub", tags=["InfoHub"])
+
+# MongoDB 连接
+_client = None
+def get_db():
+    global _client
+    if _client is None:
+        _client = AsyncIOMotorClient(os.getenv("MONGO_URI", "mongodb://localhost:27017"))
+    return _client.vulcan_brain
+
+
+class GenerateReportRequest(BaseModel):
+    date: Optional[str] = None
+
+
+@router.get("/daily/{date}")
+async def get_daily_by_date(date: str):
+    """直接从数据库读取日报"""
+    db = get_db()
+    
+    # 从数据库读取
+    report = await db.daily_reports.find_one({"date": date})
+    
+    if report:
+        # 从 dimensions 结构读取数据
+        dims = report.get("dimensions", {})
+        chat_data = dims.get("chat", {})
+        email_data = dims.get("email", {})
+        project_data = dims.get("project", {})
+        approval_data = dims.get("approval", {})
+        people_data = dims.get("people", {})
+        
+        # 转换 chat 格式
+        chat_totals = chat_data.get("totals", {})
+        chat_result = {
+            "total_chats": len(chat_data.get("chats", [])),
+            "total_messages": chat_totals.get("total_messages", 0),
+            "summaries": []
+        }
+        for c in chat_data.get("chats", []):
+            analysis = c.get("analysis", {})
+            chat_result["summaries"].append({
+                "chat_id": c.get("chat_id"),
+                "chat_name": c.get("chat_name"),
+                "message_count": c.get("msg_count", 0),
+                "summary": analysis.get("summary", ""),
+                "decisions": analysis.get("decisions", []),
+                "action_items": analysis.get("action_items", []),
+                "risks": analysis.get("risks", []),
+                "topics": analysis.get("topics", []),
+                "activity_level": analysis.get("activity_level", "medium"),
+                "sentiment": analysis.get("sentiment", "neutral")
+            })
+        
+        return {
+            "report": {
+                "date": report.get("date"),
+                "generated_at": report.get("created_at").isoformat() if report.get("created_at") else None,
+                "chat": chat_result,
+                "email": email_data,
+                "projects": {"total_count": project_data.get("in_progress", 0) + project_data.get("completed", 0)},
+                "approval": {"total_count": approval_data.get("pending", 0) + approval_data.get("approved", 0)},
+                "people": {"total_count": people_data.get("total_count", 0)}
+            }
+        }
+    else:
+        # 无数据，返回空结构
+        return {
+            "report": {
+                "date": date,
+                "generated_at": None,
+                "chat": {"total_chats": 0, "total_messages": 0, "summaries": []},
+                "email": {"total": 0, "received": 0, "sent": 0, "important": 0, "external_count": 0, "top_contacts": [], "vip_emails": [], "ai_analysis": {}},
+                "projects": {"total_count": 0},
+                "approval": {"total_count": 0},
+                "people": {"total_count": 0}
+            }
+        }
+
+
+@router.get("/daily/latest")
+async def get_latest_daily():
+    """获取最新日报"""
+    db = get_db()
+    report = await db.daily_reports.find_one(sort=[("date", -1)])
+    if report:
+        return await get_daily_by_date(report["date"])
+    return await get_daily_by_date(datetime.now().strftime("%Y-%m-%d"))
+
+
+@router.post("/daily/generate")
+async def generate_report(req: GenerateReportRequest, background_tasks: BackgroundTasks):
+    """后台生成日报并存储"""
+    date_str = req.date or (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+    
+    async def do_generate():
+        from services.email_summarizer import generate_email_summary
+        from services.chat_summarizer import generate_chat_summary
+        
+        date_obj = datetime.strptime(date_str, "%Y-%m-%d")
+        db = get_db()
+        
+        # 生成邮件摘要
+        email_data = {}
+        try:
+            email_data = await generate_email_summary(date_obj)
+        except Exception as e:
+            print(f"邮件摘要生成失败: {e}")
+        
+        # 生成聊天摘要
+        chat_data = {"total_chats": 0, "total_messages": 0, "summaries": []}
+        try:
+            chat_data = await generate_chat_summary(date_obj)
+        except Exception as e:
+            print(f"聊天摘要生成失败: {e}")
+        
+        # 存储
+        report = {
+            "date": date_str,
+            "created_at": datetime.now(),
+            "email": email_data,
+            "chat": chat_data,
+            "projects": {"total_count": 0},
+            "approval": {"total_count": 0},
+            "people": {"total_count": 0}
+        }
+        
+        await db.daily_reports.update_one(
+            {"date": date_str},
+            {"$set": report},
+            upsert=True
+        )
+        print(f"✅ 日报已生成并存储: {date_str}")
+    
+    background_tasks.add_task(do_generate)
+    
+    return {
+        "success": True,
+        "message": f"日报生成已启动: {date_str}"
+    }
+
+
+@router.get("/overview")
+async def get_overview():
+    """概览"""
+    db = get_db()
+    reports = await db.daily_reports.find().sort("date", -1).limit(7).to_list(7)
+    return {
+        "latest_report_date": reports[0]["date"] if reports else None,
+        "report_count": len(reports),
+        "dates": [r["date"] for r in reports]
+    }
+
+
+# ===== 群聊相关 API (保留原有功能) =====
+from services.message_store import get_message_store
+from services.chat_summary_store import get_chat_summary_store
+from services.realtime_analyzer import trigger_chat_analysis
+
+class AnalyzeChatRequest(BaseModel):
+    date: Optional[str] = None
+
+@router.get("/chats")
+async def list_chats():
+    summary_store = get_chat_summary_store()
+    msg_store = get_message_store()
+    stats = await msg_store.get_stats()
+    chats = []
+    for stat in stats:
+        chat_id = stat.get("_id")
+        if not chat_id:
+            continue
+        metadata = await summary_store.get_chat_metadata(chat_id)
+        chats.append({
+            "chat_id": chat_id,
+            "chat_name": metadata.get("chat_name", f"群聊_{chat_id[-8:]}") if metadata else f"群聊_{chat_id[-8:]}",
+            "total_messages": stat.get("total", 0),
+        })
+    return {"chats": chats, "count": len(chats)}
+
+@router.get("/chat/{chat_id}")
+async def get_chat_detail(chat_id: str, days: int = Query(7, ge=1, le=30)):
+    summary_store = get_chat_summary_store()
+    msg_store = get_message_store()
+    metadata = await summary_store.get_chat_metadata(chat_id)
+    stats_list = await msg_store.get_stats(chat_id)
+    stats = stats_list[0] if stats_list else {}
+    summaries = await summary_store.get_chat_history_summaries(chat_id, days)
+    history = []
+    for s in summaries:
+        analysis = s.get("analysis", {})
+        history.append({
+            "date": s["date"],
+            "messages_analyzed": s.get("messages_analyzed", 0),
+            "summary": analysis.get("summary", ""),
+            "decisions": analysis.get("decisions", []),
+            "action_items": analysis.get("action_items", []),
+            "risks": analysis.get("risks", []),
+            "topics": analysis.get("topics", []),
+        })
+    return {
+        "chat_id": chat_id,
+        "chat_name": metadata.get("chat_name", f"群聊_{chat_id[-8:]}") if metadata else f"群聊_{chat_id[-8:]}",
+        "total_messages": stats.get("total", 0),
+        "history": history
+    }
+
+
+def _format_sender(s):
+    """Map sender.id to sender.open_id for frontend compatibility"""
+    return {
+        "open_id": s.get("id"),
+        "name": s.get("name"),
+        "sender_type": s.get("sender_type"),
+    }
+
+@router.get("/chat/{chat_id}/messages")
+async def get_chat_messages(chat_id: str, date: str = Query(None), limit: int = Query(50), offset: int = Query(0)):
+    msg_store = get_message_store()
+    since, until = None, None
+    if date:
+        try:
+            date_obj = datetime.strptime(date, "%Y-%m-%d")
+            since = date_obj.replace(hour=0, minute=0, second=0)
+            until = date_obj.replace(hour=23, minute=59, second=59)
+        except:
+            pass
+    messages = await msg_store.get_chat_history(chat_id=chat_id, limit=limit + offset, since=since, until=until)
+    messages = messages[offset:offset+limit]
+    formatted = [{"message_id": m.get("message_id"), "sender": _format_sender(m.get("sender", {})), "content": m.get("content", ""), "timestamp": m.get("timestamp").isoformat() if isinstance(m.get("timestamp"), datetime) else m.get("timestamp")} for m in messages]
+    return {"messages": formatted, "count": len(formatted)}
+
+@router.post("/chat/{chat_id}/analyze")
+async def analyze_chat(chat_id: str, req: AnalyzeChatRequest):
+    date = req.date or datetime.now().strftime("%Y-%m-%d")
+    try:
+        result = await trigger_chat_analysis(chat_id, date)
+        return {"success": bool(result), "analysis": result}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+
+# ===== 人员管理 API V2 =====
+from services.people_store import get_people_store
+
+class UpdatePersonRequest(BaseModel):
+    department: Optional[str] = None
+    function: Optional[str] = None
+    projects: Optional[List[str]] = None
+
+
+@router.get("/people/dashboard")
+async def get_people_dashboard(date: str = Query(None)):
+    """获取人员管理仪表盘"""
+    store = get_people_store()
+
+    if date:
+        try:
+            date_obj = datetime.strptime(date, "%Y-%m-%d")
+        except ValueError:
+            raise HTTPException(status_code=400, detail="Invalid date format")
+    else:
+        date_obj = datetime.now()
+
+    dashboard = await store.get_dashboard(date_obj)
+    return dashboard
+
+
+@router.get("/people")
+async def list_people(
+    limit: int = Query(50, ge=1, le=200),
+    skip: int = Query(0, ge=0),
+    sort_by: str = Query("activity", regex="^(name|activity|department)$"),
+    search: str = Query(None),
+    department: str = Query(None),
+    function: str = Query(None),
+    project: str = Query(None),
+):
+    """获取人员列表，支持筛选"""
+    store = get_people_store()
+    people, total = await store.get_people(
+        limit=limit,
+        skip=skip,
+        sort_by=sort_by,
+        search=search,
+        department=department if department != "all" else None,
+        function=function if function != "all" else None,
+        project=project if project != "all" else None,
+    )
+
+    # 格式化输出
+    result = []
+    for p in people:
+        result.append({
+            "user_id": p.get("user_id"),
+            "name": p.get("name"),
+            "email": p.get("email"),
+            "department": p.get("department", "未定义"),
+            "function": p.get("function", "未定义"),
+            "projects": p.get("projects", []),
+            "ms365_job_title": p.get("ms365_job_title"),
+            "email_sent_total": p.get("total_emails_sent", 0),
+            "email_received_total": p.get("total_emails_received", 0),
+            "last_active": p.get("last_active").isoformat() if p.get("last_active") else None,
+            "daily_activity": p.get("daily_activity", {}),
+        })
+
+    return {"people": result, "total": total}
+
+
+@router.get("/people/{user_id}")
+async def get_person(user_id: str):
+    """获取人员详情"""
+    store = get_people_store()
+    person = await store.get_person(user_id)
+    if not person:
+        raise HTTPException(status_code=404, detail="Person not found")
+    return {"person": person}
+
+
+@router.patch("/people/{user_id}")
+async def update_person(user_id: str, req: UpdatePersonRequest):
+    """更新人员信息 (手动分配部门/职能/项目)"""
+    store = get_people_store()
+    updates = req.dict(exclude_none=True)
+
+    if not updates:
+        raise HTTPException(status_code=400, detail="No updates provided")
+
+    success = await store.update_person(user_id, updates)
+    if not success:
+        raise HTTPException(status_code=404, detail="Person not found or no changes")
+
+    return {"success": True}
+
+
+@router.post("/people/sync")
+async def sync_people(background_tasks: BackgroundTasks):
+    """从 MS365 同步人员数据"""
+    async def do_sync():
+        store = get_people_store()
+        await store.init_indexes()
+        await store.sync_from_ms365()
+        # 更新最近 7 天的活跃度
+        for i in range(7):
+            date = datetime.now() - timedelta(days=i)
+            await store.update_email_activity(date)
+
+    background_tasks.add_task(do_sync)
+    return {"success": True, "message": "人员同步已启动"}
+
+# ===== 审批管理 API =====
+from services.approval_store import get_approval_store
+from services.approval_service import get_approval_service, collect_all_approvals, trigger_approval_analysis
+
+class CollectApprovalsRequest(BaseModel):
+    approval_codes: Optional[List[str]] = None  # 指定审批类型，None则采集全部
+    since_hours: int = 24  # 采集多少小时内的审批
+
+
+@router.get("/approval/dashboard")
+async def get_approval_dashboard(date: str = Query(None)):
+    """获取审批仪表盘"""
+    store = get_approval_store()
+
+    if date:
+        try:
+            date_obj = datetime.strptime(date, "%Y-%m-%d")
+        except ValueError:
+            raise HTTPException(status_code=400, detail="Invalid date format")
+    else:
+        date_obj = datetime.now()
+
+    # 获取当日统计
+    start = date_obj.replace(hour=0, minute=0, second=0)
+    end = date_obj.replace(hour=23, minute=59, second=59)
+    stats = await store.get_stats(since=start, until=end)
+
+    # 获取日报汇总
+    summary = await store.get_summary(date_obj.strftime("%Y-%m-%d"))
+
+    return {
+        "date": date_obj.strftime("%Y-%m-%d"),
+        "stats": stats,
+        "summary": summary,
+        "pending_count": stats.get("pending_count", 0)
+    }
+
+
+@router.get("/approval/list")
+async def list_approvals(
+    status: str = Query(None, description="状态筛选: PENDING/APPROVED/REJECTED/CANCELED"),
+    approval_code: str = Query(None, description="审批类型code"),
+    date: str = Query(None, description="日期筛选 YYYY-MM-DD"),
+    limit: int = Query(50, ge=1, le=200),
+    skip: int = Query(0, ge=0)
+):
+    """获取审批列表"""
+    store = get_approval_store()
+
+    since, until = None, None
+    if date:
+        try:
+            date_obj = datetime.strptime(date, "%Y-%m-%d")
+            since = date_obj.replace(hour=0, minute=0, second=0)
+            until = date_obj.replace(hour=23, minute=59, second=59)
+        except:
+            pass
+
+    approvals = await store.list_approvals(
+        approval_code=approval_code,
+        status=status,
+        since=since,
+        until=until,
+        limit=limit + skip
+    )
+
+    # 分页
+    approvals = approvals[skip:skip + limit]
+
+    # 格式化输出
+    result = []
+    for ap in approvals:
+        result.append({
+            "instance_code": ap.get("instance_code"),
+            "approval_code": ap.get("approval_code"),
+            "approval_name": ap.get("approval_name"),
+            "status": ap.get("status"),
+            "user_id": ap.get("user_id"),
+            "open_id": ap.get("open_id"),
+            "start_time": ap.get("start_time"),
+            "end_time": ap.get("end_time"),
+            "serial_number": ap.get("serial_number")
+        })
+
+    return {"approvals": result, "count": len(result)}
+
+
+@router.get("/approval/definitions")
+async def list_approval_definitions():
+    """获取审批定义列表（审批类型）"""
+    store = get_approval_store()
+    definitions = await store.list_definitions()
+    return {"definitions": definitions, "count": len(definitions)}
+
+
+@router.post("/approval/collect")
+async def collect_approvals(req: CollectApprovalsRequest, background_tasks: BackgroundTasks):
+    """采集飞书审批数据"""
+    async def do_collect():
+        try:
+            result = await collect_all_approvals(since_hours=req.since_hours)
+            print(f"✅ 审批采集完成: {result}")
+        except Exception as e:
+            print(f"❌ 审批采集失败: {e}")
+
+    background_tasks.add_task(do_collect)
+
+    return {
+        "success": True,
+        "message": f"审批采集已启动，采集范围: {req.since_hours}小时"
+    }
+
+
+@router.post("/approval/analyze")
+async def analyze_approvals(date: str = Query(None)):
+    """生成审批日报分析"""
+    date_str = date or datetime.now().strftime("%Y-%m-%d")
+
+    try:
+        result = await trigger_approval_analysis(date_str)
+        return {"success": True, "summary": result}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/approval/pending")
+async def get_pending_approvals(user_id: str = Query(None)):
+    """获取待处理审批"""
+    store = get_approval_store()
+    approvals = await store.get_pending_approvals(user_id)
+
+    return {
+        "approvals": approvals,
+        "count": len(approvals)
+    }
+
+
+@router.get("/approval/summaries")
+async def get_approval_summaries(days: int = Query(7, ge=1, le=30)):
+    """获取最近N天的审批汇总"""
+    store = get_approval_store()
+    summaries = await store.list_summaries(days)
+    return {"summaries": summaries, "count": len(summaries)}
+
+
+@router.get("/approval/{instance_code}")
+async def get_approval_detail(instance_code: str):
+    """获取审批详情"""
+    store = get_approval_store()
+    approval = await store.get_approval(instance_code)
+
+    if not approval:
+        raise HTTPException(status_code=404, detail="Approval not found")
+
+    return {"approval": approval}
+
+

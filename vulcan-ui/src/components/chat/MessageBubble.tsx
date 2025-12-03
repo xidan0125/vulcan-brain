@@ -1,7 +1,8 @@
 "use client";
 
-import { ThumbsUp, ThumbsDown, User, Cpu } from "lucide-react";
-import { Message } from "@/store/useChatStore";
+import { useState } from "react";
+import { ThumbsUp, ThumbsDown, User, Cpu, ChevronDown, ChevronRight, Brain, Code, Terminal } from "lucide-react";
+import { Message, ThinkingStep } from "@/store/useChatStore";
 import CodeBlock from "./CodeBlock";
 
 interface MessageBubbleProps {
@@ -12,6 +13,35 @@ interface MessageBubbleProps {
 export default function MessageBubble({ message, onFeedback }: MessageBubbleProps) {
   const isUser = message.role === "user";
   const isSystem = message.role === "system";
+  const [showThinking, setShowThinking] = useState(false);
+
+  const hasThinkingSteps = message.thinkingSteps && message.thinkingSteps.length > 0;
+
+  // 渲染思考过程步骤
+  const renderThinkingStep = (step: ThinkingStep, index: number) => {
+    const icons = {
+      thinking: <Brain className="w-3 h-3 text-purple-400" />,
+      code: <Code className="w-3 h-3 text-blue-400" />,
+      tool_output: <Terminal className="w-3 h-3 text-green-400" />,
+    };
+    const labels = {
+      thinking: "思考中",
+      code: "执行代码",
+      tool_output: "工具输出",
+    };
+
+    return (
+      <div key={index} className="border-l-2 border-border pl-3 py-1">
+        <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
+          {icons[step.type]}
+          <span>{labels[step.type]}</span>
+        </div>
+        <pre className="text-xs font-mono text-muted-foreground whitespace-pre-wrap overflow-x-auto max-h-32 overflow-y-auto">
+          {step.content.length > 500 ? step.content.slice(0, 500) + "..." : step.content}
+        </pre>
+      </div>
+    );
+  };
 
   // Parse code blocks from content
   const renderContent = () => {
@@ -67,14 +97,47 @@ export default function MessageBubble({ message, onFeedback }: MessageBubbleProp
               : "bg-card text-foreground"
           } px-4 py-3 rounded-lg`}
         >
-          {message.isStreaming && (
+          {/* 思考过程折叠区（流式时自动展开） */}
+          {hasThinkingSteps && (
+            <div className="mb-3">
+              <button
+                onClick={() => setShowThinking(!showThinking)}
+                className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {showThinking || message.isStreaming ? (
+                  <ChevronDown className="w-3 h-3" />
+                ) : (
+                  <ChevronRight className="w-3 h-3" />
+                )}
+                <Brain className="w-3 h-3" />
+                <span>
+                  {message.isStreaming ? "正在思考..." : `思考过程 (${message.thinkingSteps?.length} 步)`}
+                </span>
+                {message.isStreaming && (
+                  <div className="flex space-x-1 ml-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse delay-75" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse delay-150" />
+                  </div>
+                )}
+              </button>
+              {(showThinking || message.isStreaming) && (
+                <div className="mt-2 p-2 bg-background/50 rounded-lg space-y-2 max-h-64 overflow-y-auto">
+                  {message.thinkingSteps?.map((step, idx) => renderThinkingStep(step, idx))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* 流式加载指示器（没有思考步骤时显示） */}
+          {message.isStreaming && !hasThinkingSteps && (
             <div className="flex items-center gap-2 mb-2">
               <div className="flex space-x-1">
                 <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                 <div className="w-2 h-2 rounded-full bg-primary animate-pulse delay-75" />
                 <div className="w-2 h-2 rounded-full bg-primary animate-pulse delay-150" />
               </div>
-              <span className="text-xs text-muted-foreground">Thinking...</span>
+              <span className="text-xs text-muted-foreground">生成中...</span>
             </div>
           )}
 

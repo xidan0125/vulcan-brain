@@ -23,6 +23,14 @@ import {
   Image as ImageIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import MarkdownRenderer from "@/components/ui/MarkdownRenderer";
+import {
+  createSession as apiCreateSession,
+  listSessions as apiListSessions,
+  getSession as apiGetSession,
+  saveMessages as apiSaveMessages,
+  deleteSession as apiDeleteSession,
+} from "@/services/chatApi";
 
 interface Message {
   id: string;
@@ -55,11 +63,12 @@ interface ToolConfig {
 const GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY || "";
 const GEMINI_MODEL = "gemini-3-pro-preview";
 
-const STORAGE_KEY = "vulcan_gemini_sessions";
+// Backend storage - no localStorage needed
 
 export default function GeminiChatV3() {
   // Session management
   const [sessions, setSessions] = useState<ChatSession[]>([]);
+  const [isLoadingSessions, setIsLoadingSessions] = useState(true);
   const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
@@ -85,29 +94,60 @@ export default function GeminiChatV3() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  // Load sessions from localStorage
+  // Load sessions from backend
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
+    const loadSessions = async () => {
       try {
-        const parsed = JSON.parse(saved);
-        setSessions(parsed);
-        if (parsed.length > 0) {
-          setCurrentSessionId(parsed[0].id);
-          setTools(parsed[0].tools || { googleSearch: true, codeExecution: false, urlContext: false });
+        setIsLoadingSessions(true);
+        const data = await apiListSessions("gemini", 50);
+        if (data.sessions && data.sessions.length > 0) {
+          const localSessions: ChatSession[] = data.sessions.map((s: any) => ({
+            id: s.session_id,
+            title: s.title || "New Chat",
+            messages: [],
+            createdAt: new Date(s.created_at).getTime(),
+            updatedAt: new Date(s.updated_at).getTime(),
+            tools: { googleSearch: true, codeExecution: false, urlContext: false },
+          }));
+          setSessions(localSessions);
+          setCurrentSessionId(localSessions[0].id);
         }
       } catch (e) {
         console.error("Failed to load sessions:", e);
+      } finally {
+        setIsLoadingSessions(false);
       }
-    }
+    };
+    loadSessions();
   }, []);
 
-  // Save sessions to localStorage
+  // Load full session when switching
   useEffect(() => {
-    if (sessions.length > 0) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(sessions));
-    }
-  }, [sessions]);
+    const loadFullSession = async () => {
+      if (!currentSessionId) return;
+      const session = sessions.find(s => s.id === currentSessionId);
+      if (session && session.messages.length === 0) {
+        try {
+          const data = await apiGetSession(currentSessionId);
+          if (data.messages && data.messages.length > 0) {
+            setSessions(prev => prev.map(s => 
+              s.id === currentSessionId 
+                ? { ...s, messages: data.messages.map((m: any) => ({
+                    id: m.timestamp?.toString() || String(Date.now()),
+                    role: m.role,
+                    content: m.content,
+                    timestamp: m.timestamp || Date.now(),
+                  }))}
+                : s
+            ));
+          }
+        } catch (e) {
+          console.error("Failed to load session:", e);
+        }
+      }
+    };
+    loadFullSession();
+  }, [currentSessionId]);
 
   const currentSession = sessions.find((s) => s.id === currentSessionId);
   const messages = currentSession?.messages || [];
@@ -121,23 +161,44 @@ export default function GeminiChatV3() {
   }, [messages]);
 
   // Create new session - returns the new session ID
-  const createNewSession = (): string => {
-    const newId = `session_${Date.now()}`;
-    const newSession: ChatSession = {
-      id: newId,
-      title: "New Chat",
-      messages: [],
-      createdAt: Date.now(),
-      updatedAt: Date.now(),
-      tools: { ...tools },
-    };
-    setSessions((prev) => [newSession, ...prev]);
-    setCurrentSessionId(newId);
-    return newId;
+  const createNewSession = async (title: string = "New Chat"): Promise<string> => {
+    try {
+      const data = await apiCreateSession("gemini", title);
+      const newSession: ChatSession = {
+        id: data.session_id,
+        title: title,
+        messages: [],
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+        tools: { ...tools },
+      };
+      setSessions((prev) => [newSession, ...prev]);
+      setCurrentSessionId(data.session_id);
+      return data.session_id;
+    } catch (e) {
+      console.error("Failed to create session:", e);
+      const newId = "local_" + String(Date.now());
+      const newSession: ChatSession = {
+        id: newId,
+        title: title,
+        messages: [],
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+        tools: { ...tools },
+      };
+      setSessions((prev) => [newSession, ...prev]);
+      setCurrentSessionId(newId);
+      return newId;
+    }
   };
 
   // Delete session
-  const deleteSession = (sessionId: string) => {
+  const deleteSession = async (sessionId: string) => {
+    try {
+      await apiDeleteSession(sessionId);
+    } catch (e) {
+      console.error("Failed to delete session from backend:", e);
+    }
     setSessions((prev) => prev.filter((s) => s.id !== sessionId));
     if (currentSessionId === sessionId) {
       const remaining = sessions.filter((s) => s.id !== sessionId);
@@ -237,7 +298,8 @@ export default function GeminiChatV3() {
     // Create session if none exists, get the active session ID
     let activeSessionId = currentSessionId;
     if (!activeSessionId) {
-      activeSessionId = createNewSession();
+      const title = input.trim().slice(0, 30) + (input.trim().length > 30 ? "..." : "");
+      activeSessionId = await createNewSession(title);
     }
 
     const userMessage: Message = {
@@ -283,6 +345,16 @@ export default function GeminiChatV3() {
             : s
         )
       );
+
+      // Save to backend
+      try {
+        await apiSaveMessages(activeSessionId, [
+          { role: userMessage.role, content: userMessage.content, timestamp: userMessage.timestamp },
+          { role: assistantMessage.role, content: assistantMessage.content, timestamp: assistantMessage.timestamp },
+        ]);
+      } catch (saveErr) {
+        console.error("Failed to save messages:", saveErr);
+      }
     } catch (err: any) {
       console.error("Gemini error:", err);
       setError(err.message || "调用 Gemini 失败");
@@ -335,7 +407,7 @@ export default function GeminiChatV3() {
           {/* Sidebar Header */}
           <div className="p-3 border-b border-white/10">
             <button
-              onClick={createNewSession}
+              onClick={() => createNewSession()}
               className="w-full flex items-center justify-center gap-2 px-3 py-2.5 bg-gradient-to-r from-orange-500/20 to-red-500/20 hover:from-orange-500/30 hover:to-red-500/30 border border-orange-500/30 rounded-md text-orange-400 text-xs font-mono tracking-wider transition-all"
             >
               <Plus className="w-3.5 h-3.5" />
@@ -508,7 +580,7 @@ export default function GeminiChatV3() {
                     : "bg-zinc-800/50 border border-white/10 text-zinc-300"
                 )}
               >
-                <p className="text-sm whitespace-pre-wrap leading-relaxed">{message.content}</p>
+                {message.role === "assistant" ? <MarkdownRenderer content={message.content} /> : <p className="text-sm whitespace-pre-wrap leading-relaxed">{message.content}</p>}
 
                 {/* Grounding Sources */}
                 {message.groundingMetadata?.groundingChunks &&

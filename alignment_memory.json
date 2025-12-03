@@ -28,5 +28,15 @@
     "lesson_learned": "架构信息必须明确定义，不可编造",
     "importance": 3,
     "referenced_count": 0
+  },
+  {
+    "id": 4,
+    "timestamp": "2025-11-28T04:28:58.320272",
+    "category": "系统集成",
+    "situation": "用户询问实时新闻时尝试调用web_search工具",
+    "boss_feedback": "工具定义存在但环境未加载，必须修复",
+    "lesson_learned": "所有工具必须在启动时验证可用性，不可依赖假设",
+    "importance": 3,
+    "referenced_count": 0
   }
 ]

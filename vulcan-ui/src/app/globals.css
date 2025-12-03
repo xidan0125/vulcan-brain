@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer base {
+  /* Dark mode (default) */
   :root {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
@@ -18,6 +19,23 @@
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
   }
+
+  /* Light mode */
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --primary: 180 100% 35%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 45 100% 45%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --border: 214.3 31.8% 91.4%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+  }
 }
 
 @layer base {
@@ -26,5 +44,55 @@
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;
+  }
+  
+  /* Light mode overrides for common components */
+  .light {
+    background-color: #f8fafc;
+    color: #1e293b;
+  }
+  
+  .light .bg-zinc-900 { background-color: #ffffff !important; }
+  .light .bg-zinc-900\/30 { background-color: rgba(255,255,255,0.8) !important; }
+  .light .bg-zinc-900\/40 { background-color: rgba(255,255,255,0.9) !important; }
+  .light .bg-zinc-900\/50 { background-color: rgba(255,255,255,0.95) !important; }
+  .light .bg-zinc-900\/60 { background-color: rgba(248,250,252,0.95) !important; }
+  .light .bg-zinc-800 { background-color: #f1f5f9 !important; }
+  .light .bg-zinc-800\/50 { background-color: rgba(241,245,249,0.5) !important; }
+  .light .bg-\[\#050505\] { background-color: #f8fafc !important; }
+  
+  .light .text-zinc-300 { color: #334155 !important; }
+  .light .text-zinc-400 { color: #475569 !important; }
+  .light .text-zinc-500 { color: #64748b !important; }
+  .light .text-zinc-600 { color: #94a3b8 !important; }
+  .light .text-white { color: #0f172a !important; }
+  
+  .light .border-white\/10 { border-color: rgba(0,0,0,0.1) !important; }
+  .light .border-zinc-800 { border-color: #e2e8f0 !important; }
+  .light .border-zinc-800\/50 { border-color: rgba(226,232,240,0.5) !important; }
+  
+  .light .hover\:bg-white\/5:hover { background-color: rgba(0,0,0,0.05) !important; }
+}
+
+/* Mobile safe area support for iPhone notch/home indicator */
+@layer utilities {
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+}
+
+/* Mobile touch improvements */
+@media (max-width: 767px) {
+  nav a, nav button {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .overflow-auto, .overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
   }
 }
