@@ -72,11 +72,15 @@ def verify_password(password: str, stored_hash: str) -> bool:
 
 
 async def upgrade_password_hash_if_needed(username: str, password: str, stored_hash: str):
-    """如果使用旧hash格式，自动升级为bcrypt"""
+    """如果使用旧hash格式，尝试升级为bcrypt（可选）"""
     if not (stored_hash.startswith("$2b$") or stored_hash.startswith("$2a$")):
-        new_hash = hash_password(password)
-        await store.update_user(username, {"password_hash": new_hash})
-        print(f"[SECURITY] 用户 {username} 密码已升级为bcrypt")
+        try:
+            new_hash = hash_password(password)
+            await store.update_user(username, {"password_hash": new_hash})
+            print(f"[SECURITY] 用户 {username} 密码已升级为bcrypt")
+        except Exception as e:
+            # bcrypt 在某些环境下可能有兼容性问题，继续使用旧hash
+            print(f"[SECURITY] 用户 {username} 密码升级失败，保留SHA256: {e}")
 
 def create_token(user_id: str, username: str) -> str:
     """创建JWT token"""
