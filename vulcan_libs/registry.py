@@ -112,7 +112,7 @@ class ToolRegistry:
         lines = [
             f"📦 {pkg.name}",
             f"   描述: {pkg.description}",
-            f"   类型: {核心包 if pkg.is_core else 扩展包}",
+            f"   类型: {'核心包' if pkg.is_core else '扩展包'}",
             f"   工具数: {len(pkg.tools)}",
             "   工具列表:"
         ]

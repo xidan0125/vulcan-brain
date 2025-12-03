@@ -518,3 +518,40 @@ async def get_approval_detail(instance_code: str):
     return {"approval": approval}
 
 
+
+
+# ===== 语义搜索 API =====
+from services.embedding_service import get_embedding_service
+
+@router.get("/search")
+async def semantic_search(
+    q: str = Query(..., min_length=1, description="搜索关键词"),
+    limit: int = Query(10, ge=1, le=50),
+    user_id: str = Query(None, description="限定用户 ID")
+):
+    """语义搜索邮件
+    
+    支持中英文自然语言搜索，返回相关度最高的邮件。
+    """
+    try:
+        svc = get_embedding_service()
+        results = svc.search(q, limit=limit, user_id=user_id)
+        
+        return {
+            "query": q,
+            "count": len(results),
+            "results": results
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"搜索失败: {str(e)}")
+
+
+@router.get("/search/stats")
+async def search_stats():
+    """获取搜索索引统计"""
+    try:
+        svc = get_embedding_service()
+        stats = svc.get_stats()
+        return stats
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"获取统计失败: {str(e)}")

@@ -96,6 +96,15 @@ async def log_requests(request, call_next):
 # Presentation 静态文件服务
 app.mount("/presentation", StaticFiles(directory="presentation", html=True), name="presentation")
 
+# 启动初始化：数据库索引
+@app.on_event("startup")
+async def initialize_app():
+    try:
+        await store.initialize_indexes()
+        api_logger.info("[Startup] MongoDB indexes initialized")
+    except Exception as e:
+        log_error(e, "startup.initialize_indexes")
+
 # ==================== 全局状态管理 ====================
 
 _kernel_instance: Optional[VulcanCodeActKernel] = None
@@ -323,7 +332,7 @@ async def generate_sse_stream(user_message: str, conv_id: str) -> AsyncGenerator
         yield f'event: done\ndata: {{}}\n\n'
 
 @app.post('/api/chat/stream')
-async def chat_stream(request: ChatRequest):
+async def chat_stream(request: ChatRequest, current_user: dict = Depends(get_current_user)):
     """
     P0 - 核心对话功能
     
@@ -345,7 +354,7 @@ async def chat_stream(request: ChatRequest):
 # ==================== P1 - 实时系统状态 ====================
 
 @app.get('/api/system/status')
-async def system_status():
+async def system_status(current_user: dict = Depends(get_current_user)):
     """
     P1 - Inspector 面板数据
     
@@ -405,7 +414,7 @@ def get_sandbox() -> VulcanCodeSandbox:
     return _sandbox_instance
 
 @app.post('/api/execute', response_model=CodeExecutionResponse)
-async def execute_code(request: CodeExecutionRequest):
+async def execute_code(request: CodeExecutionRequest, current_user: dict = Depends(get_current_user)):
     """
     Code Execution Sandbox API
 
@@ -678,7 +687,7 @@ async def upload_document(file: UploadFile = File(...), current_user: dict = Dep
     }
 
 @app.get('/api/knowledge/list')
-async def list_documents():
+async def list_documents(current_user: dict = Depends(get_current_user)):
     """
     P3 - 列出所有知识库文档
     """
@@ -701,7 +710,7 @@ async def list_documents():
     }
 
 @app.delete('/api/knowledge/{document_id}')
-async def delete_document(document_id: str):
+async def delete_document(document_id: str, current_user: dict = Depends(get_current_user)):
     """
     P3 - 删除指定文档
     """

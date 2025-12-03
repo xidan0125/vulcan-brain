@@ -58,9 +58,13 @@ export default function ChatWindow() {
     setAbortController(controller);
 
     try {
+      const token = typeof window !== "undefined" ? localStorage.getItem("vulcan_token") : null;
       const response = await fetch("/api/chat/stream", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          ...(token ? { "Authorization": `Bearer ${token}` } : {})
+        },
         body: JSON.stringify({ message: userMessage, stream: true }),
         signal: controller.signal,
       });

@@ -64,6 +64,8 @@ export default function Inspector({ isOpen, onClose }: InspectorProps) {
           '/api/system/status'
         ];
 
+        const token = typeof window !== 'undefined' ? localStorage.getItem('vulcan_token') : null;
+
         let success = false;
         for (const url of urls) {
           try {
@@ -71,7 +73,10 @@ export default function Inspector({ isOpen, onClose }: InspectorProps) {
             const timeoutId = setTimeout(() => controller.abort(), 2000);
             const response = await fetch(url, {
               method: 'GET',
-              headers: { 'Content-Type': 'application/json' },
+              headers: { 
+                'Content-Type': 'application/json',
+                ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+              },
               signal: controller.signal
             });
             clearTimeout(timeoutId);

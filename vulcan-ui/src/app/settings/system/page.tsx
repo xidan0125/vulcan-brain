@@ -40,9 +40,13 @@ export default function SystemStatusPage() {
 
   const fetchSystemStatus = async () => {
     try {
+      const token = typeof window !== "undefined" ? localStorage.getItem("vulcan_token") : null;
       const response = await fetch("/api/system/status", {
         method: "GET",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          ...(token ? { "Authorization": `Bearer ${token}` } : {})
+        },
       });
 
       if (!response.ok) {

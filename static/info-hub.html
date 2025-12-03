@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Info Hub - 信息中心</title>
+    <style>
+        body { font-family: system-ui; max-width: 1200px; margin: 0 auto; padding: 20px; background: #1a1a2e; color: #eee; }
+        h1, h2, h3 { color: #fff; }
+        .section { background: #16213e; padding: 15px; margin: 15px 0; border-radius: 8px; }
+        input, select, button { padding: 8px 12px; margin: 5px; border-radius: 4px; border: 1px solid #444; background: #0f3460; color: #fff; }
+        button { cursor: pointer; background: #e94560; border: none; }
+        button:hover { background: #ff6b6b; }
+        .results { margin-top: 10px; max-height: 400px; overflow-y: auto; }
+        .item { background: #0f3460; padding: 10px; margin: 5px 0; border-radius: 4px; border-left: 3px solid #e94560; }
+        .score { color: #4ade80; font-size: 12px; }
+        .meta { color: #888; font-size: 12px; }
+        .stats { display: flex; gap: 20px; flex-wrap: wrap; }
+        .stat-card { background: #0f3460; padding: 15px; border-radius: 8px; min-width: 120px; }
+        .stat-value { font-size: 24px; font-weight: bold; color: #e94560; }
+        .tabs { display: flex; gap: 10px; margin-bottom: 15px; }
+        .tab { padding: 10px 20px; background: #0f3460; border-radius: 4px; cursor: pointer; }
+        .tab.active { background: #e94560; }
+        pre { background: #0a0a1a; padding: 10px; overflow-x: auto; font-size: 12px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #333; }
+        th { background: #0f3460; }
+    </style>
+</head>
+<body>
+    <h1>📧 Info Hub - 信息中心</h1>
+    
+    <div class="tabs">
+        <div class="tab active" onclick="showTab('search')">语义搜索</div>
+        <div class="tab" onclick="showTab('emails')">邮件列表</div>
+        <div class="tab" onclick="showTab('threads')">邮件会话</div>
+        <div class="tab" onclick="showTab('people')">人员管理</div>
+        <div class="tab" onclick="showTab('stats')">统计信息</div>
+    </div>
+
+    <div id="search" class="section">
+        <h2>🔍 语义搜索</h2>
+        <input type="text" id="searchQuery" placeholder="输入搜索内容..." style="width: 400px;">
+        <input type="number" id="searchLimit" value="10" min="1" max="50" style="width: 60px;">
+        <button onclick="doSearch()">搜索</button>
+        <div id="searchResults" class="results"></div>
+    </div>
+
+    <div id="emails" class="section" style="display:none;">
+        <h2>📬 邮件列表</h2>
+        <select id="emailFolder">
+            <option value="">所有文件夹</option>
+            <option value="inbox">收件箱</option>
+            <option value="sentitems">已发送</option>
+        </select>
+        <input type="number" id="emailLimit" value="20" style="width: 60px;">
+        <button onclick="loadEmails()">加载</button>
+        <div id="emailResults" class="results"></div>
+    </div>
+
+    <div id="threads" class="section" style="display:none;">
+        <h2>💬 邮件会话</h2>
+        <input type="number" id="threadLimit" value="20" style="width: 60px;">
+        <button onclick="loadThreads()">加载会话</button>
+        <div id="threadResults" class="results"></div>
+    </div>
+
+    <div id="people" class="section" style="display:none;">
+        <h2>👥 人员管理</h2>
+        <button onclick="loadPeopleDashboard()">加载仪表盘</button>
+        <button onclick="loadPeopleList()">加载人员列表</button>
+        <div id="peopleDashboard" class="stats"></div>
+        <div id="peopleResults" class="results"></div>
+    </div>
+
+    <div id="stats" class="section" style="display:none;">
+        <h2>📊 统计信息</h2>
+        <button onclick="loadSearchStats()">搜索索引统计</button>
+        <button onclick="loadEmailStats()">邮件统计</button>
+        <div id="statsResults"></div>
+    </div>
+
+    <script>
+        const API = '';
+        
+        function showTab(name) {
+            document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(name).style.display = 'block';
+            event.target.classList.add('active');
+        }
+        
+        async function doSearch() {
+            const q = document.getElementById('searchQuery').value;
+            const limit = document.getElementById('searchLimit').value;
+            if (!q) return alert('请输入搜索内容');
+            
+            const res = await fetch(`${API}/api/info-hub/search?q=${encodeURIComponent(q)}&limit=${limit}`);
+            const data = await res.json();
+            
+            let html = `<p>找到 ${data.count} 条结果</p>`;
+            data.results.forEach(r => {
+                const from = r.from?.name || r.from?.address || '未知';
+                html += `<div class="item">
+                    <div><strong>${r.subject || '(无主题)'}</strong></div>
+                    <div class="meta">来自: ${from}</div>
+                    <div class="score">相关度: ${(r.score * 100).toFixed(1)}%</div>
+                </div>`;
+            });
+            document.getElementById('searchResults').innerHTML = html;
+        }
+        
+        async function loadEmails() {
+            const folder = document.getElementById('emailFolder').value;
+            const limit = document.getElementById('emailLimit').value;
+            const params = new URLSearchParams({ limit });
+            if (folder) params.append('folder', folder);
+            
+            const res = await fetch(`${API}/api/info-hub/email/list?${params}`);
+            const data = await res.json();
+            
+            let html = `<p>共 ${data.total || data.emails?.length || 0} 封邮件</p><table><tr><th>主题</th><th>发件人</th><th>时间</th></tr>`;
+            (data.emails || []).forEach(e => {
+                const date = e.received_at ? new Date(e.received_at).toLocaleDateString() : '-';
+                html += `<tr><td>${e.subject || '(无主题)'}</td><td>${e.from?.name || e.from?.address || '-'}</td><td>${date}</td></tr>`;
+            });
+            html += '</table>';
+            document.getElementById('emailResults').innerHTML = html;
+        }
+        
+        async function loadThreads() {
+            const limit = document.getElementById('threadLimit').value;
+            const res = await fetch(`${API}/api/info-hub/email/threads?limit=${limit}`);
+            const data = await res.json();
+            
+            let html = `<p>共 ${data.total || data.threads?.length || 0} 个会话</p>`;
+            (data.threads || []).forEach(t => {
+                html += `<div class="item">
+                    <div><strong>${t.subject || '(无主题)'}</strong></div>
+                    <div class="meta">${t.email_count || t.count || 0} 封邮件 | 参与者: ${(t.participants || []).slice(0,3).join(', ')}</div>
+                </div>`;
+            });
+            document.getElementById('threadResults').innerHTML = html;
+        }
+        
+        async function loadPeopleDashboard() {
+            const res = await fetch(`${API}/api/info-hub/people/dashboard`);
+            const data = await res.json();
+            const s = data.stats || data;
+            
+            let html = `
+                <div class="stat-card"><div>总人数</div><div class="stat-value">${s.total_people || 0}</div></div>
+                <div class="stat-card"><div>今日活跃</div><div class="stat-value">${s.active_today || 0}</div></div>
+                <div class="stat-card"><div>部门数</div><div class="stat-value">${s.department_count || 0}</div></div>
+                <div class="stat-card"><div>职能数</div><div class="stat-value">${s.function_count || 0}</div></div>
+            `;
+            document.getElementById('peopleDashboard').innerHTML = html;
+        }
+        
+        async function loadPeopleList() {
+            const res = await fetch(`${API}/api/info-hub/people?limit=20`);
+            const data = await res.json();
+            
+            let html = `<table><tr><th>姓名</th><th>部门</th><th>职能</th><th>邮件(发/收)</th></tr>`;
+            (data.people || []).forEach(p => {
+                html += `<tr><td>${p.name}</td><td>${p.department || '-'}</td><td>${p.function || '-'}</td><td>${p.email_sent_total || 0}/${p.email_received_total || 0}</td></tr>`;
+            });
+            html += '</table>';
+            document.getElementById('peopleResults').innerHTML = html;
+        }
+        
+        async function loadSearchStats() {
+            const res = await fetch(`${API}/api/info-hub/search/stats`);
+            const data = await res.json();
+            document.getElementById('statsResults').innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        }
+        
+        async function loadEmailStats() {
+            const res = await fetch(`${API}/api/info-hub/email/stats`);
+            const data = await res.json();
+            document.getElementById('statsResults').innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        }
+        
+        document.getElementById('searchQuery').addEventListener('keypress', e => {
+            if (e.key === 'Enter') doSearch();
+        });
+    </script>
+</body>
+</html>
