@@ -31,7 +31,9 @@
     "settings": "系统设置",
     "logout": "退出登录",
     "presentation": "产品演示",
-    "infoHub": "信息中心"
+    "infoHub": "信息中心",
+    "emailIntel": "关系网络",
+    "approval": "行政审批"
   },
   "home": {
     "title": "控制中心",

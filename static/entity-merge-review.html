@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entity Merge Queue - 实体合并审核</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e5e5e5;
+            min-height: 100vh;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .header p {
+            color: #888;
+            margin-top: 4px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary {
+            background: #262626;
+            color: #e5e5e5;
+        }
+
+        .btn-secondary:hover {
+            background: #333;
+        }
+
+        .btn-success {
+            background: #16a34a;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #15803d;
+        }
+
+        .btn-danger {
+            background: #dc2626;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #b91c1c;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: #171717;
+            border: 1px solid #262626;
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .stat-card.highlight {
+            background: rgba(234, 179, 8, 0.1);
+            border-color: rgba(234, 179, 8, 0.3);
+        }
+
+        .stat-card .label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .stat-card .value {
+            font-size: 28px;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .icon-yellow { color: #eab308; }
+        .icon-green { color: #22c55e; }
+        .icon-red { color: #ef4444; }
+        .icon-blue { color: #3b82f6; }
+        .icon-purple { color: #a855f7; }
+
+        /* Filter Bar */
+        .filter-bar {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: #171717;
+            border: 1px solid #262626;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+
+        .filter-bar select {
+            background: #0a0a0a;
+            border: 1px solid #262626;
+            color: #e5e5e5;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .filter-bar .spacer {
+            flex: 1;
+        }
+
+        .selected-count {
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* Queue Table */
+        .queue-table {
+            background: #171717;
+            border: 1px solid #262626;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 50px 1fr 50px 1fr 100px 120px;
+            gap: 16px;
+            padding: 12px 16px;
+            background: #1a1a1a;
+            border-bottom: 1px solid #262626;
+            font-size: 14px;
+            font-weight: 500;
+            color: #888;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 50px 1fr 50px 1fr 100px 120px;
+            gap: 16px;
+            padding: 16px;
+            border-bottom: 1px solid #262626;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .table-row:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .table-row.selected {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .checkbox {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .entity-info .name {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .entity-info .domain {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            color: #888;
+        }
+
+        .entity-info .aliases {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .arrow {
+            color: #666;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .confidence {
+            text-align: center;
+        }
+
+        .confidence .score {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .confidence .type {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .confidence-high { color: #22c55e; }
+        .confidence-medium { color: #eab308; }
+        .confidence-low { color: #f97316; }
+        .confidence-very-low { color: #ef4444; }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .action-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            background: transparent;
+        }
+
+        .action-btn.approve {
+            color: #22c55e;
+        }
+
+        .action-btn.approve:hover {
+            background: rgba(34, 197, 94, 0.2);
+        }
+
+        .action-btn.reject {
+            color: #ef4444;
+        }
+
+        .action-btn.reject:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .action-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Loading & Empty States */
+        .loading, .empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            color: #888;
+        }
+
+        .loading .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid #333;
+            border-top-color: #888;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .empty .icon-large {
+            font-size: 48px;
+            margin-bottom: 16px;
+            color: #22c55e;
+        }
+
+        .empty .title {
+            font-size: 18px;
+            font-weight: 500;
+            color: #e5e5e5;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 16px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .toast.success {
+            background: #16a34a;
+            color: white;
+        }
+
+        .toast.error {
+            background: #dc2626;
+            color: white;
+        }
+
+        .toast.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div>
+                <h1>Entity Merge Queue</h1>
+                <p>审核实体合并建议，确保数据准确性</p>
+            </div>
+            <button class="btn btn-secondary" onclick="loadData()">
+                <span id="refresh-icon">🔄</span> 刷新
+            </button>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid" id="stats-grid">
+            <div class="stat-card highlight">
+                <div class="label">
+                    <span>待审核</span>
+                    <span class="icon icon-yellow">⚠️</span>
+                </div>
+                <div class="value" id="stat-pending">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">
+                    <span>已批准</span>
+                    <span class="icon icon-green">✓</span>
+                </div>
+                <div class="value" id="stat-approved">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">
+                    <span>已拒绝</span>
+                    <span class="icon icon-red">✗</span>
+                </div>
+                <div class="value" id="stat-rejected">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">
+                    <span>公司实体</span>
+                    <span class="icon icon-blue">🏢</span>
+                </div>
+                <div class="value" id="stat-company">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">
+                    <span>联系人实体</span>
+                    <span class="icon icon-purple">👤</span>
+                </div>
+                <div class="value" id="stat-person">-</div>
+            </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <span>🔍</span>
+            <select id="filter-status" onchange="loadQueue()">
+                <option value="PENDING">待审核</option>
+                <option value="APPROVED">已批准</option>
+                <option value="REJECTED">已拒绝</option>
+            </select>
+            <select id="filter-confidence" onchange="loadQueue()">
+                <option value="0.75">置信度 ≥ 75%</option>
+                <option value="0.80">置信度 ≥ 80%</option>
+                <option value="0.85">置信度 ≥ 85%</option>
+                <option value="0.90">置信度 ≥ 90%</option>
+                <option value="0.95">置信度 ≥ 95%</option>
+            </select>
+            <div class="spacer"></div>
+            <span class="selected-count" id="selected-count"></span>
+            <button class="btn btn-success" id="bulk-approve" onclick="bulkReview('APPROVE')" style="display:none">
+                ✓✓ 批量合并
+            </button>
+            <button class="btn btn-danger" id="bulk-reject" onclick="bulkReview('REJECT')" style="display:none">
+                ✗ 批量拒绝
+            </button>
+        </div>
+
+        <!-- Queue Table -->
+        <div class="queue-table">
+            <div class="table-header">
+                <div><input type="checkbox" class="checkbox" id="select-all" onchange="toggleSelectAll()"></div>
+                <div>Source (待合并)</div>
+                <div></div>
+                <div>Target (主记录)</div>
+                <div style="text-align:center">置信度</div>
+                <div style="text-align:center">操作</div>
+            </div>
+            <div id="queue-body">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p style="margin-top:16px">加载中...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer" id="footer"></div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        const API_BASE = 'https://api.vsg-brain.com';
+        let items = [];
+        let selectedItems = new Set();
+
+        // Load data on page load
+        document.addEventListener('DOMContentLoaded', loadData);
+
+        async function loadData() {
+            await Promise.all([loadStats(), loadQueue()]);
+        }
+
+        async function loadStats() {
+            try {
+                const res = await fetch(`${API_BASE}/api/entity-merge/stats`);
+                const data = await res.json();
+                if (data.success) {
+                    const s = data.data;
+                    document.getElementById('stat-pending').textContent = s.queue.pending.toLocaleString();
+                    document.getElementById('stat-approved').textContent = s.queue.approved.toLocaleString();
+                    document.getElementById('stat-rejected').textContent = s.queue.rejected.toLocaleString();
+                    document.getElementById('stat-company').textContent = s.parties.company.toLocaleString();
+                    document.getElementById('stat-person').textContent = s.parties.person.toLocaleString();
+                }
+            } catch (err) {
+                console.error('Failed to load stats:', err);
+            }
+        }
+
+        async function loadQueue() {
+            const status = document.getElementById('filter-status').value;
+            const minConfidence = document.getElementById('filter-confidence').value;
+            const body = document.getElementById('queue-body');
+
+            body.innerHTML = '<div class="loading"><div class="spinner"></div><p style="margin-top:16px">加载中...</p></div>';
+
+            try {
+                const res = await fetch(`${API_BASE}/api/entity-merge/queue?status=${status}&min_confidence=${minConfidence}&limit=50`);
+                const data = await res.json();
+
+                if (data.success) {
+                    items = data.data.items;
+                    selectedItems.clear();
+                    updateSelectedUI();
+                    renderQueue();
+
+                    document.getElementById('footer').textContent =
+                        `显示 ${items.length} 条记录 / 共 ${data.data.stats.pending} 条待审核`;
+                }
+            } catch (err) {
+                console.error('Failed to load queue:', err);
+                body.innerHTML = '<div class="empty"><p>加载失败，请重试</p></div>';
+            }
+        }
+
+        function renderQueue() {
+            const body = document.getElementById('queue-body');
+
+            if (items.length === 0) {
+                body.innerHTML = `
+                    <div class="empty">
+                        <div class="icon-large">✓</div>
+                        <div class="title">队列已清空</div>
+                        <p>没有待审核的合并建议</p>
+                    </div>
+                `;
+                return;
+            }
+
+            body.innerHTML = items.map(item => `
+                <div class="table-row ${selectedItems.has(item._id) ? 'selected' : ''}" id="row-${item._id}">
+                    <div>
+                        <input type="checkbox" class="checkbox"
+                            ${selectedItems.has(item._id) ? 'checked' : ''}
+                            onchange="toggleSelect('${item._id}')">
+                    </div>
+                    <div class="entity-info">
+                        <div class="name">${escapeHtml(item.merge_suggestion.source_name)}</div>
+                        ${item.merge_suggestion.source_domain ? `
+                            <div class="domain">🌐 ${escapeHtml(item.merge_suggestion.source_domain)}</div>
+                        ` : ''}
+                        ${item.merge_suggestion.source_aliases.length > 1 ? `
+                            <div class="aliases">+${item.merge_suggestion.source_aliases.length - 1} 别名</div>
+                        ` : ''}
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="entity-info">
+                        <div class="name">${escapeHtml(item.merge_suggestion.target_name)}</div>
+                        ${item.merge_suggestion.target_domain ? `
+                            <div class="domain">🌐 ${escapeHtml(item.merge_suggestion.target_domain)}</div>
+                        ` : ''}
+                        ${item.merge_suggestion.target_aliases.length > 1 ? `
+                            <div class="aliases">+${item.merge_suggestion.target_aliases.length - 1} 别名</div>
+                        ` : ''}
+                    </div>
+                    <div class="confidence">
+                        <div class="score ${getConfidenceClass(item.match_evidence.confidence)}">
+                            ${Math.round(item.match_evidence.confidence * 100)}%
+                        </div>
+                        <div class="type">${item.match_evidence.details.domain_match ? '域名匹配' : '名称相似'}</div>
+                    </div>
+                    <div class="actions">
+                        <button class="action-btn approve" onclick="review('${item._id}', 'APPROVE')" title="批准合并">
+                            ✓
+                        </button>
+                        <button class="action-btn reject" onclick="review('${item._id}', 'REJECT')" title="拒绝合并">
+                            ✗
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getConfidenceClass(confidence) {
+            if (confidence >= 0.95) return 'confidence-high';
+            if (confidence >= 0.90) return 'confidence-medium';
+            if (confidence >= 0.85) return 'confidence-low';
+            return 'confidence-very-low';
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function toggleSelect(id) {
+            if (selectedItems.has(id)) {
+                selectedItems.delete(id);
+            } else {
+                selectedItems.add(id);
+            }
+            updateSelectedUI();
+            document.getElementById(`row-${id}`).classList.toggle('selected');
+        }
+
+        function toggleSelectAll() {
+            const selectAll = document.getElementById('select-all');
+            if (selectAll.checked) {
+                items.forEach(item => selectedItems.add(item._id));
+            } else {
+                selectedItems.clear();
+            }
+            updateSelectedUI();
+            renderQueue();
+        }
+
+        function updateSelectedUI() {
+            const count = selectedItems.size;
+            document.getElementById('selected-count').textContent = count > 0 ? `已选 ${count} 项` : '';
+            document.getElementById('bulk-approve').style.display = count > 0 ? 'inline-flex' : 'none';
+            document.getElementById('bulk-reject').style.display = count > 0 ? 'inline-flex' : 'none';
+            document.getElementById('select-all').checked = count === items.length && items.length > 0;
+        }
+
+        async function review(queueId, decision) {
+            const btn = event.target;
+            btn.disabled = true;
+            btn.textContent = '...';
+
+            try {
+                const res = await fetch(`${API_BASE}/api/entity-merge/queue/${queueId}/review`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ decision, reviewer: 'admin' })
+                });
+                const data = await res.json();
+
+                if (data.success) {
+                    showToast(decision === 'APPROVE' ? '已合并' : '已拒绝', 'success');
+                    items = items.filter(item => item._id !== queueId);
+                    selectedItems.delete(queueId);
+                    updateSelectedUI();
+                    renderQueue();
+                    loadStats();
+                } else {
+                    showToast('操作失败', 'error');
+                }
+            } catch (err) {
+                showToast('网络错误', 'error');
+            }
+
+            btn.disabled = false;
+            btn.textContent = decision === 'APPROVE' ? '✓' : '✗';
+        }
+
+        async function bulkReview(decision) {
+            if (selectedItems.size === 0) return;
+
+            const btns = document.querySelectorAll('#bulk-approve, #bulk-reject');
+            btns.forEach(btn => btn.disabled = true);
+
+            try {
+                const res = await fetch(`${API_BASE}/api/entity-merge/queue/bulk-review`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        queue_ids: Array.from(selectedItems),
+                        decision,
+                        reviewer: 'admin'
+                    })
+                });
+                const data = await res.json();
+
+                if (data.success) {
+                    showToast(`已处理 ${data.data.success} 条`, 'success');
+                    loadData();
+                }
+            } catch (err) {
+                showToast('批量操作失败', 'error');
+            }
+
+            btns.forEach(btn => btn.disabled = false);
+        }
+
+        function showToast(message, type) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type} show`;
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

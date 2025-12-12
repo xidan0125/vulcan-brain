@@ -16,6 +16,7 @@ import {
   AlertCircle,
   Filter,
 } from "lucide-react";
+import InfoHubBreadcrumb from "@/components/info-hub/InfoHubBreadcrumb";
 
 interface Email {
   email_id: string;
@@ -131,6 +132,9 @@ export default function EmailHistoryPage() {
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
+      {/* 面包屑 */}
+      <InfoHubBreadcrumb items={[{ label: "邮件分析" }]} />
+
       {/* 页面标题 */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">

@@ -1,18 +1,20 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense } from 'react';
+import DailyReportPage from './daily-report/page';
+
+function LoadingFallback() {
+  return (
+    <div className="flex items-center justify-center h-screen bg-zinc-950">
+      <div className="animate-spin w-8 h-8 border-2 border-orange-500 border-t-transparent rounded-full" />
+    </div>
+  );
+}
 
 export default function InfoHubPage() {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.replace("/info-hub/daily-report");
-  }, [router]);
-
   return (
-    <div className="flex items-center justify-center h-full">
-      <div className="text-zinc-500">跳转中...</div>
-    </div>
+    <Suspense fallback={<LoadingFallback />}>
+      <DailyReportPage />
+    </Suspense>
   );
 }

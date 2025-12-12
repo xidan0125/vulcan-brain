@@ -1,0 +1,353 @@
+{
+  "doc-b00cdb84fa3055dd467d0326ad2de40b": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-b00cdb84fa3055dd467d0326ad2de40b"
+    ],
+    "content_summary": "邮件ID: AAMkAGJlOGJjYTBhLTM0MjctNDkzOC1iMDk1LWZiMWE2ZDVkMTA3YgBGAAAAAADTvZpSeiQdQIPOBb7jffZ9BwAjhamKbbdWSbYoUZzILrYfAAAAAAEJAAAjhamKbbdWSbYoUZzILrYfAAAa9m5lAAA=\n日期: 2025-11-04 01:00\n发件人: David.kneale@vulcanshield.com\n收件人: claire.gwilliam@htms.tech, Dan...",
+    "content_length": 3128,
+    "created_at": "2025-12-03T15:20:28.013871+00:00",
+    "updated_at": "2025-12-03T15:21:44.386638+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20251203_232028_e958ab67",
+    "metadata": {
+      "processing_start_time": 1764775228,
+      "processing_end_time": 1764775304
+    }
+  },
+  "doc-31316ac015c3107d11fdfaaa9ae7972b": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-31316ac015c3107d11fdfaaa9ae7972b"
+    ],
+    "content_summary": "邮件ID: AAMkAGViNzg3ODQwLTEyMGYtNDliOS04YjA5LWYyNTZhNjZmNTU1MABGAAAAAADh78Pqc3J6QIEz1R-m0Wt1BwASBKnCJsTFQKhVLjfk5uoXAAAAAAEMAAASBKnCJsTFQKhVLjfk5uoXAAIxPNc-AAA=\n日期: 2025-11-04 01:00\n发件人: David.kneale@vulcanshield.com\n收件人: claire.gwilliam@htms.tech, Dan...",
+    "content_length": 3128,
+    "created_at": "2025-12-03T15:21:44.395832+00:00",
+    "updated_at": "2025-12-03T15:23:06.446854+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20251203_232144_2b0acd4a",
+    "metadata": {
+      "processing_start_time": 1764775304,
+      "processing_end_time": 1764775386
+    }
+  },
+  "doc-92acc0b2f37831f53ec48888079e010e": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-92acc0b2f37831f53ec48888079e010e"
+    ],
+    "content_summary": "邮件ID: AAMkADY2NDFlODJmLWE5N2MtNGU4My05NzNiLWY3ZWUxZDE2OGE1NgBGAAAAAABRHNqEv_-TQK_68KluNafTBwC-gDTEuwbAQY4ul_iNWiZcAAAAAAEJAAC-gDTEuwbAQY4ul_iNWiZcAAACHx6bAAA=\n日期: 2025-11-04 01:00\n发件人: emma.wang@vulcanshield.com\n收件人: bilek.peter@ceis.hu\n分类: hr\n主题: 答复...",
+    "content_length": 3162,
+    "created_at": "2025-12-03T15:23:06.460102+00:00",
+    "updated_at": "2025-12-03T15:35:19.463822+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20251203_232306_5cc50a2f",
+    "metadata": {
+      "processing_start_time": 1764775973,
+      "processing_end_time": 1764776119
+    }
+  },
+  "doc-f0cf8ba05336556b197e3aaca8a9475f": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-f0cf8ba05336556b197e3aaca8a9475f"
+    ],
+    "content_summary": "邮件ID: AAMkAGUzYWJlMzE1LTAyYjAtNDRmMS05MWQ5LTUwN2UwNGQ0MjZkYgBGAAAAAADsaUCJ3rTtSJV2FjFjynYMBwATSRwqZNlaQ5R4EcAFtkcTAAAAAAEMAAATSRwqZNlaQ5R4EcAFtkcTAABwQEv8AAA=\n日期: 2025-09-04 23:44\n发件人: projectreport83@gmail.com\n收件人: Jolene.Qian@vulcanshield.com\n分类: e...",
+    "content_length": 450,
+    "created_at": "2025-12-03T15:32:53.504904+00:00",
+    "updated_at": "2025-12-03T15:34:37.845631+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20251203_233253_e0737080",
+    "metadata": {
+      "processing_start_time": 1764775973,
+      "processing_end_time": 1764776077
+    }
+  },
+  "doc-c83e38c72b7541d68f47741e784b1ce9": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-c83e38c72b7541d68f47741e784b1ce9"
+    ],
+    "content_summary": "邮件ID: AAMkAGQ5NzczNzkyLTYwOWEtNDdhNS1hZDYzLTA2MThlN2NlMzczNQBGAAAAAAChcSboADRwRI18keuFsgquBwDsPIbtgfEnS63TdYXRvUEzAAAAAAEMAADsPIbtgfEnS63TdYXRvUEzAAGHxQ9EAAA=\n日期: 2025-09-05 00:01\n发件人: newsletter@composites-united.com\n收件人: matthias.blaess@vulcanshiel...",
+    "content_length": 3525,
+    "created_at": "2025-12-03T15:35:19.473847+00:00",
+    "updated_at": "2025-12-03T15:37:02.905831+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20251203_233519_44aa91f2",
+    "metadata": {
+      "processing_start_time": 1764776119,
+      "processing_end_time": 1764776222
+    }
+  },
+  "doc-601e22b4f94edabf2237fab6cbfd4023": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-601e22b4f94edabf2237fab6cbfd4023"
+    ],
+    "content_summary": "邮件ID: AAMkADUxNWY3MWVkLTUwZjUtNDUzMC05MjQyLTY0ODkwZGI2OTRhYQBGAAAAAADYG6K5fbXvSqwSs0v0tp_xBwA_GuJbDe9wRK81B1KjD_TKAAAAAAEMAAA_GuJbDe9wRK81B1KjD_TKAAA2r0cIAAA=\n日期: 2025-09-05 00:05\n发件人: ICA_Notification@ica.gov.sg\n收件人: qin.hao@vulcanshield.com\n分类: fin...",
+    "content_length": 3503,
+    "created_at": "2025-12-03T15:37:02.920781+00:00",
+    "updated_at": "2025-12-03T15:38:28.756205+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20251203_233702_51c220e5",
+    "metadata": {
+      "processing_start_time": 1764776222,
+      "processing_end_time": 1764776308
+    }
+  },
+  "doc-4037d38d08f22ec8826d69685fe00bd3": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-4037d38d08f22ec8826d69685fe00bd3"
+    ],
+    "content_summary": "邮件ID: AAMkADUxNWY3MWVkLTUwZjUtNDUzMC05MjQyLTY0ODkwZGI2OTRhYQBGAAAAAADYG6K5fbXvSqwSs0v0tp_xBwA_GuJbDe9wRK81B1KjD_TKAAAAAAEMAAA_GuJbDe9wRK81B1KjD_TKAAA2r0cJAAA=\n日期: 2025-09-05 00:14\n发件人: ICA_Notification@ica.gov.sg\n收件人: qin.hao@vulcanshield.com\n分类: fin...",
+    "content_length": 3501,
+    "created_at": "2025-12-03T15:38:28.772354+00:00",
+    "updated_at": "2025-12-03T15:39:58.606058+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20251203_233828_5c0c1118",
+    "metadata": {
+      "processing_start_time": 1764776308,
+      "processing_end_time": 1764776398
+    }
+  },
+  "doc-5647fd8f28e5eabdb226f2c330b2a3f4": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-5647fd8f28e5eabdb226f2c330b2a3f4"
+    ],
+    "content_summary": "邮件ID: AAMkADUxNWY3MWVkLTUwZjUtNDUzMC05MjQyLTY0ODkwZGI2OTRhYQBGAAAAAADYG6K5fbXvSqwSs0v0tp_xBwA_GuJbDe9wRK81B1KjD_TKAAAAAAEMAAA_GuJbDe9wRK81B1KjD_TKAAA2r0cKAAA=\n日期: 2025-09-05 00:22\n发件人: ICA_Notification@ica.gov.sg\n收件人: qin.hao@vulcanshield.com\n分类: fin...",
+    "content_length": 3503,
+    "created_at": "2025-12-03T15:39:58.627332+00:00",
+    "updated_at": "2025-12-03T15:41:30.926921+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20251203_233958_afefd447",
+    "metadata": {
+      "processing_start_time": 1764776398,
+      "processing_end_time": 1764776490
+    }
+  },
+  "doc-2f3fc821eab89756950ca0445407567a": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-2f3fc821eab89756950ca0445407567a"
+    ],
+    "content_summary": "邮件ID: AAMkADhhZDFjMjNhLTZlZWMtNGRjYS05NWFmLTlkNDhiMWY3YWYyYQBGAAAAAAB27M-mgIVPQrLRbET4TrQUBwA36YRv7CjlR5NM-mB0F5_RAAAAAAEMAAA36YRv7CjlR5NM-mB0F5_RAAFv9iXnAAA=\n日期: 2025-09-05 00:24\n发件人: t_theofanous@apple.com\n收件人: Barry.claypool@vulcanshield.com\n分类: e...",
+    "content_length": 567,
+    "created_at": "2025-12-03T15:41:30.947055+00:00",
+    "updated_at": "2025-12-03T15:42:41.528706+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20251203_234130_6bf41702",
+    "metadata": {
+      "processing_start_time": 1764776490,
+      "processing_end_time": 1764776561
+    }
+  },
+  "doc-6e87f232589a04da70c323c9ec005549": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-6e87f232589a04da70c323c9ec005549"
+    ],
+    "content_summary": "邮件ID: AAMkADYzNjY4ZmNiLTNjMTgtNDJmNi1hNTUxLWQ1OTAwZjkwZjQ3NwBGAAAAAABr_4hpFN8SRZDfPu_8OeahBwC1bqYnusVDS5_t__KAdFKDAAAAAAEMAAC1bqYnusVDS5_t__KAdFKDAAFtO-n9AAA=\n日期: 2025-09-05 01:00\n发件人: no-reply@microsoft.com\n收件人: Fong.Shengkai@vulcanshield.com\n分类: ex...",
+    "content_length": 901,
+    "created_at": "2025-12-03T15:42:41.547382+00:00",
+    "updated_at": "2025-12-03T15:46:38.472760+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20251203_234241_8d7acfee",
+    "metadata": {
+      "processing_start_time": 1764776561,
+      "processing_end_time": 1764776798
+    }
+  },
+  "doc-f13c3b6844e2bc3e43394df1afac6939": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-f13c3b6844e2bc3e43394df1afac6939"
+    ],
+    "content_summary": "邮件ID: AAMkADhhZDFjMjNhLTZlZWMtNGRjYS05NWFmLTlkNDhiMWY3YWYyYQBGAAAAAAB27M-mgIVPQrLRbET4TrQUBwA36YRv7CjlR5NM-mB0F5_RAAAAAAEMAAA36YRv7CjlR5NM-mB0F5_RAAFv9iXoAAA=\n日期: 2025-09-05 01:08\n发件人: Rey.Mastrapa@spacex.com\n收件人: Rey.Mastrapa@spacex.com\n分类: technica...",
+    "content_length": 3051,
+    "created_at": "2025-12-03T15:46:38.491788+00:00",
+    "updated_at": "2025-12-03T15:49:31.128099+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20251203_234638_ac26f90d",
+    "metadata": {
+      "processing_start_time": 1764776798,
+      "processing_end_time": 1764776971
+    }
+  },
+  "doc-af84961d315469bb938d26f3fa30fd7a": {
+    "status": "processed",
+    "chunks_count": 2,
+    "chunks_list": [
+      "chunk-af84961d315469bb938d26f3fa30fd7a",
+      "chunk-1956754dd86f6406ee3b7d6b02eb7aa4"
+    ],
+    "content_summary": "邮件ID: AAMkAGViNzg3ODQwLTEyMGYtNDliOS04YjA5LWYyNTZhNjZmNTU1MABGAAAAAADh78Pqc3J6QIEz1R-m0Wt1BwASBKnCJsTFQKhVLjfk5uoXAAAAAAEMAAASBKnCJsTFQKhVLjfk5uoXAAIIz3WPAAA=\n日期: 2025-09-05 02:00\n发件人: Trip.com@newsletter.trip.com\n收件人: Daniel.Hu@vulcanshield.com\n分类: ...",
+    "content_length": 1576,
+    "created_at": "2025-12-03T15:49:31.154030+00:00",
+    "updated_at": "2025-12-03T15:53:27.243426+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20251203_234931_8e797930",
+    "metadata": {
+      "processing_start_time": 1764776971,
+      "processing_end_time": 1764777207
+    }
+  },
+  "doc-0ab74b13b689cb643f74fb13d8d99793": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-0ab74b13b689cb643f74fb13d8d99793"
+    ],
+    "content_summary": "邮件ID: AAMkAGRkMmM3ZTZlLWMwYTYtNDMzZC05MDAzLTk5OWY5OGM0MzEyZABGAAAAAAC2OS1Bvs8oT7fZRZozWlJ-BwA1pQiKMnX2SZqnW8X-qRJuAAAAAAEJAAA1pQiKMnX2SZqnW8X-qRJuAABnd-QHAAA=\n日期: 2025-09-05 02:17\n发件人: Shermaine.yeo@vulcanshield.com\n收件人: Jolene.Qian@vulcanshield.com\n...",
+    "content_length": 336,
+    "created_at": "2025-12-03T15:53:27.270798+00:00",
+    "updated_at": "2025-12-03T15:56:30.568082+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20251203_235327_41a36f4e",
+    "metadata": {
+      "processing_start_time": 1764777207,
+      "processing_end_time": 1764777390
+    }
+  },
+  "doc-2c456ab1a49127824bce55b9ed871dc5": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-2c456ab1a49127824bce55b9ed871dc5"
+    ],
+    "content_summary": "邮件ID: AAMkAGUzYWJlMzE1LTAyYjAtNDRmMS05MWQ5LTUwN2UwNGQ0MjZkYgBGAAAAAADsaUCJ3rTtSJV2FjFjynYMBwATSRwqZNlaQ5R4EcAFtkcTAAAAAAEMAAATSRwqZNlaQ5R4EcAFtkcTAABwQEv9AAA=\n日期: 2025-09-05 02:17\n发件人: Shermaine.yeo@vulcanshield.com\n收件人: Jolene.Qian@vulcanshield.com\n...",
+    "content_length": 336,
+    "created_at": "2025-12-03T15:56:30.594557+00:00",
+    "updated_at": "2025-12-03T15:59:15.357808+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20251203_235630_501e88c9",
+    "metadata": {
+      "processing_start_time": 1764777390,
+      "processing_end_time": 1764777555
+    }
+  },
+  "doc-45e5dab680eff6aa5bedafcfd7525c74": {
+    "status": "processing",
+    "chunks_count": 3,
+    "chunks_list": [
+      "chunk-81173eb7145bef3d5b179502d57425a6",
+      "chunk-a1910b3c7546d29969456e9cab60e179",
+      "chunk-97de15ce5b72fb8eae52d6de305686db"
+    ],
+    "content_summary": "邮件ID: AAMkAGUzYWJlMzE1LTAyYjAtNDRmMS05MWQ5LTUwN2UwNGQ0MjZkYgBGAAAAAADsaUCJ3rTtSJV2FjFjynYMBwATSRwqZNlaQ5R4EcAFtkcTAAAAAAEMAAATSRwqZNlaQ5R4EcAFtkcTAABwQEv_AAA=\n日期: 2025-09-05 02:30\n发件人: aseanceramics@mmiasia.com.sg\n收件人: Jolene.Qian@vulcanshield.com\n分类...",
+    "content_length": 3498,
+    "created_at": "2025-12-03T15:59:15.391876+00:00",
+    "updated_at": "2025-12-03T16:42:46.007930+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20251203_235915_a2bfb50a",
+    "metadata": {
+      "processing_start_time": 1764780166
+    }
+  },
+  "doc-74bb905bd72b79c50eae389babc81be7": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-74bb905bd72b79c50eae389babc81be7"
+    ],
+    "content_summary": "邮件ID: AAMkAGRkMmM3ZTZlLWMwYTYtNDMzZC05MDAzLTk5OWY5OGM0MzEyZABGAAAAAAC2OS1Bvs8oT7fZRZozWlJ-BwA1pQiKMnX2SZqnW8X-qRJuAAAAAAEJAAA1pQiKMnX2SZqnW8X-qRJuAABnd-QIAAA=\n日期: 2025-09-05 02:42\n发件人: Shermaine.yeo@vulcanshield.com\n收件人: alison.liu@vulcanshield.com\n分...",
+    "content_length": 502,
+    "created_at": "2025-12-03T16:05:15.489198+00:00",
+    "updated_at": "2025-12-03T16:22:21.800843+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20251204_000515_607e6b27",
+    "metadata": {
+      "processing_start_time": 1764778909,
+      "processing_end_time": 1764778941
+    }
+  },
+  "doc-4989f91bc2dc1babcc3f8e147692b549": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-4989f91bc2dc1babcc3f8e147692b549"
+    ],
+    "content_summary": "邮件ID: AAMkAGNlODZmNjFkLTJkOTgtNDY5NS1hMjFkLTM0NWVjZTY5YzY0MwBGAAAAAAC1W4pDD47SSr5EQIe4-poiBwDf_EDCNgZ4SYBcrji1ARq9AAAAAAEMAADf_EDCNgZ4SYBcrji1ARq9AABCAVIdAAA=\n日期: 2025-09-05 02:42\n发件人: Shermaine.yeo@vulcanshield.com\n收件人: alison.liu@vulcanshield.com\n分...",
+    "content_length": 502,
+    "created_at": "2025-12-03T16:12:04.803161+00:00",
+    "updated_at": "2025-12-03T16:21:49.463170+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20251204_001204_8a776182",
+    "metadata": {
+      "processing_start_time": 1764778696,
+      "processing_end_time": 1764778909
+    }
+  },
+  "doc-21d291efcd3952326c77427f8f002495": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-21d291efcd3952326c77427f8f002495"
+    ],
+    "content_summary": "邮件ID: AAMkAGRkMmM3ZTZlLWMwYTYtNDMzZC05MDAzLTk5OWY5OGM0MzEyZABGAAAAAAC2OS1Bvs8oT7fZRZozWlJ-BwA1pQiKMnX2SZqnW8X-qRJuAAAAAAEJAAA1pQiKMnX2SZqnW8X-qRJuAABnd-QJAAA=\n日期: 2025-09-05 03:10\n发件人: Shermaine.yeo@vulcanshield.com\n收件人: komade@yahoo.com\n分类: external...",
+    "content_length": 986,
+    "created_at": "2025-12-03T16:21:49.503489+00:00",
+    "updated_at": "2025-12-03T16:36:45.908970+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20251204_002149_0ad28b90",
+    "metadata": {
+      "processing_start_time": 1764779776,
+      "processing_end_time": 1764779805
+    }
+  },
+  "doc-4c0ce0a4012fd370aad9db4ce76c7837": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-4c0ce0a4012fd370aad9db4ce76c7837"
+    ],
+    "content_summary": "邮件ID: AAMkADYzNjY4ZmNiLTNjMTgtNDJmNi1hNTUxLWQ1OTAwZjkwZjQ3NwBGAAAAAABr_4hpFN8SRZDfPu_8OeahBwC1bqYnusVDS5_t__KAdFKDAAAAAAEMAAC1bqYnusVDS5_t__KAdFKDAAFtO-n_AAA=\n日期: 2025-09-05 03:10\n发件人: tongzhanfeng@rongrongnm.com\n收件人: Yui.Luo@expeditors.com\n分类: exter...",
+    "content_length": 382,
+    "created_at": "2025-12-03T16:28:21.871312+00:00",
+    "updated_at": "2025-12-03T16:36:16.753043+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20251204_002821_590c61e6",
+    "metadata": {
+      "processing_start_time": 1764779670,
+      "processing_end_time": 1764779776
+    }
+  },
+  "doc-74b992371a56b7f3185f168d0a2c54ea": {
+    "status": "processing",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-74b992371a56b7f3185f168d0a2c54ea"
+    ],
+    "content_summary": "邮件ID: AAMkAGQ5NzczNzkyLTYwOWEtNDdhNS1hZDYzLTA2MThlN2NlMzczNQBGAAAAAAChcSboADRwRI18keuFsgquBwDsPIbtgfEnS63TdYXRvUEzAAAAAAEMAADsPIbtgfEnS63TdYXRvUEzAAGHxQ9FAAA=\n日期: 2025-09-05 03:14\n发件人: no-reply@teams.mail.microsoft\n收件人: matthias.blaess@vulcanshield.c...",
+    "content_length": 1377,
+    "created_at": "2025-12-03T16:36:16.783603+00:00",
+    "updated_at": "2025-12-03T16:42:46.008331+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20251204_003616_69d622ca",
+    "metadata": {
+      "processing_start_time": 1764780166
+    }
+  },
+  "doc-d1255264ce289d2cdd124507a5523fcd": {
+    "status": "pending",
+    "content_summary": "邮件ID: AQMkADVkYTU2ZmMxLTU2YjgtNDY5Mi1iYzdiLTVkMWQwMTZlYzU5NwBGAAAD7T9VBaxQZU2k-utquwGotwcAlQ_wuQFSi0avCf4ViDhF4gAAAgEMAAAAlQ_wuQFSi0avCf4ViDhF4gABgeO88gAAAA==\n日期: 2025-09-05 03:18\n发件人: bpdsinvoice@bestpetrol.com.sg\n收件人: Finance@vulcanshield.com\n分类: f...",
+    "content_length": 950,
+    "created_at": "2025-12-03T16:42:46.005792+00:00",
+    "updated_at": "2025-12-03T16:42:46.005796+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20251204_004246_60f75f25",
+    "chunks_list": []
+  }
+}

@@ -1,0 +1,678 @@
+{
+  "doc-b00cdb84fa3055dd467d0326ad2de40b": {
+    "relation_pairs": [
+      [
+        "EU/US",
+        "Gonzalo"
+      ],
+      [
+        "Dani",
+        "Vulcan Shield"
+      ],
+      [
+        "Claire",
+        "HTMS"
+      ],
+      [
+        "Gonzalo",
+        "Rich"
+      ],
+      [
+        "David",
+        "Vulcan Shield"
+      ],
+      [
+        "Dani",
+        "Gonzalo"
+      ],
+      [
+        "CAMX",
+        "Rich"
+      ],
+      [
+        "CAMX",
+        "Dani"
+      ]
+    ],
+    "count": 8,
+    "create_time": 1764775304,
+    "update_time": 1764775304,
+    "_id": "doc-b00cdb84fa3055dd467d0326ad2de40b"
+  },
+  "doc-31316ac015c3107d11fdfaaa9ae7972b": {
+    "relation_pairs": [
+      [
+        "EU",
+        "Gonzalo"
+      ],
+      [
+        "David Kneale",
+        "Quotation"
+      ],
+      [
+        "Daniel Hu",
+        "Vulcan Shield"
+      ],
+      [
+        "CAMX",
+        "Gonzalo"
+      ],
+      [
+        "Gonzalo",
+        "US"
+      ],
+      [
+        "Claire Gwilliam",
+        "HTMS"
+      ],
+      [
+        "Gonzalo",
+        "Rich"
+      ],
+      [
+        "Dani",
+        "Gonzalo"
+      ],
+      [
+        "CAMX",
+        "Rich"
+      ],
+      [
+        "CAMX",
+        "Dani"
+      ],
+      [
+        "David Kneale",
+        "W-F100B1-270"
+      ],
+      [
+        "David Kneale",
+        "M99"
+      ]
+    ],
+    "count": 12,
+    "create_time": 1764775386,
+    "update_time": 1764775386,
+    "_id": "doc-31316ac015c3107d11fdfaaa9ae7972b"
+  },
+  "doc-f0cf8ba05336556b197e3aaca8a9475f": {
+    "relation_pairs": [
+      [
+        "Jolene",
+        "projectreport83@gmail.com"
+      ]
+    ],
+    "count": 1,
+    "create_time": 1764776077,
+    "update_time": 1764776077,
+    "_id": "doc-f0cf8ba05336556b197e3aaca8a9475f"
+  },
+  "doc-92acc0b2f37831f53ec48888079e010e": {
+    "relation_pairs": [
+      [
+        "CEIS",
+        "Peter"
+      ],
+      [
+        "Emma Wang",
+        "Vulcanshield"
+      ],
+      [
+        "Emma Wang",
+        "Peter"
+      ],
+      [
+        "3 Offers",
+        "HIPA"
+      ],
+      [
+        "3 Offers",
+        "Vic Qin"
+      ],
+      [
+        "3 Offers",
+        "Acceptance Letter"
+      ]
+    ],
+    "count": 6,
+    "create_time": 1764776119,
+    "update_time": 1764776119,
+    "_id": "doc-92acc0b2f37831f53ec48888079e010e"
+  },
+  "doc-c83e38c72b7541d68f47741e784b1ce9": {
+    "relation_pairs": [
+      [
+        "Composites United e.V.",
+        "Sommergrillen"
+      ],
+      [
+        "Deutsch-Schwedische Handelskammer",
+        "Leistungsschau Leichtbau für die Mobilität der Zukunft"
+      ],
+      [
+        "CMC-Workshop",
+        "Composites United e.V."
+      ],
+      [
+        "CU Ost",
+        "Sommergrillen"
+      ],
+      [
+        "Bergamo",
+        "CMC-Workshop"
+      ],
+      [
+        "CU Bau",
+        "Sommergrillen"
+      ],
+      [
+        "Die Feder",
+        "Dr. Fabian Grasse"
+      ],
+      [
+        "Sommergrillen",
+        "Weixdorf"
+      ],
+      [
+        "Composites United e.V.",
+        "ResC4EU Expert Sessions"
+      ]
+    ],
+    "count": 9,
+    "create_time": 1764776222,
+    "update_time": 1764776222,
+    "_id": "doc-c83e38c72b7541d68f47741e784b1ce9"
+  },
+  "doc-601e22b4f94edabf2237fab6cbfd4023": {
+    "relation_pairs": [
+      [
+        "Health Declaration",
+        "Infectious Diseases Act"
+      ],
+      [
+        "Immigration & Checkpoints Authority",
+        "SGAC e-Service"
+      ],
+      [
+        "Immigration & Checkpoints Authority",
+        "MyICA Mobile Application"
+      ],
+      [
+        "The Pan Pacific Hotel Singapore",
+        "Zhu Haotian"
+      ],
+      [
+        "Automated Clearance Initiative",
+        "Immigration & Checkpoints Authority"
+      ],
+      [
+        "Singapore Arrival Card",
+        "Zhu Haotian"
+      ],
+      [
+        "Immigration & Checkpoints Authority",
+        "Singapore Arrival Card"
+      ]
+    ],
+    "count": 7,
+    "create_time": 1764776308,
+    "update_time": 1764776308,
+    "_id": "doc-601e22b4f94edabf2237fab6cbfd4023"
+  },
+  "doc-4037d38d08f22ec8826d69685fe00bd3": {
+    "relation_pairs": [
+      [
+        "SGAC e-Service",
+        "Singapore Arrival Card"
+      ],
+      [
+        "QIN.HAO@VULCANSHIELD.COM",
+        "Zhu Weiyi"
+      ],
+      [
+        "Misuse of Drugs Act",
+        "Singapore Arrival Card"
+      ],
+      [
+        "Singapore Arrival Card",
+        "X8241Q2228"
+      ],
+      [
+        "Immigration & Checkpoints Authority",
+        "MyICA mobile application"
+      ],
+      [
+        "The Pan Pacific Hotel Singapore",
+        "Zhu Weiyi"
+      ],
+      [
+        "Singapore",
+        "The Pan Pacific Hotel Singapore"
+      ],
+      [
+        "Immigration & Checkpoints Authority",
+        "Singapore Arrival Card"
+      ],
+      [
+        "05/09/2025",
+        "Zhu Weiyi"
+      ],
+      [
+        "8615611560682",
+        "Zhu Weiyi"
+      ],
+      [
+        "Infectious Diseases Act",
+        "Singapore Arrival Card"
+      ],
+      [
+        "Singapore Arrival Card",
+        "Zhu Weiyi"
+      ],
+      [
+        "MyICA mobile application",
+        "Singapore Arrival Card"
+      ]
+    ],
+    "count": 13,
+    "create_time": 1764776398,
+    "update_time": 1764776398,
+    "_id": "doc-4037d38d08f22ec8826d69685fe00bd3"
+  },
+  "doc-5647fd8f28e5eabdb226f2c330b2a3f4": {
+    "relation_pairs": [
+      [
+        "Ge Huangyan",
+        "The Pan Pacific Hotel Singapore"
+      ],
+      [
+        "Ge Huangyan",
+        "X8245Q4626"
+      ],
+      [
+        "Automated Clearance Initiative",
+        "Singapore Arrival Card"
+      ],
+      [
+        "Ge Huangyan",
+        "Singapore Arrival Card"
+      ],
+      [
+        "Ge Huangyan",
+        "QIN.HAO@VULCANSHIELD.COM"
+      ],
+      [
+        "Automated Clearance Initiative",
+        "Immigration & Checkpoints Authority"
+      ],
+      [
+        "*****2670",
+        "Ge Huangyan"
+      ],
+      [
+        "8613811467029",
+        "Ge Huangyan"
+      ],
+      [
+        "05/09/2025",
+        "Ge Huangyan"
+      ],
+      [
+        "Infectious Diseases Act",
+        "Singapore Arrival Card"
+      ],
+      [
+        "Immigration & Checkpoints Authority",
+        "Singapore Arrival Card"
+      ]
+    ],
+    "count": 11,
+    "create_time": 1764776490,
+    "update_time": 1764776490,
+    "_id": "doc-5647fd8f28e5eabdb226f2c330b2a3f4"
+  },
+  "doc-2f3fc821eab89756950ca0445407567a": {
+    "relation_pairs": [
+      [
+        "C71",
+        "CAMX"
+      ],
+      [
+        "Barry",
+        "C71"
+      ],
+      [
+        "Apple",
+        "Theo"
+      ],
+      [
+        "Apple",
+        "CAMX"
+      ],
+      [
+        "CAMX",
+        "Orlando"
+      ],
+      [
+        "CAMX",
+        "Vulcan Shield"
+      ],
+      [
+        "CAMX",
+        "Sept 9-11th"
+      ],
+      [
+        "Barry",
+        "Theo"
+      ]
+    ],
+    "count": 8,
+    "create_time": 1764776561,
+    "update_time": 1764776561,
+    "_id": "doc-2f3fc821eab89756950ca0445407567a"
+  },
+  "doc-6e87f232589a04da70c323c9ec005549": {
+    "relation_pairs": [
+      [
+        "Microsoft Corporation",
+        "One Microsoft Way"
+      ],
+      [
+        "CAMX 2025",
+        "VSG"
+      ],
+      [
+        "CAMX 2025",
+        "Jiaoji Qian"
+      ],
+      [
+        "Fong Shengkai",
+        "VSG"
+      ],
+      [
+        "Jiaoji Qian",
+        "VSG"
+      ],
+      [
+        "One Microsoft Way",
+        "Redmond"
+      ]
+    ],
+    "count": 6,
+    "create_time": 1764776798,
+    "update_time": 1764776798,
+    "_id": "doc-6e87f232589a04da70c323c9ec005549"
+  },
+  "doc-f13c3b6844e2bc3e43394df1afac6939": {
+    "relation_pairs": [
+      [
+        "Starship",
+        "eCerts"
+      ],
+      [
+        "Dragon",
+        "SpaceX"
+      ],
+      [
+        "Dragon",
+        "eCerts"
+      ],
+      [
+        "Dragon",
+        "PPAP"
+      ],
+      [
+        "PPAP",
+        "Starship"
+      ],
+      [
+        "Falcon",
+        "SpaceX"
+      ],
+      [
+        "SpaceX",
+        "Starship"
+      ],
+      [
+        "Falcon",
+        "PPAP"
+      ],
+      [
+        "Raptor",
+        "SpaceX"
+      ],
+      [
+        "Falcon",
+        "eCerts"
+      ],
+      [
+        "Raptor",
+        "eCerts"
+      ],
+      [
+        "PPAP",
+        "Raptor"
+      ]
+    ],
+    "count": 12,
+    "create_time": 1764776971,
+    "update_time": 1764776971,
+    "_id": "doc-f13c3b6844e2bc3e43394df1afac6939"
+  },
+  "doc-af84961d315469bb938d26f3fa30fd7a": {
+    "relation_pairs": [
+      [
+        "September 12",
+        "Trip.com"
+      ],
+      [
+        "HK$150",
+        "Train Ticket"
+      ],
+      [
+        "September 9",
+        "Trip.com"
+      ],
+      [
+        "September 6",
+        "Trip.com"
+      ],
+      [
+        "Ctrip.com (Hong Kong) Limited",
+        "Hong Kong Travel Agent License"
+      ],
+      [
+        "HK$999",
+        "Trip.com"
+      ],
+      [
+        "HK$42",
+        "Shenzhen Huafu Ice and Snow Miracle"
+      ],
+      [
+        "HK$150",
+        "Trip.com"
+      ],
+      [
+        "Flight Ticket",
+        "HK$99"
+      ],
+      [
+        "HK$99",
+        "Trip.com"
+      ],
+      [
+        "Shenzhen Huafu Ice and Snow Miracle",
+        "Trip.com"
+      ],
+      [
+        "HK$99",
+        "Hotel"
+      ]
+    ],
+    "count": 12,
+    "create_time": 1764777207,
+    "update_time": 1764777207,
+    "_id": "doc-af84961d315469bb938d26f3fa30fd7a"
+  },
+  "doc-0ab74b13b689cb643f74fb13d8d99793": {
+    "relation_pairs": [
+      [
+        "2025-09-05 02:17",
+        "AAMkAGRkMmM3ZTZlLWMwYTYtNDMzZC05MDAzLTk5OWY5OGM0MzEyZABGAAAAC2OS1Bvs8oT7fZRZozWlJ-BwA1pQiKMnX2SZqnW8X-qRJuAAAAAAEJAAC2OS1Bvs8oT7fZRZozWlJ-BwA1pQiKMnX2SZqnW8X-qRJuAABnd-QHAAA="
+      ],
+      [
+        "Jolene Qian",
+        "Shermaine Yeo"
+      ],
+      [
+        "AAMkAGRkMmM3ZTZlLWMwYTYtNDMzZC05MDAzLTk5OWY5OGM0MzEyZABGAAAAC2OS1Bvs8oT7fZRZozWlJ-BwA1pQiKMnX2SZqnW8X-qRJuAAAAAAEJAAC2OS1Bvs8oT7fZRZozWlJ-BwA1pQiKMnX2SZqnW8X-qRJuAABnd-QHAAA=",
+        "Scanned Send"
+      ],
+      [
+        "AAMkAGRkMmM3ZTZlLWMwYTYtNDMzZC05MDAzLTk5OWY5OGM0MzEyZABGAAAAC2OS1Bvs8oT7fZRZozWlJ-BwA1pQiKMnX2SZqnW8X-qRJuAAAAAAEJAAC2OS1Bvs8oT7fZRZozWlJ-BwA1pQiKMnX2SZqnW8X-qRJuAABnd-QHAAA=",
+        "Internal"
+      ],
+      [
+        "Shermaine Yeo",
+        "Vulcan Shield"
+      ],
+      [
+        "FX-100470",
+        "Scan Data From FX-100470"
+      ],
+      [
+        "Jolene Qian",
+        "Vulcan Shield"
+      ]
+    ],
+    "count": 7,
+    "create_time": 1764777390,
+    "update_time": 1764777390,
+    "_id": "doc-0ab74b13b689cb643f74fb13d8d99793"
+  },
+  "doc-2c456ab1a49127824bce55b9ed871dc5": {
+    "relation_pairs": [
+      [
+        "Email ID",
+        "FX-100470"
+      ],
+      [
+        "Email Date",
+        "Email ID"
+      ],
+      [
+        "Email ID",
+        "Internal Email"
+      ],
+      [
+        "Email ID",
+        "Shermaine Yeo"
+      ],
+      [
+        "Shermaine Yeo",
+        "Vulcan Shield"
+      ],
+      [
+        "Email ID",
+        "Jolene Qian"
+      ],
+      [
+        "Jolene Qian",
+        "Vulcan Shield"
+      ]
+    ],
+    "count": 7,
+    "create_time": 1764777555,
+    "update_time": 1764777555,
+    "_id": "doc-2c456ab1a49127824bce55b9ed871dc5"
+  },
+  "doc-4989f91bc2dc1babcc3f8e147692b549": {
+    "relation_pairs": [
+      [
+        "Bank Slip",
+        "Down Payment"
+      ],
+      [
+        "Down Payment",
+        "Patent Law Firm"
+      ],
+      [
+        "Alison Liu",
+        "Shermaine Yeo"
+      ],
+      [
+        "Patent Law Firm",
+        "Shermaine Yeo"
+      ]
+    ],
+    "count": 4,
+    "create_time": 1764778909,
+    "update_time": 1764778909,
+    "_id": "doc-4989f91bc2dc1babcc3f8e147692b549"
+  },
+  "doc-74bb905bd72b79c50eae389babc81be7": {
+    "relation_pairs": [
+      [
+        "Down Payment",
+        "Patent Law Firm"
+      ],
+      [
+        "Alison Liu",
+        "Vulcan Shield"
+      ],
+      [
+        "Shermaine Yeo",
+        "Vulcan Shield"
+      ],
+      [
+        "Alison Liu",
+        "Shermaine Yeo"
+      ]
+    ],
+    "count": 4,
+    "create_time": 1764778941,
+    "update_time": 1764778941,
+    "_id": "doc-74bb905bd72b79c50eae389babc81be7"
+  },
+  "doc-4c0ce0a4012fd370aad9db4ce76c7837": {
+    "relation_pairs": [
+      [
+        "61X8153509",
+        "FCA广西工厂1X40HC"
+      ],
+      [
+        "FCA广西工厂1X40HC",
+        "Yui Luo"
+      ]
+    ],
+    "count": 2,
+    "create_time": 1764779776,
+    "update_time": 1764779776,
+    "_id": "doc-4c0ce0a4012fd370aad9db4ce76c7837"
+  },
+  "doc-21d291efcd3952326c77427f8f002495": {
+    "relation_pairs": [
+      [
+        "Great Eastern",
+        "Martin"
+      ],
+      [
+        "Info Tech",
+        "Martin"
+      ],
+      [
+        "Martin",
+        "VSG"
+      ],
+      [
+        "Great Eastern",
+        "VSG"
+      ]
+    ],
+    "count": 4,
+    "create_time": 1764779805,
+    "update_time": 1764779805,
+    "_id": "doc-21d291efcd3952326c77427f8f002495"
+  }
+}

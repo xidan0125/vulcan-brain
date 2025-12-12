@@ -1,0 +1,1768 @@
+{
+  "generated_at": "2025-12-04T01:02:18.337672",
+  "stats": {
+    "emails_processed": 48848,
+    "unique_entities": 12899,
+    "unique_pairs": 54170,
+    "strong_relationships": 6722
+  },
+  "stats_inference": {
+    "total": 200,
+    "rule_based": 85,
+    "llm_inferred": 115
+  },
+  "top_entities": [
+    {
+      "entity": "person:David Kneale",
+      "importance": 24756,
+      "type": "person",
+      "text": "David Kneale"
+    },
+    {
+      "entity": "company:VSG",
+      "importance": 21176,
+      "type": "company",
+      "text": "VSG"
+    },
+    {
+      "entity": "person:Barry Claypool",
+      "importance": 18614,
+      "type": "person",
+      "text": "Barry Claypool"
+    },
+    {
+      "entity": "person:Daniel Hu",
+      "importance": 10451,
+      "type": "person",
+      "text": "Daniel Hu"
+    },
+    {
+      "entity": "person:Matthias Blaess",
+      "importance": 8022,
+      "type": "person",
+      "text": "Matthias Blaess"
+    },
+    {
+      "entity": "person:Renee Loke",
+      "importance": 7705,
+      "type": "person",
+      "text": "Renee Loke"
+    },
+    {
+      "entity": "person:Shengkai Fong",
+      "importance": 5719,
+      "type": "person",
+      "text": "Shengkai Fong"
+    },
+    {
+      "entity": "person:Cindy Wang",
+      "importance": 3372,
+      "type": "person",
+      "text": "Cindy Wang"
+    },
+    {
+      "entity": "person:Amanda",
+      "importance": 3157,
+      "type": "person",
+      "text": "Amanda"
+    },
+    {
+      "entity": "person:Shermaine Yeo",
+      "importance": 2999,
+      "type": "person",
+      "text": "Shermaine Yeo"
+    },
+    {
+      "entity": "person:Glenn",
+      "importance": 2545,
+      "type": "person",
+      "text": "Glenn"
+    },
+    {
+      "entity": "person:Jiaoji Qian",
+      "importance": 2496,
+      "type": "person",
+      "text": "Jiaoji Qian"
+    },
+    {
+      "entity": "company:Microsoft",
+      "importance": 1624,
+      "type": "company",
+      "text": "Microsoft"
+    },
+    {
+      "entity": "person:Xin Yuan",
+      "importance": 1480,
+      "type": "person",
+      "text": "Xin Yuan"
+    },
+    {
+      "entity": "person:Widodo",
+      "importance": 1443,
+      "type": "person",
+      "text": "Widodo"
+    },
+    {
+      "entity": "person:Sheryl Sim",
+      "importance": 1420,
+      "type": "person",
+      "text": "Sheryl Sim"
+    },
+    {
+      "entity": "person:Sales Manager",
+      "importance": 1303,
+      "type": "person",
+      "text": "Sales Manager"
+    },
+    {
+      "entity": "person:John Catapano",
+      "importance": 1293,
+      "type": "person",
+      "text": "John Catapano"
+    },
+    {
+      "entity": "person:Grace",
+      "importance": 1209,
+      "type": "person",
+      "text": "Grace"
+    },
+    {
+      "entity": "company:Spacex",
+      "importance": 1181,
+      "type": "company",
+      "text": "Spacex"
+    },
+    {
+      "entity": "person:Lumin",
+      "importance": 975,
+      "type": "person",
+      "text": "Lumin"
+    },
+    {
+      "entity": "company:Fibrecast",
+      "importance": 958,
+      "type": "company",
+      "text": "Fibrecast"
+    },
+    {
+      "entity": "company:Microsoft Teams",
+      "importance": 946,
+      "type": "company",
+      "text": "Microsoft Teams"
+    },
+    {
+      "entity": "person:Eranthe",
+      "importance": 896,
+      "type": "person",
+      "text": "Eranthe"
+    },
+    {
+      "entity": "person:Adeline",
+      "importance": 843,
+      "type": "person",
+      "text": "Adeline"
+    }
+  ],
+  "relationships": [
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "David Kneale",
+      "entity2_type": "person",
+      "count": 2982,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "David Kneale",
+      "entity2_type": "person",
+      "count": 2487,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Barry Claypool",
+      "entity2_type": "person",
+      "count": 2348,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Renee Loke",
+      "entity2_type": "person",
+      "count": 2003,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Daniel Hu",
+      "entity1_type": "person",
+      "entity2": "David Kneale",
+      "entity2_type": "person",
+      "count": 1584,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "Matthias Blaess",
+      "entity2_type": "person",
+      "count": 1134,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Daniel Hu",
+      "entity2_type": "person",
+      "count": 1065,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Matthias Blaess",
+      "entity2_type": "person",
+      "count": 994,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Cindy Wang",
+      "entity2_type": "person",
+      "count": 816,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "Shengkai Fong",
+      "entity2_type": "person",
+      "count": 809,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Daniel Hu",
+      "entity1_type": "person",
+      "entity2": "Matthias Blaess",
+      "entity2_type": "person",
+      "count": 785,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Daniel Hu",
+      "entity2_type": "person",
+      "count": 725,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "Renee Loke",
+      "entity2_type": "person",
+      "count": 659,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Shermaine Yeo",
+      "entity2_type": "person",
+      "count": 589,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Shengkai Fong",
+      "entity2_type": "person",
+      "count": 566,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Sales Manager",
+      "entity2_type": "person",
+      "count": 553,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Matthias Blaess",
+      "entity2_type": "person",
+      "count": 511,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Renee Loke",
+      "entity2_type": "person",
+      "count": 449,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Cindy Wang",
+      "entity1_type": "person",
+      "entity2": "David Kneale",
+      "entity2_type": "person",
+      "count": 431,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Amanda",
+      "entity1_type": "person",
+      "entity2": "David Kneale",
+      "entity2_type": "person",
+      "count": 422,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Shengkai Fong",
+      "entity2_type": "person",
+      "count": 422,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Microsoft",
+      "entity1_type": "company",
+      "entity2": "Microsoft Teams",
+      "entity2_type": "company",
+      "count": 419,
+      "relation_type": "business_partner"
+    },
+    {
+      "entity1": "Amanda",
+      "entity1_type": "person",
+      "entity2": "Barry Claypool",
+      "entity2_type": "person",
+      "count": 367,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "Jiaoji Qian",
+      "entity2_type": "person",
+      "count": 366,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Daniel Hu",
+      "entity1_type": "person",
+      "entity2": "Shengkai Fong",
+      "entity2_type": "person",
+      "count": 364,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Amanda",
+      "entity1_type": "person",
+      "entity2": "Daniel Hu",
+      "entity2_type": "person",
+      "count": 348,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "Sales Manager",
+      "entity2_type": "person",
+      "count": 321,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "Xin Yuan",
+      "entity2_type": "person",
+      "count": 312,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Matthias Blaess",
+      "entity1_type": "person",
+      "entity2": "Shengkai Fong",
+      "entity2_type": "person",
+      "count": 291,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Jiaoji Qian",
+      "entity2_type": "person",
+      "count": 287,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "Glenn",
+      "entity2_type": "person",
+      "count": 279,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Globalization Partners",
+      "entity1_type": "company",
+      "entity2": "VSG",
+      "entity2_type": "company",
+      "count": 278,
+      "relation_type": "business_partner"
+    },
+    {
+      "entity1": "Daniel Hu",
+      "entity1_type": "person",
+      "entity2": "Glenn",
+      "entity2_type": "person",
+      "count": 272,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Xin Yuan",
+      "entity2_type": "person",
+      "count": 265,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Renee Loke",
+      "entity1_type": "person",
+      "entity2": "Shermaine Yeo",
+      "entity2_type": "person",
+      "count": 242,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Renee Loke",
+      "entity1_type": "person",
+      "entity2": "Sales Manager",
+      "entity2_type": "person",
+      "count": 236,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Jiaoji Qian",
+      "entity2_type": "person",
+      "count": 233,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Spacex",
+      "entity1_type": "company",
+      "entity2": "Barry Claypool",
+      "entity2_type": "person",
+      "count": 232,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Amanda",
+      "entity1_type": "person",
+      "entity2": "Jiaoji Qian",
+      "entity2_type": "person",
+      "count": 231,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "Shermaine Yeo",
+      "entity2_type": "person",
+      "count": 229,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Matthias Blaess",
+      "entity1_type": "person",
+      "entity2": "Renee Loke",
+      "entity2_type": "person",
+      "count": 219,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Renee Loke",
+      "entity1_type": "person",
+      "entity2": "Shengkai Fong",
+      "entity2_type": "person",
+      "count": 216,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Cindy Wang",
+      "entity1_type": "person",
+      "entity2": "Daniel Hu",
+      "entity2_type": "person",
+      "count": 212,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "Widodo",
+      "entity2_type": "person",
+      "count": 209,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Fibrecast",
+      "entity1_type": "company",
+      "entity2": "Barry Claypool",
+      "entity2_type": "person",
+      "count": 203,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Amanda",
+      "entity1_type": "person",
+      "entity2": "Shengkai Fong",
+      "entity2_type": "person",
+      "count": 196,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Microsoft",
+      "entity1_type": "company",
+      "entity2": "David Kneale",
+      "entity2_type": "person",
+      "count": 194,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Daniel Hu",
+      "entity1_type": "person",
+      "entity2": "Jiaoji Qian",
+      "entity2_type": "person",
+      "count": 194,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Glenn",
+      "entity2_type": "person",
+      "count": 194,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Glenn",
+      "entity1_type": "person",
+      "entity2": "Shengkai Fong",
+      "entity2_type": "person",
+      "count": 192,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Erick Nielsen",
+      "entity2_type": "person",
+      "count": 186,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Renee Loke",
+      "entity1_type": "person",
+      "entity2": "Sheryl Sim",
+      "entity2_type": "person",
+      "count": 184,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Daniel Hu",
+      "entity1_type": "person",
+      "entity2": "Widodo",
+      "entity2_type": "person",
+      "count": 175,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Microsoft",
+      "entity1_type": "company",
+      "entity2": "Daniel Hu",
+      "entity2_type": "person",
+      "count": 173,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Jiaoji Qian",
+      "entity1_type": "person",
+      "entity2": "Shengkai Fong",
+      "entity2_type": "person",
+      "count": 169,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Apple",
+      "entity1_type": "company",
+      "entity2": "David Kneale",
+      "entity2_type": "person",
+      "count": 165,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "Sheryl Sim",
+      "entity2_type": "person",
+      "count": 158,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Amanda",
+      "entity2_type": "person",
+      "count": 156,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Daniel Hu",
+      "entity1_type": "person",
+      "entity2": "Xin Yuan",
+      "entity2_type": "person",
+      "count": 153,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Glenn",
+      "entity1_type": "person",
+      "entity2": "Matthias Blaess",
+      "entity2_type": "person",
+      "count": 149,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Job-street Singapore",
+      "entity1_type": "company",
+      "entity2": "Shermaine Yeo",
+      "entity2_type": "person",
+      "count": 147,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Shermaine Yeo",
+      "entity2_type": "person",
+      "count": 146,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "Grace",
+      "entity2_type": "person",
+      "count": 144,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Jiaoji Qian",
+      "entity1_type": "person",
+      "entity2": "John Catapano",
+      "entity2_type": "person",
+      "count": 144,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Fibrecast",
+      "entity1_type": "company",
+      "entity2": "David Kneale",
+      "entity2_type": "person",
+      "count": 143,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Glenn Tan",
+      "entity2_type": "person",
+      "count": 143,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "Lumin",
+      "entity2_type": "person",
+      "count": 143,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "John Catapano",
+      "entity2_type": "person",
+      "count": 140,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Glenn",
+      "entity2_type": "person",
+      "count": 140,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "John Catapano",
+      "entity2_type": "person",
+      "count": 139,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Amanda",
+      "entity1_type": "person",
+      "entity2": "Matthias Blaess",
+      "entity2_type": "person",
+      "count": 136,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Spacex",
+      "entity1_type": "company",
+      "entity2": "David Kneale",
+      "entity2_type": "person",
+      "count": 134,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Daniel Hu",
+      "entity1_type": "person",
+      "entity2": "Grace",
+      "entity2_type": "person",
+      "count": 131,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Amanda",
+      "entity1_type": "person",
+      "entity2": "John Catapano",
+      "entity2_type": "person",
+      "count": 131,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Advanced Materials Manufacturer Singapore",
+      "entity1_type": "company",
+      "entity2": "VSG",
+      "entity2_type": "company",
+      "count": 130,
+      "relation_type": "business_partner"
+    },
+    {
+      "entity1": "Microsoft",
+      "entity1_type": "company",
+      "entity2": "Matthias Blaess",
+      "entity2_type": "person",
+      "count": 128,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Eranthe",
+      "entity2_type": "person",
+      "count": 128,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "John Catapano",
+      "entity2_type": "person",
+      "count": 127,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "3m",
+      "entity1_type": "company",
+      "entity2": "David Kneale",
+      "entity2_type": "person",
+      "count": 122,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Nutec",
+      "entity1_type": "company",
+      "entity2": "Barry Claypool",
+      "entity2_type": "person",
+      "count": 121,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Apple",
+      "entity1_type": "company",
+      "entity2": "Barry Claypool",
+      "entity2_type": "person",
+      "count": 120,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Vulcan Shield",
+      "entity1_type": "company",
+      "entity2": "David Kneale",
+      "entity2_type": "person",
+      "count": 120,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Camx",
+      "entity1_type": "company",
+      "entity2": "Barry Claypool",
+      "entity2_type": "person",
+      "count": 119,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Daniel Hu",
+      "entity1_type": "person",
+      "entity2": "John Catapano",
+      "entity2_type": "person",
+      "count": 119,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Widodo",
+      "entity2_type": "person",
+      "count": 118,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "Erick Nielsen",
+      "entity2_type": "person",
+      "count": 115,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Matthias Blaess",
+      "entity1_type": "person",
+      "entity2": "Widodo",
+      "entity2_type": "person",
+      "count": 114,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Globalization Partners",
+      "entity1_type": "company",
+      "entity2": "Renee Loke",
+      "entity2_type": "person",
+      "count": 113,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Jec",
+      "entity1_type": "company",
+      "entity2": "Jec Group",
+      "entity2_type": "company",
+      "count": 113,
+      "relation_type": "business_partner"
+    },
+    {
+      "entity1": "Matthias Blaess",
+      "entity1_type": "person",
+      "entity2": "Xin Yuan",
+      "entity2_type": "person",
+      "count": 113,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Amanda",
+      "entity1_type": "person",
+      "entity2": "Glenn",
+      "entity2_type": "person",
+      "count": 112,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Eranthe Gnin",
+      "entity2_type": "person",
+      "count": 111,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Nutec",
+      "entity1_type": "company",
+      "entity2": "David Kneale",
+      "entity2_type": "person",
+      "count": 110,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Cindy Wang",
+      "entity1_type": "person",
+      "entity2": "Matthias Blaess",
+      "entity2_type": "person",
+      "count": 110,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Erick Nielsen",
+      "entity2_type": "person",
+      "count": 109,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Vulcan Shield",
+      "entity1_type": "company",
+      "entity2": "Barry Claypool",
+      "entity2_type": "person",
+      "count": 109,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Renee Loke Siew Fong",
+      "entity2_type": "person",
+      "count": 109,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Microsoft",
+      "entity1_type": "company",
+      "entity2": "Barry Claypool",
+      "entity2_type": "person",
+      "count": 108,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Daniel Hu",
+      "entity1_type": "person",
+      "entity2": "Renee Loke",
+      "entity2_type": "person",
+      "count": 108,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Widodo",
+      "entity2_type": "person",
+      "count": 108,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Kai",
+      "entity2_type": "person",
+      "count": 105,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Microsoft",
+      "entity1_type": "company",
+      "entity2": "Redmond Wa",
+      "entity2_type": "company",
+      "count": 104,
+      "relation_type": "business_partner"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Cindy Wang",
+      "entity2_type": "person",
+      "count": 104,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "John",
+      "entity2_type": "person",
+      "count": 103,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Microsoft Teams",
+      "entity1_type": "company",
+      "entity2": "Redmond Wa",
+      "entity2_type": "company",
+      "count": 103,
+      "relation_type": "business_partner"
+    },
+    {
+      "entity1": "Cindy Wang",
+      "entity1_type": "person",
+      "entity2": "Glenn",
+      "entity2_type": "person",
+      "count": 102,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Lumin",
+      "entity2_type": "person",
+      "count": 102,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Shengkai Fong",
+      "entity1_type": "person",
+      "entity2": "Sheryl Sim",
+      "entity2_type": "person",
+      "count": 101,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Wang Xiang Ping",
+      "entity2_type": "person",
+      "count": 100,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "仝占凤",
+      "entity2_type": "person",
+      "count": 100,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Lumin",
+      "entity1_type": "company",
+      "entity2": "David Kneale",
+      "entity2_type": "person",
+      "count": 100,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Daniel Hu",
+      "entity1_type": "person",
+      "entity2": "Lumin",
+      "entity2_type": "person",
+      "count": 99,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Grace",
+      "entity1_type": "person",
+      "entity2": "Matthias Blaess",
+      "entity2_type": "person",
+      "count": 98,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Matthias Maria Blass",
+      "entity1_type": "person",
+      "entity2": "Sales Manager",
+      "entity2_type": "person",
+      "count": 98,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Juan Contreras",
+      "entity2_type": "person",
+      "count": 97,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Jiaoji Qian",
+      "entity1_type": "person",
+      "entity2": "Veronica White",
+      "entity2_type": "person",
+      "count": 97,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Microsoft Teams",
+      "entity1_type": "company",
+      "entity2": "David Kneale",
+      "entity2_type": "person",
+      "count": 96,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Spacex",
+      "entity1_type": "company",
+      "entity2": "VSG",
+      "entity2_type": "company",
+      "count": 96,
+      "relation_type": "business_partner"
+    },
+    {
+      "entity1": "Fibrecast",
+      "entity1_type": "company",
+      "entity2": "Daniel Hu",
+      "entity2_type": "person",
+      "count": 95,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Jiaoji Qian",
+      "entity1_type": "person",
+      "entity2": "Nancy Leon",
+      "entity2_type": "person",
+      "count": 95,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Cindy Wang",
+      "entity1_type": "person",
+      "entity2": "Widodo",
+      "entity2_type": "person",
+      "count": 95,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "Luke Newsome",
+      "entity2_type": "person",
+      "count": 94,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Adeline",
+      "entity2_type": "person",
+      "count": 94,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "John Catapano",
+      "entity1_type": "person",
+      "entity2": "Nancy Leon",
+      "entity2_type": "person",
+      "count": 94,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Matthias Blaess",
+      "entity1_type": "person",
+      "entity2": "Shermaine Yeo",
+      "entity2_type": "person",
+      "count": 93,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Glenn",
+      "entity1_type": "person",
+      "entity2": "Grace",
+      "entity2_type": "person",
+      "count": 93,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "Veronica White",
+      "entity2_type": "person",
+      "count": 93,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Sheryl Sim",
+      "entity2_type": "person",
+      "count": 93,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "3m",
+      "entity1_type": "company",
+      "entity2": "Barry Claypool",
+      "entity2_type": "person",
+      "count": 91,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Shermaine Yeo",
+      "entity1_type": "person",
+      "entity2": "黄总您好",
+      "entity2_type": "person",
+      "count": 90,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Jie Xin",
+      "entity2_type": "person",
+      "count": 89,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Americarb",
+      "entity1_type": "company",
+      "entity2": "Barry Claypool",
+      "entity2_type": "person",
+      "count": 88,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "John Catapano",
+      "entity1_type": "person",
+      "entity2": "Shengkai Fong",
+      "entity2_type": "person",
+      "count": 88,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Silca",
+      "entity1_type": "company",
+      "entity2": "Matthias Blaess",
+      "entity2_type": "person",
+      "count": 87,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "G-p",
+      "entity1_type": "company",
+      "entity2": "VSG",
+      "entity2_type": "company",
+      "count": 86,
+      "relation_type": "business_partner"
+    },
+    {
+      "entity1": "Amanda",
+      "entity1_type": "person",
+      "entity2": "Amanda Zhang",
+      "entity2_type": "person",
+      "count": 85,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Adeline",
+      "entity1_type": "person",
+      "entity2": "Renee Loke",
+      "entity2_type": "person",
+      "count": 83,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Shengkai Fong",
+      "entity1_type": "person",
+      "entity2": "仝占凤",
+      "entity2_type": "person",
+      "count": 82,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Daniel Hu",
+      "entity1_type": "person",
+      "entity2": "Shermaine Yeo",
+      "entity2_type": "person",
+      "count": 82,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Bill Hemrich",
+      "entity2_type": "person",
+      "count": 81,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Bdo Tax Services",
+      "entity1_type": "company",
+      "entity2": "VSG",
+      "entity2_type": "company",
+      "count": 81,
+      "relation_type": "business_partner"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Kyle Raffel",
+      "entity2_type": "person",
+      "count": 80,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Juan Carlos Contreras",
+      "entity1_type": "person",
+      "entity2": "Juan Contreras",
+      "entity2_type": "person",
+      "count": 80,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Cindy Wang",
+      "entity1_type": "person",
+      "entity2": "Grace",
+      "entity2_type": "person",
+      "count": 80,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Ths Industrial Textiles",
+      "entity1_type": "company",
+      "entity2": "Luke Newsome",
+      "entity2_type": "person",
+      "count": 80,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Nancy Leon",
+      "entity2_type": "person",
+      "count": 80,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Lumin",
+      "entity1_type": "person",
+      "entity2": "Matthias Blaess",
+      "entity2_type": "person",
+      "count": 80,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Ths Industrial Textiles",
+      "entity1_type": "company",
+      "entity2": "David Kneale",
+      "entity2_type": "person",
+      "count": 79,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Vulcanshield.com",
+      "entity1_type": "company",
+      "entity2": "David Kneale",
+      "entity2_type": "person",
+      "count": 78,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Adeline",
+      "entity1_type": "person",
+      "entity2": "Shermaine Yeo",
+      "entity2_type": "person",
+      "count": 78,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Camx",
+      "entity1_type": "company",
+      "entity2": "David Kneale",
+      "entity2_type": "person",
+      "count": 78,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "Qin Hao",
+      "entity2_type": "person",
+      "count": 77,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Cindy Wang",
+      "entity1_type": "person",
+      "entity2": "Shengkai Fong",
+      "entity2_type": "person",
+      "count": 77,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Glenn",
+      "entity1_type": "person",
+      "entity2": "John Catapano",
+      "entity2_type": "person",
+      "count": 77,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Microsoft",
+      "entity1_type": "company",
+      "entity2": "VSG",
+      "entity2_type": "company",
+      "count": 77,
+      "relation_type": "business_partner"
+    },
+    {
+      "entity1": "Jiaoji Qian",
+      "entity1_type": "person",
+      "entity2": "Matthias Blaess",
+      "entity2_type": "person",
+      "count": 76,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Microsoft Teams",
+      "entity1_type": "company",
+      "entity2": "Daniel Hu",
+      "entity2_type": "person",
+      "count": 76,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "Kyle Raffel",
+      "entity2_type": "person",
+      "count": 75,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Xiang Ping",
+      "entity2_type": "person",
+      "count": 75,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Linda",
+      "entity1_type": "person",
+      "entity2": "仝占凤",
+      "entity2_type": "person",
+      "count": 75,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Amanda",
+      "entity1_type": "person",
+      "entity2": "Nancy Leon",
+      "entity2_type": "person",
+      "count": 74,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Loh Jie Xin",
+      "entity2_type": "person",
+      "count": 73,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Fong Sheng Kai",
+      "entity2_type": "person",
+      "count": 72,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Veronica White",
+      "entity2_type": "person",
+      "count": 72,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Eranthe",
+      "entity1_type": "person",
+      "entity2": "Shermaine Yeo",
+      "entity2_type": "person",
+      "count": 71,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "Nancy Leon",
+      "entity2_type": "person",
+      "count": 71,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Juan Carlos Contreras",
+      "entity2_type": "person",
+      "count": 70,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Grace",
+      "entity1_type": "person",
+      "entity2": "Shengkai Fong",
+      "entity2_type": "person",
+      "count": 70,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Vel Tan",
+      "entity2_type": "person",
+      "count": 70,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Chen Kehan",
+      "entity2_type": "person",
+      "count": 68,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "Eranthe",
+      "entity2_type": "person",
+      "count": 68,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Xin Yuan",
+      "entity2_type": "person",
+      "count": 68,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Barry Claypool",
+      "entity1_type": "person",
+      "entity2": "Grace",
+      "entity2_type": "person",
+      "count": 68,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Americarb",
+      "entity1_type": "company",
+      "entity2": "David Kneale",
+      "entity2_type": "person",
+      "count": 67,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "3m",
+      "entity1_type": "company",
+      "entity2": "Daniel Hu",
+      "entity2_type": "person",
+      "count": 67,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Lumin",
+      "entity1_type": "person",
+      "entity2": "Xin Yuan",
+      "entity2_type": "person",
+      "count": 67,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Lumin",
+      "entity1_type": "company",
+      "entity2": "Daniel Hu",
+      "entity2_type": "person",
+      "count": 67,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Space X",
+      "entity1_type": "company",
+      "entity2": "Spacex",
+      "entity2_type": "company",
+      "count": 67,
+      "relation_type": "business_partner"
+    },
+    {
+      "entity1": "Alison",
+      "entity1_type": "person",
+      "entity2": "David Kneale",
+      "entity2_type": "person",
+      "count": 66,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Nancy Leon",
+      "entity2_type": "person",
+      "count": 66,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "3m",
+      "entity1_type": "company",
+      "entity2": "VSG",
+      "entity2_type": "company",
+      "count": 66,
+      "relation_type": "business_partner"
+    },
+    {
+      "entity1": "Bella Pang",
+      "entity1_type": "company",
+      "entity2": "仝经理",
+      "entity2_type": "person",
+      "count": 66,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "Hebe Yang",
+      "entity2_type": "person",
+      "count": 66,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "G-p",
+      "entity1_type": "company",
+      "entity2": "Globalization Partners",
+      "entity2_type": "company",
+      "count": 65,
+      "relation_type": "business_partner"
+    },
+    {
+      "entity1": "Vulcanshield",
+      "entity1_type": "company",
+      "entity2": "David Kneale",
+      "entity2_type": "person",
+      "count": 65,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "VSG",
+      "entity1_type": "company",
+      "entity2": "Jolene Qian",
+      "entity2_type": "person",
+      "count": 65,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "David Kneale",
+      "entity1_type": "person",
+      "entity2": "Long Long",
+      "entity2_type": "person",
+      "count": 65,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Purem",
+      "entity1_type": "company",
+      "entity2": "David Kneale",
+      "entity2_type": "person",
+      "count": 65,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Glenn",
+      "entity1_type": "person",
+      "entity2": "Lumin",
+      "entity2_type": "person",
+      "count": 65,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Uber",
+      "entity1_type": "company",
+      "entity2": "Uber B.v.",
+      "entity2_type": "company",
+      "count": 64,
+      "relation_type": "business_partner"
+    },
+    {
+      "entity1": "Apple",
+      "entity1_type": "company",
+      "entity2": "Daniel Hu",
+      "entity2_type": "person",
+      "count": 64,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Fibrecast",
+      "entity1_type": "company",
+      "entity2": "Erick Nielsen",
+      "entity2_type": "person",
+      "count": 64,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Vulcan",
+      "entity1_type": "company",
+      "entity2": "Barry Claypool",
+      "entity2_type": "person",
+      "count": 64,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Daniel Hu",
+      "entity1_type": "person",
+      "entity2": "Nancy Leon",
+      "entity2_type": "person",
+      "count": 64,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Microsoft",
+      "entity1_type": "company",
+      "entity2": "Teams",
+      "entity2_type": "company",
+      "count": 64,
+      "relation_type": "business_partner"
+    },
+    {
+      "entity1": "Microsoft Teams",
+      "entity1_type": "company",
+      "entity2": "Teams",
+      "entity2_type": "company",
+      "count": 64,
+      "relation_type": "business_partner"
+    },
+    {
+      "entity1": "Purem",
+      "entity1_type": "company",
+      "entity2": "Barry Claypool",
+      "entity2_type": "person",
+      "count": 64,
+      "relation_type": "works_at"
+    },
+    {
+      "entity1": "Grace",
+      "entity1_type": "person",
+      "entity2": "Lumin",
+      "entity2_type": "person",
+      "count": 64,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Renee Loke",
+      "entity1_type": "person",
+      "entity2": "孙总",
+      "entity2_type": "person",
+      "count": 62,
+      "relation_type": "colleague"
+    },
+    {
+      "entity1": "Tongzhanfeng",
+      "entity1_type": "person",
+      "entity2": "仝占凤",
+      "entity2_type": "person",
+      "count": 62,
+      "relation_type": "colleague"
+    }
+  ]
+}

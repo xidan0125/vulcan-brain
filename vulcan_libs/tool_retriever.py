@@ -26,7 +26,7 @@ class ToolRetriever:
         self.top_k = top_k
         
         print(f"🔧 [ToolRetriever] 正在加载嵌入模型: {embed_model}")
-        Settings.embed_model = HuggingFaceEmbedding(
+        Settings.embed_model = HuggingFaceEmbedding(device='cpu', 
             model_name=embed_model,
             cache_folder="./model_cache"
         )

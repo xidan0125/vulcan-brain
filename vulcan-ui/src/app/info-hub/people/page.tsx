@@ -15,6 +15,7 @@ import {
   ChevronRight,
   Calendar,
 } from "lucide-react";
+import InfoHubBreadcrumb from "@/components/info-hub/InfoHubBreadcrumb";
 
 interface DashboardStats {
   total_people: number;
@@ -120,6 +121,9 @@ export default function PeopleManagementPage() {
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
+      {/* 面包屑 */}
+      <InfoHubBreadcrumb items={[{ label: "人员管理" }]} />
+
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">

@@ -15,6 +15,78 @@ import uuid
 
 from services.project_store import get_project_store
 
+
+# ==================== 状态管理帮助函数 ====================
+
+def update_response_status(current: list, new_status: str, note: str = "") -> tuple:
+    """
+    更新 response_status 数组，遵循互斥规则
+    返回: (updated_array, note_entry)
+
+    规则:
+    1. on_track, at_risk, blocked 三者互斥
+    2. accepted 持续存在除非 rejected
+    3. questioned 可以与其他状态共存
+    """
+    from datetime import datetime
+
+    result = current.copy() if current else []
+
+    # 互斥组
+    health_states = {"on_track", "at_risk", "blocked"}
+    acceptance_states = {"accepted", "rejected"}
+
+    # 如果新状态在健康组，移除其他健康状态
+    if new_status in health_states:
+        result = [s for s in result if s not in health_states]
+
+    # 如果是 rejected，移除 accepted
+    if new_status == "rejected":
+        result = [s for s in result if s != "accepted"]
+
+    # 如果是 accepted，移除 rejected
+    if new_status == "accepted":
+        result = [s for s in result if s != "rejected"]
+
+    # 添加新状态（如果不存在）
+    if new_status not in result:
+        result.append(new_status)
+
+    # 创建备注条目
+    note_entry = {
+        "status": new_status,
+        "note": note,
+        "at": datetime.now().isoformat()
+    }
+
+    return result, note_entry
+
+
+def calculate_health(response_status: list) -> str:
+    """
+    根据 response_status 数组计算 health 状态
+    返回: "healthy" | "at_risk" | "blocked" | "no_response"
+    """
+    if not response_status:
+        return "no_response"
+
+    # 优先级: blocked > at_risk > on_track > accepted > questioned
+    if "blocked" in response_status:
+        return "blocked"
+    if "at_risk" in response_status:
+        return "at_risk"
+    if "on_track" in response_status:
+        return "healthy"
+    if "accepted" in response_status:
+        return "healthy"
+    if "questioned" in response_status:
+        return "at_risk"
+    if "rejected" in response_status:
+        return "blocked"
+
+    return "no_response"
+
+
 router = APIRouter(prefix="/api/pm", tags=["Project Management"])
 
 
@@ -98,6 +170,22 @@ async def create_project(req: CreateProjectRequest):
     return {"success": True, "project": result}
 
 
+
+@router.get("/projects/archived")
+async def list_archived_projects():
+    """获取归档项目列表"""
+    store = get_project_store()
+    projects = await store.list_projects(status="archived")
+
+    result = []
+    for p in projects:
+        tasks = await store.list_tasks(project_id=p["id"])
+        p["task_count"] = len(tasks)
+        p["completed_count"] = len([t for t in tasks if t.get("status") == "completed"])
+        result.append(p)
+
+    return {"projects": result}
+
 @router.get("/projects/{project_id}")
 async def get_project(project_id: str, with_tasks: bool = False):
     """获取项目详情"""
@@ -171,6 +259,13 @@ async def create_task(req: CreateTaskRequest, background_tasks: BackgroundTasks)
         "priority": req.priority,
         "status": "pending",
         "progress": 0,
+        # 三层状态模型
+        "lifecycle_status": "pending",  # Layer 1: pending → in_progress → completed
+        "response_status": [],  # Layer 2: 数组，支持复合状态 ["accepted", "blocked"]
+        "response_at": None,
+        "response_notes": [],  # 备注历史
+        "notified_count": 1,  # 创建时自动发通知算1次
+        "last_notified_at": datetime.now().isoformat(),
         "created_at": datetime.now().isoformat()
     }
     result = await store.create_task(task_data)
@@ -290,7 +385,8 @@ async def get_dashboard():
     """获取看板数据 - War Room用"""
     store = get_project_store()
     
-    projects = await store.list_projects()
+    all_projects = await store.list_projects()
+    projects = [p for p in all_projects if p.get("status") != "archived"]
     all_tasks = await store.list_tasks()
     recent_reports = await store.get_reports(limit=20)
     
@@ -402,9 +498,281 @@ async def get_users():
     users = [
         {
             "id": emp.get("feishu_open_id"),
+            "feishu_open_id": emp.get("feishu_open_id"),
             "name": emp.get("name", "未知"),
             "role": emp.get("role", "member")
         }
         for emp in employees
     ]
     return {"users": users}
+
+
+# ==================== 卡片通知端点 ====================
+
+@router.post("/tasks/{task_id}/notify/progress")
+async def send_progress_check_notification(task_id: str):
+    """发送进度询问卡片"""
+    store = get_project_store()
+    task = await store.get_task(task_id)
+    if not task:
+        raise HTTPException(status_code=404, detail="Task not found")
+
+    if not task.get("assignee_feishu_id"):
+        raise HTTPException(status_code=400, detail="Task has no assignee")
+
+    # 获取项目名称
+    project_name = ""
+    if task.get("project_id"):
+        project = await store.get_project(task["project_id"])
+        project_name = project.get("name", "") if project else ""
+
+    from tools.feishu_tools import notify_progress_check
+    result = await notify_progress_check(task, project_name)
+
+    return {"success": result.get("success", False), "result": result}
+
+
+@router.post("/tasks/{task_id}/notify/overdue")
+async def send_overdue_reminder_notification(task_id: str, days_overdue: int = 0):
+    """发送逾期提醒卡片"""
+    store = get_project_store()
+    task = await store.get_task(task_id)
+    if not task:
+        raise HTTPException(status_code=404, detail="Task not found")
+
+    if not task.get("assignee_feishu_id"):
+        raise HTTPException(status_code=400, detail="Task has no assignee")
+
+    # 获取项目名称
+    project_name = ""
+    if task.get("project_id"):
+        project = await store.get_project(task["project_id"])
+        project_name = project.get("name", "") if project else ""
+
+    from tools.feishu_tools import notify_overdue_reminder
+    result = await notify_overdue_reminder(task, project_name, days_overdue)
+
+    return {"success": result.get("success", False), "result": result}
+
+
+@router.post("/tasks/{task_id}/notify/blocker")
+async def send_blocker_report_notification(task_id: str):
+    """发送阻塞上报卡片"""
+    store = get_project_store()
+    task = await store.get_task(task_id)
+    if not task:
+        raise HTTPException(status_code=404, detail="Task not found")
+
+    if not task.get("assignee_feishu_id"):
+        raise HTTPException(status_code=400, detail="Task has no assignee")
+
+    # 获取项目名称
+    project_name = ""
+    if task.get("project_id"):
+        project = await store.get_project(task["project_id"])
+        project_name = project.get("name", "") if project else ""
+
+    from tools.feishu_tools import notify_blocker_report
+    result = await notify_blocker_report(task, project_name)
+
+    return {"success": result.get("success", False), "result": result}
+
+
+@router.post("/notify/overdue-batch")
+async def send_overdue_reminders_batch():
+    """批量发送逾期提醒（自动发送给所有逾期任务的负责人）"""
+    store = get_project_store()
+    overdue_tasks = await store.get_overdue_tasks()
+
+    if not overdue_tasks:
+        return {"success": True, "message": "No overdue tasks", "sent": 0}
+
+    from tools.feishu_tools import notify_overdue_reminder
+    from datetime import datetime
+
+    results = []
+    for task in overdue_tasks:
+        if not task.get("assignee_feishu_id"):
+            continue
+
+        # 计算逾期天数
+        days_overdue = 0
+        if task.get("deadline"):
+            try:
+                deadline = datetime.fromisoformat(task["deadline"].replace("Z", "+00:00"))
+                days_overdue = (datetime.now(deadline.tzinfo) - deadline).days
+            except:
+                pass
+
+        # 获取项目名称
+        project_name = ""
+        if task.get("project_id"):
+            project = await store.get_project(task["project_id"])
+            project_name = project.get("name", "") if project else ""
+
+        result = await notify_overdue_reminder(task, project_name, days_overdue)
+        results.append({
+            "task_id": task.get("id"),
+            "task_title": task.get("title"),
+            "success": result.get("success", False)
+        })
+
+    sent_count = len([r for r in results if r["success"]])
+    return {"success": True, "sent": sent_count, "total": len(results), "results": results}
+
+
+@router.post("/notify/progress-batch")
+async def send_progress_checks_batch():
+    """批量发送进度询问（发送给所有进行中任务的负责人）"""
+    store = get_project_store()
+    tasks = await store.list_tasks(status="in_progress")
+
+    if not tasks:
+        return {"success": True, "message": "No in-progress tasks", "sent": 0}
+
+    from tools.feishu_tools import notify_progress_check
+
+    results = []
+    for task in tasks:
+        if not task.get("assignee_feishu_id"):
+            continue
+
+        # 获取项目名称
+        project_name = ""
+        if task.get("project_id"):
+            project = await store.get_project(task["project_id"])
+            project_name = project.get("name", "") if project else ""
+
+        result = await notify_progress_check(task, project_name)
+        results.append({
+            "task_id": task.get("id"),
+            "task_title": task.get("title"),
+            "success": result.get("success", False)
+        })
+
+    sent_count = len([r for r in results if r["success"]])
+    return {"success": True, "sent": sent_count, "total": len(results), "results": results}
+
+
+
+@router.post("/employees/sync-feishu")
+async def sync_employees_from_feishu():
+    """从飞书组织同步员工列表"""
+    from tools.feishu_tools import FeishuClient
+
+    client = FeishuClient()
+    store = get_project_store()
+
+    try:
+        # 获取飞书用户
+        feishu_users = await client.get_department_users("0")
+
+        if not feishu_users:
+            return {"success": False, "error": "无法获取飞书用户列表"}
+
+        # 同步到数据库
+        synced = 0
+        for user in feishu_users:
+            # 检查用户状态是否激活
+            status = user.get("status", {})
+            if not status.get("is_activated", True):
+                continue
+
+            employee_data = {
+                "feishu_open_id": user["open_id"],
+                "name": user["name"],
+                "email": user.get("email", ""),
+                "mobile": user.get("mobile", ""),
+                "avatar": user.get("avatar", ""),
+                "department": ",".join(user.get("department_ids", [])),
+                "role": "member"
+            }
+
+            # Upsert - 存在则更新，不存在则创建
+            existing = await store.get_employee(user["open_id"])
+            if existing:
+                await store.update_employee(user["open_id"], employee_data)
+            else:
+                await store.create_employee(employee_data)
+            synced += 1
+
+        return {
+            "success": True,
+            "synced": synced,
+            "total_feishu_users": len(feishu_users)
+        }
+
+    except Exception as e:
+        print(f"[PM API] 同步飞书员工失败: {e}")
+        return {"success": False, "error": str(e)}
+
+
+@router.get("/feishu/departments")
+async def get_feishu_departments():
+    """获取飞书部门列表"""
+    from tools.feishu_tools import FeishuClient
+
+    client = FeishuClient()
+    try:
+        departments = await client.get_departments("0")
+        return {"success": True, "departments": departments}
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+
+@router.delete("/projects/{project_id}")
+async def delete_project(project_id: str):
+    """删除项目（同时删除项目下所有任务）"""
+    store = get_project_store()
+    
+    # 先删除项目下的所有任务
+    tasks = await store.list_tasks(project_id=project_id)
+    for task in tasks:
+        await store.delete_task(task["id"])
+    
+    # 再删除项目
+    success = await store.delete_project(project_id)
+    if not success:
+        raise HTTPException(status_code=404, detail="Project not found")
+    return {"success": True, "deleted_tasks": len(tasks)}
+
+
+@router.delete("/tasks/{task_id}")
+async def delete_task(task_id: str):
+    """删除任务"""
+    store = get_project_store()
+    success = await store.delete_task(task_id)
+    if not success:
+        raise HTTPException(status_code=404, detail="Task not found")
+    return {"success": True}
+
+@router.put("/projects/{project_id}/archive")
+async def archive_project(project_id: str):
+    """归档项目"""
+    store = get_project_store()
+    project = await store.get_project(project_id)
+    if not project:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+    result = await store.update_project(project_id, {
+        "status": "archived",
+        "archived_at": datetime.now().isoformat()
+    })
+    return {"success": True, "project": result}
+
+
+@router.put("/projects/{project_id}/restore")
+async def restore_project(project_id: str):
+    """恢复归档项目"""
+    store = get_project_store()
+    project = await store.get_project(project_id)
+    if not project:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+    result = await store.update_project(project_id, {
+        "status": "in_progress",
+        "archived_at": None
+    })
+    return {"success": True, "project": result}
+
+

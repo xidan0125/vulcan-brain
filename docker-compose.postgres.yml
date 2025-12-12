@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: vulcan-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: vulcan
+      POSTGRES_PASSWORD: vulcan123
+      POSTGRES_DB: vulcan_brain
+    ports:
+      - "5433:5432"
+    volumes:
+      - vulcan_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  vulcan_postgres_data:

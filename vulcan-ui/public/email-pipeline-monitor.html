@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Intelligence V2.0 - Pipeline Monitor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #00d4ff;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .status-banner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .status-banner.running {
+            background: linear-gradient(90deg, #0f3460, #1a5f4a);
+            border: 1px solid #00ff88;
+        }
+
+        .status-banner.stopped {
+            background: linear-gradient(90deg, #3d1a1a, #4a1a1a);
+            border: 1px solid #ff4444;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        .status-dot.running {
+            background: #00ff88;
+            box-shadow: 0 0 10px #00ff88;
+        }
+
+        .status-dot.stopped {
+            background: #ff4444;
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.1); }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(0,212,255,0.3);
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #888;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-card.success .stat-value { color: #00ff88; }
+        .stat-card.warning .stat-value { color: #ffaa00; }
+        .stat-card.error .stat-value { color: #ff4444; }
+
+        .progress-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .section-title {
+            font-size: 16px;
+            color: #00d4ff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .progress-bar-container {
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            height: 24px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #00ff88);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: #000;
+            min-width: 50px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .intent-chart {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .intent-item {
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .intent-name {
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .intent-count {
+            font-size: 18px;
+            font-weight: 600;
+            color: #00d4ff;
+        }
+
+        .recent-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .recent-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .recent-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: background 0.2s;
+        }
+
+        .recent-item:hover {
+            background: rgba(255,255,255,0.03);
+        }
+
+        .recent-item:last-child {
+            border-bottom: none;
+        }
+
+        .intent-badge {
+            font-size: 10px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .intent-badge.ORDER_CONFIRM { background: #2d5a27; color: #8fff8f; }
+        .intent-badge.QUOTE_REQUEST { background: #5a4327; color: #ffc78f; }
+        .intent-badge.QUOTE_RESPONSE { background: #27455a; color: #8fd4ff; }
+        .intent-badge.SHIPPING_UPDATE { background: #4a275a; color: #d48fff; }
+        .intent-badge.INVOICE { background: #5a2727; color: #ff8f8f; }
+        .intent-badge.PAYMENT { background: #275a4a; color: #8fffcf; }
+        .intent-badge.COMPLIANCE { background: #5a5a27; color: #ffff8f; }
+        .intent-badge.QUALITY { background: #5a2745; color: #ff8fc4; }
+        .intent-badge.GENERAL { background: #3a3a3a; color: #aaa; }
+
+        .recent-subject {
+            flex: 1;
+            font-size: 13px;
+            color: #ccc;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .recent-entities {
+            font-size: 12px;
+            color: #00d4ff;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        .refresh-info {
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            background: rgba(255,68,68,0.1);
+            border: 1px solid #ff4444;
+            border-radius: 8px;
+            padding: 15px;
+            color: #ff8888;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.2);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0,212,255,0.3);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📧 Email Intelligence V2.0</h1>
+            <div class="subtitle">Pipeline Monitor - 实时处理监控</div>
+        </header>
+
+        <div id="error-container"></div>
+
+        <div id="status-banner" class="status-banner running">
+            <div class="status-dot running"></div>
+            <span id="status-text">检查中...</span>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="total-processed">-</div>
+                <div class="stat-label">已处理</div>
+            </div>
+            <div class="stat-card success">
+                <div class="stat-value" id="success-rate">-</div>
+                <div class="stat-label">成功率</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="entities-count">-</div>
+                <div class="stat-label">提取实体</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="speed">-</div>
+                <div class="stat-label">封/分钟</div>
+            </div>
+            <div class="stat-card warning">
+                <div class="stat-value" id="actions-count">-</div>
+                <div class="stat-label">行动项</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="eta">-</div>
+                <div class="stat-label">预计剩余</div>
+            </div>
+        </div>
+
+        <div class="progress-section">
+            <div class="section-title">📊 处理进度</div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar" style="width: 0%">0%</div>
+            </div>
+            <div class="progress-info">
+                <span id="progress-text">加载中...</span>
+                <span id="target-text">目标: -</span>
+            </div>
+        </div>
+
+        <div class="progress-section">
+            <div class="section-title">📋 意图分布</div>
+            <div class="intent-chart" id="intent-chart">
+                <!-- 动态填充 -->
+            </div>
+        </div>
+
+        <div class="recent-section">
+            <div class="section-title">🕐 最近处理</div>
+            <div class="recent-list" id="recent-list">
+                <!-- 动态填充 -->
+            </div>
+        </div>
+
+        <div class="refresh-info">
+            自动刷新: 每 5 秒 | 最后更新: <span id="last-update">-</span>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://api.vsg-brain.com';
+        const TARGET_EMAILS = 17600; // 目标处理数量
+
+        async function fetchStats() {
+            try {
+                const response = await fetch(`${API_BASE}/api/email-intel/v2/pipeline/stats`);
+                if (!response.ok) throw new Error('API 请求失败');
+                return await response.json();
+            } catch (error) {
+                console.error('获取统计失败:', error);
+                return null;
+            }
+        }
+
+        async function fetchRecent() {
+            try {
+                const response = await fetch(`${API_BASE}/api/email-intel/v2/pipeline/recent?limit=10`);
+                if (!response.ok) throw new Error('API 请求失败');
+                return await response.json();
+            } catch (error) {
+                console.error('获取最近记录失败:', error);
+                return null;
+            }
+        }
+
+        function updateUI(stats, recent) {
+            if (!stats) {
+                document.getElementById('error-container').innerHTML = `
+                    <div class="error-message">⚠️ 无法连接到 API，请确保后端服务正在运行</div>
+                `;
+                return;
+            }
+
+            document.getElementById('error-container').innerHTML = '';
+
+            // 状态
+            const isRunning = stats.is_running;
+            const statusBanner = document.getElementById('status-banner');
+            const statusDot = statusBanner.querySelector('.status-dot');
+            const statusText = document.getElementById('status-text');
+
+            statusBanner.className = `status-banner ${isRunning ? 'running' : 'stopped'}`;
+            statusDot.className = `status-dot ${isRunning ? 'running' : 'stopped'}`;
+            statusText.textContent = isRunning ? '🚀 正在处理中...' : '⏹️ 处理已停止';
+
+            // 统计数据
+            document.getElementById('total-processed').textContent = stats.total_processed.toLocaleString();
+            document.getElementById('success-rate').textContent = `${stats.success_rate.toFixed(1)}%`;
+            document.getElementById('entities-count').textContent = stats.total_entities.toLocaleString();
+            document.getElementById('actions-count').textContent = stats.total_actions.toLocaleString();
+            document.getElementById('speed').textContent = stats.speed_per_minute.toFixed(1);
+
+            // ETA
+            const remaining = TARGET_EMAILS - stats.total_processed;
+            if (remaining > 0 && stats.speed_per_minute > 0) {
+                const etaMins = remaining / stats.speed_per_minute;
+                if (etaMins > 60) {
+                    document.getElementById('eta').textContent = `${(etaMins / 60).toFixed(1)}h`;
+                } else {
+                    document.getElementById('eta').textContent = `${Math.round(etaMins)}m`;
+                }
+            } else {
+                document.getElementById('eta').textContent = '-';
+            }
+
+            // 进度条
+            const progress = Math.min((stats.total_processed / TARGET_EMAILS) * 100, 100);
+            const progressBar = document.getElementById('progress-bar');
+            progressBar.style.width = `${progress}%`;
+            progressBar.textContent = `${progress.toFixed(1)}%`;
+
+            document.getElementById('progress-text').textContent =
+                `已处理 ${stats.total_processed.toLocaleString()} 封`;
+            document.getElementById('target-text').textContent =
+                `目标: ${TARGET_EMAILS.toLocaleString()} 封`;
+
+            // 意图分布
+            const intentChart = document.getElementById('intent-chart');
+            intentChart.innerHTML = Object.entries(stats.intent_distribution || {})
+                .sort((a, b) => b[1] - a[1])
+                .map(([intent, count]) => `
+                    <div class="intent-item">
+                        <span class="intent-name">${intent}</span>
+                        <span class="intent-count">${count}</span>
+                    </div>
+                `).join('');
+
+            // 最近处理
+            if (recent && recent.items) {
+                const recentList = document.getElementById('recent-list');
+                recentList.innerHTML = recent.items.map(item => `
+                    <div class="recent-item">
+                        <span class="intent-badge ${item.intent}">${item.intent}</span>
+                        <span class="recent-subject">${item.subject || '(无主题)'}</span>
+                        <span class="recent-entities">${item.entity_count} 实体</span>
+                    </div>
+                `).join('');
+            }
+
+            // 最后更新时间
+            document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
+        }
+
+        async function refresh() {
+            const [stats, recent] = await Promise.all([fetchStats(), fetchRecent()]);
+            updateUI(stats, recent);
+        }
+
+        // 初始加载
+        refresh();
+
+        // 每5秒刷新
+        setInterval(refresh, 5000);
+    </script>
+</body>
+</html>

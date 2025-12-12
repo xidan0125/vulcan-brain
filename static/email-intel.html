@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Info Hub - 信息中心 v2</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: system-ui; max-width: 1400px; margin: 0 auto; padding: 20px; background: #1a1a2e; color: #eee; }
+        h1, h2, h3 { color: #fff; margin-top: 0; }
+        .section { background: #16213e; padding: 20px; margin: 15px 0; border-radius: 8px; }
+        input, select, button { padding: 10px 14px; margin: 5px; border-radius: 6px; border: 1px solid #444; background: #0f3460; color: #fff; font-size: 14px; }
+        input:focus, select:focus { outline: none; border-color: #e94560; }
+        button { cursor: pointer; background: #e94560; border: none; font-weight: 500; }
+        button:hover { background: #ff6b6b; }
+        button.secondary { background: #0f3460; border: 1px solid #444; }
+        button.secondary:hover { background: #1a4a7a; }
+        .results { margin-top: 15px; max-height: 500px; overflow-y: auto; }
+        .item { background: #0f3460; padding: 12px 15px; margin: 8px 0; border-radius: 6px; border-left: 3px solid #e94560; }
+        .item:hover { background: #1a4a7a; }
+        .score { color: #4ade80; font-size: 12px; }
+        .meta { color: #888; font-size: 12px; margin-top: 5px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 15px 0; }
+        .stat-card { background: #0f3460; padding: 20px; border-radius: 8px; text-align: center; }
+        .stat-value { font-size: 28px; font-weight: bold; color: #e94560; }
+        .stat-label { color: #888; font-size: 13px; margin-top: 5px; }
+        .tabs { display: flex; gap: 5px; margin-bottom: 20px; flex-wrap: wrap; }
+        .tab { padding: 12px 20px; background: #0f3460; border-radius: 6px; cursor: pointer; font-weight: 500; }
+        .tab:hover { background: #1a4a7a; }
+        .tab.active { background: #e94560; }
+        pre { background: #0a0a1a; padding: 15px; overflow-x: auto; font-size: 12px; border-radius: 6px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #333; }
+        th { background: #0f3460; position: sticky; top: 0; }
+        .entity-tag { display: inline-block; padding: 4px 10px; margin: 3px; border-radius: 15px; font-size: 12px; cursor: pointer; }
+        .entity-tag:hover { opacity: 0.8; }
+        .entity-tag.person { background: #3b82f6; }
+        .entity-tag.company { background: #10b981; }
+        .entity-tag.money { background: #f59e0b; }
+        .entity-tag.date { background: #8b5cf6; }
+        .entity-tag.product { background: #ec4899; }
+        .entity-tag.location { background: #06b6d4; }
+        .entity-tag.project { background: #84cc16; }
+        .category-badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 11px; margin-left: 8px; }
+        .category-badge.external { background: #3b82f6; }
+        .category-badge.internal { background: #6b7280; }
+        .category-badge.finance { background: #f59e0b; }
+        .category-badge.sales { background: #10b981; }
+        .category-badge.hr { background: #8b5cf6; }
+        .category-badge.technical { background: #06b6d4; }
+        .category-badge.legal { background: #ef4444; }
+        .category-badge.marketing { background: #ec4899; }
+        .category-badge.procurement { background: #84cc16; }
+        .top-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+        .top-card { background: #0f3460; padding: 15px; border-radius: 8px; }
+        .top-card h4 { margin: 0 0 10px 0; color: #e94560; }
+        .top-item { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #333; }
+        .top-item:last-child { border-bottom: none; }
+        .count-badge { background: #e94560; padding: 2px 8px; border-radius: 10px; font-size: 11px; }
+        .filter-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 15px; }
+        .loading { text-align: center; padding: 40px; color: #888; }
+        .email-preview { max-height: 100px; overflow: hidden; color: #aaa; font-size: 13px; margin-top: 8px; }
+    </style>
+</head>
+<body>
+    <h1>📧 Info Hub - 信息中心</h1>
+    
+    <div class="tabs">
+        <div class="tab active" onclick="showTab('search')">🔍 语义搜索</div>
+        <div class="tab" onclick="showTab('entities')">🏷️ 实体搜索</div>
+        <div class="tab" onclick="showTab('emails')">📬 邮件浏览</div>
+        <div class="tab" onclick="showTab('insights')">📊 业务洞察</div>
+        <div class="tab" onclick="showTab('stats')">⚙️ 系统统计</div>
+    </div>
+
+    <!-- 语义搜索 -->
+    <div id="search" class="section">
+        <h2>🔍 语义搜索</h2>
+        <p style="color:#888;margin-bottom:15px;">输入自然语言查询，例如："关于SpaceX的合同讨论" 或 "采购订单超过100万"</p>
+        <div class="filter-row">
+            <input type="text" id="searchQuery" placeholder="输入搜索内容..." style="width: 450px;" onkeypress="if(event.key==='Enter')doSearch()">
+            <input type="number" id="searchLimit" value="20" min="1" max="100" style="width: 70px;">
+            <button onclick="doSearch()">搜索</button>
+        </div>
+        <div id="searchResults" class="results"></div>
+    </div>
+
+    <!-- 实体搜索 -->
+    <div id="entities" class="section" style="display:none;">
+        <h2>🏷️ 实体搜索</h2>
+        <p style="color:#888;margin-bottom:15px;">搜索邮件中提取的人名、公司、金额等实体</p>
+        <div class="filter-row">
+            <select id="entityType">
+                <option value="">所有类型</option>
+                <option value="person">👤 人名</option>
+                <option value="company">🏢 公司</option>
+                <option value="money">💰 金额</option>
+                <option value="product">📦 产品</option>
+                <option value="project">📋 项目</option>
+                <option value="location">📍 地点</option>
+                <option value="date">📅 日期</option>
+            </select>
+            <input type="text" id="entityText" placeholder="搜索实体名称..." style="width: 300px;" onkeypress="if(event.key==='Enter')searchEntities()">
+            <input type="number" id="entityLimit" value="50" min="1" max="200" style="width: 70px;">
+            <button onclick="searchEntities()">搜索实体</button>
+            <button class="secondary" onclick="loadEntityStats()">刷新统计</button>
+        </div>
+        <div id="entityStats" class="stats-grid"></div>
+        <div id="entityResults" class="results"></div>
+    </div>
+
+    <!-- 邮件浏览 -->
+    <div id="emails" class="section" style="display:none;">
+        <h2>📬 邮件浏览</h2>
+        <div class="filter-row">
+            <select id="emailCategory">
+                <option value="">所有分类</option>
+                <option value="external">📤 外部邮件</option>
+                <option value="internal">📥 内部邮件</option>
+                <option value="finance">💵 财务</option>
+                <option value="sales">💼 销售</option>
+                <option value="hr">👥 人事</option>
+                <option value="technical">🔧 技术</option>
+                <option value="legal">⚖️ 法务</option>
+                <option value="marketing">📢 营销</option>
+                <option value="procurement">🛒 采购</option>
+            </select>
+            <select id="emailFolder">
+                <option value="">所有文件夹</option>
+                <option value="inbox">收件箱</option>
+                <option value="sentitems">已发送</option>
+            </select>
+            <input type="number" id="emailLimit" value="30" style="width: 70px;">
+            <button onclick="loadEmails()">加载邮件</button>
+        </div>
+        <div id="emailResults" class="results"></div>
+    </div>
+
+    <!-- 业务洞察 -->
+    <div id="insights" class="section" style="display:none;">
+        <h2>📊 业务洞察</h2>
+        <button onclick="loadInsights()">加载洞察数据</button>
+        <div id="insightsStats" class="stats-grid" style="margin-top:20px;"></div>
+        <div class="top-list" id="topLists" style="margin-top:20px;"></div>
+    </div>
+
+    <!-- 系统统计 -->
+    <div id="stats" class="section" style="display:none;">
+        <h2>⚙️ 系统统计</h2>
+        <button onclick="loadAllStats()">加载所有统计</button>
+        <div id="statsResults"></div>
+    </div>
+
+    <script>
+        const API = '';
+        
+        function showTab(name) {
+            document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(name).style.display = 'block';
+            event.target.classList.add('active');
+            
+            // 自动加载数据
+            if (name === 'entities') loadEntityStats();
+            if (name === 'insights') loadInsights();
+        }
+        
+        // ===== 语义搜索 =====
+        async function doSearch() {
+            const q = document.getElementById('searchQuery').value;
+            const limit = document.getElementById('searchLimit').value;
+            if (!q) return alert('请输入搜索内容');
+            
+            document.getElementById('searchResults').innerHTML = '<div class="loading">搜索中...</div>';
+            
+            try {
+                const res = await fetch(`${API}/api/info-hub/search?q=${encodeURIComponent(q)}&limit=${limit}`);
+                const data = await res.json();
+                
+                let html = `<p style="color:#4ade80;">找到 ${data.count} 条结果</p>`;
+                for (const r of data.results) {
+                    const cat = r.category ? `<span class="category-badge ${r.category}">${r.category}</span>` : '';
+                    html += `<div class="item">
+                        <strong>${r.subject || '(无主题)'}</strong>${cat}
+                        <span class="score">相似度: ${(r.score * 100).toFixed(1)}%</span>
+                        <div class="meta">${r.from || ''} → ${r.to || ''} | ${r.date || ''}</div>
+                        ${r.entities ? '<div style="margin-top:8px;">' + renderEntityTags(r.entities.slice(0,8)) + '</div>' : ''}
+                    </div>`;
+                }
+                document.getElementById('searchResults').innerHTML = html;
+            } catch (e) {
+                document.getElementById('searchResults').innerHTML = `<p style="color:#ef4444;">错误: ${e.message}</p>`;
+            }
+        }
+        
+        // ===== 实体搜索 =====
+        async function loadEntityStats() {
+            try {
+                const res = await fetch(`${API}/api/info-hub/entities/stats`);
+                const data = await res.json();
+                
+                let html = `
+                    <div class="stat-card"><div class="stat-value">${data.total_processed?.toLocaleString() || 0}</div><div class="stat-label">已处理邮件</div></div>
+                `;
+                
+                const typeEmoji = {person:'👤',company:'🏢',money:'💰',product:'📦',project:'📋',location:'📍',date:'📅',phone_number:'📞',email_address:'📧'};
+                for (const [type, stats] of Object.entries(data.entity_types || {})) {
+                    html += `<div class="stat-card">
+                        <div class="stat-value">${stats.unique?.toLocaleString() || 0}</div>
+                        <div class="stat-label">${typeEmoji[type] || ''} ${type}</div>
+                    </div>`;
+                }
+                document.getElementById('entityStats').innerHTML = html;
+            } catch (e) {
+                console.error('加载实体统计失败:', e);
+            }
+        }
+        
+        async function searchEntities() {
+            const type = document.getElementById('entityType').value;
+            const text = document.getElementById('entityText').value;
+            const limit = document.getElementById('entityLimit').value;
+            
+            document.getElementById('entityResults').innerHTML = '<div class="loading">搜索中...</div>';
+            
+            try {
+                let url = `${API}/api/info-hub/entities/search?limit=${limit}`;
+                if (type) url += `&type=${type}`;
+                if (text) url += `&text=${encodeURIComponent(text)}`;
+                
+                const res = await fetch(url);
+                const data = await res.json();
+                
+                let html = `<p style="color:#4ade80;">找到 ${data.count} 个实体</p>`;
+                html += '<table><thead><tr><th>实体</th><th>类型</th><th>出现次数</th><th>相关邮件</th></tr></thead><tbody>';
+                
+                for (const e of data.results) {
+                    html += `<tr>
+                        <td><span class="entity-tag ${e.type}" onclick="searchByEntity('${e.text}')">${e.text}</span></td>
+                        <td>${e.type}</td>
+                        <td><span class="count-badge">${e.count}</span></td>
+                        <td style="font-size:11px;color:#888;">${e.sample_emails?.slice(0,3).join(', ') || ''}</td>
+                    </tr>`;
+                }
+                html += '</tbody></table>';
+                document.getElementById('entityResults').innerHTML = html;
+            } catch (e) {
+                document.getElementById('entityResults').innerHTML = `<p style="color:#ef4444;">错误: ${e.message}</p>`;
+            }
+        }
+        
+        function searchByEntity(text) {
+            document.getElementById('searchQuery').value = text;
+            showTab('search');
+            setTimeout(() => document.querySelector('.tab').click(), 100);
+            doSearch();
+        }
+        
+        function renderEntityTags(entities) {
+            if (!entities || !entities.length) return '';
+            return entities.map(e => `<span class="entity-tag ${e.type}">${e.text}</span>`).join('');
+        }
+        
+        // ===== 邮件浏览 =====
+        async function loadEmails() {
+            const category = document.getElementById('emailCategory').value;
+            const folder = document.getElementById('emailFolder').value;
+            const limit = document.getElementById('emailLimit').value;
+            
+            document.getElementById('emailResults').innerHTML = '<div class="loading">加载中...</div>';
+            
+            try {
+                let url = `${API}/api/info-hub/emails?limit=${limit}`;
+                if (folder) url += `&folder=${folder}`;
+                if (category) url += `&category=${category}`;
+                
+                const res = await fetch(url);
+                const data = await res.json();
+                
+                let html = `<p style="color:#4ade80;">共 ${data.emails?.length || 0} 封邮件</p>`;
+                for (const e of (data.emails || [])) {
+                    const cat = e.category ? `<span class="category-badge ${e.category}">${e.category}</span>` : '';
+                    html += `<div class="item">
+                        <strong>${e.subject || '(无主题)'}</strong>${cat}
+                        <div class="meta">${e.from?.name || e.from?.address || ''} | ${new Date(e.received_at).toLocaleString()}</div>
+                        ${e.entities ? '<div style="margin-top:8px;">' + renderEntityTags(e.entities.slice(0,6)) + '</div>' : ''}
+                    </div>`;
+                }
+                document.getElementById('emailResults').innerHTML = html;
+            } catch (e) {
+                document.getElementById('emailResults').innerHTML = `<p style="color:#ef4444;">错误: ${e.message}</p>`;
+            }
+        }
+        
+        // ===== 业务洞察 =====
+        async function loadInsights() {
+            document.getElementById('insightsStats').innerHTML = '<div class="loading">加载中...</div>';
+            
+            try {
+                const [entityRes, catRes] = await Promise.all([
+                    fetch(`${API}/api/info-hub/entities/stats`),
+                    fetch(`${API}/api/info-hub/entities/search?type=person&limit=10`),
+                ]);
+                
+                const entityData = await entityRes.json();
+                const topPeople = await catRes.json();
+                
+                // 分类统计
+                let statsHtml = '';
+                const catEmoji = {external:'📤',internal:'📥',finance:'💵',sales:'💼',hr:'👥',technical:'🔧',legal:'⚖️',marketing:'📢',procurement:'🛒'};
+                for (const [cat, count] of Object.entries(entityData.categories || {})) {
+                    statsHtml += `<div class="stat-card">
+                        <div class="stat-value">${count.toLocaleString()}</div>
+                        <div class="stat-label">${catEmoji[cat] || ''} ${cat}</div>
+                    </div>`;
+                }
+                document.getElementById('insightsStats').innerHTML = statsHtml;
+                
+                // Top 列表
+                let topHtml = '';
+                
+                // Top 人名
+                topHtml += `<div class="top-card"><h4>👤 高频联系人 Top 10</h4>`;
+                for (const p of topPeople.results?.slice(0,10) || []) {
+                    topHtml += `<div class="top-item"><span onclick="searchByEntity('${p.text}')" style="cursor:pointer;">${p.text}</span><span class="count-badge">${p.count}</span></div>`;
+                }
+                topHtml += '</div>';
+                
+                // Top 公司
+                const compRes = await fetch(`${API}/api/info-hub/entities/search?type=company&limit=10`);
+                const topCompanies = await compRes.json();
+                topHtml += `<div class="top-card"><h4>🏢 高频公司 Top 10</h4>`;
+                for (const c of topCompanies.results?.slice(0,10) || []) {
+                    topHtml += `<div class="top-item"><span onclick="searchByEntity('${c.text}')" style="cursor:pointer;">${c.text}</span><span class="count-badge">${c.count}</span></div>`;
+                }
+                topHtml += '</div>';
+                
+                // Top 金额
+                const moneyRes = await fetch(`${API}/api/info-hub/entities/search?type=money&limit=10`);
+                const topMoney = await moneyRes.json();
+                topHtml += `<div class="top-card"><h4>💰 涉及金额 Top 10</h4>`;
+                for (const m of topMoney.results?.slice(0,10) || []) {
+                    topHtml += `<div class="top-item"><span onclick="searchByEntity('${m.text}')" style="cursor:pointer;">${m.text}</span><span class="count-badge">${m.count}</span></div>`;
+                }
+                topHtml += '</div>';
+                
+                document.getElementById('topLists').innerHTML = topHtml;
+            } catch (e) {
+                document.getElementById('insightsStats').innerHTML = `<p style="color:#ef4444;">错误: ${e.message}</p>`;
+            }
+        }
+        
+        // ===== 系统统计 =====
+        async function loadAllStats() {
+            document.getElementById('statsResults').innerHTML = '<div class="loading">加载中...</div>';
+            
+            try {
+                const [searchRes, entityRes] = await Promise.all([
+                    fetch(`${API}/api/info-hub/stats`),
+                    fetch(`${API}/api/info-hub/entities/stats`),
+                ]);
+                
+                const searchStats = await searchRes.json();
+                const entityStats = await entityRes.json();
+                
+                let html = '<h3>搜索索引</h3><pre>' + JSON.stringify(searchStats, null, 2) + '</pre>';
+                html += '<h3>实体统计</h3><pre>' + JSON.stringify(entityStats, null, 2) + '</pre>';
+                
+                document.getElementById('statsResults').innerHTML = html;
+            } catch (e) {
+                document.getElementById('statsResults').innerHTML = `<p style="color:#ef4444;">错误: ${e.message}</p>`;
+            }
+        }
+        
+        // 页面加载时
+        document.addEventListener('DOMContentLoaded', () => {
+            // 可以自动加载一些初始数据
+        });
+    </script>
+</body>
+</html>

@@ -11,6 +11,7 @@ import {
   Clock,
   RefreshCw,
 } from "lucide-react";
+import InfoHubBreadcrumb from "@/components/info-hub/InfoHubBreadcrumb";
 
 interface ChatGroup {
   chat_id: string;
@@ -22,12 +23,14 @@ interface ChatGroup {
 interface Message {
   message_id: string;
   sender: {
-    id: string;
+    id?: string;
+    open_id?: string;
+    name?: string;
     id_type?: string;
     sender_type?: string;
   };
   content: string;
-  content_type: string;
+  content_type?: string;
   timestamp: string;
 }
 
@@ -94,20 +97,35 @@ export default function ChatHistoryPage() {
   const filteredMessages = messages.filter(
     (m) =>
       m.content?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (m.sender?.name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
       (m.sender?.id || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // 获取当前选中群聊的名称
+  const selectedChatName = chatGroups.find(c => c.chat_id === selectedChat)?.chat_name;
+
   return (
-    <div className="flex h-full">
-      {/* 群聊列表 */}
-      <div className="w-72 border-r border-zinc-800 flex flex-col">
-        <div className="p-4 border-b border-zinc-800">
-          <div className="flex items-center gap-2 mb-3">
-            <MessageSquare className="w-5 h-5 text-blue-400" />
-            <h2 className="font-semibold text-white">聊天记录</h2>
+    <div className="flex flex-col h-full">
+      {/* 面包屑 */}
+      <div className="px-4 pt-4 border-b border-zinc-800 pb-3">
+        <InfoHubBreadcrumb
+          items={[
+            { label: "群聊分析", href: "/info-hub/chat" },
+            ...(selectedChatName ? [{ label: selectedChatName }] : []),
+          ]}
+        />
+      </div>
+
+      <div className="flex flex-1 overflow-hidden">
+        {/* 群聊列表 */}
+        <div className="w-72 border-r border-zinc-800 flex flex-col">
+          <div className="p-4 border-b border-zinc-800">
+            <div className="flex items-center gap-2 mb-3">
+              <MessageSquare className="w-5 h-5 text-blue-400" />
+              <h2 className="font-semibold text-white">聊天记录</h2>
+            </div>
+            <p className="text-xs text-zinc-500">选择群聊查看历史消息</p>
           </div>
-          <p className="text-xs text-zinc-500">选择群聊查看历史消息</p>
-        </div>
 
         <div className="flex-1 overflow-y-auto">
           {loading ? (
@@ -205,12 +223,12 @@ export default function ChatHistoryPage() {
                 <div key={msg.message_id} className="flex gap-3">
                   <div className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center flex-shrink-0">
                     <span className="text-blue-400 text-xs font-medium">
-                      {(msg.sender?.id || "?")[0]}
+                      {(msg.sender?.name || msg.sender?.id || "?")[0].toUpperCase()}
                     </span>
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="font-medium text-sm text-white">{msg.sender?.id || "未知"}</span>
+                      <span className="font-medium text-sm text-white">{msg.sender?.name || msg.sender?.id || "未知"}</span>
                       <span className="text-xs text-zinc-600">
                         {new Date(msg.timestamp).toLocaleString()}
                       </span>
@@ -224,6 +242,7 @@ export default function ChatHistoryPage() {
             </div>
           )}
         </div>
+      </div>
       </div>
     </div>
   );

@@ -22,7 +22,10 @@ from vulcan_libs.store import store
 from auth_api import get_current_user
 # 导入 Vulcan 核心组件
 from config import LLM_MODEL_NAME
-from kernel_codeact import VulcanCodeActKernel
+try:
+    from kernel_codeact import VulcanCodeActKernel
+except ImportError:
+    VulcanCodeActKernel = None
 from vulcan_libs.registry import ToolRegistry, ToolPackage
 from vulcan_libs.tool_retriever import ToolRetriever
 from tools.function_tools import get_time_tool
@@ -33,6 +36,7 @@ from tools.boss_insight_tool import save_boss_insight_tool
 from tools.search_tools import web_search_tool
 # AContext 会话记忆管理
 from acontext_integration import get_acontext_manager
+from email_intel_api import router as email_intel_router
 
 # Code Execution Sandbox (Programmatic Tool Calling)
 from tools.code_executor import create_code_execution_tool, VulcanCodeSandbox
@@ -95,8 +99,9 @@ async def log_requests(request, call_next):
 
 # Presentation 静态文件服务
 app.mount("/presentation", StaticFiles(directory="presentation", html=True), name="presentation")
+app.mount("/static", StaticFiles(directory="static", html=True), name="static")
 
-# 启动初始化：数据库索引
+# 启动初始化：数据库索引 + 飞书调度器
 @app.on_event("startup")
 async def initialize_app():
     try:
@@ -104,6 +109,15 @@ async def initialize_app():
         api_logger.info("[Startup] MongoDB indexes initialized")
     except Exception as e:
         log_error(e, "startup.initialize_indexes")
+
+    # 启动飞书定时任务调度器
+    try:
+        from feishu import start_scheduler
+        import asyncio
+        asyncio.create_task(start_scheduler())
+        api_logger.info("[Startup] Feishu scheduler started")
+    except Exception as e:
+        api_logger.warning(f"[Startup] Feishu scheduler failed: {e}")
 
 # ==================== 全局状态管理 ====================
 
@@ -1110,7 +1124,7 @@ async def api_agent_chat_lod_stream(agent_type: str, request: AgentChatRequest, 
             yield f"data: {json.dumps({'type': 'done'})}\n\n"
             
         except Exception as e:
-            yield f"data: {json.dumps({"type": "error", "content": str(e)})}\n\n"
+            yield f"data: {json.dumps({'type': 'error', 'content': str(e)})}\n\n"
     
     return StreamingResponse(generate(), media_type="text/event-stream")
 
@@ -1131,12 +1145,13 @@ except ImportError as e:
 
 # ==================== 飞书机器人模块 ====================
 
+# 飞书模块 (新架构)
 try:
-    from feishu_api import router as feishu_router
-    app.include_router(feishu_router, prefix="/api", tags=["Feishu"])
-    print("[INFO] 飞书 API 模块已加载")
+    from feishu import feishu_router
+    app.include_router(feishu_router, tags=["Feishu"])
+    print("[INFO] 飞书模块已加载")
 except ImportError as e:
-    print(f"[WARNING] 飞书 API 模块加载失败: {e}")
+    print(f"[WARNING] 飞书模块加载失败: {e}")
 
 
 # ==================== 项目管理模块 ====================
@@ -1171,6 +1186,32 @@ except ImportError as e:
 try:
     from email_api import router as email_router
     app.include_router(email_router, prefix="/api", tags=["Email"])
+    app.include_router(email_intel_router, prefix="/api", tags=["Email Intelligence"])
     print("[INFO] Email API 模块已加载")
 except ImportError as e:
     print(f"[WARNING] Email API 加载失败: {e}")
+
+# === 审批模块 ===
+try:
+    from approval_api import router as approval_router
+    app.include_router(approval_router, tags=["Approval"])
+    print("[INFO] 审批 API 模块已加载")
+except Exception as e:
+    print(f"[WARNING] 审批 API 加载失败: {e}")
+
+# === Bicameral 双脑系统 ===
+try:
+    from bicameral_api import router as bicameral_router
+    app.include_router(bicameral_router, prefix="/api", tags=["Bicameral"])
+    print("[INFO] Bicameral API 模块已加载")
+except Exception as e:
+    print(f"[WARNING] Bicameral API 加载失败: {e}")
+
+
+# === Entity Merge Queue ===
+try:
+    from services.email_intelligence_v2.api.entity_merge_api import router as entity_merge_router
+    app.include_router(entity_merge_router, prefix="/api", tags=["Entity Merge"])
+    print("[INFO] Entity Merge API 模块已加载")
+except Exception as e:
+    print(f"[WARNING] Entity Merge API 加载失败: {e}")

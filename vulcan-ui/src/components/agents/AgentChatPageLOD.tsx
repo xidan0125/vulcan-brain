@@ -100,6 +100,7 @@ export default function AgentChatPageLOD({
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [streamingContent, setStreamingContent] = useState("");
+  const [streamingThinking, setStreamingThinking] = useState("");  // 累积思考内容
   const [streamingSteps, setStreamingSteps] = useState<ThinkingStep[]>([]);
   const [currentStatus, setCurrentStatus] = useState<string>("");
   const [showThinking, setShowThinking] = useState(false);
@@ -247,14 +248,24 @@ export default function AgentChatPageLOD({
     setMessages((prev) => [...prev, userMsg]);
     setIsLoading(true);
     setStreamingContent("");
+    setStreamingThinking("");  // 重置思考内容
     setStreamingSteps([]);
     setCurrentStatus("正在思考...");
 
     try {
-      const response = await fetch(`${LOD_API_BASE}/api/agents/${agentType}/chat/lod/stream`, {
+      // V5.1: 所有 Agent 统一使用 Bicameral 架构
+      const apiUrl = `${LOD_API_BASE}/api/bicameral/chat/stream`;
+      const requestBody = {
+        message: userMessage,
+        thread_id: activeSessionId,
+        // 传递 agent 类型，让后端知道用户来自哪个入口（可用于个性化提示词）
+        agent_type: agentType
+      };
+
+      const response = await fetch(apiUrl, {
         method: "POST",
         headers: getAuthHeaders(),
-        body: JSON.stringify({ message: userMessage, session_id: activeSessionId }),
+        body: JSON.stringify(requestBody),
       });
 
       if (!response.ok) throw new Error(`API error: ${response.status}`);
@@ -275,9 +286,19 @@ export default function AgentChatPageLOD({
           if (line.startsWith("data: ")) {
             try {
               const data = JSON.parse(line.slice(6));
-              if (data.type === "token") {
+              // Bicameral 节点状态事件
+              if (data.type === "node_start") {
+                const nodeLabel = data.label || data.node;
+                setCurrentStatus(nodeLabel);
+              } else if (data.type === "node_end") {
+                // 节点结束，可以清除或更新状态
+              } else if (data.type === "token") {
                 fullContent += data.content;
                 setStreamingContent(removeCodeBlocks(fullContent));
+              } else if (data.type === "thinking") {
+                // 累积思考内容
+                setStreamingThinking(prev => prev + data.content);
+                setCurrentStatus("正在思考...");
               } else if (data.type === "code") {
                 const label = extractCodeLabel(data.content);
                 setCurrentStatus(label);
@@ -325,6 +346,7 @@ export default function AgentChatPageLOD({
       }
 
       setStreamingContent("");
+      setStreamingThinking("");  // 清空思考内容
       setStreamingSteps([]);
       setCurrentStatus("");
 
@@ -491,7 +513,20 @@ export default function AgentChatPageLOD({
                           {idx === streamingSteps.length - 1 && !streamingContent && <Loader2 className="w-3 h-3 animate-spin text-emerald-400" />}
                         </div>
                       ))}
-                      {currentStatus && streamingSteps.length === 0 && (
+                      {/* 实时思考内容 */}
+                      {streamingThinking && (
+                        <div className="mb-2 p-2 bg-purple-900/20 border border-purple-500/20 rounded-lg">
+                          <div className="flex items-center gap-1 text-xs text-purple-400 mb-1">
+                            <Brain className="w-3 h-3" />
+                            <span>思考中...</span>
+                            <Loader2 className="w-3 h-3 animate-spin" />
+                          </div>
+                          <p className="text-xs text-zinc-400 whitespace-pre-wrap max-h-32 overflow-y-auto">
+                            {streamingThinking.slice(-500)}
+                          </p>
+                        </div>
+                      )}
+                      {currentStatus && streamingSteps.length === 0 && !streamingThinking && (
                         <div className="flex items-center gap-2 text-xs text-zinc-400">
                           <Brain className="w-3 h-3 text-purple-400" />
                           <span>{currentStatus}</span>

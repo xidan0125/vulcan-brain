@@ -15,7 +15,7 @@ from pymongo import ASCENDING, DESCENDING
 import os
 
 from services.chat_summarizer import generate_chat_summary
-from services.message_store import get_message_collector
+from services.feishu_collector import get_message_collector
 
 logger = logging.getLogger("DailyReport")
 

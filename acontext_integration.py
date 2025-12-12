@@ -10,6 +10,7 @@ import httpx
 # Acontext API 配置
 ACONTEXT_API_URL = "http://localhost:8029"
 ACONTEXT_CORE_URL = "http://localhost:8019"
+ACONTEXT_BEARER_TOKEN = "sk-ac-your-root-api-bearer-token"
 
 
 class AcontextClient:
@@ -18,7 +19,10 @@ class AcontextClient:
     def __init__(self, api_url: str = ACONTEXT_API_URL, core_url: str = ACONTEXT_CORE_URL):
         self.api_url = api_url
         self.core_url = core_url
-        self._client = httpx.AsyncClient(timeout=30.0)
+        self._client = httpx.AsyncClient(
+            timeout=30.0,
+            headers={"Authorization": f"Bearer {ACONTEXT_BEARER_TOKEN}"}
+        )
 
     async def close(self):
         await self._client.aclose()
@@ -39,7 +43,7 @@ class AcontextClient:
             "created_at": datetime.now().isoformat()
         }
         response = await self._client.post(
-            f"{self.api_url}/api/v1/sessions",
+            f"{self.api_url}/api/v1/session",
             json=payload
         )
         response.raise_for_status()
@@ -48,7 +52,7 @@ class AcontextClient:
     async def get_session(self, session_id: str) -> Dict:
         """获取会话详情"""
         response = await self._client.get(
-            f"{self.api_url}/api/v1/sessions/{session_id}"
+            f"{self.api_url}/api/v1/session/{session_id}"
         )
         response.raise_for_status()
         return response.json()
@@ -65,7 +69,7 @@ class AcontextClient:
             params["provider"] = provider
 
         response = await self._client.get(
-            f"{self.api_url}/api/v1/sessions",
+            f"{self.api_url}/api/v1/session",
             params=params
         )
         response.raise_for_status()
@@ -86,7 +90,7 @@ class AcontextClient:
             "timestamp": datetime.now().isoformat()
         }
         response = await self._client.post(
-            f"{self.api_url}/api/v1/sessions/{session_id}/messages",
+            f"{self.api_url}/api/v1/session/{session_id}/messages",
             json=payload
         )
         response.raise_for_status()
@@ -99,7 +103,7 @@ class AcontextClient:
     ) -> List[Dict]:
         """获取会话消息"""
         response = await self._client.get(
-            f"{self.api_url}/api/v1/sessions/{session_id}/messages",
+            f"{self.api_url}/api/v1/session/{session_id}/messages",
             params={"limit": limit}
         )
         response.raise_for_status()
@@ -239,7 +243,7 @@ class VulcanAcontextManager:
             provider=provider,
             metadata={"title": title or f"{provider.capitalize()} 对话"}
         )
-        session_id = result.get("session_id", result.get("id"))
+        session_id = result.get("data", {}).get("id") or result.get("session_id") or result.get("id")
         self._user_sessions[user_id] = session_id
         return session_id
 

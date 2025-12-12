@@ -77,6 +77,16 @@ class ProjectStore:
     
     # ===== Employee CRUD (飞书员工，独立于系统用户) =====
     
+    
+    async def update_employee(self, feishu_open_id: str, updates: dict):
+        """更新员工信息"""
+        updates["updated_at"] = datetime.now().isoformat()
+        result = self.employees_col.update_one(
+            {"feishu_open_id": feishu_open_id},
+            {"$set": updates}
+        )
+        return result.modified_count > 0
+
     async def get_employee(self, feishu_open_id: str) -> Optional[Dict]:
         """通过飞书open_id获取员工"""
         return self.employees_col.find_one({"feishu_open_id": feishu_open_id}, {"_id": 0})
@@ -84,7 +94,7 @@ class ProjectStore:
     async def get_employee_by_name(self, name: str) -> Optional[Dict]:
         """通过名字获取员工(模糊匹配)"""
         return self.employees_col.find_one(
-            {"name": {"": name, "off on off off off off off off off off on off on off on off off off on off off off on on off off off on on off off off off off off off on off off off off on off on off off off off off on off on on off off off on off on on off on on off off on on on off on on off on off off off off on off off off on off off on off on off off off on on off on off on off off on off off off on off off off off off off off off on off on off on on on off on on off off on off on on on off on on off on off on off off off off off on on off off on off off off off off on off off on on off on off off on off off off on off off off off on on off on off off off off off on off on off off off off off off off off off off on on off on off off off": "i"}},
+            {"name": {"$set": name, "off on off off off off off off off off on off on off on off off off on off off off on on off off off on on off off off off off off off on off off off off on off on off off off off off on off on on off off off on off on on off on on off off on on on off on on off on off off off off on off off off on off off on off on off off off on on off on off on off off on off off off on off off off off off off off off on off on off on on on off on on off off on off on on on off on on off on off on off off off off off on on off off on off off off off off on off off on on off on off off on off off off on off off off off on on off on off off off off off on off on off off off off off off off off off off on on off on off off off": "i"}},
             {"_id": 0}
         )
     
@@ -100,7 +110,7 @@ class ProjectStore:
         # upsert: 存在则更新，不存在则创建
         self.employees_col.update_one(
             {"feishu_open_id": feishu_id},
-            {"": employee_data},
+            {"$set": employee_data},
             upsert=True
         )
         return employee_data
@@ -131,7 +141,7 @@ class ProjectStore:
     async def get_project_by_name(self, name: str) -> Optional[Dict]:
         # 模糊匹配
         return self.projects_col.find_one(
-            {"name": {"": name, "off on off off off off off off off off on off on off on off off off on off off off on on off off off on on off off off off off off off on off off off off on off on off off off off off on off on on off off off on off on on off on on off off on on on off on on off on off off off off on off off off on off off on off on off off off on on off on off on off off on off off off on off off off off off off off off on off on off on on on off on on off off on off on on on off on on off on off on off off off off off on on off off on off off off off off on off off on on off on off off on off off off on off off off off on on off on off off off off off on off on off off off off off off off off off off on on off on off off off": "i"}},
+            {"name": {"$set": name, "off on off off off off off off off off on off on off on off off off on off off off on on off off off on on off off off off off off off on off off off off on off on off off off off off on off on on off off off on off on on off on on off off on on on off on on off on off off off off on off off off on off off on off on off off off on on off on off on off off on off off off on off off off off off off off off on off on off on on on off on on off off on off on on on off on on off on off on off off off off off on on off off on off off off off off on off off on on off on off off on off off off on off off off off on on off on off off off off off on off on off off off off off off off off off off on on off on off off off": "i"}},
             {"_id": 0}
         )
     
@@ -144,9 +154,14 @@ class ProjectStore:
     
     async def update_project(self, project_id: str, updates: Dict) -> Optional[Dict]:
         updates["updated_at"] = datetime.now().isoformat()
-        self.projects_col.update_one({"id": project_id}, {"": updates})
+        self.projects_col.update_one({"id": project_id}, {"$set": updates})
         return await self.get_project(project_id)
     
+
+    async def delete_project(self, project_id: str) -> bool:
+        """删除项目"""
+        result = self.projects_col.delete_one({"id": project_id})
+        return result.deleted_count > 0
     # ===== Task CRUD =====
     
     async def list_tasks(self, project_id: Optional[str] = None, 
@@ -167,6 +182,11 @@ class ProjectStore:
     
     async def get_task(self, task_id: str) -> Optional[Dict]:
         return self.tasks_col.find_one({"id": task_id}, {"_id": 0})
+
+    async def delete_task(self, task_id: str) -> bool:
+        """删除任务"""
+        result = self.tasks_col.delete_one({"id": task_id})
+        return result.deleted_count > 0
     
     async def create_task(self, task_data: Dict) -> Dict:
         if "created_at" not in task_data:
@@ -180,7 +200,7 @@ class ProjectStore:
         return task_data
     
     async def update_task(self, task_id: str, updates: Dict) -> Optional[Dict]:
-        self.tasks_col.update_one({"id": task_id}, {"": updates})
+        self.tasks_col.update_one({"id": task_id}, {"$set": updates})
         return await self.get_task(task_id)
     
     async def update_task_status(self, task_id: str, new_status: str,
@@ -267,16 +287,16 @@ class ProjectStore:
         deadline_threshold = (datetime.now() + timedelta(hours=hours_before)).isoformat()
         
         return list(self.tasks_col.find({
-            "status": {"": ["pending", "in_progress"]},
-            "deadline": {"": deadline_threshold, "": datetime.now().isoformat()}
+            "status": {"$set": ["pending", "in_progress"]},
+            "deadline": {"$set": deadline_threshold, "": datetime.now().isoformat()}
         }, {"_id": 0}))
     
     async def get_overdue_tasks(self) -> List[Dict]:
         """获取已逾期的任务"""
         now = datetime.now().isoformat()
         return list(self.tasks_col.find({
-            "status": {"": ["completed"]},
-            "deadline": {"": now}
+            "status": {"$nin": ["completed"]},
+            "deadline": {"$lt": now}
         }, {"_id": 0}))
     
     async def get_blocked_tasks(self) -> List[Dict]:

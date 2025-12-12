@@ -70,6 +70,7 @@ class EntityService:
         # 加载 GLiNER 模型
         logger.info("Loading GLiNER model...")
         self.model = GLiNER.from_pretrained("urchade/gliner_multi-v2.1")
+        self.model.to("cuda:1")  # 移动到GPU
         logger.info("GLiNER model loaded")
         
         self._initialized = True

@@ -1,0 +1,6978 @@
+{
+  "total_companies": 316,
+  "relation_counts": {
+    "client": 155,
+    "vendor": 135,
+    "government": 7,
+    "partner": 17,
+    "unknown": 2
+  },
+  "companies": [
+    {
+      "company": "Rongrongnm",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 4115,
+      "domains": [
+        "rongrongnm.com"
+      ]
+    },
+    {
+      "company": "Expeditors",
+      "relation_type": "vendor",
+      "confidence": "high",
+      "method": "rule",
+      "email_count": 2497,
+      "domains": [
+        "expeditors.com"
+      ]
+    },
+    {
+      "company": "Syensqo",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 2006,
+      "domains": [
+        "syensqo.com"
+      ]
+    },
+    {
+      "company": "SpaceX",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 1941,
+      "domains": [
+        "spacex.com"
+      ]
+    },
+    {
+      "company": "Rqam",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 1872,
+      "domains": [
+        "rqam.com.sg"
+      ]
+    },
+    {
+      "company": "Info-Tech",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 1601,
+      "domains": [
+        "info-tech.com.sg"
+      ]
+    },
+    {
+      "company": "Oocl",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 1278,
+      "domains": [
+        "oocllogistics.com"
+      ]
+    },
+    {
+      "company": "Hlsllp",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 1030,
+      "domains": [
+        "hlsllp.com.sg"
+      ]
+    },
+    {
+      "company": "Fibrecast",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 957,
+      "domains": [
+        "fibrecast.com"
+      ]
+    },
+    {
+      "company": "Adinal Group",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 944,
+      "domains": [
+        "adinalgroup.com"
+      ]
+    },
+    {
+      "company": "Su Industry",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 897,
+      "domains": [
+        "suindustry.com"
+      ]
+    },
+    {
+      "company": "Dentons",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 888,
+      "domains": [
+        "dentons.com"
+      ]
+    },
+    {
+      "company": "Kamet Capital",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 878,
+      "domains": [
+        "kametcapital.com"
+      ]
+    },
+    {
+      "company": "Hipa",
+      "relation_type": "partner",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 850,
+      "domains": [
+        "hipa.hu"
+      ]
+    },
+    {
+      "company": "DBS",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 829,
+      "domains": [
+        "dbs.com"
+      ]
+    },
+    {
+      "company": "Trip",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 751,
+      "domains": [
+        "trip.com",
+        "service.trip.com"
+      ]
+    },
+    {
+      "company": "Palmer Holland",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 680,
+      "domains": [
+        "palmerholland.com"
+      ]
+    },
+    {
+      "company": "Thstextiles",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 665,
+      "domains": [
+        "thstextiles.co.uk"
+      ]
+    },
+    {
+      "company": "Standard Chartered",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 579,
+      "domains": [
+        "sc.com"
+      ]
+    },
+    {
+      "company": "Apple",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 532,
+      "domains": [
+        "apple.com",
+        "email.apple.com"
+      ]
+    },
+    {
+      "company": "SIG PLC",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 504,
+      "domains": [
+        "sigplc.com"
+      ]
+    },
+    {
+      "company": "DHL",
+      "relation_type": "vendor",
+      "confidence": "high",
+      "method": "rule",
+      "email_count": 490,
+      "domains": [
+        "dhl.com",
+        "express.dhl.com"
+      ]
+    },
+    {
+      "company": "Verz Design",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 454,
+      "domains": [
+        "verzdesign.com"
+      ]
+    },
+    {
+      "company": "Littlefuse",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 446,
+      "domains": [
+        "littelfuse.com"
+      ]
+    },
+    {
+      "company": "Acmanet",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 440,
+      "domains": [
+        "acmanet.org"
+      ]
+    },
+    {
+      "company": "Saint-Gobain",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 436,
+      "domains": [
+        "saint-gobain.com"
+      ]
+    },
+    {
+      "company": "Textile Technologies",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 379,
+      "domains": [
+        "textiletechnologies.co.uk"
+      ]
+    },
+    {
+      "company": "Inpark",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 371,
+      "domains": [
+        "inpark.hu"
+      ]
+    },
+    {
+      "company": "Freeman",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 364,
+      "domains": [
+        "freeman.com",
+        "e.freeman.com"
+      ]
+    },
+    {
+      "company": "NSREF",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 362,
+      "domains": [
+        "nsref.kr"
+      ]
+    },
+    {
+      "company": "Axiom Materials",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 357,
+      "domains": [
+        "axiommaterials.com"
+      ]
+    },
+    {
+      "company": "Nutec",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 335,
+      "domains": [
+        "nutec.com"
+      ]
+    },
+    {
+      "company": "Singtel",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 327,
+      "domains": [
+        "singtel.com",
+        "go.singtel.com"
+      ]
+    },
+    {
+      "company": "Kohler",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 326,
+      "domains": [
+        "kohler.com"
+      ]
+    },
+    {
+      "company": "Royal Imaging",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 325,
+      "domains": [
+        "royalimaging.com.sg"
+      ]
+    },
+    {
+      "company": "Reppon",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 324,
+      "domains": [
+        "reppon.com"
+      ]
+    },
+    {
+      "company": "Olive Vista",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 321,
+      "domains": [
+        "olivevista.co"
+      ]
+    },
+    {
+      "company": "American Carb",
+      "relation_type": "client",
+      "confidence": "high",
+      "method": "manual_correction",
+      "email_count": 302,
+      "domains": [
+        "americarb.com"
+      ]
+    },
+    {
+      "company": "Sterne Kessler",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 297,
+      "domains": [
+        "sternekessler.com"
+      ]
+    },
+    {
+      "company": "Jec Composites",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 296,
+      "domains": [
+        "jeccomposites.com",
+        "europe.jeccomposites.com"
+      ]
+    },
+    {
+      "company": "Shell",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 283,
+      "domains": [
+        "shell.com"
+      ]
+    },
+    {
+      "company": "Office Cleanings",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 278,
+      "domains": [
+        "officecleanings.com.sg"
+      ]
+    },
+    {
+      "company": "Microsoft",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 276,
+      "domains": [
+        "microsoft.com",
+        "outlook.mail.microsoft"
+      ]
+    },
+    {
+      "company": "Sampe",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 274,
+      "domains": [
+        "sampe.org"
+      ]
+    },
+    {
+      "company": "TUV SUD",
+      "relation_type": "partner",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 274,
+      "domains": [
+        "tuvsud.com"
+      ]
+    },
+    {
+      "company": "Enertaprima",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 268,
+      "domains": [
+        "enertaprima.com"
+      ]
+    },
+    {
+      "company": "Dso",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 267,
+      "domains": [
+        "dso.org.sg"
+      ]
+    },
+    {
+      "company": "VulcanShield",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 257,
+      "domains": [
+        "vulcanshield.sg"
+      ]
+    },
+    {
+      "company": "Bdo",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 244,
+      "domains": [
+        "bdo.com.sg"
+      ]
+    },
+    {
+      "company": "Uif",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 244,
+      "domains": [
+        "uif.com.hk"
+      ]
+    },
+    {
+      "company": "Tayind",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 241,
+      "domains": [
+        "tayind.com"
+      ]
+    },
+    {
+      "company": "Mfa",
+      "relation_type": "government",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 240,
+      "domains": [
+        "mfa.gov.hu"
+      ]
+    },
+    {
+      "company": "Amoysk",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 237,
+      "domains": [
+        "amoysk.com"
+      ]
+    },
+    {
+      "company": "CnHunicorn",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 234,
+      "domains": [
+        "cn-hunicorn.com"
+      ]
+    },
+    {
+      "company": "Mid Mountain",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 230,
+      "domains": [
+        "mid-mountain.com"
+      ]
+    },
+    {
+      "company": "Fraunhofer",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 222,
+      "domains": [
+        "isc.fraunhofer.de",
+        "item.fraunhofer.de"
+      ]
+    },
+    {
+      "company": "Kuehne Nagel",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 220,
+      "domains": [
+        "kuehne-nagel.com"
+      ]
+    },
+    {
+      "company": "Solusiperancah",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 209,
+      "domains": [
+        "solusiperancah.co.id"
+      ]
+    },
+    {
+      "company": "High Temp Inc",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 208,
+      "domains": [
+        "hightempinc.net"
+      ]
+    },
+    {
+      "company": "Ica",
+      "relation_type": "government",
+      "confidence": "high",
+      "method": "rule",
+      "email_count": 206,
+      "domains": [
+        "ica.gov.sg"
+      ]
+    },
+    {
+      "company": "Trelleborg",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 200,
+      "domains": [
+        "trelleborg.com"
+      ]
+    },
+    {
+      "company": "Uber",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 196,
+      "domains": [
+        "uber.com"
+      ]
+    },
+    {
+      "company": "Ceis",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 194,
+      "domains": [
+        "ceis.hu"
+      ]
+    },
+    {
+      "company": "Silca",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 191,
+      "domains": [
+        "silca-online.de"
+      ]
+    },
+    {
+      "company": "Obuda Group",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 188,
+      "domains": [
+        "obudagroup.com"
+      ]
+    },
+    {
+      "company": "1 Net",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 186,
+      "domains": [
+        "1-net.com.sg"
+      ]
+    },
+    {
+      "company": "Sodexo",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 185,
+      "domains": [
+        "sodexo.com"
+      ]
+    },
+    {
+      "company": "Soarceusa",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 180,
+      "domains": [
+        "soarceusa.com"
+      ]
+    },
+    {
+      "company": "Fjhanyang",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 179,
+      "domains": [
+        "fjhanyang.com"
+      ]
+    },
+    {
+      "company": "Alpha Inc Europe",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 176,
+      "domains": [
+        "alphainc-europe.com"
+      ]
+    },
+    {
+      "company": "Szshowjoy",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 174,
+      "domains": [
+        "szshowjoy.com"
+      ]
+    },
+    {
+      "company": "Db Group",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 170,
+      "domains": [
+        "dbgroup.net"
+      ]
+    },
+    {
+      "company": "Pereocean",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 163,
+      "domains": [
+        "pereocean.com"
+      ]
+    },
+    {
+      "company": "Tdy Cargo",
+      "relation_type": "vendor",
+      "confidence": "high",
+      "method": "rule",
+      "email_count": 162,
+      "domains": [
+        "tdycargo.com"
+      ]
+    },
+    {
+      "company": "Shd Composites",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 159,
+      "domains": [
+        "shdcomposites.com"
+      ]
+    },
+    {
+      "company": "Wacker",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 158,
+      "domains": [
+        "wacker.com"
+      ]
+    },
+    {
+      "company": "Engineeringim",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 154,
+      "domains": [
+        "join.engineeringim.com"
+      ]
+    },
+    {
+      "company": "By The Bay",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 152,
+      "domains": [
+        "bythebay.com.sg"
+      ]
+    },
+    {
+      "company": "Klayenersol",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 151,
+      "domains": [
+        "klayenersol.com"
+      ]
+    },
+    {
+      "company": "Dlr",
+      "relation_type": "partner",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 150,
+      "domains": [
+        "dlr.de"
+      ]
+    },
+    {
+      "company": "Bestpetrol",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 148,
+      "domains": [
+        "bestpetrol.com.sg"
+      ]
+    },
+    {
+      "company": "Lunar Reach Labs",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 146,
+      "domains": [
+        "lunareachlabs.com"
+      ]
+    },
+    {
+      "company": "Meisei",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 145,
+      "domains": [
+        "meisei.com.sg"
+      ]
+    },
+    {
+      "company": "Blue Origin",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 144,
+      "domains": [
+        "blueorigin.com"
+      ]
+    },
+    {
+      "company": "Wilsonart",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 142,
+      "domains": [
+        "wilsonart.co.th"
+      ]
+    },
+    {
+      "company": "Globalization Partners",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 141,
+      "domains": [
+        "globalization-partners.com"
+      ]
+    },
+    {
+      "company": "Adobe",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 129,
+      "domains": [
+        "adobe.com"
+      ]
+    },
+    {
+      "company": "G-P",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 125,
+      "domains": [
+        "g-p.com"
+      ]
+    },
+    {
+      "company": "HTMS",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 124,
+      "domains": [
+        "htms.tech"
+      ]
+    },
+    {
+      "company": "Allebras",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 124,
+      "domains": [
+        "allebras.com.br"
+      ]
+    },
+    {
+      "company": "Homecleaningsg",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 122,
+      "domains": [
+        "homecleaningsg.com"
+      ]
+    },
+    {
+      "company": "Hutchinson",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 121,
+      "domains": [
+        "hutchinson.com",
+        "external.hutchinson.com"
+      ]
+    },
+    {
+      "company": "Pyromeral",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 117,
+      "domains": [
+        "pyromeral.com"
+      ]
+    },
+    {
+      "company": "IPSCeramics",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 115,
+      "domains": [
+        "ipsceramics.com"
+      ]
+    },
+    {
+      "company": "Alpha Inc.",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 115,
+      "domains": [
+        "alphainc.com"
+      ]
+    },
+    {
+      "company": "Uni Media",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 111,
+      "domains": [
+        "uniomedia.com"
+      ]
+    },
+    {
+      "company": "Arrowtex",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 111,
+      "domains": [
+        "arrowtex.co.in"
+      ]
+    },
+    {
+      "company": "Web Industries",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 110,
+      "domains": [
+        "webindustries.com"
+      ]
+    },
+    {
+      "company": "Lux Eterna",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 108,
+      "domains": [
+        "luxaeterna.com"
+      ]
+    },
+    {
+      "company": "MLSI",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 108,
+      "domains": [
+        "mlsi.com.sg"
+      ]
+    },
+    {
+      "company": "Fiskars",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 107,
+      "domains": [
+        "fiskars.com"
+      ]
+    },
+    {
+      "company": "BGF",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 105,
+      "domains": [
+        "bgf.com"
+      ]
+    },
+    {
+      "company": "Doncasters",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 105,
+      "domains": [
+        "doncasters.us"
+      ]
+    },
+    {
+      "company": "Whiz Comms",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 104,
+      "domains": [
+        "whizcomms.com.sg"
+      ]
+    },
+    {
+      "company": "KJTC",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 102,
+      "domains": [
+        "kjtc.co.kr"
+      ]
+    },
+    {
+      "company": "Embreo",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 100,
+      "domains": [
+        "embreo.global"
+      ]
+    },
+    {
+      "company": "Headwin",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 98,
+      "domains": [
+        "headwin.com.cn"
+      ]
+    },
+    {
+      "company": "MMI Asia",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 97,
+      "domains": [
+        "mmiasia.com.sg"
+      ]
+    },
+    {
+      "company": "Asaco",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 96,
+      "domains": [
+        "asaco.in"
+      ]
+    },
+    {
+      "company": "Blue Shift Materials",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 95,
+      "domains": [
+        "blueshiftmaterials.com"
+      ]
+    },
+    {
+      "company": "Saginaw Carbon",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 94,
+      "domains": [
+        "saginawcarbon.com"
+      ]
+    },
+    {
+      "company": "Neo",
+      "relation_type": "partner",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 94,
+      "domains": [
+        "neo.co.th"
+      ]
+    },
+    {
+      "company": "Rothman Roman",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 93,
+      "domains": [
+        "rothmanroman.com"
+      ]
+    },
+    {
+      "company": "Great Eastern",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 91,
+      "domains": [
+        "rep.greateasternfa.sg"
+      ]
+    },
+    {
+      "company": "Kempinski",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 90,
+      "domains": [
+        "kempinski.com"
+      ]
+    },
+    {
+      "company": "Bilfinger",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 89,
+      "domains": [
+        "bilfinger.com"
+      ]
+    },
+    {
+      "company": "FJ Hanyang",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 89,
+      "domains": [
+        "fjhanyang-sz.com"
+      ]
+    },
+    {
+      "company": "Global Service VIP",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 88,
+      "domains": [
+        "globalservicevip.com"
+      ]
+    },
+    {
+      "company": "Yahoo",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 87,
+      "domains": [
+        "yahoo.com.sg"
+      ]
+    },
+    {
+      "company": "Renegade Materials",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 84,
+      "domains": [
+        "renegadematerials.com"
+      ]
+    },
+    {
+      "company": "Lyreco",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 84,
+      "domains": [
+        "lyreco.com",
+        "members.lyreco.com"
+      ]
+    },
+    {
+      "company": "Hub Energy",
+      "relation_type": "partner",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 83,
+      "domains": [
+        "hubenergys.com"
+      ]
+    },
+    {
+      "company": "RWTH Aachen",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 82,
+      "domains": [
+        "ita.rwth-aachen.de"
+      ]
+    },
+    {
+      "company": "Lucideon",
+      "relation_type": "partner",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 79,
+      "domains": [
+        "uk.lucideon.com"
+      ]
+    },
+    {
+      "company": "FedEx",
+      "relation_type": "vendor",
+      "confidence": "high",
+      "method": "rule",
+      "email_count": 79,
+      "domains": [
+        "fedex.com"
+      ]
+    },
+    {
+      "company": "Zircoa",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 78,
+      "domains": [
+        "zircoa.com"
+      ]
+    },
+    {
+      "company": "Frenzelit",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 77,
+      "domains": [
+        "frenzelit.com"
+      ]
+    },
+    {
+      "company": "Siam Technic",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 77,
+      "domains": [
+        "siamtechnic.com"
+      ]
+    },
+    {
+      "company": "AIST",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 76,
+      "domains": [
+        "aist.org"
+      ]
+    },
+    {
+      "company": "Chiz Bros",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 75,
+      "domains": [
+        "chizbros.com"
+      ]
+    },
+    {
+      "company": "TCLEmail",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 75,
+      "domains": [
+        "tclemail.com.hk"
+      ]
+    },
+    {
+      "company": "EDPNC",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 73,
+      "domains": [
+        "edpnc.com"
+      ]
+    },
+    {
+      "company": "XOP Fibras",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 73,
+      "domains": [
+        "xopfibras.com.br"
+      ]
+    },
+    {
+      "company": "AB China",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 72,
+      "domains": [
+        "abchina.com"
+      ]
+    },
+    {
+      "company": "Peceng",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 72,
+      "domains": [
+        "peceng.com"
+      ]
+    },
+    {
+      "company": "JEC Composites",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 61,
+      "domains": [
+        "services.jeccomposites.com",
+        "global.jeccomposites.com"
+      ]
+    },
+    {
+      "company": "Kuraray",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 50,
+      "domains": [
+        "kuraray.com"
+      ]
+    },
+    {
+      "company": "MDA",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 49,
+      "domains": [
+        "mda.com.sg"
+      ]
+    },
+    {
+      "company": "HLS Partnership",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 48,
+      "domains": [
+        "hlspartnership.com"
+      ]
+    },
+    {
+      "company": "Ceramics",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 47,
+      "domains": [
+        "ceramics.org"
+      ]
+    },
+    {
+      "company": "IRAS",
+      "relation_type": "government",
+      "confidence": "high",
+      "method": "rule",
+      "email_count": 47,
+      "domains": [
+        "iras.gov.sg"
+      ]
+    },
+    {
+      "company": "Caravel",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 47,
+      "domains": [
+        "caravel.uk.com"
+      ]
+    },
+    {
+      "company": "Daijob",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 47,
+      "domains": [
+        "daijob.com"
+      ]
+    },
+    {
+      "company": "JPJ",
+      "relation_type": "government",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 46,
+      "domains": [
+        "jpj.gov.my"
+      ]
+    },
+    {
+      "company": "Gardner",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 46,
+      "domains": [
+        "gardnerweb.com"
+      ]
+    },
+    {
+      "company": "Gentex",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 46,
+      "domains": [
+        "gentex.com"
+      ]
+    },
+    {
+      "company": "1Autos",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 45,
+      "domains": [
+        "1autos.com.sg"
+      ]
+    },
+    {
+      "company": "25Hours Hotels",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 45,
+      "domains": [
+        "25hours-hotels.com"
+      ]
+    },
+    {
+      "company": "Fenner PPD",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 44,
+      "domains": [
+        "fennerppd.com"
+      ]
+    },
+    {
+      "company": "The Customs",
+      "relation_type": "client",
+      "confidence": "high",
+      "method": "manual_correction",
+      "email_count": 44,
+      "domains": [
+        "thecustoms.com.cn"
+      ]
+    },
+    {
+      "company": "Pristine Aroma",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 44,
+      "domains": [
+        "pristinearoma.sg"
+      ]
+    },
+    {
+      "company": "Bark",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 43,
+      "domains": [
+        "cmail.bark.com"
+      ]
+    },
+    {
+      "company": "Palffy Partners",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 43,
+      "domains": [
+        "palffypartners.com"
+      ]
+    },
+    {
+      "company": "Linamar",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 43,
+      "domains": [
+        "linamar.com"
+      ]
+    },
+    {
+      "company": "Toxic Suppression",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 43,
+      "domains": [
+        "toxicsuppression.com"
+      ]
+    },
+    {
+      "company": "Lindsay Exhibits",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 43,
+      "domains": [
+        "lindsayexhibits.com"
+      ]
+    },
+    {
+      "company": "Magmagroup",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 43,
+      "domains": [
+        "magmagroup.com"
+      ]
+    },
+    {
+      "company": "Ford",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 42,
+      "domains": [
+        "ford.com"
+      ]
+    },
+    {
+      "company": "Eco Clean Office",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 42,
+      "domains": [
+        "ecocleanoffice.com"
+      ]
+    },
+    {
+      "company": "Grab",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 41,
+      "domains": [
+        "grab.com"
+      ]
+    },
+    {
+      "company": "Composites United",
+      "relation_type": "partner",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 41,
+      "domains": [
+        "composites-united.com"
+      ]
+    },
+    {
+      "company": "Pyromeral Technology",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 41,
+      "domains": [
+        "pyromeraltechnology.com"
+      ]
+    },
+    {
+      "company": "Samtra",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 41,
+      "domains": [
+        "samtra.co.kr"
+      ]
+    },
+    {
+      "company": "ERA",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 40,
+      "domains": [
+        "era.com.sg"
+      ]
+    },
+    {
+      "company": "Composite Resources",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 40,
+      "domains": [
+        "composite-resources.com"
+      ]
+    },
+    {
+      "company": "Collins",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 40,
+      "domains": [
+        "collins.com"
+      ]
+    },
+    {
+      "company": "UniCredit Group",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 38,
+      "domains": [
+        "unicreditgroup.hu"
+      ]
+    },
+    {
+      "company": "Teal Blues",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 38,
+      "domains": [
+        "tealblues.com"
+      ]
+    },
+    {
+      "company": "Flas Singapore",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 38,
+      "domains": [
+        "flasingapore.org"
+      ]
+    },
+    {
+      "company": "Expo Housing Solution",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 37,
+      "domains": [
+        "expohousingsolution.com"
+      ]
+    },
+    {
+      "company": "GMO Aozora Bank",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 36,
+      "domains": [
+        "bank.gmo-aozora.com"
+      ]
+    },
+    {
+      "company": "AAR Corp",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 36,
+      "domains": [
+        "aarcorp.com"
+      ]
+    },
+    {
+      "company": "Crown WW",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 36,
+      "domains": [
+        "crownww.com"
+      ]
+    },
+    {
+      "company": "Daygard",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 35,
+      "domains": [
+        "daygard.com"
+      ]
+    },
+    {
+      "company": "Whipox",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 35,
+      "domains": [
+        "whipox.com"
+      ]
+    },
+    {
+      "company": "Parkroyal Collection",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 35,
+      "domains": [
+        "parkroyalcollection.com"
+      ]
+    },
+    {
+      "company": "Dimerco",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 34,
+      "domains": [
+        "dimerco.com"
+      ]
+    },
+    {
+      "company": "Cypress Industries",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 34,
+      "domains": [
+        "cypressindustries.in"
+      ]
+    },
+    {
+      "company": "Cropper",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 34,
+      "domains": [
+        "cropper.com"
+      ]
+    },
+    {
+      "company": "Quotz",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 34,
+      "domains": [
+        "email.quotz.com.sg"
+      ]
+    },
+    {
+      "company": "Forvia",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 33,
+      "domains": [
+        "forvia.com"
+      ]
+    },
+    {
+      "company": "Teamoneexhibits",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 33,
+      "domains": [
+        "teamoneexhibits.com"
+      ]
+    },
+    {
+      "company": "Taco",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 33,
+      "domains": [
+        "taco.ca"
+      ]
+    },
+    {
+      "company": "Lucintel",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 32,
+      "domains": [
+        "lucintel.com"
+      ]
+    },
+    {
+      "company": "Evantage Technology",
+      "relation_type": "partner",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 32,
+      "domains": [
+        "evantage-technology.com"
+      ]
+    },
+    {
+      "company": "Yingkepe",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 32,
+      "domains": [
+        "yingkepe.cn"
+      ]
+    },
+    {
+      "company": "Avance Services",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 32,
+      "domains": [
+        "avanceservices.com"
+      ]
+    },
+    {
+      "company": "SGS",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 32,
+      "domains": [
+        "sgs.com"
+      ]
+    },
+    {
+      "company": "Isovolta",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 31,
+      "domains": [
+        "isovolta.com"
+      ]
+    },
+    {
+      "company": "Recruit",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 31,
+      "domains": [
+        "point.recruit.co.jp"
+      ]
+    },
+    {
+      "company": "Regus",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 31,
+      "domains": [
+        "regus.com"
+      ]
+    },
+    {
+      "company": "MWCLG",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 31,
+      "domains": [
+        "mwclg.com"
+      ]
+    },
+    {
+      "company": "University of Leeds",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 31,
+      "domains": [
+        "leeds.ac.uk"
+      ]
+    },
+    {
+      "company": "RHT Law Asia",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 31,
+      "domains": [
+        "rhtlawasia.com"
+      ]
+    },
+    {
+      "company": "GMCap Management",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 31,
+      "domains": [
+        "gmcapmanagement.com"
+      ]
+    },
+    {
+      "company": "SEMA",
+      "relation_type": "partner",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 30,
+      "domains": [
+        "info.sema.org"
+      ]
+    },
+    {
+      "company": "Teconnex",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 30,
+      "domains": [
+        "teconnex.com"
+      ]
+    },
+    {
+      "company": "SP Group",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 30,
+      "domains": [
+        "spgroup.com.sg"
+      ]
+    },
+    {
+      "company": "Infinite Biotech",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 30,
+      "domains": [
+        "infinite-biotech.com"
+      ]
+    },
+    {
+      "company": "ChargeZone",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 30,
+      "domains": [
+        "chargezone.eu"
+      ]
+    },
+    {
+      "company": "Fibrecoat",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 30,
+      "domains": [
+        "fibrecoat.de"
+      ]
+    },
+    {
+      "company": "Copytrack",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 30,
+      "domains": [
+        "copytrack.com"
+      ]
+    },
+    {
+      "company": "Nucleo Consulting",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 30,
+      "domains": [
+        "nucleoconsulting.com"
+      ]
+    },
+    {
+      "company": "EY",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 29,
+      "domains": [
+        "hu.ey.com"
+      ]
+    },
+    {
+      "company": "Tenneco",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 29,
+      "domains": [
+        "tenneco.com"
+      ]
+    },
+    {
+      "company": "AD Group",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 29,
+      "domains": [
+        "adgroup.com.tw"
+      ]
+    },
+    {
+      "company": "Engineering 10",
+      "relation_type": "partner",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 29,
+      "domains": [
+        "engineering10.com"
+      ]
+    },
+    {
+      "company": "Yuchai",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 28,
+      "domains": [
+        "yuchai.com"
+      ]
+    },
+    {
+      "company": "Mott MacDonald",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 28,
+      "domains": [
+        "mottmac.com"
+      ]
+    },
+    {
+      "company": "C2M Global",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 28,
+      "domains": [
+        "c2mglobal.de"
+      ]
+    },
+    {
+      "company": "Heatex",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 28,
+      "domains": [
+        "heatex.com.sg"
+      ]
+    },
+    {
+      "company": "Fast Flow Group",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 28,
+      "domains": [
+        "fastflowgroup.com"
+      ]
+    },
+    {
+      "company": "Georg Fischer",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 27,
+      "domains": [
+        "georgfischer.com"
+      ]
+    },
+    {
+      "company": "Eminox",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 27,
+      "domains": [
+        "eminox.com"
+      ]
+    },
+    {
+      "company": "Golden Rama",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 27,
+      "domains": [
+        "goldenrama.com"
+      ]
+    },
+    {
+      "company": "JS Connor",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 27,
+      "domains": [
+        "jsconnor.com"
+      ]
+    },
+    {
+      "company": "Gha Discovery",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 26,
+      "domains": [
+        "email.ghadiscovery.com"
+      ]
+    },
+    {
+      "company": "Keramik Blech",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 26,
+      "domains": [
+        "keramikblech.com"
+      ]
+    },
+    {
+      "company": "UK CPI",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 26,
+      "domains": [
+        "uk-cpi.com"
+      ]
+    },
+    {
+      "company": "JEC",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 26,
+      "domains": [
+        "jec.com"
+      ]
+    },
+    {
+      "company": "Unitex Composite",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 26,
+      "domains": [
+        "unitexcomposite.com"
+      ]
+    },
+    {
+      "company": "CBRE",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 26,
+      "domains": [
+        "cbre.com.sg"
+      ]
+    },
+    {
+      "company": "ExxonMobil",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 26,
+      "domains": [
+        "exxonmobil.com"
+      ]
+    },
+    {
+      "company": "Millennium Hotels",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 26,
+      "domains": [
+        "millenniumhotels.com"
+      ]
+    },
+    {
+      "company": "Voice App",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 26,
+      "domains": [
+        "voiceapp.co.jp"
+      ]
+    },
+    {
+      "company": "Neo Materials",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 25,
+      "domains": [
+        "neomaterials.com"
+      ]
+    },
+    {
+      "company": "Win Therm",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 25,
+      "domains": [
+        "win-therm.com"
+      ]
+    },
+    {
+      "company": "Firelakemfg",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 15,
+      "domains": [
+        "firelakemfg.com"
+      ]
+    },
+    {
+      "company": "Thorpepme",
+      "relation_type": "partner",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 15,
+      "domains": [
+        "thorpepme.com"
+      ]
+    },
+    {
+      "company": "Electronetg",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 15,
+      "domains": [
+        "electron-etg.com"
+      ]
+    },
+    {
+      "company": "Lydech",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 15,
+      "domains": [
+        "lydech.com"
+      ]
+    },
+    {
+      "company": "Fieldfurnace",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 15,
+      "domains": [
+        "fieldfurnace.com.au"
+      ]
+    },
+    {
+      "company": "Enersens",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 15,
+      "domains": [
+        "enersens.fr"
+      ]
+    },
+    {
+      "company": "Aisltd",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 15,
+      "domains": [
+        "aisltd.com"
+      ]
+    },
+    {
+      "company": "Chargezone",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 3,
+      "email_count": 15,
+      "domains": [
+        "chargezone.co.uk"
+      ]
+    },
+    {
+      "company": "Mecaware",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 15,
+      "domains": [
+        "mecaware.com"
+      ]
+    },
+    {
+      "company": "Spdigital",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 15,
+      "domains": [
+        "spdigital.sg"
+      ]
+    },
+    {
+      "company": "Exle",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 15,
+      "domains": [
+        "exle.com.my"
+      ]
+    },
+    {
+      "company": "Standardchartered",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 15,
+      "domains": [
+        "exchange.standardchartered.com"
+      ]
+    },
+    {
+      "company": "Axparasolutions",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 15,
+      "domains": [
+        "axparasolutions.com"
+      ]
+    },
+    {
+      "company": "Lotussanctuary",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 15,
+      "domains": [
+        "lotus-sanctuary.com.sg"
+      ]
+    },
+    {
+      "company": "Heideggerlegal",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 14,
+      "domains": [
+        "heideggerlegal.com"
+      ]
+    },
+    {
+      "company": "Seek",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 14,
+      "domains": [
+        "seek.com"
+      ]
+    },
+    {
+      "company": "Ctrip",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 14,
+      "domains": [
+        "htlpartner.ctrip.com"
+      ]
+    },
+    {
+      "company": "Businessintexas",
+      "relation_type": "government",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 14,
+      "domains": [
+        "businessintexas.com"
+      ]
+    },
+    {
+      "company": "Nmtshipping",
+      "relation_type": "vendor",
+      "confidence": "high",
+      "method": "rule",
+      "email_count": 14,
+      "domains": [
+        "nmtshipping.com"
+      ]
+    },
+    {
+      "company": "Spruson",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 14,
+      "domains": [
+        "spruson.com"
+      ]
+    },
+    {
+      "company": "Xinxiuelectronics",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 14,
+      "domains": [
+        "xinxiuelectronics.com"
+      ]
+    },
+    {
+      "company": "Ritzcarlton",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 14,
+      "domains": [
+        "ritzcarlton.com"
+      ]
+    },
+    {
+      "company": "Ematco",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 14,
+      "domains": [
+        "ematco.com"
+      ]
+    },
+    {
+      "company": "Atlasstone",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 14,
+      "domains": [
+        "atlasstone.com.tr"
+      ]
+    },
+    {
+      "company": "Runsuncloud",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 14,
+      "domains": [
+        "runsuncloud.com"
+      ]
+    },
+    {
+      "company": "Unusual",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 14,
+      "domains": [
+        "unusual.com.sg"
+      ]
+    },
+    {
+      "company": "Prismplus",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 14,
+      "domains": [
+        "prismplus.sg"
+      ]
+    },
+    {
+      "company": "Maynardnexsen",
+      "relation_type": "partner",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 13,
+      "domains": [
+        "maynardnexsen.com"
+      ]
+    },
+    {
+      "company": "ArcCosgolf",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 13,
+      "domains": [
+        "m.arccosgolf.com"
+      ]
+    },
+    {
+      "company": "Sbf",
+      "relation_type": "government",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 13,
+      "domains": [
+        "sbf.org.sg"
+      ]
+    },
+    {
+      "company": "Stellantis",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 13,
+      "domains": [
+        "stellantis.com"
+      ]
+    },
+    {
+      "company": "Morganplc",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 13,
+      "domains": [
+        "morganplc.com"
+      ]
+    },
+    {
+      "company": "Adipec",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 13,
+      "domains": [
+        "email.adipec.com"
+      ]
+    },
+    {
+      "company": "Hsbc",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 13,
+      "domains": [
+        "hsbc.com.sg"
+      ]
+    },
+    {
+      "company": "Fitglassfiber",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 13,
+      "domains": [
+        "fit-glassfiber.com.tw"
+      ]
+    },
+    {
+      "company": "Fffibers",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 13,
+      "domains": [
+        "fffibers.com"
+      ]
+    },
+    {
+      "company": "Thecamx",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 13,
+      "domains": [
+        "thecamx.org"
+      ]
+    },
+    {
+      "company": "Psu",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 13,
+      "domains": [
+        "psu.edu"
+      ]
+    },
+    {
+      "company": "Jmglobalservice",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 13,
+      "domains": [
+        "jmglobalservice.com"
+      ]
+    },
+    {
+      "company": "Dbschenker",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 13,
+      "domains": [
+        "dbschenker.com"
+      ]
+    },
+    {
+      "company": "Boilermaster",
+      "relation_type": "vendor",
+      "confidence": "high",
+      "method": "manual_correction",
+      "email_count": 13,
+      "domains": [
+        "boilermaster.biz"
+      ]
+    },
+    {
+      "company": "Voiter",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 4,
+      "email_count": 13,
+      "domains": [
+        "voiter.pl"
+      ]
+    },
+    {
+      "company": "Htes",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 13,
+      "domains": [
+        "htes.hu"
+      ]
+    },
+    {
+      "company": "Rollsroyce",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 13,
+      "domains": [
+        "ps.rolls-royce.com"
+      ]
+    },
+    {
+      "company": "JobStreet",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 13,
+      "domains": [
+        "jobstreet.com"
+      ]
+    },
+    {
+      "company": "Income",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 3,
+      "email_count": 13,
+      "domains": [
+        "income.com.sg"
+      ]
+    },
+    {
+      "company": "TRT",
+      "relation_type": "partner",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 13,
+      "domains": [
+        "trt.com"
+      ]
+    },
+    {
+      "company": "Sohu",
+      "relation_type": "unknown",
+      "confidence": "low",
+      "method": "deep_analysis",
+      "sample_count": 0,
+      "email_count": 12,
+      "domains": [
+        "sohu.com"
+      ]
+    },
+    {
+      "company": "Enkplastik",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 12,
+      "domains": [
+        "enkplastik.com"
+      ]
+    },
+    {
+      "company": "Allianceairproduct",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 12,
+      "domains": [
+        "allianceairproduct.com"
+      ]
+    },
+    {
+      "company": "Toll Group",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 12,
+      "domains": [
+        "tollgroup.com"
+      ]
+    },
+    {
+      "company": "Wilhelm",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 12,
+      "domains": [
+        "wilhelm.hu"
+      ]
+    },
+    {
+      "company": "Acrossrelo",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 2,
+      "email_count": 12,
+      "domains": [
+        "acrossrelo.com"
+      ]
+    },
+    {
+      "company": "Divine Artisan",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 12,
+      "domains": [
+        "divine-artisan.com"
+      ]
+    },
+    {
+      "company": "Fareast Hospitality",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 12,
+      "domains": [
+        "mail.fareasthospitality.com"
+      ]
+    },
+    {
+      "company": "Imperial Treasure",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 4,
+      "email_count": 12,
+      "domains": [
+        "imperialtreasure.com"
+      ]
+    },
+    {
+      "company": "Eazy",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 12,
+      "domains": [
+        "eazy.com.sg"
+      ]
+    },
+    {
+      "company": "Roadrunner",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 12,
+      "domains": [
+        "roadrunner.com"
+      ]
+    },
+    {
+      "company": "Thermal Tec",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 12,
+      "domains": [
+        "thermal-tec.lv"
+      ]
+    },
+    {
+      "company": "Habitap",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 12,
+      "domains": [
+        "habitap.app"
+      ]
+    },
+    {
+      "company": "Ions",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 3,
+      "email_count": 12,
+      "domains": [
+        "ions.hu"
+      ]
+    },
+    {
+      "company": "Exposol",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 12,
+      "domains": [
+        "exposol.de"
+      ]
+    },
+    {
+      "company": "Dun & Bradstreet",
+      "relation_type": "partner",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 12,
+      "domains": [
+        "dnb.com.my"
+      ]
+    },
+    {
+      "company": "Siphonicflowmandiri",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 12,
+      "domains": [
+        "siphonicflowmandiri.com"
+      ]
+    },
+    {
+      "company": "Qiandynar",
+      "relation_type": "unknown",
+      "confidence": "low",
+      "method": "deep_analysis",
+      "sample_count": 0,
+      "email_count": 12,
+      "domains": [
+        "qiandynar.com"
+      ]
+    },
+    {
+      "company": "Hamburg Messe",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 12,
+      "domains": [
+        "news.hamburg-messe.de"
+      ]
+    },
+    {
+      "company": "SME500",
+      "relation_type": "partner",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 12,
+      "domains": [
+        "enterprise.sme500.atc.sg"
+      ]
+    },
+    {
+      "company": "AIGMF",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 12,
+      "domains": [
+        "aigmf.com"
+      ]
+    },
+    {
+      "company": "Qianmuip",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 12,
+      "domains": [
+        "qianmuip.com"
+      ]
+    },
+    {
+      "company": "Giga",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 12,
+      "domains": [
+        "giga.com.sg"
+      ]
+    },
+    {
+      "company": "Liberty Singapore",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 12,
+      "domains": [
+        "libertysingapore.sg"
+      ]
+    },
+    {
+      "company": "Thatsit",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 12,
+      "domains": [
+        "thatsit.sg"
+      ]
+    },
+    {
+      "company": "Rreab",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 3,
+      "email_count": 11,
+      "domains": [
+        "rreab.com"
+      ]
+    },
+    {
+      "company": "Shepherd Asset",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 11,
+      "domains": [
+        "shepherdasset.com"
+      ]
+    },
+    {
+      "company": "Angtongseng",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 11,
+      "domains": [
+        "angtongseng.com"
+      ]
+    },
+    {
+      "company": "AMA Service",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 11,
+      "domains": [
+        "ama-service.com"
+      ]
+    },
+    {
+      "company": "Ditf",
+      "relation_type": "partner",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 11,
+      "domains": [
+        "ditf.de"
+      ]
+    },
+    {
+      "company": "DGDS",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 1,
+      "email_count": 11,
+      "domains": [
+        "dgds.ai"
+      ]
+    },
+    {
+      "company": "Insultec",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 11,
+      "domains": [
+        "insultec.com.sg"
+      ]
+    },
+    {
+      "company": "Informa",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 11,
+      "domains": [
+        "informa.com"
+      ]
+    },
+    {
+      "company": "Cramer Group",
+      "relation_type": "partner",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 11,
+      "domains": [
+        "cramer-group.com"
+      ]
+    },
+    {
+      "company": "Vistra",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "deep_analysis",
+      "sample_count": 5,
+      "email_count": 11,
+      "domains": [
+        "vistra.com"
+      ]
+    },
+    {
+      "company": "Galleon",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 11,
+      "domains": [
+        "galleon.cc"
+      ]
+    },
+    {
+      "company": "EnterpriseSG",
+      "relation_type": "government",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 11,
+      "domains": [
+        "enterprisesg.gov.sg"
+      ]
+    },
+    {
+      "company": "Chronopost",
+      "relation_type": "vendor",
+      "confidence": "medium",
+      "method": "llm",
+      "sample_count": 5,
+      "email_count": 11,
+      "domains": [
+        "chronopost.fr"
+      ]
+    },
+    {
+      "company": "Glenco",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 11,
+      "domains": [
+        "glenco.ru"
+      ]
+    },
+    {
+      "company": "MSIS",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 4,
+      "email_count": 11,
+      "domains": [
+        "msis.co.th"
+      ]
+    },
+    {
+      "company": "Global Exhibition Works",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 11,
+      "domains": [
+        "globalexhibitionworks.com"
+      ]
+    },
+    {
+      "company": "SIAE",
+      "relation_type": "client",
+      "confidence": "medium",
+      "method": "reclassify_v2",
+      "sample_count": 5,
+      "email_count": 11,
+      "domains": [
+        "siae.fr"
+      ]
+    }
+  ],
+  "by_relation": {
+    "client": [
+      {
+        "company": "Rqam",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 1872,
+        "domains": [
+          "rqam.com.sg"
+        ]
+      },
+      {
+        "company": "Dentons",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 888,
+        "domains": [
+          "dentons.com"
+        ]
+      },
+      {
+        "company": "Kamet Capital",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 878,
+        "domains": [
+          "kametcapital.com"
+        ]
+      },
+      {
+        "company": "DBS",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 829,
+        "domains": [
+          "dbs.com"
+        ]
+      },
+      {
+        "company": "Trip",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 751,
+        "domains": [
+          "trip.com",
+          "service.trip.com"
+        ]
+      },
+      {
+        "company": "Apple",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 532,
+        "domains": [
+          "apple.com",
+          "email.apple.com"
+        ]
+      },
+      {
+        "company": "SIG PLC",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 504,
+        "domains": [
+          "sigplc.com"
+        ]
+      },
+      {
+        "company": "Littlefuse",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 446,
+        "domains": [
+          "littelfuse.com"
+        ]
+      },
+      {
+        "company": "Acmanet",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 440,
+        "domains": [
+          "acmanet.org"
+        ]
+      },
+      {
+        "company": "Saint-Gobain",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 436,
+        "domains": [
+          "saint-gobain.com"
+        ]
+      },
+      {
+        "company": "Inpark",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 371,
+        "domains": [
+          "inpark.hu"
+        ]
+      },
+      {
+        "company": "Axiom Materials",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 357,
+        "domains": [
+          "axiommaterials.com"
+        ]
+      },
+      {
+        "company": "Nutec",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 335,
+        "domains": [
+          "nutec.com"
+        ]
+      },
+      {
+        "company": "Singtel",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 327,
+        "domains": [
+          "singtel.com",
+          "go.singtel.com"
+        ]
+      },
+      {
+        "company": "Olive Vista",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 321,
+        "domains": [
+          "olivevista.co"
+        ]
+      },
+      {
+        "company": "American Carb",
+        "relation_type": "client",
+        "confidence": "high",
+        "method": "manual_correction",
+        "email_count": 302,
+        "domains": [
+          "americarb.com"
+        ]
+      },
+      {
+        "company": "Sterne Kessler",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 297,
+        "domains": [
+          "sternekessler.com"
+        ]
+      },
+      {
+        "company": "Jec Composites",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 296,
+        "domains": [
+          "jeccomposites.com",
+          "europe.jeccomposites.com"
+        ]
+      },
+      {
+        "company": "Shell",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 283,
+        "domains": [
+          "shell.com"
+        ]
+      },
+      {
+        "company": "Sampe",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 274,
+        "domains": [
+          "sampe.org"
+        ]
+      },
+      {
+        "company": "Amoysk",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 237,
+        "domains": [
+          "amoysk.com"
+        ]
+      },
+      {
+        "company": "Mid Mountain",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 230,
+        "domains": [
+          "mid-mountain.com"
+        ]
+      },
+      {
+        "company": "Uber",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 196,
+        "domains": [
+          "uber.com"
+        ]
+      },
+      {
+        "company": "Ceis",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 194,
+        "domains": [
+          "ceis.hu"
+        ]
+      },
+      {
+        "company": "Silca",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 191,
+        "domains": [
+          "silca-online.de"
+        ]
+      },
+      {
+        "company": "Obuda Group",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 188,
+        "domains": [
+          "obudagroup.com"
+        ]
+      },
+      {
+        "company": "1 Net",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 186,
+        "domains": [
+          "1-net.com.sg"
+        ]
+      },
+      {
+        "company": "Sodexo",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 185,
+        "domains": [
+          "sodexo.com"
+        ]
+      },
+      {
+        "company": "Soarceusa",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 180,
+        "domains": [
+          "soarceusa.com"
+        ]
+      },
+      {
+        "company": "Shd Composites",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 159,
+        "domains": [
+          "shdcomposites.com"
+        ]
+      },
+      {
+        "company": "Wacker",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 158,
+        "domains": [
+          "wacker.com"
+        ]
+      },
+      {
+        "company": "Engineeringim",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 154,
+        "domains": [
+          "join.engineeringim.com"
+        ]
+      },
+      {
+        "company": "By The Bay",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 152,
+        "domains": [
+          "bythebay.com.sg"
+        ]
+      },
+      {
+        "company": "Bestpetrol",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 148,
+        "domains": [
+          "bestpetrol.com.sg"
+        ]
+      },
+      {
+        "company": "Lunar Reach Labs",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 146,
+        "domains": [
+          "lunareachlabs.com"
+        ]
+      },
+      {
+        "company": "Globalization Partners",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 141,
+        "domains": [
+          "globalization-partners.com"
+        ]
+      },
+      {
+        "company": "Adobe",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 129,
+        "domains": [
+          "adobe.com"
+        ]
+      },
+      {
+        "company": "G-P",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 125,
+        "domains": [
+          "g-p.com"
+        ]
+      },
+      {
+        "company": "HTMS",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 124,
+        "domains": [
+          "htms.tech"
+        ]
+      },
+      {
+        "company": "Hutchinson",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 121,
+        "domains": [
+          "hutchinson.com",
+          "external.hutchinson.com"
+        ]
+      },
+      {
+        "company": "IPSCeramics",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 115,
+        "domains": [
+          "ipsceramics.com"
+        ]
+      },
+      {
+        "company": "Alpha Inc.",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 115,
+        "domains": [
+          "alphainc.com"
+        ]
+      },
+      {
+        "company": "Uni Media",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 111,
+        "domains": [
+          "uniomedia.com"
+        ]
+      },
+      {
+        "company": "Web Industries",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 110,
+        "domains": [
+          "webindustries.com"
+        ]
+      },
+      {
+        "company": "Lux Eterna",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 108,
+        "domains": [
+          "luxaeterna.com"
+        ]
+      },
+      {
+        "company": "MLSI",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 108,
+        "domains": [
+          "mlsi.com.sg"
+        ]
+      },
+      {
+        "company": "Fiskars",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 107,
+        "domains": [
+          "fiskars.com"
+        ]
+      },
+      {
+        "company": "Whiz Comms",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 104,
+        "domains": [
+          "whizcomms.com.sg"
+        ]
+      },
+      {
+        "company": "Embreo",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 100,
+        "domains": [
+          "embreo.global"
+        ]
+      },
+      {
+        "company": "MMI Asia",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 97,
+        "domains": [
+          "mmiasia.com.sg"
+        ]
+      },
+      {
+        "company": "Blue Shift Materials",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 95,
+        "domains": [
+          "blueshiftmaterials.com"
+        ]
+      },
+      {
+        "company": "Rothman Roman",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 93,
+        "domains": [
+          "rothmanroman.com"
+        ]
+      },
+      {
+        "company": "Great Eastern",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 91,
+        "domains": [
+          "rep.greateasternfa.sg"
+        ]
+      },
+      {
+        "company": "Kempinski",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 90,
+        "domains": [
+          "kempinski.com"
+        ]
+      },
+      {
+        "company": "Bilfinger",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 89,
+        "domains": [
+          "bilfinger.com"
+        ]
+      },
+      {
+        "company": "RWTH Aachen",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 82,
+        "domains": [
+          "ita.rwth-aachen.de"
+        ]
+      },
+      {
+        "company": "Frenzelit",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 77,
+        "domains": [
+          "frenzelit.com"
+        ]
+      },
+      {
+        "company": "AIST",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 76,
+        "domains": [
+          "aist.org"
+        ]
+      },
+      {
+        "company": "XOP Fibras",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 73,
+        "domains": [
+          "xopfibras.com.br"
+        ]
+      },
+      {
+        "company": "AB China",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 72,
+        "domains": [
+          "abchina.com"
+        ]
+      },
+      {
+        "company": "JEC Composites",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 61,
+        "domains": [
+          "services.jeccomposites.com",
+          "global.jeccomposites.com"
+        ]
+      },
+      {
+        "company": "Kuraray",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 50,
+        "domains": [
+          "kuraray.com"
+        ]
+      },
+      {
+        "company": "MDA",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 49,
+        "domains": [
+          "mda.com.sg"
+        ]
+      },
+      {
+        "company": "Ceramics",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 47,
+        "domains": [
+          "ceramics.org"
+        ]
+      },
+      {
+        "company": "Gardner",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 46,
+        "domains": [
+          "gardnerweb.com"
+        ]
+      },
+      {
+        "company": "25Hours Hotels",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 45,
+        "domains": [
+          "25hours-hotels.com"
+        ]
+      },
+      {
+        "company": "The Customs",
+        "relation_type": "client",
+        "confidence": "high",
+        "method": "manual_correction",
+        "email_count": 44,
+        "domains": [
+          "thecustoms.com.cn"
+        ]
+      },
+      {
+        "company": "Pristine Aroma",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 44,
+        "domains": [
+          "pristinearoma.sg"
+        ]
+      },
+      {
+        "company": "Linamar",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 43,
+        "domains": [
+          "linamar.com"
+        ]
+      },
+      {
+        "company": "Lindsay Exhibits",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 43,
+        "domains": [
+          "lindsayexhibits.com"
+        ]
+      },
+      {
+        "company": "Ford",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 42,
+        "domains": [
+          "ford.com"
+        ]
+      },
+      {
+        "company": "Grab",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 41,
+        "domains": [
+          "grab.com"
+        ]
+      },
+      {
+        "company": "Pyromeral Technology",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 41,
+        "domains": [
+          "pyromeraltechnology.com"
+        ]
+      },
+      {
+        "company": "Samtra",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 41,
+        "domains": [
+          "samtra.co.kr"
+        ]
+      },
+      {
+        "company": "ERA",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 40,
+        "domains": [
+          "era.com.sg"
+        ]
+      },
+      {
+        "company": "Composite Resources",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 40,
+        "domains": [
+          "composite-resources.com"
+        ]
+      },
+      {
+        "company": "Collins",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 40,
+        "domains": [
+          "collins.com"
+        ]
+      },
+      {
+        "company": "UniCredit Group",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 38,
+        "domains": [
+          "unicreditgroup.hu"
+        ]
+      },
+      {
+        "company": "Teal Blues",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 38,
+        "domains": [
+          "tealblues.com"
+        ]
+      },
+      {
+        "company": "Expo Housing Solution",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 37,
+        "domains": [
+          "expohousingsolution.com"
+        ]
+      },
+      {
+        "company": "AAR Corp",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 36,
+        "domains": [
+          "aarcorp.com"
+        ]
+      },
+      {
+        "company": "Crown WW",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 36,
+        "domains": [
+          "crownww.com"
+        ]
+      },
+      {
+        "company": "Daygard",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 35,
+        "domains": [
+          "daygard.com"
+        ]
+      },
+      {
+        "company": "Whipox",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 35,
+        "domains": [
+          "whipox.com"
+        ]
+      },
+      {
+        "company": "Parkroyal Collection",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 35,
+        "domains": [
+          "parkroyalcollection.com"
+        ]
+      },
+      {
+        "company": "Dimerco",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 34,
+        "domains": [
+          "dimerco.com"
+        ]
+      },
+      {
+        "company": "Teamoneexhibits",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 33,
+        "domains": [
+          "teamoneexhibits.com"
+        ]
+      },
+      {
+        "company": "Lucintel",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 32,
+        "domains": [
+          "lucintel.com"
+        ]
+      },
+      {
+        "company": "Regus",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 31,
+        "domains": [
+          "regus.com"
+        ]
+      },
+      {
+        "company": "University of Leeds",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 31,
+        "domains": [
+          "leeds.ac.uk"
+        ]
+      },
+      {
+        "company": "Teconnex",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 30,
+        "domains": [
+          "teconnex.com"
+        ]
+      },
+      {
+        "company": "Infinite Biotech",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 30,
+        "domains": [
+          "infinite-biotech.com"
+        ]
+      },
+      {
+        "company": "ChargeZone",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 30,
+        "domains": [
+          "chargezone.eu"
+        ]
+      },
+      {
+        "company": "Copytrack",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 30,
+        "domains": [
+          "copytrack.com"
+        ]
+      },
+      {
+        "company": "EY",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 29,
+        "domains": [
+          "hu.ey.com"
+        ]
+      },
+      {
+        "company": "Tenneco",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 29,
+        "domains": [
+          "tenneco.com"
+        ]
+      },
+      {
+        "company": "Yuchai",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 28,
+        "domains": [
+          "yuchai.com"
+        ]
+      },
+      {
+        "company": "Mott MacDonald",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 28,
+        "domains": [
+          "mottmac.com"
+        ]
+      },
+      {
+        "company": "Eminox",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 27,
+        "domains": [
+          "eminox.com"
+        ]
+      },
+      {
+        "company": "Golden Rama",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 27,
+        "domains": [
+          "goldenrama.com"
+        ]
+      },
+      {
+        "company": "JS Connor",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 27,
+        "domains": [
+          "jsconnor.com"
+        ]
+      },
+      {
+        "company": "Gha Discovery",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 26,
+        "domains": [
+          "email.ghadiscovery.com"
+        ]
+      },
+      {
+        "company": "Keramik Blech",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 26,
+        "domains": [
+          "keramikblech.com"
+        ]
+      },
+      {
+        "company": "UK CPI",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 26,
+        "domains": [
+          "uk-cpi.com"
+        ]
+      },
+      {
+        "company": "CBRE",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 26,
+        "domains": [
+          "cbre.com.sg"
+        ]
+      },
+      {
+        "company": "ExxonMobil",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 26,
+        "domains": [
+          "exxonmobil.com"
+        ]
+      },
+      {
+        "company": "Millennium Hotels",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 26,
+        "domains": [
+          "millenniumhotels.com"
+        ]
+      },
+      {
+        "company": "Win Therm",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 25,
+        "domains": [
+          "win-therm.com"
+        ]
+      },
+      {
+        "company": "Electronetg",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 15,
+        "domains": [
+          "electron-etg.com"
+        ]
+      },
+      {
+        "company": "Lydech",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 15,
+        "domains": [
+          "lydech.com"
+        ]
+      },
+      {
+        "company": "Enersens",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 15,
+        "domains": [
+          "enersens.fr"
+        ]
+      },
+      {
+        "company": "Chargezone",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 3,
+        "email_count": 15,
+        "domains": [
+          "chargezone.co.uk"
+        ]
+      },
+      {
+        "company": "Mecaware",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 15,
+        "domains": [
+          "mecaware.com"
+        ]
+      },
+      {
+        "company": "Exle",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 15,
+        "domains": [
+          "exle.com.my"
+        ]
+      },
+      {
+        "company": "Standardchartered",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 15,
+        "domains": [
+          "exchange.standardchartered.com"
+        ]
+      },
+      {
+        "company": "Lotussanctuary",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 15,
+        "domains": [
+          "lotus-sanctuary.com.sg"
+        ]
+      },
+      {
+        "company": "Heideggerlegal",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 14,
+        "domains": [
+          "heideggerlegal.com"
+        ]
+      },
+      {
+        "company": "Ctrip",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 14,
+        "domains": [
+          "htlpartner.ctrip.com"
+        ]
+      },
+      {
+        "company": "Xinxiuelectronics",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 14,
+        "domains": [
+          "xinxiuelectronics.com"
+        ]
+      },
+      {
+        "company": "Ritzcarlton",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 14,
+        "domains": [
+          "ritzcarlton.com"
+        ]
+      },
+      {
+        "company": "Prismplus",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 14,
+        "domains": [
+          "prismplus.sg"
+        ]
+      },
+      {
+        "company": "Stellantis",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 13,
+        "domains": [
+          "stellantis.com"
+        ]
+      },
+      {
+        "company": "Morganplc",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 13,
+        "domains": [
+          "morganplc.com"
+        ]
+      },
+      {
+        "company": "Adipec",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 13,
+        "domains": [
+          "email.adipec.com"
+        ]
+      },
+      {
+        "company": "Hsbc",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 13,
+        "domains": [
+          "hsbc.com.sg"
+        ]
+      },
+      {
+        "company": "Fffibers",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 13,
+        "domains": [
+          "fffibers.com"
+        ]
+      },
+      {
+        "company": "Thecamx",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 13,
+        "domains": [
+          "thecamx.org"
+        ]
+      },
+      {
+        "company": "Dbschenker",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 13,
+        "domains": [
+          "dbschenker.com"
+        ]
+      },
+      {
+        "company": "Voiter",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 4,
+        "email_count": 13,
+        "domains": [
+          "voiter.pl"
+        ]
+      },
+      {
+        "company": "JobStreet",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 13,
+        "domains": [
+          "jobstreet.com"
+        ]
+      },
+      {
+        "company": "Income",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 3,
+        "email_count": 13,
+        "domains": [
+          "income.com.sg"
+        ]
+      },
+      {
+        "company": "Allianceairproduct",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 12,
+        "domains": [
+          "allianceairproduct.com"
+        ]
+      },
+      {
+        "company": "Toll Group",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 12,
+        "domains": [
+          "tollgroup.com"
+        ]
+      },
+      {
+        "company": "Wilhelm",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 12,
+        "domains": [
+          "wilhelm.hu"
+        ]
+      },
+      {
+        "company": "Acrossrelo",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 2,
+        "email_count": 12,
+        "domains": [
+          "acrossrelo.com"
+        ]
+      },
+      {
+        "company": "Divine Artisan",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 12,
+        "domains": [
+          "divine-artisan.com"
+        ]
+      },
+      {
+        "company": "Fareast Hospitality",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 12,
+        "domains": [
+          "mail.fareasthospitality.com"
+        ]
+      },
+      {
+        "company": "Imperial Treasure",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 4,
+        "email_count": 12,
+        "domains": [
+          "imperialtreasure.com"
+        ]
+      },
+      {
+        "company": "Eazy",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 12,
+        "domains": [
+          "eazy.com.sg"
+        ]
+      },
+      {
+        "company": "Habitap",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 12,
+        "domains": [
+          "habitap.app"
+        ]
+      },
+      {
+        "company": "Ions",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 3,
+        "email_count": 12,
+        "domains": [
+          "ions.hu"
+        ]
+      },
+      {
+        "company": "Exposol",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 12,
+        "domains": [
+          "exposol.de"
+        ]
+      },
+      {
+        "company": "Hamburg Messe",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 12,
+        "domains": [
+          "news.hamburg-messe.de"
+        ]
+      },
+      {
+        "company": "AIGMF",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 12,
+        "domains": [
+          "aigmf.com"
+        ]
+      },
+      {
+        "company": "Liberty Singapore",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 12,
+        "domains": [
+          "libertysingapore.sg"
+        ]
+      },
+      {
+        "company": "Thatsit",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 12,
+        "domains": [
+          "thatsit.sg"
+        ]
+      },
+      {
+        "company": "Rreab",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 3,
+        "email_count": 11,
+        "domains": [
+          "rreab.com"
+        ]
+      },
+      {
+        "company": "AMA Service",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 11,
+        "domains": [
+          "ama-service.com"
+        ]
+      },
+      {
+        "company": "Informa",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 11,
+        "domains": [
+          "informa.com"
+        ]
+      },
+      {
+        "company": "Vistra",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 11,
+        "domains": [
+          "vistra.com"
+        ]
+      },
+      {
+        "company": "Galleon",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 11,
+        "domains": [
+          "galleon.cc"
+        ]
+      },
+      {
+        "company": "Glenco",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 11,
+        "domains": [
+          "glenco.ru"
+        ]
+      },
+      {
+        "company": "MSIS",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 4,
+        "email_count": 11,
+        "domains": [
+          "msis.co.th"
+        ]
+      },
+      {
+        "company": "Global Exhibition Works",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 11,
+        "domains": [
+          "globalexhibitionworks.com"
+        ]
+      },
+      {
+        "company": "SIAE",
+        "relation_type": "client",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 11,
+        "domains": [
+          "siae.fr"
+        ]
+      }
+    ],
+    "vendor": [
+      {
+        "company": "Rongrongnm",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 4115,
+        "domains": [
+          "rongrongnm.com"
+        ]
+      },
+      {
+        "company": "Expeditors",
+        "relation_type": "vendor",
+        "confidence": "high",
+        "method": "rule",
+        "email_count": 2497,
+        "domains": [
+          "expeditors.com"
+        ]
+      },
+      {
+        "company": "Syensqo",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 2006,
+        "domains": [
+          "syensqo.com"
+        ]
+      },
+      {
+        "company": "SpaceX",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 1941,
+        "domains": [
+          "spacex.com"
+        ]
+      },
+      {
+        "company": "Info-Tech",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 1601,
+        "domains": [
+          "info-tech.com.sg"
+        ]
+      },
+      {
+        "company": "Oocl",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 1278,
+        "domains": [
+          "oocllogistics.com"
+        ]
+      },
+      {
+        "company": "Hlsllp",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 1030,
+        "domains": [
+          "hlsllp.com.sg"
+        ]
+      },
+      {
+        "company": "Fibrecast",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 957,
+        "domains": [
+          "fibrecast.com"
+        ]
+      },
+      {
+        "company": "Adinal Group",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 944,
+        "domains": [
+          "adinalgroup.com"
+        ]
+      },
+      {
+        "company": "Su Industry",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 897,
+        "domains": [
+          "suindustry.com"
+        ]
+      },
+      {
+        "company": "Palmer Holland",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 680,
+        "domains": [
+          "palmerholland.com"
+        ]
+      },
+      {
+        "company": "Thstextiles",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 665,
+        "domains": [
+          "thstextiles.co.uk"
+        ]
+      },
+      {
+        "company": "Standard Chartered",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 579,
+        "domains": [
+          "sc.com"
+        ]
+      },
+      {
+        "company": "DHL",
+        "relation_type": "vendor",
+        "confidence": "high",
+        "method": "rule",
+        "email_count": 490,
+        "domains": [
+          "dhl.com",
+          "express.dhl.com"
+        ]
+      },
+      {
+        "company": "Verz Design",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 454,
+        "domains": [
+          "verzdesign.com"
+        ]
+      },
+      {
+        "company": "Textile Technologies",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 379,
+        "domains": [
+          "textiletechnologies.co.uk"
+        ]
+      },
+      {
+        "company": "Freeman",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 364,
+        "domains": [
+          "freeman.com",
+          "e.freeman.com"
+        ]
+      },
+      {
+        "company": "NSREF",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 362,
+        "domains": [
+          "nsref.kr"
+        ]
+      },
+      {
+        "company": "Kohler",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 326,
+        "domains": [
+          "kohler.com"
+        ]
+      },
+      {
+        "company": "Royal Imaging",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 325,
+        "domains": [
+          "royalimaging.com.sg"
+        ]
+      },
+      {
+        "company": "Reppon",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 324,
+        "domains": [
+          "reppon.com"
+        ]
+      },
+      {
+        "company": "Office Cleanings",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 278,
+        "domains": [
+          "officecleanings.com.sg"
+        ]
+      },
+      {
+        "company": "Microsoft",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 276,
+        "domains": [
+          "microsoft.com",
+          "outlook.mail.microsoft"
+        ]
+      },
+      {
+        "company": "Enertaprima",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 268,
+        "domains": [
+          "enertaprima.com"
+        ]
+      },
+      {
+        "company": "Dso",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 267,
+        "domains": [
+          "dso.org.sg"
+        ]
+      },
+      {
+        "company": "VulcanShield",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 257,
+        "domains": [
+          "vulcanshield.sg"
+        ]
+      },
+      {
+        "company": "Bdo",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 244,
+        "domains": [
+          "bdo.com.sg"
+        ]
+      },
+      {
+        "company": "Uif",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 244,
+        "domains": [
+          "uif.com.hk"
+        ]
+      },
+      {
+        "company": "Tayind",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 241,
+        "domains": [
+          "tayind.com"
+        ]
+      },
+      {
+        "company": "CnHunicorn",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 234,
+        "domains": [
+          "cn-hunicorn.com"
+        ]
+      },
+      {
+        "company": "Fraunhofer",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 222,
+        "domains": [
+          "isc.fraunhofer.de",
+          "item.fraunhofer.de"
+        ]
+      },
+      {
+        "company": "Kuehne Nagel",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 220,
+        "domains": [
+          "kuehne-nagel.com"
+        ]
+      },
+      {
+        "company": "Solusiperancah",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 209,
+        "domains": [
+          "solusiperancah.co.id"
+        ]
+      },
+      {
+        "company": "High Temp Inc",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 208,
+        "domains": [
+          "hightempinc.net"
+        ]
+      },
+      {
+        "company": "Trelleborg",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 200,
+        "domains": [
+          "trelleborg.com"
+        ]
+      },
+      {
+        "company": "Fjhanyang",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 179,
+        "domains": [
+          "fjhanyang.com"
+        ]
+      },
+      {
+        "company": "Alpha Inc Europe",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 176,
+        "domains": [
+          "alphainc-europe.com"
+        ]
+      },
+      {
+        "company": "Szshowjoy",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 174,
+        "domains": [
+          "szshowjoy.com"
+        ]
+      },
+      {
+        "company": "Db Group",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 170,
+        "domains": [
+          "dbgroup.net"
+        ]
+      },
+      {
+        "company": "Pereocean",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 163,
+        "domains": [
+          "pereocean.com"
+        ]
+      },
+      {
+        "company": "Tdy Cargo",
+        "relation_type": "vendor",
+        "confidence": "high",
+        "method": "rule",
+        "email_count": 162,
+        "domains": [
+          "tdycargo.com"
+        ]
+      },
+      {
+        "company": "Klayenersol",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 151,
+        "domains": [
+          "klayenersol.com"
+        ]
+      },
+      {
+        "company": "Meisei",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 145,
+        "domains": [
+          "meisei.com.sg"
+        ]
+      },
+      {
+        "company": "Blue Origin",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 144,
+        "domains": [
+          "blueorigin.com"
+        ]
+      },
+      {
+        "company": "Wilsonart",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 142,
+        "domains": [
+          "wilsonart.co.th"
+        ]
+      },
+      {
+        "company": "Allebras",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 124,
+        "domains": [
+          "allebras.com.br"
+        ]
+      },
+      {
+        "company": "Homecleaningsg",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 122,
+        "domains": [
+          "homecleaningsg.com"
+        ]
+      },
+      {
+        "company": "Pyromeral",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 117,
+        "domains": [
+          "pyromeral.com"
+        ]
+      },
+      {
+        "company": "Arrowtex",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 111,
+        "domains": [
+          "arrowtex.co.in"
+        ]
+      },
+      {
+        "company": "BGF",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 105,
+        "domains": [
+          "bgf.com"
+        ]
+      },
+      {
+        "company": "Doncasters",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 105,
+        "domains": [
+          "doncasters.us"
+        ]
+      },
+      {
+        "company": "KJTC",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 102,
+        "domains": [
+          "kjtc.co.kr"
+        ]
+      },
+      {
+        "company": "Headwin",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 98,
+        "domains": [
+          "headwin.com.cn"
+        ]
+      },
+      {
+        "company": "Asaco",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 96,
+        "domains": [
+          "asaco.in"
+        ]
+      },
+      {
+        "company": "Saginaw Carbon",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 94,
+        "domains": [
+          "saginawcarbon.com"
+        ]
+      },
+      {
+        "company": "FJ Hanyang",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 89,
+        "domains": [
+          "fjhanyang-sz.com"
+        ]
+      },
+      {
+        "company": "Global Service VIP",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 88,
+        "domains": [
+          "globalservicevip.com"
+        ]
+      },
+      {
+        "company": "Yahoo",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 87,
+        "domains": [
+          "yahoo.com.sg"
+        ]
+      },
+      {
+        "company": "Renegade Materials",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 84,
+        "domains": [
+          "renegadematerials.com"
+        ]
+      },
+      {
+        "company": "Lyreco",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 84,
+        "domains": [
+          "lyreco.com",
+          "members.lyreco.com"
+        ]
+      },
+      {
+        "company": "FedEx",
+        "relation_type": "vendor",
+        "confidence": "high",
+        "method": "rule",
+        "email_count": 79,
+        "domains": [
+          "fedex.com"
+        ]
+      },
+      {
+        "company": "Zircoa",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 78,
+        "domains": [
+          "zircoa.com"
+        ]
+      },
+      {
+        "company": "Siam Technic",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 77,
+        "domains": [
+          "siamtechnic.com"
+        ]
+      },
+      {
+        "company": "Chiz Bros",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 75,
+        "domains": [
+          "chizbros.com"
+        ]
+      },
+      {
+        "company": "TCLEmail",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 75,
+        "domains": [
+          "tclemail.com.hk"
+        ]
+      },
+      {
+        "company": "EDPNC",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 73,
+        "domains": [
+          "edpnc.com"
+        ]
+      },
+      {
+        "company": "Peceng",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 72,
+        "domains": [
+          "peceng.com"
+        ]
+      },
+      {
+        "company": "HLS Partnership",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 48,
+        "domains": [
+          "hlspartnership.com"
+        ]
+      },
+      {
+        "company": "Caravel",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 47,
+        "domains": [
+          "caravel.uk.com"
+        ]
+      },
+      {
+        "company": "Daijob",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 47,
+        "domains": [
+          "daijob.com"
+        ]
+      },
+      {
+        "company": "Gentex",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 46,
+        "domains": [
+          "gentex.com"
+        ]
+      },
+      {
+        "company": "1Autos",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 45,
+        "domains": [
+          "1autos.com.sg"
+        ]
+      },
+      {
+        "company": "Fenner PPD",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 44,
+        "domains": [
+          "fennerppd.com"
+        ]
+      },
+      {
+        "company": "Bark",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 43,
+        "domains": [
+          "cmail.bark.com"
+        ]
+      },
+      {
+        "company": "Palffy Partners",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 43,
+        "domains": [
+          "palffypartners.com"
+        ]
+      },
+      {
+        "company": "Toxic Suppression",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 43,
+        "domains": [
+          "toxicsuppression.com"
+        ]
+      },
+      {
+        "company": "Magmagroup",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 43,
+        "domains": [
+          "magmagroup.com"
+        ]
+      },
+      {
+        "company": "Eco Clean Office",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 42,
+        "domains": [
+          "ecocleanoffice.com"
+        ]
+      },
+      {
+        "company": "Flas Singapore",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 38,
+        "domains": [
+          "flasingapore.org"
+        ]
+      },
+      {
+        "company": "GMO Aozora Bank",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 36,
+        "domains": [
+          "bank.gmo-aozora.com"
+        ]
+      },
+      {
+        "company": "Cypress Industries",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 34,
+        "domains": [
+          "cypressindustries.in"
+        ]
+      },
+      {
+        "company": "Cropper",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 34,
+        "domains": [
+          "cropper.com"
+        ]
+      },
+      {
+        "company": "Quotz",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 34,
+        "domains": [
+          "email.quotz.com.sg"
+        ]
+      },
+      {
+        "company": "Forvia",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 33,
+        "domains": [
+          "forvia.com"
+        ]
+      },
+      {
+        "company": "Taco",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 33,
+        "domains": [
+          "taco.ca"
+        ]
+      },
+      {
+        "company": "Yingkepe",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 32,
+        "domains": [
+          "yingkepe.cn"
+        ]
+      },
+      {
+        "company": "Avance Services",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 32,
+        "domains": [
+          "avanceservices.com"
+        ]
+      },
+      {
+        "company": "SGS",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 32,
+        "domains": [
+          "sgs.com"
+        ]
+      },
+      {
+        "company": "Isovolta",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 31,
+        "domains": [
+          "isovolta.com"
+        ]
+      },
+      {
+        "company": "Recruit",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 31,
+        "domains": [
+          "point.recruit.co.jp"
+        ]
+      },
+      {
+        "company": "MWCLG",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 31,
+        "domains": [
+          "mwclg.com"
+        ]
+      },
+      {
+        "company": "RHT Law Asia",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 31,
+        "domains": [
+          "rhtlawasia.com"
+        ]
+      },
+      {
+        "company": "GMCap Management",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 31,
+        "domains": [
+          "gmcapmanagement.com"
+        ]
+      },
+      {
+        "company": "SP Group",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 30,
+        "domains": [
+          "spgroup.com.sg"
+        ]
+      },
+      {
+        "company": "Fibrecoat",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 30,
+        "domains": [
+          "fibrecoat.de"
+        ]
+      },
+      {
+        "company": "Nucleo Consulting",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 30,
+        "domains": [
+          "nucleoconsulting.com"
+        ]
+      },
+      {
+        "company": "AD Group",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 29,
+        "domains": [
+          "adgroup.com.tw"
+        ]
+      },
+      {
+        "company": "C2M Global",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 28,
+        "domains": [
+          "c2mglobal.de"
+        ]
+      },
+      {
+        "company": "Heatex",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 28,
+        "domains": [
+          "heatex.com.sg"
+        ]
+      },
+      {
+        "company": "Fast Flow Group",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 28,
+        "domains": [
+          "fastflowgroup.com"
+        ]
+      },
+      {
+        "company": "Georg Fischer",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 27,
+        "domains": [
+          "georgfischer.com"
+        ]
+      },
+      {
+        "company": "JEC",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 26,
+        "domains": [
+          "jec.com"
+        ]
+      },
+      {
+        "company": "Unitex Composite",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 26,
+        "domains": [
+          "unitexcomposite.com"
+        ]
+      },
+      {
+        "company": "Voice App",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 26,
+        "domains": [
+          "voiceapp.co.jp"
+        ]
+      },
+      {
+        "company": "Neo Materials",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 25,
+        "domains": [
+          "neomaterials.com"
+        ]
+      },
+      {
+        "company": "Firelakemfg",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 15,
+        "domains": [
+          "firelakemfg.com"
+        ]
+      },
+      {
+        "company": "Fieldfurnace",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 15,
+        "domains": [
+          "fieldfurnace.com.au"
+        ]
+      },
+      {
+        "company": "Aisltd",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 15,
+        "domains": [
+          "aisltd.com"
+        ]
+      },
+      {
+        "company": "Spdigital",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 15,
+        "domains": [
+          "spdigital.sg"
+        ]
+      },
+      {
+        "company": "Axparasolutions",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 15,
+        "domains": [
+          "axparasolutions.com"
+        ]
+      },
+      {
+        "company": "Seek",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 14,
+        "domains": [
+          "seek.com"
+        ]
+      },
+      {
+        "company": "Nmtshipping",
+        "relation_type": "vendor",
+        "confidence": "high",
+        "method": "rule",
+        "email_count": 14,
+        "domains": [
+          "nmtshipping.com"
+        ]
+      },
+      {
+        "company": "Spruson",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 14,
+        "domains": [
+          "spruson.com"
+        ]
+      },
+      {
+        "company": "Ematco",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 14,
+        "domains": [
+          "ematco.com"
+        ]
+      },
+      {
+        "company": "Atlasstone",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 14,
+        "domains": [
+          "atlasstone.com.tr"
+        ]
+      },
+      {
+        "company": "Runsuncloud",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 14,
+        "domains": [
+          "runsuncloud.com"
+        ]
+      },
+      {
+        "company": "Unusual",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 14,
+        "domains": [
+          "unusual.com.sg"
+        ]
+      },
+      {
+        "company": "ArcCosgolf",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 13,
+        "domains": [
+          "m.arccosgolf.com"
+        ]
+      },
+      {
+        "company": "Fitglassfiber",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 13,
+        "domains": [
+          "fit-glassfiber.com.tw"
+        ]
+      },
+      {
+        "company": "Psu",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 13,
+        "domains": [
+          "psu.edu"
+        ]
+      },
+      {
+        "company": "Jmglobalservice",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 13,
+        "domains": [
+          "jmglobalservice.com"
+        ]
+      },
+      {
+        "company": "Boilermaster",
+        "relation_type": "vendor",
+        "confidence": "high",
+        "method": "manual_correction",
+        "email_count": 13,
+        "domains": [
+          "boilermaster.biz"
+        ]
+      },
+      {
+        "company": "Htes",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 13,
+        "domains": [
+          "htes.hu"
+        ]
+      },
+      {
+        "company": "Rollsroyce",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 13,
+        "domains": [
+          "ps.rolls-royce.com"
+        ]
+      },
+      {
+        "company": "Enkplastik",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 12,
+        "domains": [
+          "enkplastik.com"
+        ]
+      },
+      {
+        "company": "Roadrunner",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 12,
+        "domains": [
+          "roadrunner.com"
+        ]
+      },
+      {
+        "company": "Thermal Tec",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 12,
+        "domains": [
+          "thermal-tec.lv"
+        ]
+      },
+      {
+        "company": "Siphonicflowmandiri",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 12,
+        "domains": [
+          "siphonicflowmandiri.com"
+        ]
+      },
+      {
+        "company": "Qianmuip",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 12,
+        "domains": [
+          "qianmuip.com"
+        ]
+      },
+      {
+        "company": "Giga",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 12,
+        "domains": [
+          "giga.com.sg"
+        ]
+      },
+      {
+        "company": "Shepherd Asset",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 11,
+        "domains": [
+          "shepherdasset.com"
+        ]
+      },
+      {
+        "company": "Angtongseng",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 11,
+        "domains": [
+          "angtongseng.com"
+        ]
+      },
+      {
+        "company": "DGDS",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 1,
+        "email_count": 11,
+        "domains": [
+          "dgds.ai"
+        ]
+      },
+      {
+        "company": "Insultec",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 11,
+        "domains": [
+          "insultec.com.sg"
+        ]
+      },
+      {
+        "company": "Chronopost",
+        "relation_type": "vendor",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 11,
+        "domains": [
+          "chronopost.fr"
+        ]
+      }
+    ],
+    "government": [
+      {
+        "company": "Mfa",
+        "relation_type": "government",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 240,
+        "domains": [
+          "mfa.gov.hu"
+        ]
+      },
+      {
+        "company": "Ica",
+        "relation_type": "government",
+        "confidence": "high",
+        "method": "rule",
+        "email_count": 206,
+        "domains": [
+          "ica.gov.sg"
+        ]
+      },
+      {
+        "company": "IRAS",
+        "relation_type": "government",
+        "confidence": "high",
+        "method": "rule",
+        "email_count": 47,
+        "domains": [
+          "iras.gov.sg"
+        ]
+      },
+      {
+        "company": "JPJ",
+        "relation_type": "government",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 46,
+        "domains": [
+          "jpj.gov.my"
+        ]
+      },
+      {
+        "company": "Businessintexas",
+        "relation_type": "government",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 14,
+        "domains": [
+          "businessintexas.com"
+        ]
+      },
+      {
+        "company": "Sbf",
+        "relation_type": "government",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 13,
+        "domains": [
+          "sbf.org.sg"
+        ]
+      },
+      {
+        "company": "EnterpriseSG",
+        "relation_type": "government",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 11,
+        "domains": [
+          "enterprisesg.gov.sg"
+        ]
+      }
+    ],
+    "partner": [
+      {
+        "company": "Hipa",
+        "relation_type": "partner",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 850,
+        "domains": [
+          "hipa.hu"
+        ]
+      },
+      {
+        "company": "TUV SUD",
+        "relation_type": "partner",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 274,
+        "domains": [
+          "tuvsud.com"
+        ]
+      },
+      {
+        "company": "Dlr",
+        "relation_type": "partner",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 150,
+        "domains": [
+          "dlr.de"
+        ]
+      },
+      {
+        "company": "Neo",
+        "relation_type": "partner",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 94,
+        "domains": [
+          "neo.co.th"
+        ]
+      },
+      {
+        "company": "Hub Energy",
+        "relation_type": "partner",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 83,
+        "domains": [
+          "hubenergys.com"
+        ]
+      },
+      {
+        "company": "Lucideon",
+        "relation_type": "partner",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 79,
+        "domains": [
+          "uk.lucideon.com"
+        ]
+      },
+      {
+        "company": "Composites United",
+        "relation_type": "partner",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 41,
+        "domains": [
+          "composites-united.com"
+        ]
+      },
+      {
+        "company": "Evantage Technology",
+        "relation_type": "partner",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 32,
+        "domains": [
+          "evantage-technology.com"
+        ]
+      },
+      {
+        "company": "SEMA",
+        "relation_type": "partner",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 30,
+        "domains": [
+          "info.sema.org"
+        ]
+      },
+      {
+        "company": "Engineering 10",
+        "relation_type": "partner",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 29,
+        "domains": [
+          "engineering10.com"
+        ]
+      },
+      {
+        "company": "Thorpepme",
+        "relation_type": "partner",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 15,
+        "domains": [
+          "thorpepme.com"
+        ]
+      },
+      {
+        "company": "Maynardnexsen",
+        "relation_type": "partner",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 13,
+        "domains": [
+          "maynardnexsen.com"
+        ]
+      },
+      {
+        "company": "TRT",
+        "relation_type": "partner",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 13,
+        "domains": [
+          "trt.com"
+        ]
+      },
+      {
+        "company": "Dun & Bradstreet",
+        "relation_type": "partner",
+        "confidence": "medium",
+        "method": "reclassify_v2",
+        "sample_count": 5,
+        "email_count": 12,
+        "domains": [
+          "dnb.com.my"
+        ]
+      },
+      {
+        "company": "SME500",
+        "relation_type": "partner",
+        "confidence": "medium",
+        "method": "deep_analysis",
+        "sample_count": 5,
+        "email_count": 12,
+        "domains": [
+          "enterprise.sme500.atc.sg"
+        ]
+      },
+      {
+        "company": "Ditf",
+        "relation_type": "partner",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 11,
+        "domains": [
+          "ditf.de"
+        ]
+      },
+      {
+        "company": "Cramer Group",
+        "relation_type": "partner",
+        "confidence": "medium",
+        "method": "llm",
+        "sample_count": 5,
+        "email_count": 11,
+        "domains": [
+          "cramer-group.com"
+        ]
+      }
+    ],
+    "unknown": [
+      {
+        "company": "Sohu",
+        "relation_type": "unknown",
+        "confidence": "low",
+        "method": "deep_analysis",
+        "sample_count": 0,
+        "email_count": 12,
+        "domains": [
+          "sohu.com"
+        ]
+      },
+      {
+        "company": "Qiandynar",
+        "relation_type": "unknown",
+        "confidence": "low",
+        "method": "deep_analysis",
+        "sample_count": 0,
+        "email_count": 12,
+        "domains": [
+          "qiandynar.com"
+        ]
+      }
+    ]
+  }
+}

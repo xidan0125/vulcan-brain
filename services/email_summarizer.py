@@ -138,9 +138,9 @@ class EmailSummarizer:
         """识别重要客户邮件"""
         vip_emails = []
         for email in emails:
-            from_addr = email.get("from", {}).get("address", "").lower()
-            from_name = email.get("from", {}).get("name", "").lower()
-            subject = email.get("subject", "").lower()
+            from_addr = (email.get("from") or {}).get("address", "") or ""; from_addr = from_addr.lower()
+            from_name = ((email.get("from") or {}).get("name", "") or "").lower()
+            subject = (email.get("subject", "") or "").lower()
             
             for client in VIP_CLIENTS:
                 if client in from_addr or client in from_name or client in subject:

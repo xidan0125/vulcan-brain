@@ -417,7 +417,7 @@ class EmailStore:
                     result = await self.sync_user_emails(
                         email, 
                         since=since, 
-                        folder=folder_id,  # 使用ID而不是名称
+                        folder=folder_info["type"],  # 使用标准类型名称(inbox/sentItems/archive)
                         max_emails=max_per_folder
                     )
                     total["fetched"] += result["fetched"]

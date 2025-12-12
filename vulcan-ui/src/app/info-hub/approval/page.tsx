@@ -18,6 +18,7 @@ import {
   User,
   Building,
 } from "lucide-react";
+import InfoHubBreadcrumb from "@/components/info-hub/InfoHubBreadcrumb";
 
 interface ApprovalStats {
   total: number;
@@ -169,6 +170,9 @@ export default function ApprovalPage() {
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
+      {/* 面包屑 */}
+      <InfoHubBreadcrumb items={[{ label: "审批中心" }]} />
+
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">

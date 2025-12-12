@@ -1,0 +1,2206 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d13" for="edge" attr.name="truncate" attr.type="string" />
+  <key id="d12" for="edge" attr.name="created_at" attr.type="long" />
+  <key id="d11" for="edge" attr.name="file_path" attr.type="string" />
+  <key id="d10" for="edge" attr.name="source_id" attr.type="string" />
+  <key id="d9" for="edge" attr.name="keywords" attr.type="string" />
+  <key id="d8" for="edge" attr.name="description" attr.type="string" />
+  <key id="d7" for="edge" attr.name="weight" attr.type="double" />
+  <key id="d6" for="node" attr.name="truncate" attr.type="string" />
+  <key id="d5" for="node" attr.name="created_at" attr.type="long" />
+  <key id="d4" for="node" attr.name="file_path" attr.type="string" />
+  <key id="d3" for="node" attr.name="source_id" attr.type="string" />
+  <key id="d2" for="node" attr.name="description" attr.type="string" />
+  <key id="d1" for="node" attr.name="entity_type" attr.type="string" />
+  <key id="d0" for="node" attr.name="entity_id" attr.type="string" />
+  <graph edgedefault="undirected">
+    <node id="Claire">
+      <data key="d0">Claire</data>
+      <data key="d1">person</data>
+      <data key="d2">Claire is a recipient of the email addressed in the greeting and referenced in the email content.</data>
+      <data key="d3">chunk-b00cdb84fa3055dd467d0326ad2de40b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764775304</data>
+      <data key="d6" />
+    </node>
+    <node id="Rich">
+      <data key="d0">Rich</data>
+      <data key="d1">person</data>
+      <data key="d2">Rich is a person mentioned as having met Dani at CAMX regarding a technical resource.&lt;SEP&gt;Rich is a person who met Gonzalo at CAMX.</data>
+      <data key="d3">chunk-b00cdb84fa3055dd467d0326ad2de40b&lt;SEP&gt;chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764775385</data>
+      <data key="d6" />
+    </node>
+    <node id="Dani">
+      <data key="d0">Dani</data>
+      <data key="d1">person</data>
+      <data key="d2">Dani is a person mentioned as having met Rich at CAMX regarding a technical resource.&lt;SEP&gt;Dani is a person who met Gonzalo at CAMX.</data>
+      <data key="d3">chunk-b00cdb84fa3055dd467d0326ad2de40b&lt;SEP&gt;chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764775385</data>
+      <data key="d6" />
+    </node>
+    <node id="Gonzalo">
+      <data key="d0">Gonzalo</data>
+      <data key="d1">person</data>
+      <data key="d2">Gonzalo is a technical resource included in the email copy who was met by Rich and Dani at CAMX.&lt;SEP&gt;Gonzalo is a person who was met by Rich and Dani at CAMX and is in the copy of the email.</data>
+      <data key="d3">chunk-b00cdb84fa3055dd467d0326ad2de40b&lt;SEP&gt;chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764775386</data>
+      <data key="d6" />
+    </node>
+    <node id="M99">
+      <data key="d0">M99</data>
+      <data key="d1">artifact</data>
+      <data key="d2">M99 is a product or model referenced in the email for which technical details were obtained from testing.&lt;SEP&gt;M99 is a product model that has been tested, and technical details are being discussed.</data>
+      <data key="d3">chunk-b00cdb84fa3055dd467d0326ad2de40b&lt;SEP&gt;chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764775386</data>
+      <data key="d6" />
+    </node>
+    <node id="CAMX">
+      <data key="d0">CAMX</data>
+      <data key="d1">event</data>
+      <data key="d2">CAMX is a conference (event) where Rich and Dani met Gonzalo.&lt;SEP&gt;CAMX is a trade show event where Rich and Dani met Gonzalo.&lt;SEP&gt;CAMX is an event (trade show) taking place in Orlando on Sept 9-11th, focused on the Vulcan Shield product.</data>
+      <data key="d3">chunk-b00cdb84fa3055dd467d0326ad2de40b&lt;SEP&gt;chunk-31316ac015c3107d11fdfaaa9ae7972b&lt;SEP&gt;chunk-2f3fc821eab89756950ca0445407567a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776561</data>
+      <data key="d6" />
+    </node>
+    <node id="EU/US">
+      <data key="d0">EU/US</data>
+      <data key="d1">location</data>
+      <data key="d2">EU/US refers to the European Union and United States regions where a technical resource is located.</data>
+      <data key="d3">chunk-b00cdb84fa3055dd467d0326ad2de40b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764775304</data>
+      <data key="d6" />
+    </node>
+    <node id="David">
+      <data key="d0">David</data>
+      <data key="d1">person</data>
+      <data key="d2">David is the sender of the email, as indicated by the email address and signature.</data>
+      <data key="d3">chunk-b00cdb84fa3055dd467d0326ad2de40b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764775304</data>
+      <data key="d6" />
+    </node>
+    <node id="W-F100B1-270">
+      <data key="d0">W-F100B1-270</data>
+      <data key="d1">artifact</data>
+      <data key="d2">W-F100B1-270 is a reference code in the email subject line, indicating the topic of the email.&lt;SEP&gt;W-F100B1-270 is a reference code for a product or project mentioned in the email subject.</data>
+      <data key="d3">chunk-b00cdb84fa3055dd467d0326ad2de40b&lt;SEP&gt;chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764775386</data>
+      <data key="d6" />
+    </node>
+    <node id="Vulcan Shield">
+      <data key="d0">Vulcan Shield</data>
+      <data key="d1">organization</data>
+      <data key="d2">Vulcan Shield is the organization associated with the email domain vulcanshield.com, as indicated by the sender's email address.&lt;SEP&gt;Vulcan Shield is the company of the sender (David Kneale) and recipient (Daniel Hu), as indicated by email domains.&lt;SEP&gt;Vulcan Shield is a product being discussed in the email, central to the CAMX event invitation.&lt;SEP&gt;The organization associated with the email domain vulcanshield.com, which is the company where the sender and recipient are employed.&lt;SEP&gt;The organization that owns the email domain vulcanshield.com, to which both the sender and recipient belong.&lt;SEP&gt;Vulcan Shield is the company domain from which the email was sent, as indicated by the email address.</data>
+      <data key="d3">chunk-b00cdb84fa3055dd467d0326ad2de40b&lt;SEP&gt;chunk-31316ac015c3107d11fdfaaa9ae7972b&lt;SEP&gt;chunk-2f3fc821eab89756950ca0445407567a&lt;SEP&gt;chunk-0ab74b13b689cb643f74fb13d8d99793&lt;SEP&gt;chunk-2c456ab1a49127824bce55b9ed871dc5&lt;SEP&gt;chunk-74bb905bd72b79c50eae389babc81be7</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764778941</data>
+      <data key="d6" />
+    </node>
+    <node id="HTMS">
+      <data key="d0">HTMS</data>
+      <data key="d1">organization</data>
+      <data key="d2">HTMS is the organization associated with the email domain htms.tech, as indicated by the recipient's email address.&lt;SEP&gt;HTMS is the company of the recipient (Claire Gwilliam), as indicated by the email domain.</data>
+      <data key="d3">chunk-b00cdb84fa3055dd467d0326ad2de40b&lt;SEP&gt;chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764775386</data>
+      <data key="d6" />
+    </node>
+    <node id="David Kneale">
+      <data key="d0">David Kneale</data>
+      <data key="d1">person</data>
+      <data key="d2">David Kneale is the sender of the email, working at Vulcan Shield, and is following up on a quotation and technical details.</data>
+      <data key="d3">chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764775385</data>
+      <data key="d6" />
+    </node>
+    <node id="Claire Gwilliam">
+      <data key="d0">Claire Gwilliam</data>
+      <data key="d1">person</data>
+      <data key="d2">Claire Gwilliam is a recipient of the email, working at HTMS, and is being asked to review technical details.</data>
+      <data key="d3">chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764775385</data>
+      <data key="d6" />
+    </node>
+    <node id="Daniel Hu">
+      <data key="d0">Daniel Hu</data>
+      <data key="d1">person</data>
+      <data key="d2">Daniel Hu is a recipient of the email, working at Vulcan Shield, and is mentioned as a colleague.</data>
+      <data key="d3">chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764775385</data>
+      <data key="d6" />
+    </node>
+    <node id="Quotation">
+      <data key="d0">Quotation</data>
+      <data key="d1">artifact</data>
+      <data key="d2">The Quotation is an attached document that David asks Claire to review.</data>
+      <data key="d3">chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764775386</data>
+      <data key="d6" />
+    </node>
+    <node id="EU">
+      <data key="d0">EU</data>
+      <data key="d1">location</data>
+      <data key="d2">EU refers to the European Union, as mentioned in the context of having a technical resource.</data>
+      <data key="d3">chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764775386</data>
+      <data key="d6" />
+    </node>
+    <node id="US">
+      <data key="d0">US</data>
+      <data key="d1">location</data>
+      <data key="d2">US refers to the United States, as mentioned in the context of having a technical resource.</data>
+      <data key="d3">chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764775386</data>
+      <data key="d6" />
+    </node>
+    <node id="projectreport83@gmail.com">
+      <data key="d0">projectreport83@gmail.com</data>
+      <data key="d1">organization</data>
+      <data key="d2">The sender of the email, representing a project team, as indicated by the email address.</data>
+      <data key="d3">chunk-f0cf8ba05336556b197e3aaca8a9475f</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776077</data>
+      <data key="d6" />
+    </node>
+    <node id="Jolene">
+      <data key="d0">Jolene</data>
+      <data key="d1">person</data>
+      <data key="d2">The recipient of the email, to whom the sender requested a WhatsApp number for collaboration on an assignment.</data>
+      <data key="d3">chunk-f0cf8ba05336556b197e3aaca8a9475f</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776077</data>
+      <data key="d6" />
+    </node>
+    <node id="Peter">
+      <data key="d0">Peter</data>
+      <data key="d1">person</data>
+      <data key="d2">Peter is the recipient of the email and is associated with CEIS through his email domain.</data>
+      <data key="d3">chunk-92acc0b2f37831f53ec48888079e010e</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776119</data>
+      <data key="d6" />
+    </node>
+    <node id="Emma Wang">
+      <data key="d0">Emma Wang</data>
+      <data key="d1">person</data>
+      <data key="d2">Emma Wang is the sender of the email and represents Vulcanshield, as indicated by her email domain.</data>
+      <data key="d3">chunk-92acc0b2f37831f53ec48888079e010e</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776119</data>
+      <data key="d6" />
+    </node>
+    <node id="Vic Qin">
+      <data key="d0">Vic Qin</data>
+      <data key="d1">person</data>
+      <data key="d2">Vic Qin is the person who provided the three offers referenced in the email.</data>
+      <data key="d3">chunk-92acc0b2f37831f53ec48888079e010e</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776119</data>
+      <data key="d6" />
+    </node>
+    <node id="HIPA">
+      <data key="d0">HIPA</data>
+      <data key="d1">organization</data>
+      <data key="d2">HIPA is the organization expected to officially accept the three offers mentioned in the email.</data>
+      <data key="d3">chunk-92acc0b2f37831f53ec48888079e010e</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776119</data>
+      <data key="d6" />
+    </node>
+    <node id="Vulcanshield">
+      <data key="d0">Vulcanshield</data>
+      <data key="d1">organization</data>
+      <data key="d2">Vulcanshield is the organization that Emma Wang represents, based on her email domain.&lt;SEP&gt;Vulcanshield is the organization that sent the email, as indicated by the email domain vulcanshield.com.</data>
+      <data key="d3">chunk-92acc0b2f37831f53ec48888079e010e&lt;SEP&gt;chunk-4989f91bc2dc1babcc3f8e147692b549</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764778909</data>
+      <data key="d6" />
+    </node>
+    <node id="CEIS">
+      <data key="d0">CEIS</data>
+      <data key="d1">organization</data>
+      <data key="d2">CEIS is the organization associated with Peter, based on his email domain.</data>
+      <data key="d3">chunk-92acc0b2f37831f53ec48888079e010e</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776119</data>
+      <data key="d6" />
+    </node>
+    <node id="3 Offers">
+      <data key="d0">3 Offers</data>
+      <data key="d1">concept</data>
+      <data key="d2">3 Offers refers to the set of three offers provided by Vic Qin, which are the subject of the email regarding acceptance and reference number discrepancies.</data>
+      <data key="d3">chunk-92acc0b2f37831f53ec48888079e010e</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776119</data>
+      <data key="d6" />
+    </node>
+    <node id="Acceptance Letter">
+      <data key="d0">Acceptance Letter</data>
+      <data key="d1">concept</data>
+      <data key="d2">Acceptance Letter is the document that was sent with an incorrect reference number (U60/2025 instead of 4460/2025) as discussed in the email.</data>
+      <data key="d3">chunk-92acc0b2f37831f53ec48888079e010e</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776119</data>
+      <data key="d6" />
+    </node>
+    <node id="Composites United e.V.">
+      <data key="d0">Composites United e.V.</data>
+      <data key="d1">organization</data>
+      <data key="d2">The organization that publishes the Composites United Newsletter and organizes events such as the Sommergrillen and CMC-Workshop.</data>
+      <data key="d3">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776222</data>
+      <data key="d6" />
+    </node>
+    <node id="CU Ost">
+      <data key="d0">CU Ost</data>
+      <data key="d1">organization</data>
+      <data key="d2">A branch of Composites United e.V. that co-organized the Sommergrillen event in Weixdorf on August 20, 2025.</data>
+      <data key="d3">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776222</data>
+      <data key="d6" />
+    </node>
+    <node id="CU Bau">
+      <data key="d0">CU Bau</data>
+      <data key="d1">organization</data>
+      <data key="d2">A branch of Composites United e.V. that co-organized the Sommergrillen event in Weixdorf on August 20, 2025.</data>
+      <data key="d3">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776222</data>
+      <data key="d6" />
+    </node>
+    <node id="Deutsch-Schwedische Handelskammer">
+      <data key="d0">Deutsch-Schwedische Handelskammer</data>
+      <data key="d1">organization</data>
+      <data key="d2">The German-Swedish Chamber of Commerce that organizes the Leistungsschau event for a delegation trip to Sweden.</data>
+      <data key="d3">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776222</data>
+      <data key="d6" />
+    </node>
+    <node id="Sommergrillen">
+      <data key="d0">Sommergrillen</data>
+      <data key="d1">event</data>
+      <data key="d2">An annual summer grill event co-organized by CU Ost and CU Bau in Weixdorf, attracting 110 participants on August 20, 2025.</data>
+      <data key="d3">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776222</data>
+      <data key="d6" />
+    </node>
+    <node id="CMC-Workshop">
+      <data key="d0">CMC-Workshop</data>
+      <data key="d1">event</data>
+      <data key="d2">A workshop held in Bergamo on September 2, 2025, discussing the political agenda for Carbon Matrix Composites (CMC) to strengthen Europe's competitiveness.</data>
+      <data key="d3">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776222</data>
+      <data key="d6" />
+    </node>
+    <node id="Leistungsschau Leichtbau für die Mobilität der Zukunft">
+      <data key="d0">Leistungsschau Leichtbau für die Mobilität der Zukunft</data>
+      <data key="d1">event</data>
+      <data key="d2">An exhibition event titled "Leichtbau für die Mobilität der Zukunft" (Lightweight Construction for Future Mobility) organized as part of a delegation trip to Sweden from October 13-15, 2025.</data>
+      <data key="d3">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776222</data>
+      <data key="d6" />
+    </node>
+    <node id="ResC4EU Expert Sessions">
+      <data key="d0">ResC4EU Expert Sessions</data>
+      <data key="d1">event</data>
+      <data key="d2">A series of online sessions organized by Composites United e.V. on August 12, 2025, aimed at empowering SMEs with technologies for supply chain resilience and sustainability.</data>
+      <data key="d3">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776222</data>
+      <data key="d6" />
+    </node>
+    <node id="Webseminar Wednesday">
+      <data key="d0">Webseminar Wednesday</data>
+      <data key="d1">event</data>
+      <data key="d2">A webinar on September 10, 2025, presenting a technology for manufacturing thermoplastic-impregnated and width-fixed fiber tapes.</data>
+      <data key="d3">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776222</data>
+      <data key="d6" />
+    </node>
+    <node id="Jour Fixe">
+      <data key="d0">Jour Fixe</data>
+      <data key="d1">event</data>
+      <data key="d2">A regular meeting event in its 33rd edition on September 15, 2025, focused on aircraft lightweight composites.</data>
+      <data key="d3">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776222</data>
+      <data key="d6" />
+    </node>
+    <node id="Weixdorf">
+      <data key="d0">Weixdorf</data>
+      <data key="d1">location</data>
+      <data key="d2">A location in Germany where the Sommergrillen event was held on August 20, 2025.</data>
+      <data key="d3">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776222</data>
+      <data key="d6" />
+    </node>
+    <node id="Bergamo">
+      <data key="d0">Bergamo</data>
+      <data key="d1">location</data>
+      <data key="d2">A location in Italy where the CMC-Workshop was held on September 2, 2025.</data>
+      <data key="d3">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776222</data>
+      <data key="d6" />
+    </node>
+    <node id="Composites United">
+      <data key="d0">Composites United</data>
+      <data key="d1">organization</data>
+      <data key="d2">The common name of the organization that publishes the Composites United Newsletter, distinct from its legal name Composites United e.V.</data>
+      <data key="d3">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776222</data>
+      <data key="d6" />
+    </node>
+    <node id="Die Feder">
+      <data key="d0">Die Feder</data>
+      <data key="d1">content</data>
+      <data key="d2">A podcast series in which Dr. Fabian Grasse discusses composite testing for lightweight construction.</data>
+      <data key="d3">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776222</data>
+      <data key="d6" />
+    </node>
+    <node id="Dr. Fabian Grasse">
+      <data key="d0">Dr. Fabian Grasse</data>
+      <data key="d1">person</data>
+      <data key="d2">A speaker who participated in an episode of the Die Feder podcast discussing the development of a composite testing company.</data>
+      <data key="d3">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776222</data>
+      <data key="d6" />
+    </node>
+    <node id="Singapore">
+      <data key="d0">Singapore</data>
+      <data key="d1">location</data>
+      <data key="d2">Singapore is a country that requires travelers to submit a Singapore Arrival Card (SGAC) for health and travel declaration upon arrival.&lt;SEP&gt;Singapore is a country and city-state that is the destination for the traveler and the host of the Immigration &amp; Checkpoints Authority.&lt;SEP&gt;The country and city where the arrival is taking place, as specified in the declaration.</data>
+      <data key="d3">chunk-601e22b4f94edabf2237fab6cbfd4023&lt;SEP&gt;chunk-4037d38d08f22ec8826d69685fe00bd3&lt;SEP&gt;chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776490</data>
+      <data key="d6" />
+    </node>
+    <node id="Immigration &amp; Checkpoints Authority">
+      <data key="d0">Immigration &amp; Checkpoints Authority</data>
+      <data key="d1">organization</data>
+      <data key="d2">Immigration &amp; Checkpoints Authority (ICA) is the Singapore government agency responsible for processing the Singapore Arrival Card (SGAC) and managing immigration and checkpoints.&lt;SEP&gt;The Immigration &amp; Checkpoints Authority (ICA) is the government agency responsible for processing arrival cards and immigration checks in Singapore.&lt;SEP&gt;The Singapore government agency responsible for immigration and checkpoints, which received the Singapore Arrival Card submission.</data>
+      <data key="d3">chunk-601e22b4f94edabf2237fab6cbfd4023&lt;SEP&gt;chunk-4037d38d08f22ec8826d69685fe00bd3&lt;SEP&gt;chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776490</data>
+      <data key="d6" />
+    </node>
+    <node id="Zhu Haotian">
+      <data key="d0">Zhu Haotian</data>
+      <data key="d1">person</data>
+      <data key="d2">Zhu Haotian is a traveler who submitted the Singapore Arrival Card (SGAC) on 05/09/2025 for entry into Singapore.</data>
+      <data key="d3">chunk-601e22b4f94edabf2237fab6cbfd4023</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776308</data>
+      <data key="d6" />
+    </node>
+    <node id="Singapore Arrival Card">
+      <data key="d0">Singapore Arrival Card</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Singapore Arrival Card (SGAC) is a mandatory health and travel declaration form required for travelers entering Singapore, submitted prior to arrival.&lt;SEP&gt;The Singapore Arrival Card (SGAC) is a mandatory health and travel declaration form for travelers entering Singapore.&lt;SEP&gt;A document required for travelers to declare health and travel information upon arrival in Singapore.</data>
+      <data key="d3">chunk-601e22b4f94edabf2237fab6cbfd4023&lt;SEP&gt;chunk-4037d38d08f22ec8826d69685fe00bd3&lt;SEP&gt;chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776490</data>
+      <data key="d6" />
+    </node>
+    <node id="The Pan Pacific Hotel Singapore">
+      <data key="d0">The Pan Pacific Hotel Singapore</data>
+      <data key="d1">location</data>
+      <data key="d2">The Pan Pacific Hotel Singapore is the accommodation address provided by Zhu Haotian for his stay in Singapore.&lt;SEP&gt;The Pan Pacific Hotel Singapore is a hotel in Singapore serving as the accommodation address for the traveler Zhu Weiyi.&lt;SEP&gt;The accommodation address provided by the submitter for their stay in Singapore.</data>
+      <data key="d3">chunk-601e22b4f94edabf2237fab6cbfd4023&lt;SEP&gt;chunk-4037d38d08f22ec8826d69685fe00bd3&lt;SEP&gt;chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776490</data>
+      <data key="d6" />
+    </node>
+    <node id="Infectious Diseases Act">
+      <data key="d0">Infectious Diseases Act</data>
+      <data key="d1">concept</data>
+      <data key="d2">Infectious Diseases Act is a Singapore law that governs health declarations and imposes penalties for false or misleading health declarations, including fines or imprisonment.&lt;SEP&gt;The Infectious Diseases Act is a Singapore law governing health declarations and referenced for penalties related to false declarations.&lt;SEP&gt;A Singapore law that imposes penalties for false health declarations related to infectious diseases.</data>
+      <data key="d3">chunk-601e22b4f94edabf2237fab6cbfd4023&lt;SEP&gt;chunk-4037d38d08f22ec8826d69685fe00bd3&lt;SEP&gt;chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776490</data>
+      <data key="d6" />
+    </node>
+    <node id="Automated Clearance Initiative">
+      <data key="d0">Automated Clearance Initiative</data>
+      <data key="d1">concept</data>
+      <data key="d2">Automated Clearance Initiative is a service provided by ICA that allows eligible travelers to use automated lanes upon arrival in Singapore, subject to entry requirements.&lt;SEP&gt;The Automated Clearance Initiative is a program by the Immigration &amp; Checkpoints Authority allowing eligible travelers to use automated lanes upon arrival in Singapore.&lt;SEP&gt;A program by the Immigration &amp; Checkpoints Authority allowing eligible travelers to use automated lanes upon arrival in Singapore.</data>
+      <data key="d3">chunk-601e22b4f94edabf2237fab6cbfd4023&lt;SEP&gt;chunk-4037d38d08f22ec8826d69685fe00bd3&lt;SEP&gt;chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776490</data>
+      <data key="d6" />
+    </node>
+    <node id="Health Declaration">
+      <data key="d0">Health Declaration</data>
+      <data key="d1">concept</data>
+      <data key="d2">Health Declaration is a component of the Singapore Arrival Card (SGAC) requiring travelers to declare health status and travel history.</data>
+      <data key="d3">chunk-601e22b4f94edabf2237fab6cbfd4023</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776308</data>
+      <data key="d6" />
+    </node>
+    <node id="SGAC e-Service">
+      <data key="d0">SGAC e-Service</data>
+      <data key="d1">artifact</data>
+      <data key="d2">SGAC e-Service is an online platform provided by ICA for submitting and updating the Singapore Arrival Card (SGAC).&lt;SEP&gt;The SGAC e-Service is a digital platform provided for submitting the Singapore Arrival Card online.</data>
+      <data key="d3">chunk-601e22b4f94edabf2237fab6cbfd4023&lt;SEP&gt;chunk-4037d38d08f22ec8826d69685fe00bd3</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776398</data>
+      <data key="d6" />
+    </node>
+    <node id="Misuse of Drugs Act">
+      <data key="d0">Misuse of Drugs Act</data>
+      <data key="d1">concept</data>
+      <data key="d2">Misuse of Drugs Act is a Singapore law that criminalizes drug offenses, including trafficking punishable by death.&lt;SEP&gt;The Misuse of Drugs Act is a Singapore law that prohibits unauthorised consumption, possession, import, export, and trafficking of controlled drugs.&lt;SEP&gt;A Singapore law that criminalizes the unauthorised consumption, possession, import, export, and trafficking of controlled drugs.</data>
+      <data key="d3">chunk-601e22b4f94edabf2237fab6cbfd4023&lt;SEP&gt;chunk-4037d38d08f22ec8826d69685fe00bd3&lt;SEP&gt;chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776490</data>
+      <data key="d6" />
+    </node>
+    <node id="CBNI Declaration">
+      <data key="d0">CBNI Declaration</data>
+      <data key="d1">concept</data>
+      <data key="d2">CBNI Declaration is a requirement for travelers entering or leaving Singapore when carrying currency or negotiable instruments exceeding S$20,000.</data>
+      <data key="d3">chunk-601e22b4f94edabf2237fab6cbfd4023</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776308</data>
+      <data key="d6" />
+    </node>
+    <node id="MyICA Mobile Application">
+      <data key="d0">MyICA Mobile Application</data>
+      <data key="d1">concept</data>
+      <data key="d2">MyICA Mobile Application is a mobile application provided by ICA that allows users to retrieve and update their SGAC declaration using the DE Number.</data>
+      <data key="d3">chunk-601e22b4f94edabf2237fab6cbfd4023</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776308</data>
+      <data key="d6" />
+    </node>
+    <node id="Zhu Weiyi">
+      <data key="d0">Zhu Weiyi</data>
+      <data key="d1">person</data>
+      <data key="d2">Zhu Weiyi is the traveler who submitted the Singapore Arrival Card (SGAC) on 05/09/2025.</data>
+      <data key="d3">chunk-4037d38d08f22ec8826d69685fe00bd3</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776398</data>
+      <data key="d6" />
+    </node>
+    <node id="05/09/2025">
+      <data key="d0">05/09/2025</data>
+      <data key="d1">data</data>
+      <data key="d2">05/09/2025 is the date of arrival in Singapore declared by the traveler.&lt;SEP&gt;The date of arrival in Singapore as specified in the declaration.</data>
+      <data key="d3">chunk-4037d38d08f22ec8826d69685fe00bd3&lt;SEP&gt;chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776490</data>
+      <data key="d6" />
+    </node>
+    <node id="X8241Q2228">
+      <data key="d0">X8241Q2228</data>
+      <data key="d1">data</data>
+      <data key="d2">X8241Q2228 is the Disembarkation/Embarkation (DE) number used to retrieve and update the traveler's declaration.</data>
+      <data key="d3">chunk-4037d38d08f22ec8826d69685fe00bd3</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776398</data>
+      <data key="d6" />
+    </node>
+    <node id="8615611560682">
+      <data key="d0">8615611560682</data>
+      <data key="d1">data</data>
+      <data key="d2">8615611560682 is the mobile number provided by the traveler for contact purposes.</data>
+      <data key="d3">chunk-4037d38d08f22ec8826d69685fe00bd3</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776398</data>
+      <data key="d6" />
+    </node>
+    <node id="QIN.HAO@VULCANSHIELD.COM">
+      <data key="d0">QIN.HAO@VULCANSHIELD.COM</data>
+      <data key="d1">data</data>
+      <data key="d2">QIN.HAO@VULCANSHIELD.COM is the email address provided by the traveler for communication.&lt;SEP&gt;The email address provided by the submitter for contact purposes.</data>
+      <data key="d3">chunk-4037d38d08f22ec8826d69685fe00bd3&lt;SEP&gt;chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776490</data>
+      <data key="d6" />
+    </node>
+    <node id="MyICA mobile application">
+      <data key="d0">MyICA mobile application</data>
+      <data key="d1">artifact</data>
+      <data key="d2">The MyICA mobile application is a mobile application provided by the Immigration &amp; Checkpoints Authority for managing travel declarations.</data>
+      <data key="d3">chunk-4037d38d08f22ec8826d69685fe00bd3</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776398</data>
+      <data key="d6" />
+    </node>
+    <node id="Ge Huangyan">
+      <data key="d0">Ge Huangyan</data>
+      <data key="d1">person</data>
+      <data key="d2">A person who submitted the Singapore Arrival Card on 05/09/2025.</data>
+      <data key="d3">chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776490</data>
+      <data key="d6" />
+    </node>
+    <node id="8613811467029">
+      <data key="d0">8613811467029</data>
+      <data key="d1">data</data>
+      <data key="d2">The mobile number provided by the submitter for contact purposes.</data>
+      <data key="d3">chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776490</data>
+      <data key="d6" />
+    </node>
+    <node id="X8245Q4626">
+      <data key="d0">X8245Q4626</data>
+      <data key="d1">data</data>
+      <data key="d2">The Disembarkation/Embarkation number used to retrieve and update the declaration via the SGAC e-Service.</data>
+      <data key="d3">chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776490</data>
+      <data key="d6" />
+    </node>
+    <node id="*****2670">
+      <data key="d0">*****2670</data>
+      <data key="d1">data</data>
+      <data key="d2">The masked passport number provided in the declaration, showing the last four digits as 2670.</data>
+      <data key="d3">chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776490</data>
+      <data key="d6" />
+    </node>
+    <node id="Apple">
+      <data key="d0">Apple</data>
+      <data key="d1">organization</data>
+      <data key="d2">Apple is a company that received an invitation to the CAMX event regarding the Vulcan Shield product.</data>
+      <data key="d3">chunk-2f3fc821eab89756950ca0445407567a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776561</data>
+      <data key="d6" />
+    </node>
+    <node id="Orlando">
+      <data key="d0">Orlando</data>
+      <data key="d1">location</data>
+      <data key="d2">Orlando is a city hosting the CAMX event.</data>
+      <data key="d3">chunk-2f3fc821eab89756950ca0445407567a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776561</data>
+      <data key="d6" />
+    </node>
+    <node id="Sept 9-11th">
+      <data key="d0">Sept 9-11th</data>
+      <data key="d1">concept</data>
+      <data key="d2">Sept 9-11th refers to the date range of the CAMX event.</data>
+      <data key="d3">chunk-2f3fc821eab89756950ca0445407567a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776561</data>
+      <data key="d6" />
+    </node>
+    <node id="Barry">
+      <data key="d0">Barry</data>
+      <data key="d1">person</data>
+      <data key="d2">Barry is a recipient of the email, addressed directly in the content, with an email domain indicating association with Vulcan Shield.</data>
+      <data key="d3">chunk-2f3fc821eab89756950ca0445407567a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776561</data>
+      <data key="d6" />
+    </node>
+    <node id="Theo">
+      <data key="d0">Theo</data>
+      <data key="d1">person</data>
+      <data key="d2">Theo is the sender of the email, an employee of Apple, as indicated by the email address.</data>
+      <data key="d3">chunk-2f3fc821eab89756950ca0445407567a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776561</data>
+      <data key="d6" />
+    </node>
+    <node id="C71">
+      <data key="d0">C71</data>
+      <data key="d1">location</data>
+      <data key="d2">C71 is a booth number at the CAMX event where the meeting is scheduled.</data>
+      <data key="d3">chunk-2f3fc821eab89756950ca0445407567a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776561</data>
+      <data key="d6" />
+    </node>
+    <node id="Microsoft Corporation">
+      <data key="d0">Microsoft Corporation</data>
+      <data key="d1">organization</data>
+      <data key="d2">Microsoft Corporation is a technology company headquartered at One Microsoft Way in Redmond, Washington, and sends emails from no-reply@microsoft.com.</data>
+      <data key="d3">chunk-6e87f232589a04da70c323c9ec005549</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776798</data>
+      <data key="d6" />
+    </node>
+    <node id="Jiaoji Qian">
+      <data key="d0">Jiaoji Qian</data>
+      <data key="d1">person</data>
+      <data key="d2">Jiaoji Qian is a person who reacted to a message about VSG's participation in CAMX 2025.</data>
+      <data key="d3">chunk-6e87f232589a04da70c323c9ec005549</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776798</data>
+      <data key="d6" />
+    </node>
+    <node id="One Microsoft Way">
+      <data key="d0">One Microsoft Way</data>
+      <data key="d1">location</data>
+      <data key="d2">One Microsoft Way is the address of Microsoft Corporation's headquarters in Redmond, Washington.</data>
+      <data key="d3">chunk-6e87f232589a04da70c323c9ec005549</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776798</data>
+      <data key="d6" />
+    </node>
+    <node id="Redmond">
+      <data key="d0">Redmond</data>
+      <data key="d1">location</data>
+      <data key="d2">Redmond is a city in Washington state where Microsoft Corporation is headquartered.</data>
+      <data key="d3">chunk-6e87f232589a04da70c323c9ec005549</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776798</data>
+      <data key="d6" />
+    </node>
+    <node id="CAMX 2025">
+      <data key="d0">CAMX 2025</data>
+      <data key="d1">event</data>
+      <data key="d2">CAMX 2025 is an exhibition event in which VSG is participating as an exhibitor.</data>
+      <data key="d3">chunk-6e87f232589a04da70c323c9ec005549</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776798</data>
+      <data key="d6" />
+    </node>
+    <node id="VSG">
+      <data key="d0">VSG</data>
+      <data key="d1">organization</data>
+      <data key="d2">VSG is an organization participating as an exhibitor in CAMX 2025.&lt;SEP&gt;VSG is a company providing onboarding guides and medical benefits in collaboration with Great Eastern.</data>
+      <data key="d3">chunk-6e87f232589a04da70c323c9ec005549&lt;SEP&gt;chunk-21d291efcd3952326c77427f8f002495</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764779805</data>
+      <data key="d6" />
+    </node>
+    <node id="Fong Shengkai">
+      <data key="d0">Fong Shengkai</data>
+      <data key="d1">person</data>
+      <data key="d2">Fong Shengkai is a person who received the email at Fong.Shengkai@vulcanshield.com, which is the domain of the organization VSG.</data>
+      <data key="d3">chunk-6e87f232589a04da70c323c9ec005549</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776798</data>
+      <data key="d6" />
+    </node>
+    <node id="SpaceX">
+      <data key="d0">SpaceX</data>
+      <data key="d1">organization</data>
+      <data key="d2">SpaceX is a space technology company referenced as the sender of the email and developer of spacecraft and rocket programs.</data>
+      <data key="d3">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776970</data>
+      <data key="d6" />
+    </node>
+    <node id="Starship">
+      <data key="d0">Starship</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Starship is a spacecraft developed by SpaceX that successfully completed Flight 10.</data>
+      <data key="d3">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776970</data>
+      <data key="d6" />
+    </node>
+    <node id="Raptor">
+      <data key="d0">Raptor</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Raptor is an engine used in SpaceX's Starship and Falcon programs.</data>
+      <data key="d3">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776970</data>
+      <data key="d6" />
+    </node>
+    <node id="Falcon">
+      <data key="d0">Falcon</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Falcon is a rocket program developed by SpaceX.</data>
+      <data key="d3">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776970</data>
+      <data key="d6" />
+    </node>
+    <node id="Dragon">
+      <data key="d0">Dragon</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Dragon is a spacecraft program developed by SpaceX.</data>
+      <data key="d3">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776970</data>
+      <data key="d6" />
+    </node>
+    <node id="Starship Flight 10">
+      <data key="d0">Starship Flight 10</data>
+      <data key="d1">event</data>
+      <data key="d2">Starship Flight 10 is a successful flight of the Starship spacecraft referenced as a recent achievement.</data>
+      <data key="d3">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776970</data>
+      <data key="d6" />
+    </node>
+    <node id="eCerts">
+      <data key="d0">eCerts</data>
+      <data key="d1">method</data>
+      <data key="d2">eCerts is an electronic certification system required for suppliers to document material traceability for SpaceX programs.</data>
+      <data key="d3">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776970</data>
+      <data key="d6" />
+    </node>
+    <node id="PPAP">
+      <data key="d0">PPAP</data>
+      <data key="d1">method</data>
+      <data key="d2">PPAP is a Production Part Approval Process required for supplier parts in SpaceX programs.</data>
+      <data key="d3">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776970</data>
+      <data key="d6" />
+    </node>
+    <node id="Buyer">
+      <data key="d0">Buyer</data>
+      <data key="d1">person</data>
+      <data key="d2">Buyer is a role within a supplier company responsible for procurement and communication with SpaceX.</data>
+      <data key="d3">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776970</data>
+      <data key="d6" />
+    </node>
+    <node id="Supplier Development Engineer">
+      <data key="d0">Supplier Development Engineer</data>
+      <data key="d1">person</data>
+      <data key="d2">Supplier Development Engineer is a role within a supplier company responsible for developing supplier processes and ensuring compliance with SpaceX requirements.</data>
+      <data key="d3">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764776970</data>
+      <data key="d6" />
+    </node>
+    <node id="Trip.com">
+      <data key="d0">Trip.com</data>
+      <data key="d1">organization</data>
+      <data key="d2">Trip.com is the company that sends the email and provides travel services including flights, hotels, and train tickets.</data>
+      <data key="d3">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777206</data>
+      <data key="d6" />
+    </node>
+    <node id="Shenzhen Huafu Ice and Snow Miracle">
+      <data key="d0">Shenzhen Huafu Ice and Snow Miracle</data>
+      <data key="d1">location</data>
+      <data key="d2">Shenzhen Huafu Ice and Snow Miracle is an attraction in Shenzhen featured in the promotion with a discount of HK$42.</data>
+      <data key="d3">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777206</data>
+      <data key="d6" />
+    </node>
+    <node id="September 9">
+      <data key="d0">September 9</data>
+      <data key="d1">concept</data>
+      <data key="d2">September 9 is the date when the promotion for HK$99 flights and hotels begins.</data>
+      <data key="d3">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777206</data>
+      <data key="d6" />
+    </node>
+    <node id="September 12">
+      <data key="d0">September 12</data>
+      <data key="d1">concept</data>
+      <data key="d2">September 12 is the date when the promotion for HK$99 hotels and train tickets ends.</data>
+      <data key="d3">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777206</data>
+      <data key="d6" />
+    </node>
+    <node id="HK$999">
+      <data key="d0">HK$999</data>
+      <data key="d1">data</data>
+      <data key="d2">HK$999 is the discount amount for flights and hotels in the promotion.</data>
+      <data key="d3">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777206</data>
+      <data key="d6" />
+    </node>
+    <node id="HK$99">
+      <data key="d0">HK$99</data>
+      <data key="d1">data</data>
+      <data key="d2">HK$99 is the starting price for flights and hotels in the promotion.</data>
+      <data key="d3">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777206</data>
+      <data key="d6" />
+    </node>
+    <node id="HK$150">
+      <data key="d0">HK$150</data>
+      <data key="d1">data</data>
+      <data key="d2">HK$150 is the maximum discount amount for high-speed train tickets in the promotion.</data>
+      <data key="d3">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777206</data>
+      <data key="d6" />
+    </node>
+    <node id="Flight Ticket">
+      <data key="d0">Flight Ticket</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Flight Ticket is a ticket for air travel offered at a starting price of HK$99 in the promotion.</data>
+      <data key="d3">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777206</data>
+      <data key="d6" />
+    </node>
+    <node id="Train Ticket">
+      <data key="d0">Train Ticket</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Train Ticket is a ticket for high-speed rail travel offered with a 99% discount and up to HK$150 savings in the promotion.</data>
+      <data key="d3">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777206</data>
+      <data key="d6" />
+    </node>
+    <node id="Hotel">
+      <data key="d0">Hotel</data>
+      <data key="d1">concept</data>
+      <data key="d2">Hotel refers to accommodation services offered at a starting price of HK$99 in the promotion.</data>
+      <data key="d3">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777206</data>
+      <data key="d6" />
+    </node>
+    <node id="HK$42">
+      <data key="d0">HK$42</data>
+      <data key="d1">data</data>
+      <data key="d2">HK$42 is the discount amount for the Shenzhen Huafu Ice and Snow Miracle attraction.</data>
+      <data key="d3">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777206</data>
+      <data key="d6" />
+    </node>
+    <node id="September 6">
+      <data key="d0">September 6</data>
+      <data key="d1">concept</data>
+      <data key="d2">September 6 is the date when the promotion for Shenzhen Huafu Ice and Snow Miracle begins at 12AM.</data>
+      <data key="d3">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777206</data>
+      <data key="d6" />
+    </node>
+    <node id="Trip.com Travel Singapore Pte. Ltd.">
+      <data key="d0">Trip.com Travel Singapore Pte. Ltd.</data>
+      <data key="d1">organization</data>
+      <data key="d2">Trip.com Travel Singapore Pte. Ltd. is a travel company operating the Trip.com website in Singapore, holding copyright for the website content as the website operator.</data>
+      <data key="d3">chunk-1956754dd86f6406ee3b7d6b02eb7aa4</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777206</data>
+      <data key="d6" />
+    </node>
+    <node id="Ctrip.com (Hong Kong) Limited">
+      <data key="d0">Ctrip.com (Hong Kong) Limited</data>
+      <data key="d1">organization</data>
+      <data key="d2">Ctrip.com (Hong Kong) Limited is a company that holds the Hong Kong Travel Agent License with license number 352367.</data>
+      <data key="d3">chunk-1956754dd86f6406ee3b7d6b02eb7aa4</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777206</data>
+      <data key="d6" />
+    </node>
+    <node id="Hong Kong Travel Agent License">
+      <data key="d0">Hong Kong Travel Agent License</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Hong Kong Travel Agent License is a document authorizing travel agency operations in Hong Kong, held by Ctrip.com (Hong Kong) Limited with license number 352367.</data>
+      <data key="d3">chunk-1956754dd86f6406ee3b7d6b02eb7aa4</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777206</data>
+      <data key="d6" />
+    </node>
+    <node id="AAMkAGRkMmM3ZTZlLWMwYTYtNDMzZC05MDAzLTk5OWY5OGM0MzEyZABGAAAAC2OS1Bvs8oT7fZRZozWlJ-BwA1pQiKMnX2SZqnW8X-qRJuAAAAAAEJAAC2OS1Bvs8oT7fZRZozWlJ-BwA1pQiKMnX2SZqnW8X-qRJuAABnd-QHAAA=">
+      <data key="d0">AAMkAGRkMmM3ZTZlLWMwYTYtNDMzZC05MDAzLTk5OWY5OGM0MzEyZABGAAAAC2OS1Bvs8oT7fZRZozWlJ-BwA1pQiKMnX2SZqnW8X-qRJuAAAAAAEJAAC2OS1Bvs8oT7fZRZozWlJ-BwA1pQiKMnX2SZqnW8X-qRJuAABnd-QHAAA=</data>
+      <data key="d1">artifact</data>
+      <data key="d2">The unique identifier for the email message.</data>
+      <data key="d3">chunk-0ab74b13b689cb643f74fb13d8d99793</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777390</data>
+      <data key="d6" />
+    </node>
+    <node id="2025-09-05 02:17">
+      <data key="d0">2025-09-05 02:17</data>
+      <data key="d1">data</data>
+      <data key="d2">The specific date and time when the email was sent.</data>
+      <data key="d3">chunk-0ab74b13b689cb643f74fb13d8d99793</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777390</data>
+      <data key="d6" />
+    </node>
+    <node id="Shermaine Yeo">
+      <data key="d0">Shermaine Yeo</data>
+      <data key="d1">person</data>
+      <data key="d2">The sender of the email, identified by the email address Shermaine.yeo@vulcanshield.com.&lt;SEP&gt;The sender of the email, with the email address Shermaine.yeo@vulcanshield.com.&lt;SEP&gt;Shermaine Yeo is the sender of the email, as indicated by the email address Shermaine.yeo@vulcanshield.com.&lt;SEP&gt;Shermaine Yeo is the sender of the email, responsible for arranging a down payment to a patent law firm.</data>
+      <data key="d3">chunk-0ab74b13b689cb643f74fb13d8d99793&lt;SEP&gt;chunk-2c456ab1a49127824bce55b9ed871dc5&lt;SEP&gt;chunk-4989f91bc2dc1babcc3f8e147692b549&lt;SEP&gt;chunk-74bb905bd72b79c50eae389babc81be7</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764778941</data>
+      <data key="d6" />
+    </node>
+    <node id="Jolene Qian">
+      <data key="d0">Jolene Qian</data>
+      <data key="d1">person</data>
+      <data key="d2">The recipient of the email, identified by the email address Jolene.Qian@vulcanshield.com.&lt;SEP&gt;The recipient of the email, with the email address Jolene.Qian@vulcanshield.com.</data>
+      <data key="d3">chunk-0ab74b13b689cb643f74fb13d8d99793&lt;SEP&gt;chunk-2c456ab1a49127824bce55b9ed871dc5</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777555</data>
+      <data key="d6" />
+    </node>
+    <node id="Internal">
+      <data key="d0">Internal</data>
+      <data key="d1">concept</data>
+      <data key="d2">The category label indicating the email is an internal communication.</data>
+      <data key="d3">chunk-0ab74b13b689cb643f74fb13d8d99793</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777390</data>
+      <data key="d6" />
+    </node>
+    <node id="Scan Data From FX-100470">
+      <data key="d0">Scan Data From FX-100470</data>
+      <data key="d1">content</data>
+      <data key="d2">The subject line of the email referencing scan data for product FX-100470.</data>
+      <data key="d3">chunk-0ab74b13b689cb643f74fb13d8d99793</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777390</data>
+      <data key="d6" />
+    </node>
+    <node id="FX-100470">
+      <data key="d0">FX-100470</data>
+      <data key="d1">artifact</data>
+      <data key="d2">The product code for which scan data is referenced in the email.&lt;SEP&gt;A product code for a scanned item, referenced in the email subject.</data>
+      <data key="d3">chunk-0ab74b13b689cb643f74fb13d8d99793&lt;SEP&gt;chunk-2c456ab1a49127824bce55b9ed871dc5</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777555</data>
+      <data key="d6" />
+    </node>
+    <node id="Scanned Send">
+      <data key="d0">Scanned Send</data>
+      <data key="d1">content</data>
+      <data key="d2">The body content of the email indicating a scan has been sent.</data>
+      <data key="d3">chunk-0ab74b13b689cb643f74fb13d8d99793</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777390</data>
+      <data key="d6" />
+    </node>
+    <node id="Email ID">
+      <data key="d0">Email ID</data>
+      <data key="d1">artifact</data>
+      <data key="d2">A unique identifier for an email, as provided in the email header.</data>
+      <data key="d3">chunk-2c456ab1a49127824bce55b9ed871dc5</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777555</data>
+      <data key="d6" />
+    </node>
+    <node id="Email Date">
+      <data key="d0">Email Date</data>
+      <data key="d1">data</data>
+      <data key="d2">The date and time when the email was sent, recorded as 2025-09-05 02:17.</data>
+      <data key="d3">chunk-2c456ab1a49127824bce55b9ed871dc5</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777555</data>
+      <data key="d6" />
+    </node>
+    <node id="Internal Email">
+      <data key="d0">Internal Email</data>
+      <data key="d1">concept</data>
+      <data key="d2">A classification indicating that the email is internal to the organization.</data>
+      <data key="d3">chunk-2c456ab1a49127824bce55b9ed871dc5</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764777555</data>
+      <data key="d6" />
+    </node>
+    <node id="Alison Liu">
+      <data key="d0">Alison Liu</data>
+      <data key="d1">person</data>
+      <data key="d2">Alison Liu is the recipient of the email, as indicated by the email address alison.liu@vulcanshield.com.&lt;SEP&gt;Alison Liu is the recipient of the email, being informed about a down payment to a patent law firm.</data>
+      <data key="d3">chunk-4989f91bc2dc1babcc3f8e147692b549&lt;SEP&gt;chunk-74bb905bd72b79c50eae389babc81be7</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764778941</data>
+      <data key="d6" />
+    </node>
+    <node id="Patent Law Firm">
+      <data key="d0">Patent Law Firm</data>
+      <data key="d1">organization</data>
+      <data key="d2">Patent Law Firm is the organization to which a down payment is being made, as stated in the email subject.&lt;SEP&gt;Patent Law Firm is the organization to which the down payment is being made, as indicated in the email subject.</data>
+      <data key="d3">chunk-4989f91bc2dc1babcc3f8e147692b549&lt;SEP&gt;chunk-74bb905bd72b79c50eae389babc81be7</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764778941</data>
+      <data key="d6" />
+    </node>
+    <node id="Down Payment">
+      <data key="d0">Down Payment</data>
+      <data key="d1">concept</data>
+      <data key="d2">Down Payment is a financial transaction mentioned in the email subject as being sent to the Patent Law Firm.&lt;SEP&gt;Down Payment refers to a financial transaction mentioned in the email subject, intended for a patent law firm.</data>
+      <data key="d3">chunk-4989f91bc2dc1babcc3f8e147692b549&lt;SEP&gt;chunk-74bb905bd72b79c50eae389babc81be7</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764778941</data>
+      <data key="d6" />
+    </node>
+    <node id="Bank Slip">
+      <data key="d0">Bank Slip</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Bank Slip is a document that will be provided to confirm the payment, as stated in the email content.</data>
+      <data key="d3">chunk-4989f91bc2dc1babcc3f8e147692b549</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764778909</data>
+      <data key="d6" />
+    </node>
+    <node id="Yui Luo">
+      <data key="d0">Yui Luo</data>
+      <data key="d1">person</data>
+      <data key="d2">Yui Luo is the recipient of the email and is associated with a shipping inquiry for FCA广西工厂1X40HC.</data>
+      <data key="d3">chunk-4c0ce0a4012fd370aad9db4ce76c7837</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764779776</data>
+      <data key="d6" />
+    </node>
+    <node id="FCA广西工厂1X40HC">
+      <data key="d0">FCA广西工厂1X40HC</data>
+      <data key="d1">organization</data>
+      <data key="d2">FCA广西工厂1X40HC is a company referenced in the email subject regarding a 40HC container shipment.</data>
+      <data key="d3">chunk-4c0ce0a4012fd370aad9db4ce76c7837</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764779776</data>
+      <data key="d6" />
+    </node>
+    <node id="61X8153509">
+      <data key="d0">61X8153509</data>
+      <data key="d1">data</data>
+      <data key="d2">61X8153509 is a shipment reference number mentioned in the email subject line.</data>
+      <data key="d3">chunk-4c0ce0a4012fd370aad9db4ce76c7837</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764779776</data>
+      <data key="d6" />
+    </node>
+    <node id="Martin">
+      <data key="d0">Martin</data>
+      <data key="d1">person</data>
+      <data key="d2">Martin is the recipient of the email and is being provided with onboarding guides for HR and benefits processes.</data>
+      <data key="d3">chunk-21d291efcd3952326c77427f8f002495</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764779805</data>
+      <data key="d6" />
+    </node>
+    <node id="Info Tech">
+      <data key="d0">Info Tech</data>
+      <data key="d1">organization</data>
+      <data key="d2">Info Tech is a company that provides an HR application system for leave, claims, and payslips.</data>
+      <data key="d3">chunk-21d291efcd3952326c77427f8f002495</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764779805</data>
+      <data key="d6" />
+    </node>
+    <node id="Great Eastern">
+      <data key="d0">Great Eastern</data>
+      <data key="d1">organization</data>
+      <data key="d2">Great Eastern is a company providing employee insurance benefits and collaborating with VSG on medical benefits.</data>
+      <data key="d3">chunk-21d291efcd3952326c77427f8f002495</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1764779805</data>
+      <data key="d6" />
+    </node>
+    <edge source="Claire" target="HTMS">
+      <data key="d7">1.0</data>
+      <data key="d8">Claire is a recipient of the email from the htms.tech domain, indicating she is affiliated with HTMS.</data>
+      <data key="d9">employee of,organizational affiliation</data>
+      <data key="d10">chunk-b00cdb84fa3055dd467d0326ad2de40b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764775304</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Rich" target="CAMX">
+      <data key="d7">2.0</data>
+      <data key="d8">Rich attended CAMX where he met Gonzalo as stated in the email.&lt;SEP&gt;Rich attended the CAMX event.</data>
+      <data key="d9">event attendance,event participation,met</data>
+      <data key="d10">chunk-b00cdb84fa3055dd467d0326ad2de40b&lt;SEP&gt;chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764775386</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Rich" target="Gonzalo">
+      <data key="d7">2.0</data>
+      <data key="d8">Rich met Gonzalo at CAMX as referenced in the email.&lt;SEP&gt;Rich met Gonzalo at the CAMX event.</data>
+      <data key="d9">meeting,met,professional meeting</data>
+      <data key="d10">chunk-b00cdb84fa3055dd467d0326ad2de40b&lt;SEP&gt;chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764775386</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Dani" target="Gonzalo">
+      <data key="d7">2.0</data>
+      <data key="d8">Dani met Gonzalo at CAMX as referenced in the email.&lt;SEP&gt;Dani met Gonzalo at the CAMX event.</data>
+      <data key="d9">meeting,met,professional meeting</data>
+      <data key="d10">chunk-b00cdb84fa3055dd467d0326ad2de40b&lt;SEP&gt;chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764775386</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Dani" target="Vulcan Shield">
+      <data key="d7">1.0</data>
+      <data key="d8">Dani (Daniel) is a recipient of the email from the vulcanshield.com domain, indicating he is affiliated with Vulcan Shield.</data>
+      <data key="d9">employee of,organizational affiliation</data>
+      <data key="d10">chunk-b00cdb84fa3055dd467d0326ad2de40b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764775304</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Dani" target="CAMX">
+      <data key="d7">2.0</data>
+      <data key="d8">Dani attended CAMX where she met Gonzalo as stated in the email.&lt;SEP&gt;Dani attended the CAMX event.</data>
+      <data key="d9">event attendance,event participation,met</data>
+      <data key="d10">chunk-b00cdb84fa3055dd467d0326ad2de40b&lt;SEP&gt;chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764775386</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Gonzalo" target="EU/US">
+      <data key="d7">1.0</data>
+      <data key="d8">Gonzalo is the technical resource located in EU/US as indicated in the email.</data>
+      <data key="d9">geographical region,located in</data>
+      <data key="d10">chunk-b00cdb84fa3055dd467d0326ad2de40b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764775304</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Gonzalo" target="EU">
+      <data key="d7">1.0</data>
+      <data key="d8">Gonzalo is a technical resource located in the European Union.</data>
+      <data key="d9">location</data>
+      <data key="d10">chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764775386</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Gonzalo" target="US">
+      <data key="d7">1.0</data>
+      <data key="d8">Gonzalo is a technical resource located in the United States.</data>
+      <data key="d9">location</data>
+      <data key="d10">chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764775386</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Gonzalo" target="CAMX">
+      <data key="d7">1.0</data>
+      <data key="d8">Gonzalo attended the CAMX event.</data>
+      <data key="d9">event attendance</data>
+      <data key="d10">chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764775386</data>
+      <data key="d13" />
+    </edge>
+    <edge source="M99" target="David Kneale">
+      <data key="d7">1.0</data>
+      <data key="d8">David Kneale is referring to technical details from testing the M99 product.</data>
+      <data key="d9">product testing</data>
+      <data key="d10">chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764775386</data>
+      <data key="d13" />
+    </edge>
+    <edge source="CAMX" target="Vulcan Shield">
+      <data key="d7">1.0</data>
+      <data key="d8">The CAMX event centers on the Vulcan Shield product.</data>
+      <data key="d9">event topic,product focus</data>
+      <data key="d10">chunk-2f3fc821eab89756950ca0445407567a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776561</data>
+      <data key="d13" />
+    </edge>
+    <edge source="CAMX" target="Apple">
+      <data key="d7">1.0</data>
+      <data key="d8">Apple is invited to attend the CAMX event regarding the Vulcan Shield product.</data>
+      <data key="d9">event attendance,invitation</data>
+      <data key="d10">chunk-2f3fc821eab89756950ca0445407567a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776561</data>
+      <data key="d13" />
+    </edge>
+    <edge source="CAMX" target="Orlando">
+      <data key="d7">1.0</data>
+      <data key="d8">The CAMX event is hosted in Orlando.</data>
+      <data key="d9">host city,location</data>
+      <data key="d10">chunk-2f3fc821eab89756950ca0445407567a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776561</data>
+      <data key="d13" />
+    </edge>
+    <edge source="CAMX" target="Sept 9-11th">
+      <data key="d7">1.0</data>
+      <data key="d8">The CAMX event occurs during Sept 9-11th.</data>
+      <data key="d9">date range,event timing</data>
+      <data key="d10">chunk-2f3fc821eab89756950ca0445407567a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776561</data>
+      <data key="d13" />
+    </edge>
+    <edge source="CAMX" target="C71">
+      <data key="d7">1.0</data>
+      <data key="d8">The meeting at the CAMX event is scheduled at booth C71.</data>
+      <data key="d9">booth location,event venue</data>
+      <data key="d10">chunk-2f3fc821eab89756950ca0445407567a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776561</data>
+      <data key="d13" />
+    </edge>
+    <edge source="David" target="Vulcan Shield">
+      <data key="d7">1.0</data>
+      <data key="d8">David is the sender of the email from the vulcanshield.com domain, indicating he is affiliated with Vulcan Shield.</data>
+      <data key="d9">employee of,organizational affiliation</data>
+      <data key="d10">chunk-b00cdb84fa3055dd467d0326ad2de40b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764775304</data>
+      <data key="d13" />
+    </edge>
+    <edge source="W-F100B1-270" target="David Kneale">
+      <data key="d7">1.0</data>
+      <data key="d8">David Kneale is replying to an email with subject W-F100B1-270.</data>
+      <data key="d9">email subject</data>
+      <data key="d10">chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764775386</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Vulcan Shield" target="Daniel Hu">
+      <data key="d7">1.0</data>
+      <data key="d8">Daniel Hu is employed at Vulcan Shield, as indicated by his email address.</data>
+      <data key="d9">company affiliation</data>
+      <data key="d10">chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764775386</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Vulcan Shield" target="Shermaine Yeo">
+      <data key="d7">3.0</data>
+      <data key="d8">Shermaine Yeo's email address uses the vulcanshield.com domain, indicating affiliation with Vulcan Shield.&lt;SEP&gt;Shermaine Yeo is affiliated with the organization Vulcan Shield, as indicated by the email domain.&lt;SEP&gt;Shermaine Yeo is employed by Vulcan Shield, as indicated by the email domain.</data>
+      <data key="d9">affiliation,email domain,employment,organization</data>
+      <data key="d10">chunk-0ab74b13b689cb643f74fb13d8d99793&lt;SEP&gt;chunk-2c456ab1a49127824bce55b9ed871dc5&lt;SEP&gt;chunk-74bb905bd72b79c50eae389babc81be7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764778941</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Vulcan Shield" target="Jolene Qian">
+      <data key="d7">2.0</data>
+      <data key="d8">Jolene Qian's email address uses the vulcanshield.com domain, indicating affiliation with Vulcan Shield.&lt;SEP&gt;Jolene Qian is affiliated with the organization Vulcan Shield, as indicated by the email domain.</data>
+      <data key="d9">affiliation,email domain,organization</data>
+      <data key="d10">chunk-0ab74b13b689cb643f74fb13d8d99793&lt;SEP&gt;chunk-2c456ab1a49127824bce55b9ed871dc5</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777555</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Vulcan Shield" target="Alison Liu">
+      <data key="d7">1.0</data>
+      <data key="d8">Alison Liu is employed by Vulcan Shield, as indicated by the email domain.</data>
+      <data key="d9">employment</data>
+      <data key="d10">chunk-74bb905bd72b79c50eae389babc81be7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764778941</data>
+      <data key="d13" />
+    </edge>
+    <edge source="HTMS" target="Claire Gwilliam">
+      <data key="d7">1.0</data>
+      <data key="d8">Claire Gwilliam is employed at HTMS, as indicated by her email address.</data>
+      <data key="d9">company affiliation</data>
+      <data key="d10">chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764775386</data>
+      <data key="d13" />
+    </edge>
+    <edge source="David Kneale" target="Quotation">
+      <data key="d7">1.0</data>
+      <data key="d8">David Kneale sent an email containing an attached quotation to Claire Gwilliam.</data>
+      <data key="d9">attached document</data>
+      <data key="d10">chunk-31316ac015c3107d11fdfaaa9ae7972b</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764775386</data>
+      <data key="d13" />
+    </edge>
+    <edge source="projectreport83@gmail.com" target="Jolene">
+      <data key="d7">1.0</data>
+      <data key="d8">The projectreport83@gmail.com organization requested Jolene's WhatsApp number to facilitate collaboration on an assignment.</data>
+      <data key="d9">collaboration,communication</data>
+      <data key="d10">chunk-f0cf8ba05336556b197e3aaca8a9475f</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776077</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Peter" target="Emma Wang">
+      <data key="d7">1.0</data>
+      <data key="d8">Emma Wang sent an email to Peter to address discrepancies in the acceptance letter and request confirmation of the three offers' acceptance by HIPA.</data>
+      <data key="d9">email communication</data>
+      <data key="d10">chunk-92acc0b2f37831f53ec48888079e010e</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776119</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Peter" target="CEIS">
+      <data key="d7">1.0</data>
+      <data key="d8">Peter is associated with CEIS, as indicated by his email domain.</data>
+      <data key="d9">organizational affiliation</data>
+      <data key="d10">chunk-92acc0b2f37831f53ec48888079e010e</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776119</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Emma Wang" target="Vulcanshield">
+      <data key="d7">1.0</data>
+      <data key="d8">Emma Wang is an employee of Vulcanshield, as evidenced by her email address.</data>
+      <data key="d9">organizational affiliation</data>
+      <data key="d10">chunk-92acc0b2f37831f53ec48888079e010e</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776119</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Vic Qin" target="3 Offers">
+      <data key="d7">1.0</data>
+      <data key="d8">Vic Qin provided the three offers to the recipient, as stated in the email.</data>
+      <data key="d9">provision</data>
+      <data key="d10">chunk-92acc0b2f37831f53ec48888079e010e</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776119</data>
+      <data key="d13" />
+    </edge>
+    <edge source="HIPA" target="3 Offers">
+      <data key="d7">1.0</data>
+      <data key="d8">HIPA is required to officially accept the three offers, as indicated by the need to confirm their acceptance.</data>
+      <data key="d9">acceptance</data>
+      <data key="d10">chunk-92acc0b2f37831f53ec48888079e010e</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776119</data>
+      <data key="d13" />
+    </edge>
+    <edge source="3 Offers" target="Acceptance Letter">
+      <data key="d7">1.0</data>
+      <data key="d8">The Acceptance Letter contains a reference number that corresponds to one of the three offers provided by Vic Qin, and the email discusses the correct reference number for that offer.</data>
+      <data key="d9">document-transaction,reference number correspondence</data>
+      <data key="d10">chunk-92acc0b2f37831f53ec48888079e010e</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776119</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Composites United e.V." target="Sommergrillen">
+      <data key="d7">1.0</data>
+      <data key="d8">Composites United e.V. is the primary organizer of the Sommergrillen event.</data>
+      <data key="d9">event organization</data>
+      <data key="d10">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776222</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Composites United e.V." target="CMC-Workshop">
+      <data key="d7">1.0</data>
+      <data key="d8">Composites United e.V. organizes the CMC-Workshop event.</data>
+      <data key="d9">event organization</data>
+      <data key="d10">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776222</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Composites United e.V." target="ResC4EU Expert Sessions">
+      <data key="d7">1.0</data>
+      <data key="d8">Composites United e.V. organizes the ResC4EU Expert Sessions.</data>
+      <data key="d9">event organization</data>
+      <data key="d10">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776222</data>
+      <data key="d13" />
+    </edge>
+    <edge source="CU Ost" target="Sommergrillen">
+      <data key="d7">1.0</data>
+      <data key="d8">CU Ost co-organizes the Sommergrillen event with CU Bau.</data>
+      <data key="d9">co-organization</data>
+      <data key="d10">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776222</data>
+      <data key="d13" />
+    </edge>
+    <edge source="CU Bau" target="Sommergrillen">
+      <data key="d7">1.0</data>
+      <data key="d8">CU Bau co-organizes the Sommergrillen event with CU Ost.</data>
+      <data key="d9">co-organization</data>
+      <data key="d10">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776222</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Deutsch-Schwedische Handelskammer" target="Leistungsschau Leichtbau für die Mobilität der Zukunft">
+      <data key="d7">1.0</data>
+      <data key="d8">Deutsch-Schwedische Handelskammer organizes the Leistungsschau event.</data>
+      <data key="d9">event organization</data>
+      <data key="d10">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776222</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Sommergrillen" target="Weixdorf">
+      <data key="d7">1.0</data>
+      <data key="d8">The Sommergrillen event is held in Weixdorf.</data>
+      <data key="d9">location</data>
+      <data key="d10">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776222</data>
+      <data key="d13" />
+    </edge>
+    <edge source="CMC-Workshop" target="Bergamo">
+      <data key="d7">1.0</data>
+      <data key="d8">The CMC-Workshop is held in Bergamo.</data>
+      <data key="d9">location</data>
+      <data key="d10">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776222</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Die Feder" target="Dr. Fabian Grasse">
+      <data key="d7">1.0</data>
+      <data key="d8">Dr. Fabian Grasse was a guest on the Die Feder podcast to discuss composite testing.</data>
+      <data key="d9">interview,podcast guest</data>
+      <data key="d10">chunk-c83e38c72b7541d68f47741e784b1ce9</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776222</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Singapore" target="The Pan Pacific Hotel Singapore">
+      <data key="d7">1.0</data>
+      <data key="d8">The Pan Pacific Hotel Singapore is located in Singapore.</data>
+      <data key="d9">accommodation,location</data>
+      <data key="d10">chunk-4037d38d08f22ec8826d69685fe00bd3</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776398</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Immigration &amp; Checkpoints Authority" target="Singapore Arrival Card">
+      <data key="d7">3.0</data>
+      <data key="d8">Immigration &amp; Checkpoints Authority (ICA) issues and manages the Singapore Arrival Card (SGAC) as a mandatory requirement for entry into Singapore.&lt;SEP&gt;The Immigration &amp; Checkpoints Authority (ICA) processes the Singapore Arrival Card submissions.&lt;SEP&gt;The Immigration &amp; Checkpoints Authority manages the Singapore Arrival Card process.</data>
+      <data key="d9">administration,authority,issuing authority,management,mandatory declaration,processing</data>
+      <data key="d10">chunk-601e22b4f94edabf2237fab6cbfd4023&lt;SEP&gt;chunk-4037d38d08f22ec8826d69685fe00bd3&lt;SEP&gt;chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776490</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Immigration &amp; Checkpoints Authority" target="Automated Clearance Initiative">
+      <data key="d7">2.0</data>
+      <data key="d8">Immigration &amp; Checkpoints Authority (ICA) provides the Automated Clearance Initiative service for eligible travelers arriving in Singapore.&lt;SEP&gt;The Immigration &amp; Checkpoints Authority manages the Automated Clearance Initiative program.</data>
+      <data key="d9">management,program,service provision,travel facilitation</data>
+      <data key="d10">chunk-601e22b4f94edabf2237fab6cbfd4023&lt;SEP&gt;chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776490</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Immigration &amp; Checkpoints Authority" target="SGAC e-Service">
+      <data key="d7">1.0</data>
+      <data key="d8">Immigration &amp; Checkpoints Authority (ICA) operates the SGAC e-Service as an online platform for SGAC submissions.</data>
+      <data key="d9">digital platform,service provision</data>
+      <data key="d10">chunk-601e22b4f94edabf2237fab6cbfd4023</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776308</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Immigration &amp; Checkpoints Authority" target="MyICA Mobile Application">
+      <data key="d7">1.0</data>
+      <data key="d8">Immigration &amp; Checkpoints Authority (ICA) provides the MyICA Mobile Application as a platform for managing SGAC submissions.</data>
+      <data key="d9">mobile application,service provision</data>
+      <data key="d10">chunk-601e22b4f94edabf2237fab6cbfd4023</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776308</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Immigration &amp; Checkpoints Authority" target="MyICA mobile application">
+      <data key="d7">1.0</data>
+      <data key="d8">The Immigration &amp; Checkpoints Authority provides the MyICA mobile application for traveler declarations.</data>
+      <data key="d9">application,service provider</data>
+      <data key="d10">chunk-4037d38d08f22ec8826d69685fe00bd3</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776398</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Zhu Haotian" target="The Pan Pacific Hotel Singapore">
+      <data key="d7">1.0</data>
+      <data key="d8">Zhu Haotian provided The Pan Pacific Hotel Singapore as his accommodation address in the Singapore Arrival Card (SGAC).</data>
+      <data key="d9">accommodation,lodging</data>
+      <data key="d10">chunk-601e22b4f94edabf2237fab6cbfd4023</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776308</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Zhu Haotian" target="Singapore Arrival Card">
+      <data key="d7">1.0</data>
+      <data key="d8">Zhu Haotian submitted the Singapore Arrival Card (SGAC) on 05/09/2025 for travel to Singapore.</data>
+      <data key="d9">submission,traveler</data>
+      <data key="d10">chunk-601e22b4f94edabf2237fab6cbfd4023</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776308</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Singapore Arrival Card" target="Zhu Weiyi">
+      <data key="d7">1.0</data>
+      <data key="d8">Zhu Weiyi submitted the Singapore Arrival Card (SGAC) on 05/09/2025.</data>
+      <data key="d9">declaration,submission</data>
+      <data key="d10">chunk-4037d38d08f22ec8826d69685fe00bd3</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776398</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Singapore Arrival Card" target="Misuse of Drugs Act">
+      <data key="d7">1.0</data>
+      <data key="d8">The Singapore Arrival Card references the Misuse of Drugs Act for penalties related to false declarations.</data>
+      <data key="d9">declaration,legal reference</data>
+      <data key="d10">chunk-4037d38d08f22ec8826d69685fe00bd3</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776398</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Singapore Arrival Card" target="Infectious Diseases Act">
+      <data key="d7">2.0</data>
+      <data key="d8">The Singapore Arrival Card references the Infectious Diseases Act for penalties related to false health and travel declarations.&lt;SEP&gt;The Singapore Arrival Card requires truthful health and travel declarations to avoid prosecution under the Infectious Diseases Act.</data>
+      <data key="d9">declaration,false declaration,legal reference,legal requirement</data>
+      <data key="d10">chunk-4037d38d08f22ec8826d69685fe00bd3&lt;SEP&gt;chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776490</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Singapore Arrival Card" target="X8241Q2228">
+      <data key="d7">1.0</data>
+      <data key="d8">The DE number X8241Q2228 is used to retrieve and update the Singapore Arrival Card declaration.</data>
+      <data key="d9">identification,retrieval</data>
+      <data key="d10">chunk-4037d38d08f22ec8826d69685fe00bd3</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776398</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Singapore Arrival Card" target="SGAC e-Service">
+      <data key="d7">1.0</data>
+      <data key="d8">The Singapore Arrival Card can be submitted via the SGAC e-Service.</data>
+      <data key="d9">service access,submission</data>
+      <data key="d10">chunk-4037d38d08f22ec8826d69685fe00bd3</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776398</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Singapore Arrival Card" target="MyICA mobile application">
+      <data key="d7">1.0</data>
+      <data key="d8">The Singapore Arrival Card can be submitted using the MyICA mobile application.</data>
+      <data key="d9">digital service,submission method</data>
+      <data key="d10">chunk-4037d38d08f22ec8826d69685fe00bd3</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776398</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Singapore Arrival Card" target="Ge Huangyan">
+      <data key="d7">1.0</data>
+      <data key="d8">Ge Huangyan submitted the Singapore Arrival Card for arrival in Singapore.</data>
+      <data key="d9">declaration,submission</data>
+      <data key="d10">chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776490</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Singapore Arrival Card" target="Automated Clearance Initiative">
+      <data key="d7">1.0</data>
+      <data key="d8">Completion of the Singapore Arrival Card is required for eligibility to use the Automated Clearance Initiative upon arrival.</data>
+      <data key="d9">automated clearance,eligibility</data>
+      <data key="d10">chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776490</data>
+      <data key="d13" />
+    </edge>
+    <edge source="The Pan Pacific Hotel Singapore" target="Zhu Weiyi">
+      <data key="d7">1.0</data>
+      <data key="d8">Zhu Weiyi listed The Pan Pacific Hotel Singapore as his accommodation in the declaration.</data>
+      <data key="d9">accommodation,declaration</data>
+      <data key="d10">chunk-4037d38d08f22ec8826d69685fe00bd3</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776398</data>
+      <data key="d13" />
+    </edge>
+    <edge source="The Pan Pacific Hotel Singapore" target="Ge Huangyan">
+      <data key="d7">1.0</data>
+      <data key="d8">Ge Huangyan provided The Pan Pacific Hotel Singapore as their accommodation address for the stay in Singapore.</data>
+      <data key="d9">accommodation,lodging</data>
+      <data key="d10">chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776490</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Infectious Diseases Act" target="Health Declaration">
+      <data key="d7">1.0</data>
+      <data key="d8">The Health Declaration component of the SGAC is governed by the Infectious Diseases Act, which penalizes false health declarations.</data>
+      <data key="d9">governing law,legal framework</data>
+      <data key="d10">chunk-601e22b4f94edabf2237fab6cbfd4023</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776308</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Zhu Weiyi" target="05/09/2025">
+      <data key="d7">1.0</data>
+      <data key="d8">Zhu Weiyi declared 05/09/2025 as his date of arrival.</data>
+      <data key="d9">arrival date,declaration</data>
+      <data key="d10">chunk-4037d38d08f22ec8826d69685fe00bd3</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776398</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Zhu Weiyi" target="8615611560682">
+      <data key="d7">1.0</data>
+      <data key="d8">Zhu Weiyi provided the mobile number 8615611560682 as part of the declaration.</data>
+      <data key="d9">contact,declaration</data>
+      <data key="d10">chunk-4037d38d08f22ec8826d69685fe00bd3</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776398</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Zhu Weiyi" target="QIN.HAO@VULCANSHIELD.COM">
+      <data key="d7">1.0</data>
+      <data key="d8">Zhu Weiyi provided the email address QIN.HAO@VULCANSHIELD.COM as part of the declaration.</data>
+      <data key="d9">contact,declaration</data>
+      <data key="d10">chunk-4037d38d08f22ec8826d69685fe00bd3</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776398</data>
+      <data key="d13" />
+    </edge>
+    <edge source="05/09/2025" target="Ge Huangyan">
+      <data key="d7">1.0</data>
+      <data key="d8">Ge Huangyan specified 05/09/2025 as the date of arrival in Singapore.</data>
+      <data key="d9">arrival,travel date</data>
+      <data key="d10">chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776490</data>
+      <data key="d13" />
+    </edge>
+    <edge source="QIN.HAO@VULCANSHIELD.COM" target="Ge Huangyan">
+      <data key="d7">1.0</data>
+      <data key="d8">Ge Huangyan provided the email address QIN.HAO@VULCANSHIELD.COM for contact purposes.</data>
+      <data key="d9">contact information,email</data>
+      <data key="d10">chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776490</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Ge Huangyan" target="8613811467029">
+      <data key="d7">1.0</data>
+      <data key="d8">Ge Huangyan provided the mobile number 8613811467029 for contact purposes.</data>
+      <data key="d9">contact information,mobile</data>
+      <data key="d10">chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776490</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Ge Huangyan" target="X8245Q4626">
+      <data key="d7">1.0</data>
+      <data key="d8">Ge Huangyan was assigned the Disembarkation/Embarkation number X8245Q4626 for retrieving and updating the declaration.</data>
+      <data key="d9">identifier,retrieval</data>
+      <data key="d10">chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776490</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Ge Huangyan" target="*****2670">
+      <data key="d7">1.0</data>
+      <data key="d8">Ge Huangyan provided the masked passport number *****2670 as part of their declaration.</data>
+      <data key="d9">identification,passport</data>
+      <data key="d10">chunk-5647fd8f28e5eabdb226f2c330b2a3f4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776490</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Apple" target="Theo">
+      <data key="d7">1.0</data>
+      <data key="d8">Theo is an employee of Apple, as shown by the email address.</data>
+      <data key="d9">employee,organization affiliation</data>
+      <data key="d10">chunk-2f3fc821eab89756950ca0445407567a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776561</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Barry" target="Theo">
+      <data key="d7">1.0</data>
+      <data key="d8">Theo sent an email to Barry regarding the CAMX event meeting.</data>
+      <data key="d9">correspondence,email communication</data>
+      <data key="d10">chunk-2f3fc821eab89756950ca0445407567a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776561</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Barry" target="C71">
+      <data key="d7">1.0</data>
+      <data key="d8">Barry is the owner of booth C71 where the meeting is scheduled.</data>
+      <data key="d9">booth ownership,meeting venue</data>
+      <data key="d10">chunk-2f3fc821eab89756950ca0445407567a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776561</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Microsoft Corporation" target="One Microsoft Way">
+      <data key="d7">1.0</data>
+      <data key="d8">Microsoft Corporation is headquartered at One Microsoft Way.</data>
+      <data key="d9">address,headquarters</data>
+      <data key="d10">chunk-6e87f232589a04da70c323c9ec005549</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776798</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Jiaoji Qian" target="VSG">
+      <data key="d7">1.0</data>
+      <data key="d8">Jiaoji Qian reacted to a message discussing VSG's participation in CAMX 2025.</data>
+      <data key="d9">message reaction,topic</data>
+      <data key="d10">chunk-6e87f232589a04da70c323c9ec005549</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776798</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Jiaoji Qian" target="CAMX 2025">
+      <data key="d7">1.0</data>
+      <data key="d8">Jiaoji Qian reacted to a message about CAMX 2025.</data>
+      <data key="d9">event,message reaction</data>
+      <data key="d10">chunk-6e87f232589a04da70c323c9ec005549</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776798</data>
+      <data key="d13" />
+    </edge>
+    <edge source="One Microsoft Way" target="Redmond">
+      <data key="d7">1.0</data>
+      <data key="d8">One Microsoft Way is located in the city of Redmond.</data>
+      <data key="d9">city,location</data>
+      <data key="d10">chunk-6e87f232589a04da70c323c9ec005549</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776798</data>
+      <data key="d13" />
+    </edge>
+    <edge source="CAMX 2025" target="VSG">
+      <data key="d7">1.0</data>
+      <data key="d8">VSG is participating as an exhibitor in the CAMX 2025 event.</data>
+      <data key="d9">event,participation</data>
+      <data key="d10">chunk-6e87f232589a04da70c323c9ec005549</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776798</data>
+      <data key="d13" />
+    </edge>
+    <edge source="VSG" target="Fong Shengkai">
+      <data key="d7">1.0</data>
+      <data key="d8">Fong Shengkai received the email at an address associated with the organization VSG.</data>
+      <data key="d9">affiliation,email domain</data>
+      <data key="d10">chunk-6e87f232589a04da70c323c9ec005549</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776798</data>
+      <data key="d13" />
+    </edge>
+    <edge source="VSG" target="Martin">
+      <data key="d7">1.0</data>
+      <data key="d8">VSG is providing onboarding guides to Martin for HR and benefits processes.</data>
+      <data key="d9">onboarding guides,providing</data>
+      <data key="d10">chunk-21d291efcd3952326c77427f8f002495</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764779805</data>
+      <data key="d13" />
+    </edge>
+    <edge source="VSG" target="Great Eastern">
+      <data key="d7">1.0</data>
+      <data key="d8">VSG and Great Eastern are collaborating on medical benefits details.</data>
+      <data key="d9">collaboration,medical benefits</data>
+      <data key="d10">chunk-21d291efcd3952326c77427f8f002495</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764779805</data>
+      <data key="d13" />
+    </edge>
+    <edge source="SpaceX" target="Starship">
+      <data key="d7">1.0</data>
+      <data key="d8">SpaceX is the developer of the Starship spacecraft.</data>
+      <data key="d9">development</data>
+      <data key="d10">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776970</data>
+      <data key="d13" />
+    </edge>
+    <edge source="SpaceX" target="Raptor">
+      <data key="d7">1.0</data>
+      <data key="d8">SpaceX is the developer of the Raptor engine.</data>
+      <data key="d9">development</data>
+      <data key="d10">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776970</data>
+      <data key="d13" />
+    </edge>
+    <edge source="SpaceX" target="Falcon">
+      <data key="d7">1.0</data>
+      <data key="d8">SpaceX is the developer of the Falcon rocket program.</data>
+      <data key="d9">development</data>
+      <data key="d10">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776971</data>
+      <data key="d13" />
+    </edge>
+    <edge source="SpaceX" target="Dragon">
+      <data key="d7">1.0</data>
+      <data key="d8">SpaceX is the developer of the Dragon spacecraft program.</data>
+      <data key="d9">development</data>
+      <data key="d10">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776971</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Starship" target="eCerts">
+      <data key="d7">1.0</data>
+      <data key="d8">eCerts is required for the Starship program to document material traceability.</data>
+      <data key="d9">documentation,requirement</data>
+      <data key="d10">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776970</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Starship" target="PPAP">
+      <data key="d7">1.0</data>
+      <data key="d8">PPAP is a required process for the Starship program.</data>
+      <data key="d9">approval process,requirement</data>
+      <data key="d10">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776970</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Raptor" target="eCerts">
+      <data key="d7">1.0</data>
+      <data key="d8">eCerts is required for the Raptor engine program to document material traceability.</data>
+      <data key="d9">documentation,requirement</data>
+      <data key="d10">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776970</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Raptor" target="PPAP">
+      <data key="d7">1.0</data>
+      <data key="d8">PPAP is a required process for the Raptor engine program.</data>
+      <data key="d9">approval process,requirement</data>
+      <data key="d10">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776971</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Falcon" target="eCerts">
+      <data key="d7">1.0</data>
+      <data key="d8">eCerts is required for the Falcon rocket program to document material traceability.</data>
+      <data key="d9">documentation,requirement</data>
+      <data key="d10">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776970</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Falcon" target="PPAP">
+      <data key="d7">1.0</data>
+      <data key="d8">PPAP is a required process for the Falcon rocket program.</data>
+      <data key="d9">approval process,requirement</data>
+      <data key="d10">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776971</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Dragon" target="eCerts">
+      <data key="d7">1.0</data>
+      <data key="d8">eCerts is required for the Dragon spacecraft program to document material traceability.</data>
+      <data key="d9">documentation,requirement</data>
+      <data key="d10">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776970</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Dragon" target="PPAP">
+      <data key="d7">1.0</data>
+      <data key="d8">PPAP is a required process for the Dragon spacecraft program.</data>
+      <data key="d9">approval process,requirement</data>
+      <data key="d10">chunk-f13c3b6844e2bc3e43394df1afac6939</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764776971</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Trip.com" target="September 9">
+      <data key="d7">1.0</data>
+      <data key="d8">Trip.com promotes offers starting on September 9.</data>
+      <data key="d9">promotion timing</data>
+      <data key="d10">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777206</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Trip.com" target="September 12">
+      <data key="d7">1.0</data>
+      <data key="d8">Trip.com promotes offers ending on September 12.</data>
+      <data key="d9">promotion timing</data>
+      <data key="d10">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777206</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Trip.com" target="HK$999">
+      <data key="d7">1.0</data>
+      <data key="d8">Trip.com offers a HK$999 discount on flights and hotels.</data>
+      <data key="d9">discount amount</data>
+      <data key="d10">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777207</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Trip.com" target="HK$99">
+      <data key="d7">1.0</data>
+      <data key="d8">Trip.com promotes flights and hotels starting at HK$99.</data>
+      <data key="d9">starting price</data>
+      <data key="d10">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777207</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Trip.com" target="HK$150">
+      <data key="d7">1.0</data>
+      <data key="d8">Trip.com offers up to HK$150 discount on high-speed train tickets.</data>
+      <data key="d9">discount amount</data>
+      <data key="d10">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777207</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Trip.com" target="Shenzhen Huafu Ice and Snow Miracle">
+      <data key="d7">1.0</data>
+      <data key="d8">Trip.com features Shenzhen Huafu Ice and Snow Miracle in the promotion with a discount of HK$42.</data>
+      <data key="d9">promotion feature</data>
+      <data key="d10">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777207</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Trip.com" target="September 6">
+      <data key="d7">1.0</data>
+      <data key="d8">Trip.com promotes the Shenzhen Huafu Ice and Snow Miracle attraction starting on September 6 at 12AM.</data>
+      <data key="d9">promotion timing</data>
+      <data key="d10">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777207</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Shenzhen Huafu Ice and Snow Miracle" target="HK$42">
+      <data key="d7">1.0</data>
+      <data key="d8">The Shenzhen Huafu Ice and Snow Miracle attraction is offered with a discount of HK$42.</data>
+      <data key="d9">discount amount</data>
+      <data key="d10">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777207</data>
+      <data key="d13" />
+    </edge>
+    <edge source="HK$99" target="Flight Ticket">
+      <data key="d7">1.0</data>
+      <data key="d8">Flight tickets are available at a starting price of HK$99.</data>
+      <data key="d9">pricing</data>
+      <data key="d10">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777207</data>
+      <data key="d13" />
+    </edge>
+    <edge source="HK$99" target="Hotel">
+      <data key="d7">1.0</data>
+      <data key="d8">Hotel accommodations are available at a starting price of HK$99.</data>
+      <data key="d9">pricing</data>
+      <data key="d10">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777207</data>
+      <data key="d13" />
+    </edge>
+    <edge source="HK$150" target="Train Ticket">
+      <data key="d7">1.0</data>
+      <data key="d8">Train tickets are offered with a discount of up to HK$150.</data>
+      <data key="d9">discount amount</data>
+      <data key="d10">chunk-af84961d315469bb938d26f3fa30fd7a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777207</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Ctrip.com (Hong Kong) Limited" target="Hong Kong Travel Agent License">
+      <data key="d7">1.0</data>
+      <data key="d8">Ctrip.com (Hong Kong) Limited holds the Hong Kong Travel Agent License, which authorizes the company to operate as a travel agent in Hong Kong.</data>
+      <data key="d9">authorization,license holding</data>
+      <data key="d10">chunk-1956754dd86f6406ee3b7d6b02eb7aa4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777207</data>
+      <data key="d13" />
+    </edge>
+    <edge source="AAMkAGRkMmM3ZTZlLWMwYTYtNDMzZC05MDAzLTk5OWY5OGM0MzEyZABGAAAAC2OS1Bvs8oT7fZRZozWlJ-BwA1pQiKMnX2SZqnW8X-qRJuAAAAAAEJAAC2OS1Bvs8oT7fZRZozWlJ-BwA1pQiKMnX2SZqnW8X-qRJuAABnd-QHAAA=" target="Scanned Send">
+      <data key="d7">1.0</data>
+      <data key="d8">The email with the given identifier contains the body content "Scanned Send".</data>
+      <data key="d9">email content</data>
+      <data key="d10">chunk-0ab74b13b689cb643f74fb13d8d99793</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777390</data>
+      <data key="d13" />
+    </edge>
+    <edge source="AAMkAGRkMmM3ZTZlLWMwYTYtNDMzZC05MDAzLTk5OWY5OGM0MzEyZABGAAAAC2OS1Bvs8oT7fZRZozWlJ-BwA1pQiKMnX2SZqnW8X-qRJuAAAAAAEJAAC2OS1Bvs8oT7fZRZozWlJ-BwA1pQiKMnX2SZqnW8X-qRJuAABnd-QHAAA=" target="Internal">
+      <data key="d7">1.0</data>
+      <data key="d8">The email with the given identifier is categorized as internal communication.</data>
+      <data key="d9">email category</data>
+      <data key="d10">chunk-0ab74b13b689cb643f74fb13d8d99793</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777390</data>
+      <data key="d13" />
+    </edge>
+    <edge source="AAMkAGRkMmM3ZTZlLWMwYTYtNDMzZC05MDAzLTk5OWY5OGM0MzEyZABGAAAAC2OS1Bvs8oT7fZRZozWlJ-BwA1pQiKMnX2SZqnW8X-qRJuAAAAAAEJAAC2OS1Bvs8oT7fZRZozWlJ-BwA1pQiKMnX2SZqnW8X-qRJuAABnd-QHAAA=" target="2025-09-05 02:17">
+      <data key="d7">1.0</data>
+      <data key="d8">The email was sent at the specific date and time 2025-09-05 02:17.</data>
+      <data key="d9">timestamp</data>
+      <data key="d10">chunk-0ab74b13b689cb643f74fb13d8d99793</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777390</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Shermaine Yeo" target="Jolene Qian">
+      <data key="d7">1.0</data>
+      <data key="d8">Shermaine Yeo sent the email to Jolene Qian as the sender and recipient.</data>
+      <data key="d9">email transmission</data>
+      <data key="d10">chunk-0ab74b13b689cb643f74fb13d8d99793</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777390</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Shermaine Yeo" target="Email ID">
+      <data key="d7">1.0</data>
+      <data key="d8">Shermaine Yeo is the sender of the email identified by the Email ID.</data>
+      <data key="d9">email,sender</data>
+      <data key="d10">chunk-2c456ab1a49127824bce55b9ed871dc5</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777555</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Shermaine Yeo" target="Patent Law Firm">
+      <data key="d7">1.0</data>
+      <data key="d8">Shermaine Yeo is making a down payment to the Patent Law Firm, as indicated by the email subject.</data>
+      <data key="d9">financial transaction,payment</data>
+      <data key="d10">chunk-4989f91bc2dc1babcc3f8e147692b549</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764778909</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Shermaine Yeo" target="Alison Liu">
+      <data key="d7">2.0</data>
+      <data key="d8">Shermaine Yeo sent an email to Alison Liu regarding the down payment.&lt;SEP&gt;Shermaine Yeo is communicating with Alison Liu regarding the down payment to the Patent Law Firm.</data>
+      <data key="d9">communication,email communication,payment update</data>
+      <data key="d10">chunk-4989f91bc2dc1babcc3f8e147692b549&lt;SEP&gt;chunk-74bb905bd72b79c50eae389babc81be7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764778941</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Jolene Qian" target="Email ID">
+      <data key="d7">1.0</data>
+      <data key="d8">Jolene Qian is the recipient of the email identified by the Email ID.</data>
+      <data key="d9">email,recipient</data>
+      <data key="d10">chunk-2c456ab1a49127824bce55b9ed871dc5</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777555</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Scan Data From FX-100470" target="FX-100470">
+      <data key="d7">1.0</data>
+      <data key="d8">The email subject explicitly references scan data for product FX-100470.</data>
+      <data key="d9">product,subject reference</data>
+      <data key="d10">chunk-0ab74b13b689cb643f74fb13d8d99793</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777390</data>
+      <data key="d13" />
+    </edge>
+    <edge source="FX-100470" target="Email ID">
+      <data key="d7">1.0</data>
+      <data key="d8">The email subject references the product FX-100470, indicating the email is about this product.</data>
+      <data key="d9">email subject,product reference</data>
+      <data key="d10">chunk-2c456ab1a49127824bce55b9ed871dc5</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777555</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Email ID" target="Internal Email">
+      <data key="d7">1.0</data>
+      <data key="d8">The Email ID is classified as an internal email, as specified in the email header.</data>
+      <data key="d9">classification,email type</data>
+      <data key="d10">chunk-2c456ab1a49127824bce55b9ed871dc5</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777555</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Email ID" target="Email Date">
+      <data key="d7">1.0</data>
+      <data key="d8">The Email ID is associated with a specific date and time of sending, as recorded in the email header.</data>
+      <data key="d9">email timestamp</data>
+      <data key="d10">chunk-2c456ab1a49127824bce55b9ed871dc5</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764777555</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Patent Law Firm" target="Down Payment">
+      <data key="d7">2.0</data>
+      <data key="d8">The down payment is intended for the Patent Law Firm, as stated in the email subject.&lt;SEP&gt;The Down Payment is intended for the Patent Law Firm as stated in the email subject.</data>
+      <data key="d9">financial transaction,payment,payment destination</data>
+      <data key="d10">chunk-4989f91bc2dc1babcc3f8e147692b549&lt;SEP&gt;chunk-74bb905bd72b79c50eae389babc81be7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764778941</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Down Payment" target="Bank Slip">
+      <data key="d7">1.0</data>
+      <data key="d8">The bank slip will be provided to confirm the down payment, as mentioned in the email.</data>
+      <data key="d9">payment confirmation</data>
+      <data key="d10">chunk-4989f91bc2dc1babcc3f8e147692b549</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764778909</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Yui Luo" target="FCA广西工厂1X40HC">
+      <data key="d7">1.0</data>
+      <data key="d8">Yui Luo is the contact person for FCA广西工厂1X40HC regarding a shipping inquiry for a 40HC container.</data>
+      <data key="d9">contact,shipping inquiry</data>
+      <data key="d10">chunk-4c0ce0a4012fd370aad9db4ce76c7837</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764779776</data>
+      <data key="d13" />
+    </edge>
+    <edge source="FCA广西工厂1X40HC" target="61X8153509">
+      <data key="d7">1.0</data>
+      <data key="d8">FCA广西工厂1X40HC is associated with the shipment reference number 61X8153509.</data>
+      <data key="d9">order number,shipment reference</data>
+      <data key="d10">chunk-4c0ce0a4012fd370aad9db4ce76c7837</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764779776</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Martin" target="Info Tech">
+      <data key="d7">1.0</data>
+      <data key="d8">Info Tech is providing an HR application system for leave, claims, and payslips to Martin.</data>
+      <data key="d9">HR application,providing</data>
+      <data key="d10">chunk-21d291efcd3952326c77427f8f002495</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764779805</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Martin" target="Great Eastern">
+      <data key="d7">1.0</data>
+      <data key="d8">Great Eastern is providing an onboarding email for employee insurance benefits to Martin.</data>
+      <data key="d9">onboarding email,providing</data>
+      <data key="d10">chunk-21d291efcd3952326c77427f8f002495</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1764779805</data>
+      <data key="d13" />
+    </edge>
+  </graph>
+</graphml>

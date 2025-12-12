@@ -31,7 +31,9 @@
     "settings": "Settings",
     "logout": "Logout",
     "presentation": "Presentation",
-    "infoHub": "Info Hub"
+    "infoHub": "Info Hub",
+    "emailIntel": "Relation Graph",
+    "approval": "Approval"
   },
   "home": {
     "title": "Command Center",

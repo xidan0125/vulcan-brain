@@ -3,7 +3,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Fingerprint, Lock, Brain, Hexagon, ChevronRight } from 'lucide-react';
+import { Fingerprint, Lock, Brain, Hexagon, ChevronRight, LogOut, SkipForward } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 // --- Types ---
 type Dimension = 'risk_appetite' | 'time_horizon' | 'strategic_drive' | 'people_philosophy' | 'control_style' | 'ethical_boundary';
@@ -263,7 +264,7 @@ const Background = () => (
 );
 
 // --- Awakening Stage ---
-const Awakening = ({ onComplete }: { onComplete: () => void }) => {
+const Awakening = ({ onComplete, onSkip, onLogout }: { onComplete: () => void; onSkip: () => void; onLogout: () => void }) => {
   const [text, setText] = useState("INITIALIZING...");
   const { playSfx, playBgm } = useAudio();
   const [started, setStarted] = useState(false);
@@ -287,6 +288,30 @@ const Awakening = ({ onComplete }: { onComplete: () => void }) => {
   if (!started) {
     return (
       <div className="flex flex-col items-center justify-center h-screen z-10 relative">
+        {/* 右上角操作按钮 */}
+        <div className="absolute top-6 right-6 flex gap-3">
+          <motion.button
+            onClick={onSkip}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="flex items-center gap-2 px-4 py-2 text-zinc-400 hover:text-white border border-zinc-700 hover:border-zinc-500 rounded-lg transition-all text-sm"
+          >
+            <SkipForward size={16} />
+            稍后再说
+          </motion.button>
+          <motion.button
+            onClick={onLogout}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="flex items-center gap-2 px-4 py-2 text-zinc-400 hover:text-red-400 border border-zinc-700 hover:border-red-500/50 rounded-lg transition-all text-sm"
+          >
+            <LogOut size={16} />
+            退出登录
+          </motion.button>
+        </div>
+
         <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="text-center">
           <Fingerprint size={80} className="text-orange-500 mx-auto mb-8 animate-pulse" />
           <h1 className="text-4xl font-bold text-white mb-4">PREFERENCE ALIGNMENT</h1>
@@ -378,7 +403,39 @@ export default function GenesisPage() {
   const [analysisText, setAnalysisText] = useState("");
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const { playSfx } = useAudio();
-  const { refreshCalibrationStatus } = useAuth();
+  const { refreshCalibrationStatus, logout } = useAuth();
+  const router = useRouter();
+
+  // 跳过校准，直接进入系统（使用默认值）
+  const handleSkip = async () => {
+    try {
+      // 保存默认的校准数据
+      const token = localStorage.getItem('vulcan_token');
+      await fetch('/api/soul/genesis', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify({
+          genome: scores,  // 默认值
+          questions_answered: 0,
+          version: '2.0',
+          skipped: true
+        })
+      });
+      localStorage.setItem('vulcan_genesis_complete', 'true');
+      await refreshCalibrationStatus();
+      router.push('/');
+    } catch (e) {
+      console.error('Failed to skip calibration:', e);
+      // 即使失败也允许进入
+      localStorage.setItem('vulcan_genesis_complete', 'true');
+      router.push('/');
+    }
+  };
+
+  // 退出登录
+  const handleLogout = () => {
+    logout();
+  };
 
   const currentQuestion = QUESTIONS[currentQIndex];
   const currentDimension = DIMENSIONS.find(d => d.key === currentQuestion?.dimension);
@@ -449,10 +506,32 @@ export default function GenesisPage() {
     <main className="min-h-screen w-full bg-zinc-950 text-zinc-100 font-sans selection:bg-orange-500/30 overflow-hidden relative">
       <Background />
 
-      {stage === 'awakening' && <Awakening onComplete={() => setStage('questions')} />}
+      {stage === 'awakening' && <Awakening onComplete={() => setStage('questions')} onSkip={handleSkip} onLogout={handleLogout} />}
 
       {stage === 'questions' && (
         <div className="relative z-10 w-full h-screen flex flex-col items-center justify-center p-6">
+          {/* 右上角退出按钮 */}
+          <div className="absolute top-6 right-6 flex gap-3 z-40">
+            <motion.button
+              onClick={handleSkip}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="flex items-center gap-2 px-3 py-1.5 text-zinc-500 hover:text-white border border-zinc-800 hover:border-zinc-600 rounded-lg transition-all text-xs"
+            >
+              <SkipForward size={14} />
+              跳过
+            </motion.button>
+            <motion.button
+              onClick={handleLogout}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="flex items-center gap-2 px-3 py-1.5 text-zinc-500 hover:text-red-400 border border-zinc-800 hover:border-red-500/50 rounded-lg transition-all text-xs"
+            >
+              <LogOut size={14} />
+              退出
+            </motion.button>
+          </div>
+
           <AnimatePresence>
             {isDimensionTransition && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
