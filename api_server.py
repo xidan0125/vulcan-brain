@@ -96,7 +96,7 @@ from api.routers.mcp_router import router as mcp_router
 # soul_router is already imported above as soul_router_new
 from api.routers.project_router import router as pm_router
 from api.routers.message_router import router as message_router
-from api.routers.info_hub_router import router as info_hub_router
+from api.routers.info_hub import router as info_hub_router
 from api.routers.email_router import router as email_router
 from api.routers.email_intel_router import router as email_intel_router
 from api.routers.approval_router import router as approval_router
