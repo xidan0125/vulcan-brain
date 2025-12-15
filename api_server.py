@@ -73,7 +73,7 @@ async def initialize_app():
 from api.routers.system_router import router as system_router
 from api.routers.code_execution_router import router as code_execution_router
 from api.routers.core_router import router as core_router
-from api.routers.memory_router import router as memory_router
+from api.routers.memory_basic_router import router as memory_basic_router
 from api.routers.agent_router import router as agent_router
 from api.routers.knowledge_router import router as knowledge_router
 from api.routers.soul_router import router as soul_router_new
@@ -81,7 +81,7 @@ from api.routers.soul_router import router as soul_router_new
 app.include_router(system_router)
 app.include_router(code_execution_router)
 app.include_router(core_router)
-app.include_router(memory_router)
+app.include_router(memory_basic_router)
 app.include_router(agent_router)
 app.include_router(knowledge_router)
 app.include_router(soul_router_new)
@@ -100,7 +100,7 @@ from api.routers.info_hub_router import router as info_hub_router
 from api.routers.email_router import router as email_router
 from api.routers.email_intel_router import router as email_intel_router
 from api.routers.approval_router import router as approval_router
-from api.routers.memory_v3_router import router as memory_v3_router
+from api.routers.memory_advanced_router import router as memory_advanced_router
 from api.routers.monitor_router import router as monitor_router
 
 # Mounts
@@ -114,7 +114,7 @@ app.include_router(info_hub_router, prefix='/api', tags=['InfoHub'])
 app.include_router(email_router, prefix='/api', tags=['Email'])
 app.include_router(email_intel_router, prefix='/api', tags=['Email Intel'])
 app.include_router(approval_router, prefix='/api', tags=['Approval'])
-app.include_router(memory_v3_router, prefix='/api', tags=['Memory v3'])
+app.include_router(memory_advanced_router, prefix='/api', tags=['Memory Advanced'])
 app.include_router(monitor_router, prefix='/api', tags=['V3 Monitor'])
 
 # ==================== V3 提取监控 API ====================
