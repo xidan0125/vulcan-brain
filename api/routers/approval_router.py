@@ -29,7 +29,7 @@ from services.approval_bot_service import (
 )
 
 logger = logging.getLogger("ApprovalAPI")
-router = APIRouter(prefix="/api/approval", tags=["approval"])
+router = APIRouter(prefix="/approval", tags=["approval"])
 
 
 
