@@ -117,7 +117,17 @@ app.include_router(approval_router, prefix='/api', tags=['Approval'])
 app.include_router(memory_v3_router, prefix='/api', tags=['Memory v3'])
 app.include_router(monitor_router, prefix='/api', tags=['V3 Monitor'])
 
-# ==================== 启动入口 ====================
+# ==================== V3 提取监控 API ====================
+try:
+    from v3_monitor_api import router as v3_monitor_router
+    app.include_router(v3_monitor_router, prefix="/api", tags=["V3 Monitor"])
+    print("[INFO] V3 提取监控 API 已加载")
+except ImportError as e:
+    print(f"[WARNING] V3 提取监控 API 未加载: {e}")
+
+from api.routers.soul_extended_router import router as soul_extended_router
+app.include_router(soul_extended_router, prefix='/api', tags=['Soul Extended'])
+
 if __name__ == '__main__':
     import uvicorn
     from config import LLM_MODEL_NAME
@@ -136,13 +146,3 @@ if __name__ == '__main__':
         port=8001,
         log_level='info'
     )
-
-# ==================== V3 提取监控 API ====================
-try:
-    from v3_monitor_api import router as v3_monitor_router
-    app.include_router(v3_monitor_router, prefix="/api", tags=["V3 Monitor"])
-    print("[INFO] V3 提取监控 API 已加载")
-except ImportError as e:
-    print(f"[WARNING] V3 提取监控 API 未加载: {e}")
-from api.routers.soul_extended_router import router as soul_extended_router
-app.include_router(soul_extended_router, prefix='/api', tags=['Soul Extended'])
