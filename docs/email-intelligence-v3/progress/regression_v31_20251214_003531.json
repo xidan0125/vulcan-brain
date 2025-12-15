@@ -1,0 +1,313 @@
+[
+  {
+    "file": "AAMkADVkYTU2ZmMx_SINIR06094668.pdf",
+    "success": true,
+    "document_type": "Invoice",
+    "fact_count": 35,
+    "duration": 36.224103,
+    "json_repaired": false,
+    "extraction": {
+      "document_type": "Invoice",
+      "facts": [
+        {
+          "type": "Amount",
+          "key": "Total Amount (Excl. GST)",
+          "value": "44.71",
+          "unit": "SGD",
+          "context": "Total amount excluding GST"
+        },
+        {
+          "type": "Amount",
+          "key": "Total Amount (Incl. GST)",
+          "value": "44.71",
+          "unit": "SGD",
+          "context": "Total amount including GST"
+        },
+        {
+          "type": "Amount",
+          "key": "GST",
+          "value": "0.00",
+          "unit": "SGD",
+          "context": "GST amount"
+        },
+        {
+          "type": "Amount",
+          "key": "Total Extra Charges",
+          "value": "44.71",
+          "unit": "SGD",
+          "context": "Total extra charges including import/export taxes and duty tax paid"
+        },
+        {
+          "type": "Date",
+          "key": "Invoice Date",
+          "value": "2024-12-27",
+          "unit": null,
+          "context": "Invoice issuance date"
+        },
+        {
+          "type": "Date",
+          "key": "Payment Due Date",
+          "value": "2025-01-03",
+          "unit": null,
+          "context": "Payment deadline"
+        },
+        {
+          "type": "Quantity",
+          "key": "Number of Shipments",
+          "value": "1",
+          "unit": null,
+          "context": "Total shipments processed"
+        },
+        {
+          "type": "Quantity",
+          "key": "Number of Pieces",
+          "value": "0",
+          "unit": null,
+          "context": "Total pieces processed"
+        },
+        {
+          "type": "Quantity",
+          "key": "Total Weight",
+          "value": "0.00",
+          "unit": null,
+          "context": "Total shipment weight"
+        },
+        {
+          "type": "Currency",
+          "key": "Currency",
+          "value": "SGD",
+          "unit": null,
+          "context": "Invoice currency"
+        },
+        {
+          "type": "Company",
+          "key": "Billing Company",
+          "value": "VULCAN SHIELD GLOBAL PTE. LTD.",
+          "unit": null,
+          "context": "Billing entity"
+        },
+        {
+          "type": "Company",
+          "key": "Service Provider",
+          "value": "DHL Express (Singapore) Pte Ltd.",
+          "unit": null,
+          "context": "Service provider"
+        },
+        {
+          "type": "Address",
+          "key": "Billing Address",
+          "value": "10 MARINA BOULEVARD #13-01, MARINA BAY FINANCIAL CENTRE 018983 SINGAPORE",
+          "unit": null,
+          "context": "Billing company address"
+        },
+        {
+          "type": "Address",
+          "key": "Service Provider Address",
+          "value": "P.O. Box 2101 Robinson Road Post Office, Singapore 904101",
+          "unit": null,
+          "context": "Service provider address"
+        },
+        {
+          "type": "Contact",
+          "key": "Telephone",
+          "value": "6880-6405",
+          "unit": null,
+          "context": "Invoice inquiries contact"
+        },
+        {
+          "type": "Contact",
+          "key": "Email",
+          "value": "financequery@dhl.com",
+          "unit": null,
+          "context": "Invoice inquiries email"
+        },
+        {
+          "type": "Contact",
+          "key": "Live Chat",
+          "value": "Billing Chat",
+          "unit": null,
+          "context": "Invoice inquiries live chat"
+        },
+        {
+          "type": "Other",
+          "key": "Invoice Number",
+          "value": "SINIR06094668",
+          "unit": null,
+          "context": "Invoice identification number"
+        },
+        {
+          "type": "Other",
+          "key": "Account Number",
+          "value": "618855894",
+          "unit": null,
+          "context": "Billing account number"
+        },
+        {
+          "type": "Other",
+          "key": "Company Registration Number",
+          "value": "202216425K",
+          "unit": null,
+          "context": "Company registration identifier"
+        },
+        {
+          "type": "Date",
+          "key": "Invoice Date",
+          "value": "2024-12-27",
+          "unit": null,
+          "context": "Invoice Date"
+        },
+        {
+          "type": "Date",
+          "key": "Shipment Origin Date",
+          "value": "2024-12-23",
+          "unit": null,
+          "context": "Shipment Origin Date"
+        },
+        {
+          "type": "Amount",
+          "key": "Total amount (incl. GST)",
+          "value": "44.71",
+          "unit": "SGD",
+          "context": "Total amount including GST"
+        },
+        {
+          "type": "Amount",
+          "key": "Extra Charges Amount",
+          "value": "10.71",
+          "unit": "SGD",
+          "context": "IMPORT EXPORT TAXES"
+        },
+        {
+          "type": "Amount",
+          "key": "Extra Charges Amount",
+          "value": "34.00",
+          "unit": "SGD",
+          "context": "DUTY TAX PAID"
+        },
+        {
+          "type": "Weight",
+          "key": "Weight in Kg",
+          "value": "0.00",
+          "unit": "Kg",
+          "context": "Weight of shipment"
+        },
+        {
+          "type": "Quantity",
+          "key": "Number of Pieces",
+          "value": "0",
+          "unit": "Pieces",
+          "context": "Number of pieces"
+        },
+        {
+          "type": "Other",
+          "key": "Invoice Number",
+          "value": "SINIR06094668",
+          "unit": null,
+          "context": "Invoice Number"
+        },
+        {
+          "type": "Other",
+          "key": "Account Number",
+          "value": "618855894",
+          "unit": null,
+          "context": "Account Number"
+        },
+        {
+          "type": "Other",
+          "key": "Air Waybill Number",
+          "value": "3076731582",
+          "unit": null,
+          "context": "Air Waybill Number"
+        },
+        {
+          "type": "Other",
+          "key": "Number of Pages",
+          "value": "2 of 2",
+          "unit": null,
+          "context": "Number of Pages"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "Destination",
+          "value": "TYO, TOKYO",
+          "unit": null,
+          "context": "Destination"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "Shipment Origin",
+          "value": "SIN, SINGAPORE",
+          "unit": null,
+          "context": "Shipment Origin"
+        },
+        {
+          "type": "Other",
+          "key": "Type of Service",
+          "value": "DUTIES & TAXES",
+          "unit": null,
+          "context": "Type of Service"
+        },
+        {
+          "type": "Other",
+          "key": "GST Code",
+          "value": "Z, Z, C",
+          "unit": null,
+          "context": "GST Codes"
+        }
+      ],
+      "entities": {
+        "companies": [
+          "DHL Express (Singapore) Pte Ltd.",
+          "SUN SHUREN",
+          "VULCAN SHIELD GLOBAL PTE. LTD.",
+          "VULCAN SHIELD GLOBAL PTE LTD"
+        ],
+        "products": [],
+        "persons": [
+          "Vel Tan"
+        ]
+      },
+      "summary": "DHL Express新加坡公司向VULCAN SHIELD GLOBAL PTE. LTD.开具的税务发票，金额44.71 SGD，包含关税和税费，付款截止日期为2025-01-03。",
+      "pages": 2,
+      "json_repaired": false
+    }
+  },
+  {
+    "file": "AAMkADYzNjY4ZmNi_image001.png",
+    "success": true,
+    "document_type": "ShippingDoc",
+    "fact_count": 1,
+    "duration": 34.57904,
+    "json_repaired": true,
+    "extraction": {
+      "document_type": "ShippingDoc",
+      "document_date": null,
+      "facts": [
+        {
+          "type": "Company",
+          "key": "SHIPPER",
+          "value": "VULCAN SHIELD GLOBAL PTE. LTD.",
+          "unit": null,
+          "context": "托运人信息"
+        }
+      ],
+      "json_repaired": true
+    }
+  },
+  {
+    "file": "AAMkAGViNzg3ODQw_28Oct2024 proposal for Battery Room.xlsx",
+    "success": true,
+    "document_type": "Other",
+    "fact_count": 0,
+    "duration": 35.393638,
+    "json_repaired": true,
+    "extraction": {
+      "document_type": "Other",
+      "facts": [],
+      "entities": {},
+      "summary": "JSON修复失败",
+      "raw": "['Vulcan Shield Global']",
+      "json_repaired": true
+    }
+  }
+]

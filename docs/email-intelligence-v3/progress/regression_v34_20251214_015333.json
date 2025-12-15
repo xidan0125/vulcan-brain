@@ -1,0 +1,646 @@
+[
+  {
+    "file": "AAMkADVkYTU2ZmMx_SINIR06094668.pdf",
+    "success": true,
+    "document_type": "TAX INVOICE",
+    "fact_count": 66,
+    "identifier_count": 18,
+    "other_count": 0,
+    "identifier_categories": {
+      "FINANCE": 6,
+      "LOGISTICS": 2,
+      "LEGAL": 1,
+      "UNKNOWN": 9
+    },
+    "had_json_error": false,
+    "duration": 17.846645,
+    "extraction": {
+      "document_type": "TAX INVOICE",
+      "facts": [
+        {
+          "type": "Company Information",
+          "key": "Company Name",
+          "value": "VULCAN SHIELD GLOBAL PTE. LTD."
+        },
+        {
+          "type": "Company Information",
+          "key": "Company Address",
+          "value": "10 MARINA BOULEVARD #13-01, MARINA BAY FINANCIAL CENTRE 018983 SINGAPORE"
+        },
+        {
+          "type": "Company Information",
+          "key": "Company Registration Number",
+          "value": "202216425K"
+        },
+        {
+          "type": "Company Information",
+          "key": "Account Number",
+          "value": "618855894"
+        },
+        {
+          "type": "Invoice Information",
+          "key": "Invoice Number",
+          "value": "SINIR06094668"
+        },
+        {
+          "type": "Invoice Information",
+          "key": "Invoice Date",
+          "value": "27/12/2024"
+        },
+        {
+          "type": "Invoice Information",
+          "key": "Number of Pages",
+          "value": "1 of 2"
+        },
+        {
+          "type": "Invoice Information",
+          "key": "Payment Due Date",
+          "value": "03/01/2025"
+        },
+        {
+          "type": "Invoice Information",
+          "key": "Total Amount (Excl. GST)",
+          "value": "44.71 SGD"
+        },
+        {
+          "type": "Invoice Information",
+          "key": "Total Amount (Incl. GST)",
+          "value": "44.71 SGD"
+        },
+        {
+          "type": "Invoice Information",
+          "key": "GST",
+          "value": "0.00"
+        },
+        {
+          "type": "Invoice Information",
+          "key": "Total Extra Charges",
+          "value": "44.71"
+        },
+        {
+          "type": "Invoice Information",
+          "key": "Total Extra Charges (Import Export Taxes)",
+          "value": "10.71"
+        },
+        {
+          "type": "Invoice Information",
+          "key": "Total Extra Charges (Duty Tax Paid)",
+          "value": "34.00"
+        },
+        {
+          "type": "Invoice Information",
+          "key": "Taxable Total",
+          "value": "34.00"
+        },
+        {
+          "type": "Invoice Information",
+          "key": "GST Rate",
+          "value": "0.00%"
+        },
+        {
+          "type": "Invoice Information",
+          "key": "GST Amount",
+          "value": "0.00"
+        },
+        {
+          "type": "Invoice Information",
+          "key": "Total GST",
+          "value": "0.00"
+        },
+        {
+          "type": "Payment Information",
+          "key": "Payment Method",
+          "value": "By Credit / Debit Card, By Cheque, By Bank Transfer / AXS/ Cash"
+        },
+        {
+          "type": "Payment Information",
+          "key": "Bank Name",
+          "value": "Standard Chartered Bank (Singapore) Limited"
+        },
+        {
+          "type": "Payment Information",
+          "key": "Bank/Branch Code",
+          "value": "9496/001"
+        },
+        {
+          "type": "Payment Information",
+          "key": "Swift Code",
+          "value": "SCBLSG22"
+        },
+        {
+          "type": "Payment Information",
+          "key": "Account No",
+          "value": "01-0-054823-7"
+        },
+        {
+          "type": "Payment Information",
+          "key": "Account Name",
+          "value": "DHL Express (Singapore) Pte Ltd"
+        },
+        {
+          "type": "Payment Information",
+          "key": "Remittance Advice Email",
+          "value": "sscreceiptingiro@dhl.com"
+        },
+        {
+          "type": "Contact Information",
+          "key": "Telephone",
+          "value": "6880-6405"
+        },
+        {
+          "type": "Contact Information",
+          "key": "Email",
+          "value": "financequery@dhl.com"
+        },
+        {
+          "type": "Contact Information",
+          "key": "Live Chat",
+          "value": "Billing Chat"
+        },
+        {
+          "type": "Service Information",
+          "key": "Type of Service",
+          "value": "DUTIES & TAXES"
+        },
+        {
+          "type": "Service Information",
+          "key": "Number of Shipments",
+          "value": "1"
+        },
+        {
+          "type": "Service Information",
+          "key": "Total Weight",
+          "value": "0.00"
+        },
+        {
+          "type": "Service Information",
+          "key": "Number of Pieces",
+          "value": "0"
+        },
+        {
+          "type": "Service Information",
+          "key": "Standard Shipping Charge",
+          "value": "0.00"
+        },
+        {
+          "type": "Service Information",
+          "key": "Total of Extra Charges",
+          "value": "44.71"
+        },
+        {
+          "type": "Service Information",
+          "key": "Total amount (incl. GST)",
+          "value": "44.71"
+        },
+        {
+          "type": "Service Information",
+          "key": "GST Code",
+          "value": "C"
+        },
+        {
+          "type": "Service Information",
+          "key": "GST Description",
+          "value": "GST 0% INT. SERVICE - Export"
+        },
+        {
+          "type": "Service Information",
+          "key": "GST Code",
+          "value": "Z"
+        },
+        {
+          "type": "Service Information",
+          "key": "GST Description",
+          "value": "Duty and Tax"
+        },
+        {
+          "type": "Service Information",
+          "key": "GST Rate",
+          "value": "0.00%"
+        },
+        {
+          "type": "Service Information",
+          "key": "Taxable Total",
+          "value": "10.71"
+        },
+        {
+          "type": "Service Information",
+          "key": "GST Amount",
+          "value": "0.00"
+        },
+        {
+          "type": "Identifier",
+          "key": "Invoice Number",
+          "value": "SINIR06094668",
+          "identifier_category": "FINANCE",
+          "identifier_subtype": "INVOICE_NUMBER"
+        },
+        {
+          "type": "Identifier",
+          "key": "Account Number",
+          "value": "618855894",
+          "identifier_category": "FINANCE",
+          "identifier_subtype": "ACCOUNT_NUMBER"
+        },
+        {
+          "type": "Identifier",
+          "key": "Air Waybill Number",
+          "value": "3076731582",
+          "identifier_category": "LOGISTICS",
+          "identifier_subtype": "TRACKING_NUMBER"
+        },
+        {
+          "type": "Identifier",
+          "key": "Shippers Reference",
+          "value": "",
+          "identifier_category": "LEGAL",
+          "identifier_subtype": "REFERENCE_NUMBER"
+        },
+        {
+          "type": "Identifier",
+          "key": "Shipment Origin / Consignor Date",
+          "value": "23/12/2024",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "Destination / Consignee",
+          "value": "TYO, TOKYO",
+          "identifier_category": "LOGISTICS",
+          "identifier_subtype": "CONSIGNEE_REF"
+        },
+        {
+          "type": "Identifier",
+          "key": "Type of Service",
+          "value": "DUTIES & TAXES",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "Weight in Kg",
+          "value": "0.00",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "Number of Pieces",
+          "value": "0",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "Standard Charge",
+          "value": "0.00",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "Extra Charges Description",
+          "value": "IMPORT EXPORT TAXES",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "Extra Charges Amount",
+          "value": "10.71",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "GST / Code",
+          "value": "Z",
+          "identifier_category": "FINANCE",
+          "identifier_subtype": "TAX_CODE"
+        },
+        {
+          "type": "Identifier",
+          "key": "Total amount (incl. GST)",
+          "value": "0.00",
+          "identifier_category": "FINANCE",
+          "identifier_subtype": "TAX_CODE"
+        },
+        {
+          "type": "Identifier",
+          "key": "Extra Charges Description",
+          "value": "DUTY TAX PAID",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "Extra Charges Amount",
+          "value": "34.00",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "GST / Code",
+          "value": "C",
+          "identifier_category": "FINANCE",
+          "identifier_subtype": "TAX_CODE"
+        },
+        {
+          "type": "Identifier",
+          "key": "Total amount (incl. GST)",
+          "value": "34.00",
+          "identifier_category": "FINANCE",
+          "identifier_subtype": "TAX_CODE"
+        },
+        {
+          "type": "Company",
+          "key": "Shipper",
+          "value": "VULCAN SHIELD GLOBAL PTE LTD"
+        },
+        {
+          "type": "Company",
+          "key": "Consignee",
+          "value": "SUN SHUREN"
+        },
+        {
+          "type": "Address",
+          "key": "Shipper Address",
+          "value": "10 Marina Boulevard, #13-01 Marina Bay Financial Centre Tower 2 SG-018983, SINGAPORE"
+        },
+        {
+          "type": "Address",
+          "key": "Consignee Address",
+          "value": "2 Chome-10-4 Toranomon, Minato City Tokyo 105-0001 JP-105-0001, TOKYO-TO MINATO KU TOKYO"
+        },
+        {
+          "type": "Amount",
+          "key": "Service Subtotal - DUTIES & TAXES",
+          "value": "44.71"
+        },
+        {
+          "type": "Amount",
+          "key": "Total: SGD",
+          "value": "44.71"
+        }
+      ],
+      "entities": {
+        "companies": [],
+        "products": [],
+        "persons": []
+      },
+      "summary": "This is a DHL Express tax invoice for VULCAN SHIELD GLOBAL PTE. LTD., dated 27/12/2024, with invoice number SINIR06094668. The invoice details duties and taxes charges totaling 44.71 SGD (inclusive of GST), with 34.00 SGD taxable under 0% GST rate. Payment is due by 03/01/2025, and multiple payment methods are accepted including credit/debit card, cheque, and bank transfer. The invoice includes detailed bank information for remittance.",
+      "pages": 2,
+      "_had_json_error": false,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "AAMkADYzNjY4ZmNi_image001.png",
+    "success": true,
+    "document_type": "B/L (Bill of Lading)",
+    "fact_count": 30,
+    "identifier_count": 0,
+    "other_count": 0,
+    "identifier_categories": {},
+    "had_json_error": false,
+    "duration": 9.953083,
+    "extraction": {
+      "document_type": "B/L (Bill of Lading)",
+      "document_date": "",
+      "facts": [
+        {
+          "type": "SHIPPER",
+          "key": "Name",
+          "value": "VULCAN SHIELD GLOBAL PTE. LTD."
+        },
+        {
+          "type": "SHIPPER",
+          "key": "Address",
+          "value": "10 MARINA BOULEVARD #13-01,MARINA BAY FINANCIAL CENTRE TOWER 2, SINGAPORE 018983."
+        },
+        {
+          "type": "SHIPPER",
+          "key": "Tel",
+          "value": "(65)97708555"
+        },
+        {
+          "type": "CONSIGNEE",
+          "key": "Name",
+          "value": "SPACE EXPLORATION TECHNOLOGIES CORP"
+        },
+        {
+          "type": "CONSIGNEE",
+          "key": "Address",
+          "value": "52199 JOANNA ST BROWNSVILLE, TX 78521-8931 UNITED STATES"
+        },
+        {
+          "type": "NOTIFY PARTY",
+          "key": "Name",
+          "value": "SAME AS CONSIGNEE"
+        },
+        {
+          "type": "EXPORT CARRIER",
+          "key": "Vessel",
+          "value": "CSCL SOUTH CHINA SEA V 077E"
+        },
+        {
+          "type": "EXPORT CARRIER",
+          "key": "Voyage",
+          "value": ""
+        },
+        {
+          "type": "PORT OF LOADING",
+          "key": "Name",
+          "value": "SHANGHAI"
+        },
+        {
+          "type": "PORT OF DISCHARGE",
+          "key": "Name",
+          "value": "LONG BEACH, CA"
+        },
+        {
+          "type": "PLACE OF DELIVERY",
+          "key": "Name",
+          "value": "MCALLEN, TX"
+        },
+        {
+          "type": "BOOKING NUMBER",
+          "key": "Value",
+          "value": "COSU6427293780"
+        },
+        {
+          "type": "B/L NUMBER",
+          "key": "Value",
+          "value": "6395988584"
+        },
+        {
+          "type": "CNEE REF",
+          "key": "Value",
+          "value": "3318672,4568,EXW, QMEF044346."
+        },
+        {
+          "type": "FORWARDING AGENT REFERENCE",
+          "key": "Value",
+          "value": "MC#2268,CH#6926"
+        },
+        {
+          "type": "FORWARDING AGENT",
+          "key": "Name",
+          "value": "BEIJING KANGJIEKONG INTERNATIONAL CARGO AGENT CO., LTD."
+        },
+        {
+          "type": "FORWARDING AGENT",
+          "key": "Address",
+          "value": "SHANGHAI BRANCH SHANGHAI 200335"
+        },
+        {
+          "type": "ATTN",
+          "key": "Name",
+          "value": "CARLOS TORREJON"
+        },
+        {
+          "type": "ATTN",
+          "key": "Email",
+          "value": "CARLOS.TORREJON@SPACEX.COM"
+        },
+        {
+          "type": "NO. OF PACKAGES",
+          "key": "Value",
+          "value": "6PLTS"
+        },
+        {
+          "type": "DESCRIPTION OF PACKAGES AND GOODS",
+          "key": "Value",
+          "value": "ALUMINA BRICKS, NOS ALUMINA FIBER NEEDLED BLANKET"
+        },
+        {
+          "type": "GROSS WEIGHT KGS",
+          "key": "Value",
+          "value": "1346.00 KG"
+        },
+        {
+          "type": "MEASUREMENT CBM",
+          "key": "Value",
+          "value": "15.410 M3"
+        },
+        {
+          "type": "GROSS WEIGHT LBS",
+          "key": "Value",
+          "value": "2967.40 LB"
+        },
+        {
+          "type": "MEASUREMENT CF",
+          "key": "Value",
+          "value": "544.20 CF"
+        },
+        {
+          "type": "FREIGHT COLLECT",
+          "key": "Value",
+          "value": "****"
+        },
+        {
+          "type": "CFS/CFS",
+          "key": "Value",
+          "value": "00C4985400"
+        },
+        {
+          "type": "Seal",
+          "key": "Value",
+          "value": "cw096858"
+        },
+        {
+          "type": "Size",
+          "key": "Value",
+          "value": "40"
+        },
+        {
+          "type": "TOTALS",
+          "key": "Value",
+          "value": "100 CTNS"
+        }
+      ],
+      "summary": "This is a Bill of Lading document for a shipment from VULCAN SHIELD GLOBAL PTE. LTD. (Singapore) to SPACE EXPLORATION TECHNOLOGIES CORP (USA). The shipment consists of 6 packages (100 CTNS) containing ALUMINA BRICKS and ALUMINA FIBER NEEDLED BLANKET, with a gross weight of 1346.00 KG (2967.40 LB) and a measurement of 15.410 M3 (544.20 CF). The export carrier is CSCL SOUTH CHINA SEA V 077E, with port of loading at Shanghai and port of discharge at Long Beach, CA. The forwarding agent is BEIJING KANGJIEKONG INTERNATIONAL CARGO AGENT CO., LTD. (Shanghai Branch), and the freight is collect. The booking number is COSU6427293780, B/L number is 6395988584, and the CNEE REF is 3318672,4568,EXW, QMEF044346.",
+      "_had_json_error": false,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "AAMkAGViNzg3ODQw_28Oct2024 proposal for Battery Room.xlsx",
+    "success": true,
+    "document_type": "B2B商业文档分析",
+    "fact_count": 11,
+    "identifier_count": 0,
+    "other_count": 0,
+    "identifier_categories": {},
+    "had_json_error": false,
+    "duration": 12.657667,
+    "extraction": {
+      "document_type": "B2B商业文档分析",
+      "document_date": "2024-04-01",
+      "facts": [
+        {
+          "type": "client",
+          "key": "Client",
+          "value": "Vulcan Shield Global Pte Ltd"
+        },
+        {
+          "type": "work_scope",
+          "key": "Work",
+          "value": "Additional Fire Protection on 4Wall + RC Slab Soffit"
+        },
+        {
+          "type": "total_amount",
+          "key": "Total Amount",
+          "value": "$735,617.00"
+        },
+        {
+          "type": "project_details",
+          "key": "Project Details",
+          "value": "Client: Vulcan Shield Global Pte Ltd\nWork: Additional Fire Protection on 4Wall + RC Slab Soffit\nLocation: North Site, Block 750E\nRooms: Level 3 - Battery Room 301, 302, 201, 202; Level 1 - Battery Room 101, 102, 103, 104; Level 6 - Battery Room 6-2B-1, 6-2B-2, 6-2A, 6-1B; Level 5 - UPS Room 3; Level 6 - UPS Room 6-1A"
+        },
+        {
+          "type": "pricing_details",
+          "key": "Pricing Details",
+          "value": "North Site: Total QTY 1453.3 m2, Total Amount $483,589.00\nBlock 750E: Total QTY 751.6 m2, Total Amount $252,028.00"
+        },
+        {
+          "type": "excluded_items",
+          "key": "Excluded Items",
+          "value": "6mmthk Needle Blanket / Impregnated with Woven Fabric Cloth (to be marked)\nAll free issued materials (by VSG) shall be delivered to site with enough installation was\nPreferred Woven Fabric Cloth in grey colour (light/dark) or silver. (Not white)\nAny additional or deviation from the above indicated Qty shall be charge separately.\nSite access pass, SIC, site storage & industrial disposal bin\nShop drawing, As-Built drawing and all additional Fire Test.\nDeed of Indemnity or Warranty, Performance Bonds, Insurance Bonds.\nAny special PPEs, fire and electrical protection equipments & etc."
+        },
+        {
+          "type": "work_scope_details",
+          "key": "Work Scope Details",
+          "value": "1. Anchoring system & oversize washer (which suitable for concrete wall, lightweight col\n2. Fire Bond at some overlay areas\n3. FR Intumescent Mastic to seal the needle blanket joint/alteration areas and gaps be\n4. Aluminium and Steel Scaffolding system with life-line for access\n5. Certification (per issue) [optional]\n5.1 FSC02 - Regulated Fire Safety Products SCDF-FSC02-FSRP\n5.2 QP endorsement on SCDF approved plan drawing\n5.3 DOC - Declaration of Compliance\n6. Propose prices are charged based on given room dimensions, regardless any reduc\n7. Worker to start work on the day attend for inhouse SIC.\n8. Normal working hours Monday to Saturday only 0830 ~ 1730 hrs (premium charge fo\n9. Material and manpower mobilization required 3~4 weeks upon PO\n10. Basic PPE(safety helmet, safety glasses, dust mask, ear plug, safety shoes, safety h\n11. Assumption labour installation difficulty level shall be same for both work site (Block 7\n12. Estimated work duration 13weeks for North Site and 7weeks for Block 750E\n13. Appearance of installed system, oversize washer to be install in line from top to bottom"
+        },
+        {
+          "type": "payment_terms",
+          "key": "Payment Terms",
+          "value": "Payment terms not explicitly stated in the document"
+        },
+        {
+          "type": "delivery_terms",
+          "key": "Delivery Terms",
+          "value": "Material and manpower mobilization required 3~4 weeks upon PO"
+        },
+        {
+          "type": "work_schedule",
+          "key": "Work Schedule",
+          "value": "Normal working hours Monday to Saturday only 0830 ~ 1730 hrs (premium charge for Sunday/Public Holiday)\nEstimated work duration 13weeks for North Site and 7weeks for Block 750E"
+        },
+        {
+          "type": "policies",
+          "key": "Policies",
+          "value": "Worker to start work on the day attend for inhouse SIC.\nAssumption labour installation difficulty level shall be same for both work site (Block 750E & North Site).\nAppearance of installed system, oversize washer to be install in line from top to bottom"
+        }
+      ],
+      "summary": "This document is a commercial proposal for 'Additional Fire Protection on 4Wall + RC Slab Soffit' by Vulcan Shield Global Pte Ltd. It details the scope of work, pricing, project locations (North Site and Block 750E), and various terms and conditions. The total amount for the project is $735,617.00, with $483,589.00 for North Site (1453.3 m2) and $252,028.00 for Block 750E (751.6 m2). The document specifies excluded items, work scope details including anchoring systems, fire bonds, and scaffolding, as well as work schedule and policies.",
+      "_had_json_error": false,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  }
+]

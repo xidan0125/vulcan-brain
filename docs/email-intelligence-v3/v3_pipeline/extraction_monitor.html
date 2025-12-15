@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V3.8 提取监控台</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .header .subtitle {
+            color: #888;
+            margin-top: 5px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .card h3 {
+            color: #00d4ff;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .big-number {
+            font-size: 3em;
+            font-weight: bold;
+            color: #fff;
+        }
+        .big-number.success { color: #00ff88; }
+        .big-number.warning { color: #ffaa00; }
+        .big-number.error { color: #ff4444; }
+        .progress-bar {
+            height: 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #00ff88);
+            border-radius: 6px;
+            transition: width 0.5s ease;
+        }
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .stat-label { color: #888; }
+        .stat-value { font-weight: bold; }
+        .log-container {
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 12px;
+        }
+        .log-entry {
+            padding: 6px 10px;
+            border-radius: 4px;
+            margin: 4px 0;
+            background: rgba(0,0,0,0.3);
+        }
+        .log-entry.success { border-left: 3px solid #00ff88; }
+        .log-entry.failed { border-left: 3px solid #ff4444; }
+        .log-entry.skipped { border-left: 3px solid #ffaa00; }
+        .chart-container {
+            height: 200px;
+        }
+        .refresh-info {
+            text-align: center;
+            color: #666;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        .status-badge.running {
+            background: rgba(0,212,255,0.2);
+            color: #00d4ff;
+            animation: pulse 2s infinite;
+        }
+        .status-badge.completed {
+            background: rgba(0,255,136,0.2);
+            color: #00ff88;
+        }
+        .status-badge.idle {
+            background: rgba(136,136,136,0.2);
+            color: #888;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .wide-card {
+            grid-column: span 2;
+        }
+        @media (max-width: 768px) {
+            .wide-card { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧠 V3.8 统一提取监控台</h1>
+        <p class="subtitle">Email Intelligence Pipeline - Real-time Dashboard</p>
+    </div>
+
+    <div class="grid">
+        <!-- 总体进度 -->
+        <div class="card">
+            <h3>📊 总体进度</h3>
+            <div class="big-number" id="progress-pct">0%</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-bar" style="width: 0%"></div>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">已提取</span>
+                <span class="stat-value" id="extracted-count">0</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">总邮件</span>
+                <span class="stat-value" id="total-count">0</span>
+            </div>
+        </div>
+
+        <!-- 状态统计 -->
+        <div class="card">
+            <h3>📈 状态统计</h3>
+            <div class="stat-row">
+                <span class="stat-label">✅ 成功</span>
+                <span class="stat-value success" id="success-count">0</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">❌ 失败</span>
+                <span class="stat-value error" id="failed-count">0</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">⏭️ 跳过</span>
+                <span class="stat-value warning" id="skipped-count">0</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">成功率</span>
+                <span class="stat-value" id="success-rate">0%</span>
+            </div>
+        </div>
+
+        <!-- 性能指标 -->
+        <div class="card">
+            <h3>⚡ 性能指标</h3>
+            <div class="stat-row">
+                <span class="stat-label">平均耗时</span>
+                <span class="stat-value" id="avg-duration">0s</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">处理速度</span>
+                <span class="stat-value" id="process-rate">0/min</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">平均 Facts</span>
+                <span class="stat-value" id="avg-facts">0</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">预计剩余</span>
+                <span class="stat-value" id="eta">--</span>
+            </div>
+        </div>
+
+        <!-- 下载状态 -->
+        <div class="card">
+            <h3>📥 附件下载</h3>
+            <div class="stat-row">
+                <span class="stat-label">总附件</span>
+                <span class="stat-value" id="download-total">0</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">已下载</span>
+                <span class="stat-value success" id="download-done">0</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">待下载</span>
+                <span class="stat-value warning" id="download-pending">0</span>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">下载进度</span>
+                <span class="stat-value" id="download-pct">0%</span>
+            </div>
+        </div>
+
+        <!-- 类型分布图 -->
+        <div class="card">
+            <h3>📑 邮件类型分布</h3>
+            <div class="chart-container">
+                <canvas id="typeChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Facts 分布图 -->
+        <div class="card">
+            <h3>📋 Facts 类型分布</h3>
+            <div class="chart-container">
+                <canvas id="factChart"></canvas>
+            </div>
+        </div>
+
+        <!-- 最近日志 -->
+        <div class="card wide-card">
+            <h3>📜 最近提取日志 <span class="status-badge" id="status-badge">Idle</span></h3>
+            <div class="log-container" id="log-container">
+                <div class="log-entry">等待数据...</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="refresh-info">
+        自动刷新: 5秒 | 最后更新: <span id="last-update">--</span>
+    </div>
+
+    <script>
+        // 图表实例
+        let typeChart, factChart;
+
+        // 初始化图表
+        function initCharts() {
+            const typeCtx = document.getElementById('typeChart').getContext('2d');
+            typeChart = new Chart(typeCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        data: [],
+                        backgroundColor: [
+                            '#00d4ff', '#00ff88', '#ffaa00', '#ff4444',
+                            '#7b2cbf', '#ff6b6b', '#4ecdc4', '#45b7d1'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: { color: '#888', font: { size: 10 } }
+                        }
+                    }
+                }
+            });
+
+            const factCtx = document.getElementById('factChart').getContext('2d');
+            factChart = new Chart(factCtx, {
+                type: 'bar',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        data: [],
+                        backgroundColor: '#00d4ff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { ticks: { color: '#888' }, grid: { display: false } },
+                        y: { ticks: { color: '#888' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+                    }
+                }
+            });
+        }
+
+        // 获取数据
+        async function fetchData() {
+            try {
+                const resp = await fetch('/api/extraction-status');
+                const data = await resp.json();
+                updateDashboard(data);
+            } catch (e) {
+                console.error('Fetch error:', e);
+            }
+        }
+
+        // 更新仪表板
+        function updateDashboard(data) {
+            // 进度
+            const pct = data.total > 0 ? (data.extracted / data.total * 100).toFixed(1) : 0;
+            document.getElementById('progress-pct').textContent = pct + '%';
+            document.getElementById('progress-bar').style.width = pct + '%';
+            document.getElementById('extracted-count').textContent = data.extracted.toLocaleString();
+            document.getElementById('total-count').textContent = data.total.toLocaleString();
+
+            // 状态
+            document.getElementById('success-count').textContent = data.success.toLocaleString();
+            document.getElementById('failed-count').textContent = data.failed.toLocaleString();
+            document.getElementById('skipped-count').textContent = data.skipped.toLocaleString();
+            const successRate = data.extracted > 0 ? (data.success / data.extracted * 100).toFixed(1) : 0;
+            document.getElementById('success-rate').textContent = successRate + '%';
+
+            // 性能
+            document.getElementById('avg-duration').textContent = data.avg_duration.toFixed(1) + 's';
+            document.getElementById('process-rate').textContent = data.rate.toFixed(1) + '/min';
+            document.getElementById('avg-facts').textContent = data.avg_facts.toFixed(1);
+            document.getElementById('eta').textContent = data.eta || '--';
+
+            // 下载
+            document.getElementById('download-total').textContent = data.download.total.toLocaleString();
+            document.getElementById('download-done').textContent = data.download.done.toLocaleString();
+            document.getElementById('download-pending').textContent = data.download.pending.toLocaleString();
+            const dlPct = data.download.total > 0 ? (data.download.done / data.download.total * 100).toFixed(1) : 0;
+            document.getElementById('download-pct').textContent = dlPct + '%';
+
+            // 状态徽章
+            const badge = document.getElementById('status-badge');
+            if (data.is_running) {
+                badge.textContent = '🟢 Running';
+                badge.className = 'status-badge running';
+            } else if (data.extracted >= data.total && data.total > 0) {
+                badge.textContent = '✅ Completed';
+                badge.className = 'status-badge completed';
+            } else {
+                badge.textContent = '⏸️ Idle';
+                badge.className = 'status-badge idle';
+            }
+
+            // 图表
+            if (data.type_dist) {
+                typeChart.data.labels = Object.keys(data.type_dist);
+                typeChart.data.datasets[0].data = Object.values(data.type_dist);
+                typeChart.update();
+            }
+            if (data.fact_dist) {
+                factChart.data.labels = Object.keys(data.fact_dist);
+                factChart.data.datasets[0].data = Object.values(data.fact_dist);
+                factChart.update();
+            }
+
+            // 日志
+            const logContainer = document.getElementById('log-container');
+            if (data.recent_logs && data.recent_logs.length > 0) {
+                logContainer.innerHTML = data.recent_logs.map(log => {
+                    const statusClass = log.status;
+                    const icon = log.status === 'success' ? '✅' : log.status === 'failed' ? '❌' : '⏭️';
+                    return `<div class="log-entry ${statusClass}">
+                        ${icon} [${log.timestamp.split('T')[1].split('.')[0]}] 
+                        ${log.subject.substring(0, 40)}... 
+                        (${log.fact_count} facts, ${log.duration.toFixed(1)}s)
+                    </div>`;
+                }).join('');
+            }
+
+            // 更新时间
+            document.getElementById('last-update').textContent = new Date().toLocaleTimeString();
+        }
+
+        // 初始化
+        initCharts();
+        fetchData();
+        setInterval(fetchData, 5000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+{
+  "title": "Agent Tools & Interoperability with MCP",
+  "summary": "本白皮书介绍了 Agent Tools 与 Model Context Protocol (MCP) 的互操作性，讨论了工具设计、安全风险与实践。",
+  "core_concepts": [
+    {
+      "name": "Agent Tools",
+      "definition": "Al Agent 的“眼睛”和“双手”，允许它感知和行动于世界，通过调用外部函数或工具来完成模型自身能力之外的任务。",
+      "key_points": [
+        "分为 Function Tools, Built-in Tools, 和 Agent Tools 三种主要类型",
+        "Function Tools: 开发者定义外部函数，模型按需调用",
+        "Built-in Tools: 模型隐式集成的工具，如 Google Gemini API 的 Grounding, Code Execution 等",
+        "Agent Tools: 将一个 Agent 作为另一个 Agent 的工具来使用"
+      ]
+    },
+    {
+      "name": "Model Context Protocol (MCP)",
+      "definition": "一种开放标准，旨在简化 Al 应用与外部工具的集成过程，解决 “N x M” 集成问题，提供统一的插件式接口。",
+      "key_points": [
+        "核心组件包括 Host, Client 和 Server",
+        "通信层基于 JSON-RPC 2.0",
+        "定义了 Tools, Resources, Prompts (Server 端) 和 Sampling, Elicitation, Roots (Client 端) 等关键原语"
+      ]
+    },
+    {
+      "name": "Tools (MCP)",
+      "definition": "一种标准化的方式，用于 Server 描述其向 Client 提供的功能。MCP Servers 发布可用工具列表，包括描述和参数 schemas，供 agents 发现。",
+      "key_points": [
+        "Tool 定义必须符合 JSON schema",
+        "重要的字段包括 name, title, description, inputSchema, outputSchema, annotations",
+        "annotations 包含 destructiveHint, idempotentHint, openWorldHint, readOnlyHint 等属性"
+      ]
+    },
+    {
+      "name": "Resources (MCP)",
+      "definition": "一种 Server 端能力，旨在提供 Host 应用可以访问和使用的上下文数据。可以包含文件内容、数据库记录、数据库 schema 或图像。",
+      "key_points": [
+        "客户端应当验证资源并从受信 URL 检索",
+        "将任意外部内容引入 LLM 的上下文会带来重大的安全风险"
+      ]
+    },
+    {
+      "name": "Prompts (MCP)",
+      "definition": "另一种 Server 端能力，允许 Server 提供与其 Tools 和 Resources 相关的可重用 prompt 示例或模板。",
+      "key_points": [
+        "应该谨慎使用，直至开发出更强的安全模型",
+        "允许第三方服务将任意指令注入应用程序的执行路径存在风险"
+      ]
+    },
+    {
+      "name": "Sampling (MCP)",
+      "definition": "一种 Client 端能力，允许 MCP Server 请求 Client 完成 LLM completion。",
+      "key_points": [
+        "推荐 Client 在 Sampling 的循环中插入人工审核环节",
+        "允许工具利用 Host 的核心 Al 模型来执行子任务"
+      ]
+    },
+    {
+      "name": "Elicitation (MCP)",
+      "definition": "另一种 Client 端能力，类似于 Sampling，允许 MCP Server 请求 Client 提供额外的用户信息。",
+      "key_points": [
+        "服务器 *不得* 使用 Elicitation 请求敏感信息",
+        "客户端需要警惕潜在的滥用"
+      ]
+    },
+    {
+      "name": "Roots (MCP)",
+      "definition": "定义服务器可以在文件系统中运行的边界。Root 定义包括标识根目录的 URI。",
+      "key_points": [
+        "服务器 *应该* 尊重根边界",
+        "客户端开发人员不应过分依赖服务器关于 Roots 的行为"
+      ]
+    }
+  ],
+  "best_practices": [
+    {
+      "practice": "清晰的 Tool 名称",
+      "description": "Tool 的名称应该清晰、描述性强、易于理解，有助于模型决定使用哪个 Tool。",
+      "example": "create_critical_bug_in_jira_with_priority 比 update_jira 更清晰"
+    },
+    {
+      "practice": "描述所有输入和输出参数",
+      "description": "清晰描述 Tool 的所有输入，包括类型和用途。",
+      "example": null
+    },
+    {
+      "practice": "简化参数列表",
+      "description": "过长的参数列表会使模型困惑，保持参数列表简短并使用清晰的参数名称。",
+      "example": null
+    },
+    {
+      "practice": "详细的 Tool 描述",
+      "description": "提供清晰、详细的 Tool 描述，包括输入和输出参数、Tool 的目的以及有效调用 Tool 所需的任何其他详细信息。 避免使用简写或技术术语。",
+      "example": null
+    },
+    {
+      "practice": "添加有针对性的示例",
+      "description": "示例可以帮助解决歧义，展示如何处理棘手的请求，或澄清术语。",
+      "example": null
+    },
+    {
+      "practice": "提供默认值",
+      "description": "为关键参数提供默认值，并确保在 Tool 文档中记录和描述默认值。",
+      "example": null
+    },
+    {
+      "practice": "描述动作，而非实现",
+      "description": "模型指令应描述动作，而非特定工具。这对于消除关于如何使用工具的指令之间的任何冲突非常重要。",
+      "example": "说 “创建 bug 来描述问题”，而不是 “使用 create_bug tool”"
+    },
+    {
+      "practice": "发布任务，而非 API 调用",
+      "description": "工具应该封装 Agent 需要执行的任务，而不是外部 API。Tool 开发者应该定义清晰地捕获 Agent 可能代表用户采取的特定操作的工具，并记录所需的特定操作和参数。",
+      "example": null
+    },
+    {
+      "practice": "使工具尽可能精细",
+      "description": "保持函数简洁并限制为单个函数是标准编码最佳实践；定义工具时也遵循此指南。 这使得记录工具更容易，并使 Agent 在确定何时需要该工具时更加一致。",
+      "example": null
+    },
+    {
+      "practice": "设计简洁的输出",
+      "description": "设计不良的工具有时会返回大量数据，这会对性能和成本产生不利影响。",
+      "example": null
+    },
+    {
+      "practice": "有效利用验证",
+      "description": "大多数 Tool 调用框架都包含 Tool 输入和输出的可选 schema 验证。 尽可能使用此验证功能。 输入和输出 schema 在 LLM Tool 调用中扮演两个角色。",
+      "example": null
+    },
+    {
+      "practice": "提供描述性错误消息",
+      "description": "Tool 错误消息是被忽视的改进和记录 Tool 功能的机会。 通常，即使是记录良好的 Tool 也只会返回一个错误代码，或者最多是一个简短的、非描述性的错误消息。",
+      "example": null
+    }
+  ],
+  "architecture_patterns": [
+    {
+      "pattern": "Client-Server Model (MCP)",
+      "description": "MCP 实现了 Client-Server 模型，将 Al 应用与 Tool 集成分离。",
+      "use_case": "支持竞争性和创新的 Al 工具生态系统发展"
+    }
+  ],
+  "code_snippets": [
+    {
+      "description": "定义 set_light_values 工具的 Python 代码片段",
+      "language": "python",
+      "code": "def set_light_values(\n brightness: int,\n color_temp: str,\n context: ToolContext) -> dict(str, int | str]:\n \"\"\"This tool sets the brightness and color temperature of the room lights\n in the user's current location.\n Args:\n brightness: Light level from 0 to 100. Zero is off and 100 is full\n color_temp: Color temperature of the light fixture, which can be\n brightness\n `daylight`,`cool`or `warm`.\n context: A ToolContext object used to retrieve the user's location.\n Returns:\n A dictionary containing the set brightness and color temperature.\n \"\"\"\n user_room_id = context.state['room_id']\n # This is an imaginary room lighting control API\n room = light_system.get_room(user_room_id)\n response = room.set_lights(brightness, color_temp)\n return {\"tool_response\": response}"
+    },
+    {
+      "description": "调用 url_context 工具的 Python 代码片段",
+      "language": "python",
+      "code": "from google import genai\nfrom google.genai.types import (\n Tool,\n GenerateContentConfig,\n HttpOptions,\n UrlContext\n)\n\nclient = genai.Client(http_options=HttpOptions(api_version=\"v1\")\nmodel_id = \"gemini-2.5-flash\"\n\nurl_context_tool = Tool(\n url_context = UrlContext\n)\n\nur11 =\n \"https://www.foodnetwork.com/recipes/ina-garten/perfect-roast-chicken-recipe-19\\n 40592\"\nurl2 = \"https://www.allrecipes.com/recipe/70679/simple-whole-roasted-chicken/\"\n\nresponse = client.models.generate_content(\n model=model_id,\n contents=(\"Compare the ingredients and cooking times from\\n f\"the recipes at {url1} and {url2}\"),\n config=GenerateContentConfig(\n tools=[url_context_tool],\n response_modalities=[\"TEXT\"],\n)\n\nfor each in response.candidates[0].content.parts:\n print(each.text)\n\n# For verification, you can inspect the metadata to see which URLs the\nmodel retrieved\nprint(response.candidates[0].url_context_metadata)"
+    },
+    {
+      "description": "Agent Tool 定义的 Python 代码片段",
+      "language": "python",
+      "code": "from google.adk.agents import LlmAgent\nfrom google.adk.tools import AgentTool\n\ntool_agent = LlmAgent(\n model=\"gemini-2.5-flash\",\n name=\"capital_agent\",\n description=\"Returns the capital city for any country or state\"\n instruction=\"\"\"If the user gives you the name of a country or a state (e.g.\n Tennessee or New South Wales), answer with the name of the capital city of that\n country or state. Otherwise, tell the user you are not able to help them.\"\"\"\n)\n\nuser_agent = LlmAgent(\n model=\"gemini-2.5-flash\",\n name=\"user_advice_agent\",\n description=\"Answers user questions and gives advice\",\n instruction=\"\"\"Use the tools you have available to answer the\n user's questions\"\"\",\n tools=[AgentTool(agent=capital_agent)]\n)"
+    },
+    {
+      "description": "MCP 协议错误示例",
+      "language": "python",
+      "code": "{\n \"jsonrpc\": \"2.0\",\n \"id\": 3,\n \"error\": {\n \"code\": -32602,\n \"message\": \"Unknown tool: invalid_tool_name. It may be misspelled, or the tool\n may not exist on this server. Check the tool name and if necessary request an\n updated list of tools.\"\n }\n}"
+    },
+    {
+      "description": "Tool 执行错误示例",
+      "language": "python",
+      "code": "{\n \"jsonrpc\": \"2.0\",\n \"id\": 4,\n \"result\": {\n \"content\":[\n {\n \"type\": \"text\",\n \"text\": \"Failed to fetch weather data: API rate limit exceeded. Wait 15\n seconds before calling this tool again.\"\n }\n ],\n \"isError\": true\n }\n}"
+    },
+    {
+      "description": "MCP Tool 定义示例（JSON）",
+      "language": "JSON",
+      "code": "{\n \"name\": \"get_stock_price\",\n \"title\": \"Stock Price Retrieval Tool\",\n \"description\": \"Get stock price for a specific ticker symbol. If 'date' is\n provided, it will retrieve the last price or closing price for that date.\n Otherwise it will retrieve the latest price.\",\n \"inputSchema\": {\n \"type\": \"object\",\n \"properties\": {\n \"symbol\": {\n \"type\": \"string\",\n \"description\": \"Stock ticker symbol\"\n },\n \"date\": {\n \"type\":\"string\",\n \"description\": \"Date to retrieve (in YYYY-MM-DD format)\"\n }\n },\n \"required\": [\"symbol\"]\n },\n \"outputSchema\": {\n \"type\": \"object\",\n \"properties\": {\n \"price\": {\n \"type\": \"number\",\n \"description\": \"Stock price\"\n },\n \"date\": {\n \"type\": \"string\",\n \"description\": \"Stock price date\"\n }\n },\n \"required\": [\"price\", \"date\"]\n },\n \"annotations\": {\n \"readOnlyHint\": \"true\"\n }\n}"
+    }
+  ],
+  "key_takeaways": [
+    "MCP 为 Al 开发者工具箱增加了新的功能，但也存在一些重要的局限性和缺点，尤其是在企业集成应用中",
+    "企业需要构建安全、可审计和可靠的框架来支持 MCP 的运行",
+    "需要解决诸如 Dynamic Capability Injection、Tool Shadowing 和 “confused deputy” 漏洞等新的威胁"
+  ]
+}

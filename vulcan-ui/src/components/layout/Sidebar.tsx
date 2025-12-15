@@ -1,6 +1,6 @@
 "use client";
 
-import { Brain, Users, Settings, Home, Cloud, Target, Zap, Activity, LogOut, Presentation, Newspaper } from "lucide-react";
+import { Brain, Users, Settings, Home, Cloud, MessageSquare, Target, Zap, Activity, LogOut, Presentation, Newspaper } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -48,7 +48,7 @@ export default function Sidebar() {
   // 所有导航项 - 使用 i18n keys
   const allNavItems: NavItem[] = [
     { icon: Home, labelKey: "nav.agent", href: "/" },
-    { icon: Cloud, labelKey: "nav.gemini", href: "/gemini", highlight: true },
+    { icon: MessageSquare, labelKey: "nav.chat", href: "/chat", highlight: true },
     { icon: Target, labelKey: "nav.projects", href: "/projects", badge: blockedCount },
     { icon: Brain, labelKey: "nav.soul", href: "/soul" },
     { icon: Users, labelKey: "nav.memory", href: "/memory", desktopOnly: true },

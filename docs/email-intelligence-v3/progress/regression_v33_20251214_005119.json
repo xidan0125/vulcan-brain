@@ -1,0 +1,626 @@
+[
+  {
+    "file": "14845405@D1B8C622.1B20126700000000.jpg",
+    "success": true,
+    "document_type": "Other",
+    "fact_count": 5,
+    "identifier_count": 1,
+    "other_count": 0,
+    "duration": 15.700098,
+    "extraction": {
+      "document_type": "Other",
+      "document_date": null,
+      "facts": [
+        {
+          "type": "Contact",
+          "key": "Tel",
+          "value": "+86-533-6286577",
+          "unit": null,
+          "context": null
+        },
+        {
+          "type": "Contact",
+          "key": "Email",
+          "value": "linda@suindustry.com",
+          "unit": null,
+          "context": null
+        },
+        {
+          "type": "Company",
+          "key": "CompanyName",
+          "value": "Zibo Soaring Universe Refractory & Insulation Materials Co., Ltd.",
+          "unit": null,
+          "context": null
+        },
+        {
+          "type": "Address",
+          "key": "Address",
+          "value": "Zibo city, Shandong, China",
+          "unit": null,
+          "context": null
+        },
+        {
+          "type": "Identifier",
+          "key": "Website",
+          "value": "www.suntherm-industry.com",
+          "unit": null,
+          "context": null
+        }
+      ],
+      "entities": {
+        "companies": [
+          "Zibo Soaring Universe Refractory & Insulation Materials Co., Ltd."
+        ],
+        "products": [],
+        "persons": [
+          "Linda Mu"
+        ]
+      },
+      "summary": "This is a business card for Linda Mu from Zibo Soaring Universe Refractory & Insulation Materials Co., Ltd., providing contact details and company information."
+    }
+  },
+  {
+    "file": "报关委托书-签字盖章.pdf",
+    "success": true,
+    "document_type": "Contract",
+    "fact_count": 3,
+    "identifier_count": 1,
+    "other_count": 0,
+    "duration": 32.652273,
+    "extraction": {
+      "document_type": "Contract",
+      "facts": [
+        {
+          "type": "Identifier",
+          "key": "编号",
+          "value": null,
+          "unit": null,
+          "context": "编号：□□□□□□□□□□"
+        },
+        {
+          "type": "Deadline",
+          "key": "有效期",
+          "value": null,
+          "unit": null,
+          "context": "本委托书有效期自签字之日起至 年 月 日止。"
+        },
+        {
+          "type": "Currency",
+          "key": "报关收费",
+          "value": null,
+          "unit": "人民币",
+          "context": "报关收费：人民币： 元"
+        }
+      ],
+      "entities": {
+        "companies": [
+          "树人孙"
+        ],
+        "products": [],
+        "persons": []
+      },
+      "summary": "代理报关委托书，明确委托方与被委托方在报关事宜中的责任和义务，包含通关事项委托范围及双方责任条款。",
+      "pages": 1
+    }
+  },
+  {
+    "file": "image006.png",
+    "success": true,
+    "document_type": "Other",
+    "fact_count": 0,
+    "identifier_count": 0,
+    "other_count": 0,
+    "duration": 5.749283,
+    "extraction": {
+      "document_type": "Other",
+      "document_date": null,
+      "facts": [],
+      "entities": {
+        "companies": [],
+        "products": [],
+        "persons": []
+      },
+      "summary": "工业建筑内部墙壁，带有多个圆形和方形孔洞，可能为窑炉或工业炉结构"
+    }
+  },
+  {
+    "file": "Information pursuant to Art. 13, 14 GDPR.pdf",
+    "success": true,
+    "document_type": "OfficialNotice",
+    "fact_count": 11,
+    "identifier_count": 0,
+    "other_count": 1,
+    "duration": 65.041191,
+    "extraction": {
+      "document_type": "OfficialNotice",
+      "facts": [
+        {
+          "type": "Quantity",
+          "key": "image theft cases",
+          "value": "200,000",
+          "unit": null,
+          "context": "over 200,000 cases of image theft to date"
+        },
+        {
+          "type": "Price",
+          "key": "post-license fee",
+          "value": "cost for one year license",
+          "unit": null,
+          "context": "post-license fee is the cost of the license for one year"
+        },
+        {
+          "type": "Amount",
+          "key": "compensation costs",
+          "value": "damages from illegal use",
+          "unit": null,
+          "context": "compensation costs cover the damages that have occurred already due to your illegal use"
+        },
+        {
+          "type": "Penalty",
+          "key": "consequences of non-payment",
+          "value": "filing a lawsuit, fining for additional damages and legal expenses",
+          "unit": null,
+          "context": "If you choose not to purchase a post-license and refuse to pay for compensation costs."
+        },
+        {
+          "type": "Company",
+          "key": "copyright enforcement entity",
+          "value": "Copytrack",
+          "unit": null,
+          "context": "Copytrack will take all measures to make sure you pay the copyright owner his fair share."
+        },
+        {
+          "type": "Price",
+          "key": "license price determination",
+          "value": "determined by copyright owner based on effort and market value",
+          "unit": null,
+          "context": "The copyright owner determines the price of his license because only he knows how much time and resources went into his work."
+        },
+        {
+          "type": "Product",
+          "key": "post-license",
+          "value": "a license for image usage",
+          "unit": null,
+          "context": "The document discusses purchasing a post-license for image usage."
+        },
+        {
+          "type": "Other",
+          "key": "payment options",
+          "value": "secure and easy payment installment plan",
+          "unit": null,
+          "context": "If you cannot pay compensation costs, Copytrack will set up a payment installment plan."
+        },
+        {
+          "type": "Company",
+          "key": "Copytrack",
+          "value": "a company that enforces the rights of the copyright owner",
+          "unit": null,
+          "context": "mentioned in the section 'Do I need to submit a cease-and-desist?'"
+        },
+        {
+          "type": "Company",
+          "key": "Getty Images",
+          "value": "a stock agency",
+          "unit": null,
+          "context": "mentioned in the section 'I purchased the image from a stock agency like Getty Images or Adobe...'"
+        },
+        {
+          "type": "Company",
+          "key": "Adobe",
+          "value": "a stock agency",
+          "unit": null,
+          "context": "mentioned in the section 'I purchased the image from a stock agency like Getty Images or Adobe...'"
+        }
+      ],
+      "entities": {
+        "companies": [
+          "Getty Images",
+          "Copytrack",
+          "Adobe"
+        ],
+        "products": [
+          "post-license"
+        ],
+        "persons": []
+      },
+      "summary": "Copytrack explains its role as a digital licensing and copyright agent, why customers receive letters from them, and the benefits of purchasing a post-license.",
+      "pages": 3
+    }
+  },
+  {
+    "file": "FBC8DD46@8DC33B0(02-13-11-09-50).jpg",
+    "success": true,
+    "document_type": "Other",
+    "fact_count": 8,
+    "identifier_count": 0,
+    "other_count": 0,
+    "duration": 30.030813,
+    "extraction": {
+      "document_type": "Other",
+      "document_date": null,
+      "facts": [
+        {
+          "type": "Company",
+          "key": "Name",
+          "value": "汇利达",
+          "unit": null,
+          "context": "图片左侧标志显示的公司名称"
+        },
+        {
+          "type": "Company",
+          "key": "Name",
+          "value": "WCA",
+          "unit": null,
+          "context": "图片右侧标志显示的组织名称"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "ServiceCities",
+          "value": "Hong Kong, Guangzhou, Shenzhen, Shanghai, Ningbo, Qingdao, Tianjin, Xiamen, Nanjing, Chongqing, Dalian, Beijing",
+          "unit": null,
+          "context": "图片底部列出的物流服务覆盖城市"
+        },
+        {
+          "type": "Product",
+          "key": "ServiceTypes",
+          "value": "Sea Freight",
+          "unit": null,
+          "context": "图片中图标对应的服务类型"
+        },
+        {
+          "type": "Product",
+          "key": "ServiceTypes",
+          "value": "Air Freight",
+          "unit": null,
+          "context": "图片中图标对应的服务类型"
+        },
+        {
+          "type": "Product",
+          "key": "ServiceTypes",
+          "value": "Smart Warehouse",
+          "unit": null,
+          "context": "图片中图标对应的服务类型"
+        },
+        {
+          "type": "Product",
+          "key": "ServiceTypes",
+          "value": "Exhibition Logistics",
+          "unit": null,
+          "context": "图片中图标对应的服务类型"
+        },
+        {
+          "type": "Product",
+          "key": "ServiceTypes",
+          "value": "E-Commerce Logistics",
+          "unit": null,
+          "context": "图片中图标对应的服务类型"
+        }
+      ],
+      "entities": {
+        "companies": [
+          "汇利达",
+          "WCA"
+        ],
+        "products": [
+          "Sea Freight",
+          "Air Freight",
+          "Smart Warehouse",
+          "Exhibition Logistics",
+          "E-Commerce Logistics"
+        ],
+        "persons": []
+      },
+      "summary": "2021年中国50强货运代理品牌榜单，汇利达作为优质物流服务商提供海运、空运、智能仓储、展览物流和电商物流服务，覆盖12个主要城市。"
+    }
+  },
+  {
+    "file": "image003.jpg",
+    "success": true,
+    "document_type": "Other",
+    "fact_count": 0,
+    "identifier_count": 0,
+    "other_count": 0,
+    "duration": 4.810841,
+    "extraction": {
+      "document_type": "Other",
+      "document_date": null,
+      "facts": [],
+      "entities": {
+        "companies": [
+          "Littelfuse"
+        ],
+        "products": [],
+        "persons": []
+      },
+      "summary": "Littelfuse公司标志及标语，强调应用专业知识和提供解决方案。"
+    }
+  },
+  {
+    "file": "2406116988534227814_20240611_eReceipt.pdf",
+    "success": true,
+    "document_type": "Invoice",
+    "fact_count": 6,
+    "identifier_count": 2,
+    "other_count": 0,
+    "duration": 60.293,
+    "extraction": {
+      "document_type": "Invoice",
+      "facts": [
+        {
+          "type": "Date",
+          "key": "SGP.Date/Time",
+          "value": "11/06/2024 19:24:45",
+          "unit": "",
+          "context": "Payment Date/Time"
+        },
+        {
+          "type": "Identifier",
+          "key": "Transaction Reference Number",
+          "value": "24061169885-34227814",
+          "unit": "",
+          "context": "Transaction Reference Number"
+        },
+        {
+          "type": "Identifier",
+          "key": "Account No",
+          "value": "8949946928",
+          "unit": "",
+          "context": "SP Services Account No"
+        },
+        {
+          "type": "Amount",
+          "key": "Payment Amount",
+          "value": "$1,918.13",
+          "unit": "SGD",
+          "context": "Payment Amount"
+        },
+        {
+          "type": "Amount",
+          "key": "SP Services",
+          "value": "$1,918.13",
+          "unit": "SGD",
+          "context": "SP Services Amount"
+        },
+        {
+          "type": "Company",
+          "key": "Payment Mode",
+          "value": "Citibank",
+          "unit": "",
+          "context": "Payment Mode"
+        }
+      ],
+      "entities": {
+        "companies": [
+          "Citibank",
+          "AXS Pte Ltd"
+        ],
+        "products": [],
+        "persons": []
+      },
+      "summary": "AXS电子收据显示通过AXS m-Station使用Citibank支付了$1,918.13的SP Services费用。",
+      "pages": 1
+    }
+  },
+  {
+    "file": "GSGVULCARPT_Bank Statement_0111202450573439.pdf",
+    "success": false,
+    "error": "重试2次后仍失败: document closed or encrypted",
+    "duration": 0.001281
+  },
+  {
+    "file": "EIO Booking 海运托运单10.11.xls",
+    "success": true,
+    "document_type": "ShippingDoc",
+    "fact_count": 27,
+    "identifier_count": 3,
+    "other_count": 1,
+    "duration": 36.516648,
+    "extraction": {
+      "document_type": "ShippingDoc",
+      "document_date": "2025-12-14",
+      "facts": [
+        {
+          "type": "Date",
+          "key": "CARGO READY DATE",
+          "value": "2025-10-17"
+        },
+        {
+          "type": "Date",
+          "key": "PRINT DATE",
+          "value": "2025-12-14"
+        },
+        {
+          "type": "Quantity",
+          "key": "CARTONS",
+          "value": "14 Pallets"
+        },
+        {
+          "type": "Currency",
+          "key": "PAYABLE AT",
+          "value": "CNY, USD"
+        },
+        {
+          "type": "Company",
+          "key": "SHIPPER",
+          "value": "Vulcan Shield Global Pte. Ltd."
+        },
+        {
+          "type": "Company",
+          "key": "CONSIGNEE",
+          "value": "Space Exploration Technologies Corp."
+        },
+        {
+          "type": "Address",
+          "key": "SHIPPER ADDRESS",
+          "value": "10 Marina Boulevard #13-01, Marina Bay Financial Centre Tower 2, Singapore 018983"
+        },
+        {
+          "type": "Address",
+          "key": "CONSIGNEE ADDRESS",
+          "value": "Space Exploration Technologies (DC), 52199 Joanna St, Brownsville, TX 78521-8931, UNITED STATES"
+        },
+        {
+          "type": "Contact",
+          "key": "SHIPPER TEL",
+          "value": "(65)97708555"
+        },
+        {
+          "type": "Contact",
+          "key": "CONSIGNEE EMAIL",
+          "value": "carlos.torrejon@spacex.com"
+        },
+        {
+          "type": "Product",
+          "key": "PRODUCT NAME",
+          "value": "氧化铝纤维针刺毯"
+        },
+        {
+          "type": "Identifier",
+          "key": "PO NO",
+          "value": "3318672"
+        },
+        {
+          "type": "Identifier",
+          "key": "HS CODE",
+          "value": "6806109001"
+        },
+        {
+          "type": "Weight",
+          "key": "GROSS WEIGHT",
+          "value": "3370.00",
+          "unit": "kg"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "PORT OF LOADING",
+          "value": "广西百色市"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "PORT OF DISCHARGE",
+          "value": "美国"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "INCOTERMS",
+          "value": "FCA广西工厂"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "OCEAN FREIGHT",
+          "value": "Collect / 到付"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "HBL RELEASE",
+          "value": "Telex Release / 电放"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "FCL BOOKING",
+          "value": "x 20', x 40'GP, x 40'HQ, x 45'"
+        },
+        {
+          "type": "Other",
+          "key": "SPECIAL INSTRUCTIONS",
+          "value": "Battery: NO, Hazardous: NO, Fumigation wood packing: NO"
+        },
+        {
+          "type": "Identifier",
+          "key": "BANK ACCOUNT",
+          "value": "人民币账号: 3602028519201409677, 美元账号: 3602028519201409704"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "COUNTRY OF ORIGIN",
+          "value": "中国"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "PLACE OF RECEIPT",
+          "value": "广西百色市"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "PLACE OF DELIVERY",
+          "value": "美国"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "FCL/LCL",
+          "value": "柜货或散货"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "BL/FCR RELEASED AT",
+          "value": "Guangzhou"
+        }
+      ],
+      "entities": {
+        "companies": [
+          "Vulcan Shield Global Pte. Ltd.",
+          "Space Exploration Technologies Corp.",
+          "Expeditors",
+          "北京康捷空国际货运代理有限公司"
+        ],
+        "products": [
+          "氧化铝纤维针刺毯"
+        ],
+        "persons": [
+          "Carlos Torrejon",
+          "滕宏建",
+          "WENDY CHEN"
+        ]
+      },
+      "summary": "一份由Expeditors公司出具的国际海运订舱单，涉及Vulcan Shield Global Pte. Ltd.向Space Exploration Technologies Corp.运输氧化铝纤维针刺毯的业务，包含货物信息、运输条款及付款细节。"
+    }
+  },
+  {
+    "file": "image001.png",
+    "success": true,
+    "document_type": "Contract",
+    "fact_count": 5,
+    "identifier_count": 1,
+    "other_count": 0,
+    "duration": 34.00451,
+    "extraction": {
+      "document_type": "Contract",
+      "document_date": "2024-09-13",
+      "facts": [
+        {
+          "type": "Identifier",
+          "key": "Car Sales Agreement No.",
+          "value": "SO2409-0002",
+          "unit": null,
+          "context": "Car Sales Agreement Number"
+        },
+        {
+          "type": "Company",
+          "key": "Seller Company",
+          "value": "1 Autos Pte Limited (PRE-OWNED)",
+          "unit": null,
+          "context": "Seller company name"
+        },
+        {
+          "type": "Company",
+          "key": "Customer Name",
+          "value": "Vulcan Shield Global Pte. Ltd.",
+          "unit": null,
+          "context": "Customer company name"
+        },
+        {
+          "type": "Address",
+          "key": "Seller Address",
+          "value": "1 Commonwealth Lane, #01-11/12/13 Singapore 149544",
+          "unit": null,
+          "context": "Seller address"
+        },
+        {
+          "type": "Address",
+          "key": "Customer Address",
+          "value": "10 Marina Boulevard #13-01 Marina Bay Financial Centre, Singapore 0188"
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,43 @@
+{
+  "type": "object",
+  "properties": {
+    "health_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Overall code health score"
+    },
+    "tech_debt_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Technical debt level (higher = more debt)"
+    },
+    "top_actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "priority": {"type": "integer"},
+          "title": {"type": "string"},
+          "description": {"type": "string"},
+          "effort": {"type": "string", "enum": ["low", "medium", "high"]},
+          "impact": {"type": "string", "enum": ["low", "medium", "high"]}
+        }
+      },
+      "maxItems": 5
+    },
+    "architecture_assessment": {
+      "type": "string"
+    },
+    "critical_issues": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "required": ["health_score", "tech_debt_score", "top_actions"]
+}

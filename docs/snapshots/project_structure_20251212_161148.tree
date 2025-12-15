@@ -1,0 +1,445 @@
+vulcan-brain/
+    ├── acontext_integration.py (14KB)
+    ├── acontext_sdk_helper.py (1,184)
+    ├── add_approval_router.py (1,135)
+    ├── add_scheduler_startup.py (1,441)
+    ├── agent_prompts.py (5,312)
+    ├── agent_session_store.py (2,360)
+    ├── alignment_memory.json (1,523)
+    ├── api/
+    │   ├── __init__.py (59)
+    │   └── info_hub/
+    │       ├── __init__.py (749)
+    │       ├── approval.py (4,972)
+    │       ├── chat.py (4,127)
+    │       ├── daily.py (12KB)
+    │       ├── email.py (4,328)
+    │       ├── people.py (15KB)
+    │       └── schemas/
+    │           ├── __init__.py (187)
+    │           ├── approval.py (1,262)
+    │           ├── chat.py (1,072)
+    │           ├── common.py (1,118)
+    │           ├── daily.py (1,692)
+    │           ├── email.py (1,297)
+    │           └── people.py (3,371)
+    ├── api_server.py (39KB)
+    ├── app.py (2,674)
+    ├── app_patch.py (583)
+    ├── approval_api.py (11KB)
+    ├── auth_api.py (12KB)
+    ├── bicameral_api.py (4,543)
+    ├── boss_constitution.yaml (5,582)
+    ├── chat_api.py (6,635)
+    ├── config.py (2,430)
+    ├── data/
+    │   ├── lightrag/
+    │   │   ├── kv_store_doc_status.json (16KB)
+    │   │   ├── kv_store_entity_chunks.json (25KB)
+    │   │   ├── kv_store_full_docs.json (48KB)
+    │   │   ├── kv_store_full_entities.json (7,634)
+    │   │   ├── kv_store_full_relations.json (12KB)
+    │   │   ├── kv_store_llm_response_cache.json (705KB)
+    │   │   ├── kv_store_relation_chunks.json (28KB)
+    │   │   ├── kv_store_text_chunks.json (51KB)
+    │   │   ├── vdb_chunks.json (177KB)
+    │   │   ├── vdb_entities.json (778KB)
+    │   │   └── vdb_relationships.json (759KB)
+    │   └── projects.json (1,008)
+    ├── debug_probe.py (2,631)
+    ├── docker-compose.postgres.yml (360)
+    ├── docs/
+    │   └── snapshots/
+    ├── email_api.py (10KB)
+    ├── email_intel_api.py (16KB)
+    ├── feishu/
+    │   ├── __init__.py (752)
+    │   ├── cards/
+    │   │   ├── __init__.py (2,994)
+    │   │   ├── alert_cards.py (9KB)
+    │   │   ├── approval_cards.py (9,268)
+    │   │   ├── base.py (4,955)
+    │   │   ├── report_cards.py (8,924)
+    │   │   └── task_cards.py (9,850)
+    │   ├── gateway.py (10KB)
+    │   ├── handlers/
+    │   │   ├── __init__.py (483)
+    │   │   ├── approval_handler.py (7,271)
+    │   │   ├── menu_handler.py (7,833)
+    │   │   ├── message_handler.py (5,797)
+    │   │   └── task_handler.py (15KB)
+    │   ├── notification.py (10KB)
+    │   ├── scheduler.py (12KB)
+    │   ├── sdk.py (13KB)
+    │   └── sync/
+    │       └── __init__.py (0)
+    ├── feishu_bot/
+    │   ├── __init__.py (0)
+    │   ├── kernel.py (6,820)
+    │   └── llm_client.py (2,320)
+    ├── final_test.py (2,803)
+    ├── generate_mock_approvals.py (8,264)
+    ├── graph_intelligence_api.py (3,009)
+    ├── info_hub_api.py (43KB)
+    ├── kernel_bicameral_v5.py (15KB)
+    ├── logs/
+    ├── main.py (5,584)
+    ├── main_complex.py (542)
+    ├── mcp_client.py (6,939)
+    ├── mcp_server.py (8,798)
+    ├── mcp_tools/
+    │   ├── __init__.py (550)
+    │   ├── alignment/
+    │   │   ├── __init__.py (316)
+    │   │   ├── feedback.py (2,193)
+    │   │   └── insight.py (1,786)
+    │   ├── compute/
+    │   │   ├── __init__.py (201)
+    │   │   └── sandbox.py (8,042)
+    │   ├── core/
+    │   │   ├── __init__.py (719)
+    │   │   ├── code_exec.py (1,095)
+    │   │   ├── memory.py (2,952)
+    │   │   ├── time.py (1,723)
+    │   │   └── web_search.py (1,628)
+    │   └── knowledge/
+    │       ├── __init__.py (228)
+    │       └── rag.py (2,625)
+    ├── memory_api_patch.py (2,714)
+    ├── memory_api_patch_v2.py (2,440)
+    ├── message_api.py (3,990)
+    ├── migrate_task_status.py (1,871)
+    ├── models/
+    │   ├── __init__.py (406)
+    │   ├── kpi.py (4,136)
+    │   ├── project.py (3,045)
+    │   ├── task.py (4,438)
+    │   └── user.py (1,472)
+    ├── monitor_server.py (1,518)
+    ├── news_fetcher.py (4,191)
+    ├── pm_api.py (24KB)
+    ├── prediction_engine.py (9,697)
+    ├── presentation/
+    ├── public/
+    ├── scripts/
+    │   ├── backfill_conversation_id.py (3,409)
+    │   ├── backfill_conversation_id_batch.py (4,580)
+    │   ├── batch_entity.py (1,016)
+    │   ├── batch_lightrag.py (1,165)
+    │   ├── email_pipeline.py (10KB)
+    │   ├── full_sync.py (1,514)
+    │   ├── run_phase0.py (2,503)
+    │   ├── run_vectorize.py (698)
+    │   ├── semantic_survey.py (8,820)
+    │   ├── semantic_survey_sglang.py (8,582)
+    │   ├── smart_graph_builder.py (6,008)
+    │   └── sync_people.py (1,376)
+    ├── server.py (2,506)
+    ├── services/
+    │   ├── __init__.py (0)
+    │   ├── approval_bot_service.py (15KB)
+    │   ├── approval_service.py (14KB)
+    │   ├── approval_store.py (10KB)
+    │   ├── chat_summarizer.py (5,423)
+    │   ├── chat_summary_store.py (8,274)
+    │   ├── daily_report.py (9,624)
+    │   ├── email_cleaner.py (8,907)
+    │   ├── email_intelligence_service.py (19KB)
+    │   ├── email_intelligence_v2/
+    │   │   ├── __init__.py (463)
+    │   │   ├── api/
+    │   │   │   ├── __init__.py (1)
+    │   │   │   └── entity_merge_api.py (12KB)
+    │   │   ├── core/
+    │   │   │   └── __init__.py (0)
+    │   │   ├── extractors/
+    │   │   │   ├── __init__.py (847)
+    │   │   │   ├── entity_resolver.py (16KB)
+    │   │   │   ├── master_extractor.py (16KB)
+    │   │   │   ├── name_normalizer.py (9KB)
+    │   │   │   └── pipeline_service.py (15KB)
+    │   │   ├── graph/
+    │   │   │   └── __init__.py (0)
+    │   │   ├── migration/
+    │   │   │   ├── __init__.py (52)
+    │   │   │   ├── llm_company_merger.py (13KB)
+    │   │   │   ├── migrate_to_v2.py (17KB)
+    │   │   │   ├── run_entity_resolution.py (17KB)
+    │   │   │   └── schema_init.py (8,052)
+    │   │   ├── models/
+    │   │   │   ├── __init__.py (5,156)
+    │   │   │   ├── action_item.py (8,037)
+    │   │   │   ├── base.py (3,973)
+    │   │   │   ├── compliance.py (5,599)
+    │   │   │   ├── email_event.py (5,640)
+    │   │   │   ├── entity_merge_queue.py (8,218)
+    │   │   │   ├── finance.py (5,604)
+    │   │   │   ├── fulfillment.py (11KB)
+    │   │   │   ├── party.py (6,372)
+    │   │   │   ├── product.py (3,308)
+    │   │   │   └── shipment.py (6,700)
+    │   │   ├── processors/
+    │   │   ├── prompts/
+    │   │   │   ├── __init__.py (0)
+    │   │   │   └── master_extraction.py (2,819)
+    │   │   ├── run_batch_filtered.py (7,398)
+    │   │   ├── run_test.py (6,534)
+    │   │   ├── services/
+    │   │   │   ├── __init__.py (59)
+    │   │   │   └── pipeline_service.py (15KB)
+    │   │   ├── test_filter.py (2,983)
+    │   │   ├── test_pipeline.py (6,172)
+    │   │   └── tests/
+    │   │       ├── __init__.py (0)
+    │   │       └── fixtures/
+    │   ├── email_store.py (23KB)
+    │   ├── email_summarizer.py (7,680)
+    │   ├── email_thread_service.py (9,172)
+    │   ├── embedding_service.py (6,527)
+    │   ├── entity_service.py (12KB)
+    │   ├── feishu_collector.py (9,394)
+    │   ├── graph_intelligence_service.py (12KB)
+    │   ├── lightrag_service.py (9,212)
+    │   ├── message_store.py (17KB)
+    │   ├── ms365_service.py (5,786)
+    │   ├── people_store.py (13KB)
+    │   ├── project_store.py (13KB)
+    │   ├── project_summarizer.py (9,400)
+    │   └── realtime_analyzer.py (5,244)
+    ├── simple_api.py (2,652)
+    ├── soul_api.py (25KB)
+    ├── soul_config.json (656)
+    ├── start.py (2,934)
+    ├── static/
+    │   ├── email-intel/
+    │   │   ├── company_entities.json (33KB)
+    │   │   ├── company_relations.json (154KB)
+    │   │   ├── entity_cooccurrence_graph.json (942KB)
+    │   │   ├── graph_with_relations.json (41KB)
+    │   │   ├── graph_with_relations_v4.json (1292KB)
+    │   │   ├── graph_with_relations_vllm.json (1296KB)
+    │   │   ├── relation_inference.py (4,132)
+    │   │   ├── relation_inference_fast.py (2,358)
+    │   │   ├── relation_inference_v2.py (4,178)
+    │   │   ├── relation_inference_v3.py (5,575)
+    │   │   ├── smart_graph_v2.json (715KB)
+    │   │   ├── smart_graph_v2.py (7,462)
+    │   │   ├── smart_graph_v3.json (35KB)
+    │   │   ├── smart_graph_v3.py (8,027)
+    │   │   ├── smart_graph_v4.json (34KB)
+    │   │   ├── smart_graph_v4.py (6,321)
+    │   │   ├── smart_graph_v5.json (1057KB)
+    │   │   └── smart_graph_v5.py (6,367)
+    │   └── email-intel-v5/
+    │       ├── assets/
+    │       ├── email-intel-full-page.tsx (39KB)
+    │       ├── email-intel-page.tsx (28KB)
+    │       ├── layout.tsx (5,100)
+    │       ├── package.json (1,110)
+    │       ├── public/
+    │       ├── src/
+    │       │   ├── App.tsx (5,467)
+    │       │   ├── assets/
+    │       │   ├── components/
+    │       │   │   ├── ActionCenter.tsx (7,441)
+    │       │   │   ├── CommandCenter.tsx (7,220)
+    │       │   │   ├── CompanyIntel.tsx (11KB)
+    │       │   │   └── RelationshipGraph.tsx (10KB)
+    │       │   ├── hooks/
+    │       │   │   └── useEmailIntel.ts (3,034)
+    │       │   ├── main.tsx (230)
+    │       │   ├── types/
+    │       │   │   └── index.ts (3,078)
+    │       │   └── utils/
+    │       ├── tsconfig.app.json (732)
+    │       ├── tsconfig.json (119)
+    │       ├── tsconfig.node.json (653)
+    │       └── vite.config.ts (161)
+    ├── system_snapshot.py (8,909)
+    ├── tools/
+    │   ├── __init__.py (894)
+    │   ├── alignment_tools.py (3,356)
+    │   ├── boss_insight_tool.py (1,354)
+    │   ├── code_executor.py (13KB)
+    │   ├── feishu_tools.py (42KB)
+    │   ├── function_tools.py (1,011)
+    │   ├── memory_tools.py (2,771)
+    │   ├── migrate_v2.py (4,224)
+    │   ├── rag_tools.py (4,023)
+    │   └── search_tools.py (1,360)
+    ├── upload_server.py (11KB)
+    ├── user_profile.json (465)
+    ├── vulcan-ui/
+    │   ├── next-env.d.ts (262)
+    │   ├── next.config.ts (514)
+    │   ├── package.json (902)
+    │   ├── public/
+    │   │   ├── presentation/
+    │   │   └── sounds/
+    │   ├── src/
+    │   │   ├── app/
+    │   │   │   ├── agents/
+    │   │   │   │   ├── financial/
+    │   │   │   │   │   └── page.tsx (480)
+    │   │   │   │   ├── ghostwriter/
+    │   │   │   │   │   └── page.tsx (464)
+    │   │   │   │   ├── hr/
+    │   │   │   │   │   └── page.tsx (436)
+    │   │   │   │   └── watchdog/
+    │   │   │   │       └── page.tsx (449)
+    │   │   │   ├── approval/
+    │   │   │   │   └── page.tsx (17KB)
+    │   │   │   ├── calibration/
+    │   │   │   │   └── page.tsx (30KB)
+    │   │   │   ├── email-intel/
+    │   │   │   │   └── page.tsx (43KB)
+    │   │   │   ├── gemini/
+    │   │   │   │   └── page.tsx (254)
+    │   │   │   ├── info-hub/
+    │   │   │   │   ├── approval/
+    │   │   │   │   │   └── page.tsx (17KB)
+    │   │   │   │   ├── chat/
+    │   │   │   │   │   └── page.tsx (8,942)
+    │   │   │   │   ├── daily-report/
+    │   │   │   │   │   ├── approval/
+    │   │   │   │   │   │   └── page.tsx (1,573)
+    │   │   │   │   │   ├── chat/
+    │   │   │   │   │   │   └── page.tsx (10KB)
+    │   │   │   │   │   ├── email/
+    │   │   │   │   │   │   └── page.tsx (11KB)
+    │   │   │   │   │   ├── page.tsx (60KB)
+    │   │   │   │   │   ├── people/
+    │   │   │   │   │   │   └── page.tsx (13KB)
+    │   │   │   │   │   └── projects/
+    │   │   │   │   │       └── page.tsx (19KB)
+    │   │   │   │   ├── email/
+    │   │   │   │   │   └── page.tsx (13KB)
+    │   │   │   │   ├── email-intel/
+    │   │   │   │   │   └── page.tsx (28KB)
+    │   │   │   │   ├── layout.tsx (545)
+    │   │   │   │   ├── page.tsx (490)
+    │   │   │   │   ├── people/
+    │   │   │   │   │   └── page.tsx (14KB)
+    │   │   │   │   └── projects/
+    │   │   │   │       └── page.tsx (1,276)
+    │   │   │   ├── knowledge/
+    │   │   │   │   └── page.tsx (263)
+    │   │   │   ├── layout.tsx (1,352)
+    │   │   │   ├── login/
+    │   │   │   │   └── page.tsx (5,821)
+    │   │   │   ├── memory/
+    │   │   │   │   └── page.tsx (275)
+    │   │   │   ├── page.tsx (8,126)
+    │   │   │   ├── pipeline-monitor/
+    │   │   │   │   └── page.tsx (8,216)
+    │   │   │   ├── projects/
+    │   │   │   │   └── page.tsx (63KB)
+    │   │   │   ├── settings/
+    │   │   │   │   ├── page.tsx (248)
+    │   │   │   │   └── system/
+    │   │   │   │       └── page.tsx (11KB)
+    │   │   │   └── soul/
+    │   │   │       └── page.tsx (1,744)
+    │   │   ├── components/
+    │   │   │   ├── agents/
+    │   │   │   │   ├── AgentChatPage.tsx (5,312)
+    │   │   │   │   └── AgentChatPageLOD.tsx (22KB)
+    │   │   │   ├── chat/
+    │   │   │   │   ├── ChatWindow.tsx (8,015)
+    │   │   │   │   ├── CodeBlock.tsx (1,314)
+    │   │   │   │   └── MessageBubble.tsx (7,202)
+    │   │   │   ├── email-intel/
+    │   │   │   │   ├── CompanyIntel.tsx (24KB)
+    │   │   │   │   └── RelationshipIntel.tsx (14KB)
+    │   │   │   ├── gemini/
+    │   │   │   │   ├── GeminiChat.tsx (9,481)
+    │   │   │   │   └── GeminiChatV3.tsx (28KB)
+    │   │   │   ├── info-hub/
+    │   │   │   │   ├── AIInsightCard.tsx (3,936)
+    │   │   │   │   ├── ChatPanelContent.tsx (4,689)
+    │   │   │   │   ├── ChatSummaryCard.tsx (4,485)
+    │   │   │   │   ├── DateNavigator.tsx (1,506)
+    │   │   │   │   ├── DimensionCard.tsx (3,510)
+    │   │   │   │   ├── EmailPanelContent.tsx (4,968)
+    │   │   │   │   ├── InfoHubBreadcrumb.tsx (1,116)
+    │   │   │   │   ├── InfoHubNav.tsx (2,140)
+    │   │   │   │   ├── InfoHubV2.tsx (23KB)
+    │   │   │   │   ├── ItemList.tsx (2,784)
+    │   │   │   │   ├── SlideOverPanel.tsx (3,312)
+    │   │   │   │   ├── StatCard.tsx (2,517)
+    │   │   │   │   └── index.ts (310)
+    │   │   │   ├── knowledge/
+    │   │   │   │   └── KnowledgeBase.tsx (10KB)
+    │   │   │   ├── layout/
+    │   │   │   │   ├── DashboardLayout.tsx (5,192)
+    │   │   │   │   ├── Inspector.tsx (9,373)
+    │   │   │   │   └── Sidebar.tsx (8,895)
+    │   │   │   ├── memory/
+    │   │   │   │   └── MemoryVisualization.tsx (12KB)
+    │   │   │   ├── soul/
+    │   │   │   │   ├── AlignmentDeck.tsx (7,801)
+    │   │   │   │   ├── ConstitutionView.tsx (3,552)
+    │   │   │   │   ├── GenesisWizard.tsx (6,931)
+    │   │   │   │   ├── RadarChart.tsx (4,459)
+    │   │   │   │   ├── SoulConfig.tsx (11KB)
+    │   │   │   │   ├── SyncHeader.tsx (4,636)
+    │   │   │   │   └── TwinDashboard.tsx (23KB)
+    │   │   │   └── ui/
+    │   │   │       └── MarkdownRenderer.tsx (6,923)
+    │   │   ├── contexts/
+    │   │   │   ├── AuthContext.tsx (4,141)
+    │   │   │   ├── InfoHubContext.tsx (1,634)
+    │   │   │   └── ThemeContext.tsx (1,387)
+    │   │   ├── data/
+    │   │   │   └── genesisQuestions.ts (6,443)
+    │   │   ├── hooks/
+    │   │   │   └── useInfoHub.ts (6,899)
+    │   │   ├── i18n/
+    │   │   │   ├── LanguageContext.tsx (4,529)
+    │   │   │   ├── LanguageSwitcher.tsx (6,469)
+    │   │   │   ├── index.ts (203)
+    │   │   │   └── locales/
+    │   │   │       ├── en-US.json (6,738)
+    │   │   │       └── zh-CN.json (6,748)
+    │   │   ├── lib/
+    │   │   │   ├── api.ts (6,660)
+    │   │   │   └── utils.ts (166)
+    │   │   ├── services/
+    │   │   │   └── chatApi.ts (2,819)
+    │   │   ├── store/
+    │   │   │   └── useChatStore.ts (5,028)
+    │   │   └── types/
+    │   │       └── info-hub.ts (4,049)
+    │   ├── tailwind.config.ts (1,194)
+    │   └── tsconfig.json (701)
+    ├── vulcan_libs/
+    │   ├── __init__.py (22)
+    │   ├── ai_service.py (13KB)
+    │   ├── alignment.py (8,927)
+    │   ├── bicameral_graph.py (20KB)
+    │   ├── bicameral_graph_v6.py (13KB)
+    │   ├── bicameral_stream.py (7,103)
+    │   ├── bicameral_types.py (9,643)
+    │   ├── ceo_soul.py (4,771)
+    │   ├── checkpointer.py (7,087)
+    │   ├── cto_executor.py (11KB)
+    │   ├── logger.py (2,095)
+    │   ├── memory.py (6,166)
+    │   ├── memory_old.py (5,559)
+    │   ├── memory_v2.py (2,279)
+    │   ├── monitor.py (8,981)
+    │   ├── rag.py (8,603)
+    │   ├── registry.py (6,377)
+    │   ├── sglang_client.py (7,315)
+    │   ├── singleton.py (2,609)
+    │   ├── store.py (23KB)
+    │   ├── stream_filter.py (3,458)
+    │   ├── tool_loader.py (8,621)
+    │   └── tool_retriever.py (4,716)
+    ├── vulcan_tools_v1.py (10KB)
+    ├── vulcan_tools_v2.py (7,546)
+    └── workspace/
+        └── tools/
+            └── code_interpreter/
+                ├── kernel_connection_file_6f564098-c4c9-4e28-a7bf-164c097e6de5_34020.json (263)
+                └── launch_kernel_6f564098-c4c9-4e28-a7bf-164c097e6de5_34020.py (66)

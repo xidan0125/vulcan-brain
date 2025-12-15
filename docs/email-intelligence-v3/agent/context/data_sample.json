@@ -1,0 +1,114 @@
+{
+  "_comment": "示例邮件数据结构 - 来自MongoDB vulcan_brain.emails",
+  
+  "email_sample": {
+    "_id": "ObjectId('...')",
+    "message_id": "AAMkAGE1M2IyNGM2...",
+    "subject": "RE: SpaceX 3K碳纤维复合材料报价更新 - V3",
+    "from": {
+      "name": "张工程师",
+      "address": "zhang@company.com"
+    },
+    "to": [
+      {"name": "SpaceX Procurement", "address": "procurement@spacex.com"}
+    ],
+    "cc": [
+      {"name": "李经理", "address": "li@company.com"}
+    ],
+    "received_datetime": "2024-07-15T10:30:00Z",
+    "body": {
+      "content": "Dear SpaceX Team,\n\n请查收附件中更新后的报价单(V3版本)。\n\n根据上周会议讨论，我们已将价格调整为350美元/公斤(FOB上海)，适用于年采购量超过5吨的情况。\n\n技术规格书也已更新，详见附件Spec_Sheet_v3.pdf。\n\n如有问题请随时联系。\n\n张工程师",
+      "content_type": "text/html"
+    },
+    "has_attachments": true,
+    "attachments": [
+      {
+        "name": "SpaceX_Quote_V3_20240715.pdf",
+        "size": 245760,
+        "content_type": "application/pdf"
+      },
+      {
+        "name": "Spec_Sheet_v3.pdf", 
+        "size": 1048576,
+        "content_type": "application/pdf"
+      },
+      {
+        "name": "Price_Breakdown.xlsx",
+        "size": 52480,
+        "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      }
+    ],
+    "processing_status": {
+      "v2_extracted": true,
+      "extracted_at": "2024-12-10T08:00:00Z"
+    },
+    "ai_extracted": {
+      "intent": "QUOTE_RESPONSE",
+      "classification": "sales",
+      "entities": [
+        {"type": "company", "value": "SpaceX"},
+        {"type": "product", "value": "3K碳纤维复合材料"},
+        {"type": "money", "value": "350美元/公斤"},
+        {"type": "location", "value": "上海"}
+      ]
+    }
+  },
+  
+  "_comment2": "期望的V3 Event输出格式",
+  
+  "expected_v3_event": {
+    "event_id": "EVT-2024-07-15-001",
+    "event_type": "QuoteRevision",
+    "timestamp": "2024-07-15T10:30:00Z",
+    "state": "报价中",
+    "entities": [
+      {"role": "客户", "id": "ORG-SpaceX", "name": "SpaceX"},
+      {"role": "供应商", "id": "ORG-Self", "name": "我方公司"},
+      {"role": "材料", "id": "MAT-3KCarbonFiber", "name": "3K碳纤维复合材料"},
+      {"role": "发起人", "id": "PER-Zhang", "name": "张工程师"}
+    ],
+    "facts": [
+      {
+        "fact_id": "EVT-2024-07-15-001#PRICE",
+        "attribute": "报价单价",
+        "value": 350.00,
+        "unit": "USD/kg",
+        "conditions": {
+          "incoterms": "FOB上海",
+          "min_annual_volume": "5吨"
+        },
+        "confidence": "LLM_Reasoned",
+        "provenance": [
+          {
+            "source": "email_body",
+            "file": "EMAIL-AAMkAGE1M2IyNGM2...",
+            "snippet": "价格调整为350美元/公斤(FOB上海)，适用于年采购量超过5吨"
+          },
+          {
+            "source": "attachment",
+            "file": "SpaceX_Quote_V3_20240715.pdf",
+            "page": 1,
+            "coords": {"x": 120, "y": 340, "w": 80, "h": 15}
+          }
+        ]
+      },
+      {
+        "fact_id": "EVT-2024-07-15-001#SPEC_UPDATE",
+        "attribute": "规格书版本",
+        "value": "V3",
+        "confidence": "OCR_Raw",
+        "provenance": [
+          {
+            "source": "attachment",
+            "file": "Spec_Sheet_v3.pdf",
+            "page": 1,
+            "coords": {"x": 50, "y": 80, "w": 100, "h": 20}
+          }
+        ]
+      }
+    ],
+    "previous_event": "EVT-2024-07-08-003",
+    "next_event": null,
+    "source_email": "AAMkAGE1M2IyNGM2..."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "_comment": "这是一个高质量模块分析的示例，展示了期望的输出风格",
+  "module": {
+    "name": "Memory",
+    "chinese_name": "记忆层",
+    "responsibility": "管理所有持久化数据的存储、检索和生命周期，为上层提供统一的数据访问接口",
+    "key_files": [
+      "vulcan_libs/store.py",
+      "services/memory_store.py",
+      "api/routers/memory_router.py"
+    ],
+    "dependencies": ["MongoDB", "Acontext SDK"],
+    "health_score": 65,
+    "issues": [
+      "存在两套并行的存储实现（VulcanStore + Acontext），造成数据不一致风险",
+      "memory_store.py:142 直接硬编码了 MongoDB 连接字符串",
+      "缺少统一的缓存层，每次查询都直接访问数据库"
+    ]
+  },
+  "analysis_style_notes": [
+    "✅ 具体到文件和行号",
+    "✅ 问题描述清晰，不含糊",
+    "✅ health_score 有理有据",
+    "✅ 依赖关系明确"
+  ]
+}

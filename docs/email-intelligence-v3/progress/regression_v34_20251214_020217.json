@@ -1,0 +1,32 @@
+[
+  {
+    "file": "604D34C1@67B12B63.9024F66600000000.jpg",
+    "success": false,
+    "error": "500 Server Error: Internal Server Error for url: http://localhost:8000/v1/chat/completions",
+    "duration": 202.180165
+  },
+  {
+    "file": "Resume - Ms. Poe Ei Mon.pdf",
+    "success": false,
+    "error": "500 Server Error: Internal Server Error for url: http://localhost:8000/v1/chat/completions",
+    "duration": 0.069083
+  },
+  {
+    "file": "08072024154649-0001.pdf",
+    "success": false,
+    "error": "500 Server Error: Internal Server Error for url: http://localhost:8000/v1/chat/completions",
+    "duration": 0.096429
+  },
+  {
+    "file": "样品箱单&发票 HTMS 0529.xlsx",
+    "success": false,
+    "error": "500 Server Error: Internal Server Error for url: http://localhost:8000/v1/chat/completions",
+    "duration": 1.086022
+  },
+  {
+    "file": "Q20241112CD-TKBS.pdf",
+    "success": false,
+    "error": "500 Server Error: Internal Server Error for url: http://localhost:8000/v1/chat/completions",
+    "duration": 0.044529
+  }
+]

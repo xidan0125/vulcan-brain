@@ -1,0 +1,239 @@
+{
+  "product_summary": "Vulcan Brain 是一个面向企业的综合性 AI 操作系统（Enterprise AI OS），旨在打破企业内部的数据孤岛（邮件、IM、审批、文档）。它不仅是一个聊天机器人，更是一个集成了多模态数据（Feishu/Lark, MS365）的智能中枢。它利用先进的架构（如双脑 Bicameral Mind、CodeAct 代码执行、LightRAG）来提供深度业务洞察、自动化日报生成、审批流处理以及各职能部门（财务、HR）的专用 Agent 辅助。",
+  "core_value_proposition": "通过统一的 AI 内核连接企业碎片化数据，提供从实时监控、智能决策辅助到自动化执行的一站式解决方案，显著降低信息获取成本并提升管理效率。",
+  "feature_inventory": [
+    {
+      "name": "Info Hub (五维信息中心)",
+      "description": "聚合日报、聊天、邮件、人员、审批五个维度的企业数据看板。",
+      "status": "production",
+      "completeness": 90,
+      "key_files": [
+        "api/info_hub/__init__.py",
+        "api/info_hub/daily.py",
+        "vulcan-ui/src/components/info-hub/InfoHubV2.tsx"
+      ],
+      "dependencies": [
+        "MongoDB",
+        "Feishu API",
+        "MS365 API"
+      ],
+      "user_value": "管理者可在一个界面全览企业当天的运作状态，无需切换多个系统。"
+    },
+    {
+      "name": "Bicameral Mind (双脑架构)",
+      "description": "采用 CEO (规划/决策) 和 CTO (执行/代码) 分离的架构处理复杂任务。",
+      "status": "beta",
+      "completeness": 75,
+      "key_files": [
+        "bicameral_api.py",
+        "vulcan_libs/bicameral_graph.py",
+        "vulcan_libs/ceo_soul.py"
+      ],
+      "dependencies": [
+        "LLM (DeepSeek/Qwen)",
+        "PostgreSQL (Checkpointer)"
+      ],
+      "user_value": "能够处理需要多步推理、自我纠错和复杂逻辑的业务问题，比传统 Chatbot 更智能。"
+    },
+    {
+      "name": "Email Intelligence (邮件智能)",
+      "description": "邮件自动摘要、实体提取、关系网络构建及重要性分级。",
+      "status": "production",
+      "completeness": 85,
+      "key_files": [
+        "services/email_intelligence_service.py",
+        "static/email-intel/relation_inference.py",
+        "api/info_hub/email.py"
+      ],
+      "dependencies": [
+        "MS365 Service",
+        "LightRAG"
+      ],
+      "user_value": "帮助用户快速处理海量邮件，识别关键联系人和紧急事项，构建商业关系图谱。"
+    },
+    {
+      "name": "Feishu Approval Bot",
+      "description": "集成飞书审批流，支持 AI 辅助判断、自动催办和卡片交互。",
+      "status": "production",
+      "completeness": 95,
+      "key_files": [
+        "approval_api.py",
+        "services/approval_bot_service.py",
+        "feishu/cards/approval_cards.py"
+      ],
+      "dependencies": [
+        "Feishu Open Platform"
+      ],
+      "user_value": "在 IM 中直接处理审批，AI 提供审批建议（如风险提示），提升流转效率。"
+    },
+    {
+      "name": "People Analytics (组织洞察)",
+      "description": "分析员工沟通行为，识别组织内的“信息枢纽”、“广播者”等角色，评估活跃度。",
+      "status": "beta",
+      "completeness": 80,
+      "key_files": [
+        "api/info_hub/people.py",
+        "services/people_store.py"
+      ],
+      "dependencies": [
+        "MS Graph API",
+        "MongoDB"
+      ],
+      "user_value": "HR 和管理者可量化评估团队协作状态和关键人才的影响力。"
+    },
+    {
+      "name": "CodeAct Sandbox",
+      "description": "允许 AI 编写并执行 Python 代码来处理数据或解决数学问题。",
+      "status": "production",
+      "completeness": 80,
+      "key_files": [
+        "tools/code_executor.py",
+        "api/routers/code_execution_router.py",
+        "kernel_codeact.py"
+      ],
+      "dependencies": [
+        "Jupyter Kernel / Local Python Exec"
+      ],
+      "user_value": "赋予 AI 精确计算和处理复杂数据的能力，避免 LLM 的幻觉问题。"
+    },
+    {
+      "name": "Soul Alignment (价值观对齐)",
+      "description": "通过“宪法”和“创世问答”定义 AI 的性格、红线和沟通风格。",
+      "status": "beta",
+      "completeness": 70,
+      "key_files": [
+        "boss_constitution.yaml",
+        "api/routers/soul_router.py",
+        "auth_api.py"
+      ],
+      "dependencies": [
+        "MongoDB (User Profile)"
+      ],
+      "user_value": "确保 AI 的输出符合企业文化和管理者的个人偏好，实现个性化定制。"
+    }
+  ],
+  "integrations": [
+    {
+      "service": "Feishu (Lark)",
+      "purpose": "消息接收、发送卡片、审批流同步、通讯录同步",
+      "status": "active"
+    },
+    {
+      "service": "Microsoft 365 (Graph API)",
+      "purpose": "邮件抓取、日历同步、人员信息同步",
+      "status": "active"
+    },
+    {
+      "service": "Acontext",
+      "purpose": "外部记忆与会话管理服务 (Session/Memory Store)",
+      "status": "active"
+    },
+    {
+      "service": "Ollama / OpenAI",
+      "purpose": "底层 LLM 推理支持 (Qwen/DeepSeek)",
+      "status": "active"
+    },
+    {
+      "service": "LightRAG",
+      "purpose": "基于图的检索增强生成 (Graph RAG)",
+      "status": "partial"
+    }
+  ],
+  "data_entities": [
+    {
+      "name": "DailyReport",
+      "description": "每日汇总的五维数据快照",
+      "storage": "mongodb"
+    },
+    {
+      "name": "Email/Contact",
+      "description": "邮件元数据、正文摘要及提取的联系人实体",
+      "storage": "mongodb"
+    },
+    {
+      "name": "ApprovalInstance",
+      "description": "飞书审批单据详情及流转记录",
+      "storage": "mongodb"
+    },
+    {
+      "name": "ChatMessage",
+      "description": "飞书群聊消息记录及摘要",
+      "storage": "mongodb"
+    },
+    {
+      "name": "SoulProfile",
+      "description": "用户设定的 AI 人格、宪法及偏好",
+      "storage": "mongodb"
+    },
+    {
+      "name": "VectorStore",
+      "description": "文档和记忆的向量索引",
+      "storage": "lightrag (local json/vdb)"
+    }
+  ],
+  "user_journeys": [
+    {
+      "name": "每日晨报查看",
+      "steps": [
+        "系统夜间自动触发 generate_report",
+        "聚合邮件、聊天、审批数据",
+        "生成 AI 摘要",
+        "用户早上访问 /info-hub/daily 仪表盘查看"
+      ],
+      "completeness": 95
+    },
+    {
+      "name": "智能审批处理",
+      "steps": [
+        "飞书推送审批事件",
+        "Vulcan 解析并评估风险",
+        "推送飞书卡片给审批人",
+        "审批人点击通过/拒绝",
+        "Vulcan 回写飞书并通知申请人"
+      ],
+      "completeness": 100
+    },
+    {
+      "name": "双脑复杂问题解决",
+      "steps": [
+        "用户提问复杂商业问题",
+        "CEO 节点拆解任务",
+        "CTO 节点编写代码或调用工具",
+        "Synthesizer 节点汇总结果",
+        "流式返回给用户"
+      ],
+      "completeness": 80
+    }
+  ],
+  "feature_gaps": [
+    {
+      "gap": "项目管理 (PM) 模块",
+      "impact": "medium",
+      "suggestion": "services/project_store.py 中存在大量占位符，需完善与 Jira 或飞书多维表格的对接。"
+    },
+    {
+      "gap": "Bicameral 历史记忆回溯",
+      "impact": "high",
+      "suggestion": "bicameral_api.py 中注明 '历史加载功能待实现'，需对接 PostgreSQL checkpointer。"
+    },
+    {
+      "gap": "Acontext 深度集成",
+      "impact": "medium",
+      "suggestion": "部分旧代码仍直接使用 VulcanStore 操作记忆，需全面迁移至 Acontext SDK 以统一记忆管理。"
+    }
+  ],
+  "roadmap_hints": [
+    "Phase 2: Project Management implementation (found in project_store.py)",
+    "Migrate all memory operations to Acontext (found in memory_router.py)",
+    "Enhance LightRAG with more entity types (found in api/dependencies.py)",
+    "Full PostgreSQL persistence for agent states (found in bicameral_api.py)",
+    "LOD (Level of Detail) Agent architecture refinement (found in agent_router.py)"
+  ],
+  "overall_product_maturity": "growing",
+  "recommended_next_features": [
+    "完善项目管理模块，闭环'人-事-物'管理",
+    "统一记忆层，移除旧的 MongoDB 记忆实现",
+    "增强前端可视化，特别是知识图谱(Relationship Graph)的交互体验",
+    "增加语音交互接口 (Input/Output)"
+  ]
+}

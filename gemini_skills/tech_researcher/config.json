@@ -1,0 +1,19 @@
+{
+  "name": "tech_researcher",
+  "alias": "research",
+  "description": "技术调研专家 - 选型分析/论文解读/竞品调研",
+  "model": "gemini-3-pro-preview",
+  "temperature": 0.5,
+  "max_tokens": 32768,
+  "features": {
+    "web_search": true
+  },
+  "use_cases": [
+    "技术选型: vLLM vs SGLang, Neo4j vs KùzuDB",
+    "论文解读: RAG/Agent/多模态最新研究",
+    "竞品分析: 开源项目功能对比",
+    "最佳实践: 生产环境部署方案"
+  ],
+  "version": "1.0.0",
+  "created_at": "2024-12-14"
+}

@@ -1,0 +1,511 @@
+[
+  {
+    "file": "AAMkADVkYTU2ZmMx_SINIR06094668.pdf",
+    "success": true,
+    "document_type": "Invoice",
+    "fact_count": 29,
+    "identifier_count": 6,
+    "other_count": 0,
+    "reclassified_count": 0,
+    "identifier_categories": {
+      "FINANCE": 4,
+      "LEGAL": 1,
+      "LOGISTICS": 1
+    },
+    "duration": 37.548817,
+    "extraction": {
+      "document_type": "Invoice",
+      "facts": [
+        {
+          "type": "Amount",
+          "key": "Total Amount (SGD)",
+          "value": "44.71",
+          "unit": "SGD",
+          "context": "Total amount excluding GST"
+        },
+        {
+          "type": "Amount",
+          "key": "Total (Incl. GST)",
+          "value": "44.71",
+          "unit": "SGD",
+          "context": "Total amount including GST"
+        },
+        {
+          "type": "Amount",
+          "key": "Total Extra Charges",
+          "value": "44.71",
+          "unit": "SGD",
+          "context": "Total extra charges including GST"
+        },
+        {
+          "type": "Amount",
+          "key": "GST",
+          "value": "0.00",
+          "unit": "SGD",
+          "context": "GST amount"
+        },
+        {
+          "type": "Date",
+          "key": "Invoice Date",
+          "value": "2024-12-27",
+          "context": "Invoice date"
+        },
+        {
+          "type": "Date",
+          "key": "Payment due date",
+          "value": "2025-01-03",
+          "context": "Payment due date"
+        },
+        {
+          "type": "Quantity",
+          "key": "Number of Shipments",
+          "value": "1",
+          "context": "Number of shipments"
+        },
+        {
+          "type": "Quantity",
+          "key": "Number of Pieces",
+          "value": "0",
+          "context": "Number of pieces"
+        },
+        {
+          "type": "Currency",
+          "key": "Currency",
+          "value": "SGD",
+          "context": "Currency used"
+        },
+        {
+          "type": "Identifier",
+          "key": "Invoice Number",
+          "value": "SINIR06094668",
+          "context": "Invoice number",
+          "identifier_category": "FINANCE",
+          "identifier_subtype": "INVOICE_NUMBER"
+        },
+        {
+          "type": "Identifier",
+          "key": "Account Number",
+          "value": "618855894",
+          "context": "Account number",
+          "identifier_category": "FINANCE",
+          "identifier_subtype": "ACCOUNT_NUMBER"
+        },
+        {
+          "type": "Identifier",
+          "key": "Company Registration Number",
+          "value": "202216425K",
+          "context": "Company registration number",
+          "identifier_category": "LEGAL",
+          "identifier_subtype": "REGISTRATION_NUMBER"
+        },
+        {
+          "type": "Weight",
+          "key": "Total Weight",
+          "value": "0.00",
+          "context": "Total weight of shipments"
+        },
+        {
+          "type": "Contact",
+          "key": "Telephone",
+          "value": "6880-6405",
+          "context": "Contact telephone number"
+        },
+        {
+          "type": "Contact",
+          "key": "Email",
+          "value": "financequery@dhl.com",
+          "context": "Contact email address"
+        },
+        {
+          "type": "Contact",
+          "key": "Live Chat",
+          "value": "Billing Chat",
+          "context": "Live chat service"
+        },
+        {
+          "type": "Identifier",
+          "key": "Invoice Number",
+          "value": "SINIR06094668",
+          "unit": null,
+          "context": "发票编号",
+          "identifier_category": "FINANCE",
+          "identifier_subtype": "INVOICE_NUMBER"
+        },
+        {
+          "type": "Identifier",
+          "key": "Account Number",
+          "value": "618855894",
+          "unit": null,
+          "context": "账户编号",
+          "identifier_category": "FINANCE",
+          "identifier_subtype": "ACCOUNT_NUMBER"
+        },
+        {
+          "type": "Date",
+          "key": "Invoice Date",
+          "value": "2024-12-27",
+          "unit": null,
+          "context": "发票开具日期"
+        },
+        {
+          "type": "Identifier",
+          "key": "Air Waybill Number",
+          "value": "3076731582",
+          "unit": null,
+          "context": "空运运单编号",
+          "identifier_category": "LOGISTICS",
+          "identifier_subtype": "TRACKING_NUMBER"
+        },
+        {
+          "type": "Date",
+          "key": "Shipment Origin Date",
+          "value": "2024-12-23",
+          "unit": null,
+          "context": "发货日期"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "Destination",
+          "value": "TYO, TOKYO",
+          "unit": null,
+          "context": "目的地信息"
+        },
+        {
+          "type": "Weight",
+          "key": "Weight in Kg",
+          "value": "0.00",
+          "unit": "Kg",
+          "context": "货物重量"
+        },
+        {
+          "type": "Quantity",
+          "key": "Number of Pieces",
+          "value": "0",
+          "unit": null,
+          "context": "货物件数"
+        },
+        {
+          "type": "Amount",
+          "key": "Standard Charge",
+          "value": "0.00",
+          "unit": null,
+          "context": "标准费用"
+        },
+        {
+          "type": "Amount",
+          "key": "Extra Charges Amount",
+          "value": "10.71",
+          "unit": "SGD",
+          "context": "进口出口税金额"
+        },
+        {
+          "type": "Amount",
+          "key": "Extra Charges Amount",
+          "value": "34.00",
+          "unit": "SGD",
+          "context": "关税支付金额"
+        },
+        {
+          "type": "Amount",
+          "key": "Total amount (incl. GST)",
+          "value": "44.71",
+          "unit": "SGD",
+          "context": "含税总金额"
+        },
+        {
+          "type": "Amount",
+          "key": "Service Subtotal - DUTIES & TAXES",
+          "value": "44.71",
+          "unit": "SGD",
+          "context": "关税及税款小计"
+        }
+      ],
+      "entities": {
+        "companies": [
+          "VULCAN SHIELD GLOBAL PTE. LTD.",
+          "VULCAN SHIELD GLOBAL PTE LTD",
+          "SUN SHUREN",
+          "DHL Express (Singapore) Pte Ltd"
+        ],
+        "products": [],
+        "persons": []
+      },
+      "summary": "DHL Express新加坡公司向VULCAN SHIELD GLOBAL PTE. LTD.开具的税务发票，金额44.71 SGD，含GST，发票日期2024-12-27，付款截止日期2025-01-03。",
+      "pages": 2,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "AAMkADYzNjY4ZmNi_image001.png",
+    "success": true,
+    "document_type": "ShippingDoc",
+    "fact_count": 19,
+    "identifier_count": 4,
+    "other_count": 0,
+    "reclassified_count": 0,
+    "identifier_categories": {
+      "LOGISTICS": 3,
+      "UNKNOWN": 1
+    },
+    "duration": 17.1924,
+    "extraction": {
+      "document_type": "ShippingDoc",
+      "document_date": null,
+      "facts": [
+        {
+          "type": "Identifier",
+          "key": "BOOKING NUMBER",
+          "value": "COSU6427293780",
+          "unit": null,
+          "context": "订舱编号",
+          "identifier_category": "LOGISTICS",
+          "identifier_subtype": "BOOKING_NUMBER"
+        },
+        {
+          "type": "Identifier",
+          "key": "B/L NUMBER",
+          "value": "639598854",
+          "unit": null,
+          "context": "提单编号",
+          "identifier_category": "LOGISTICS",
+          "identifier_subtype": "BL_NUMBER"
+        },
+        {
+          "type": "Identifier",
+          "key": "CNEE REF",
+          "value": "3318672,4568,EXW,QMEF044346",
+          "unit": null,
+          "context": "收货人参考编号",
+          "identifier_category": "LOGISTICS",
+          "identifier_subtype": "CONSIGNEE_REF"
+        },
+        {
+          "type": "Company",
+          "key": "SHIPPER",
+          "value": "VULCAN SHIELD GLOBAL PTE. LTD.",
+          "unit": null,
+          "context": "发货人"
+        },
+        {
+          "type": "Address",
+          "key": "SHIPPER ADDRESS",
+          "value": "10 MARINA BOULEVARD #13-01,MARINA BAY FINANCIAL CENTRE TOWER 2, SINGAPORE 018983",
+          "unit": null,
+          "context": "发货人地址"
+        },
+        {
+          "type": "Company",
+          "key": "CONSIGNEE",
+          "value": "SPACE EXPLORATION TECHNOLOGIES CORP.",
+          "unit": null,
+          "context": "收货人"
+        },
+        {
+          "type": "Address",
+          "key": "CONSIGNEE ADDRESS",
+          "value": "5219 JOANNA ST BROWNSVILLE,TX 78521-8931 UNITED STATES",
+          "unit": null,
+          "context": "收货人地址"
+        },
+        {
+          "type": "Company",
+          "key": "FORWARDING AGENT",
+          "value": "BEIJING KANGJIEKONG INTERNATIONAL CARGO AGENT CO., LTD.",
+          "unit": null,
+          "context": "货运代理"
+        },
+        {
+          "type": "Address",
+          "key": "FORWARDING AGENT ADDRESS",
+          "value": "SHANGHAI BRANCH SHANGHAI 200335",
+          "unit": null,
+          "context": "货运代理地址"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "EXPORT CARRIER",
+          "value": "CSCL SOUTH CHINA SEA V 077E",
+          "unit": null,
+          "context": "出口承运船舶"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "PORT OF LOADING",
+          "value": "SHANGHAI",
+          "unit": null,
+          "context": "装货港"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "PORT OF DISCHARGE",
+          "value": "LONG BEACH, CA",
+          "unit": null,
+          "context": "卸货港"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "PLACE OF DELIVERY",
+          "value": "MCLEAN, TX",
+          "unit": null,
+          "context": "交货地点"
+        },
+        {
+          "type": "Quantity",
+          "key": "NO. OF PACKAGES",
+          "value": "6PLTS",
+          "unit": null,
+          "context": "包装件数"
+        },
+        {
+          "type": "Product",
+          "key": "DESCRIPTION",
+          "value": "ALUMINA BRICKS, NOS",
+          "unit": null,
+          "context": "货物描述"
+        },
+        {
+          "type": "Product",
+          "key": "DESCRIPTION",
+          "value": "ALUMINA FIBER NEEDLED BLANKET",
+          "unit": null,
+          "context": "货物描述"
+        },
+        {
+          "type": "Weight",
+          "key": "GROSS WEIGHT",
+          "value": "1346.00",
+          "unit": "KG",
+          "context": "毛重"
+        },
+        {
+          "type": "TechnicalParam",
+          "key": "MEASUREMENT",
+          "value": "15.410",
+          "unit": "M3",
+          "context": "体积"
+        },
+        {
+          "type": "Identifier",
+          "key": "SEAL",
+          "value": "CW096858",
+          "unit": null,
+          "context": "封条编号",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        }
+      ],
+      "entities": {
+        "companies": [
+          "VULCAN SHIELD GLOBAL PTE. LTD.",
+          "SPACE EXPLORATION TECHNOLOGIES CORP.",
+          "BEIJING KANGJIEKONG INTERNATIONAL CARGO AGENT CO., LTD."
+        ],
+        "products": [
+          "ALUMINA BRICKS",
+          "ALUMINA FIBER NEEDLED BLANKET"
+        ],
+        "persons": [
+          "CARLOS TORREJON"
+        ]
+      },
+      "summary": "这是一份由VULCAN SHIELD GLOBAL PTE. LTD.作为发货人，SPACE EXPLORATION TECHNOLOGIES CORP.作为收货人的海运提单，运输货物为氧化铝砖和氧化铝纤维针刺毯，总重量1346.00 KG，体积15.410 M3。",
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "AAMkAGViNzg3ODQw_28Oct2024 proposal for Battery Room.xlsx",
+    "success": true,
+    "document_type": "Quotation",
+    "fact_count": 9,
+    "identifier_count": 1,
+    "other_count": 0,
+    "reclassified_count": 0,
+    "identifier_categories": {
+      "UNKNOWN": 1
+    },
+    "duration": 28.879687,
+    "extraction": {
+      "document_type": "Quotation",
+      "document_date": null,
+      "facts": [
+        {
+          "type": "Amount",
+          "key": "Total Amount (North Site)",
+          "value": "$483,589.00",
+          "unit": "$",
+          "context": "Total fire protection cost for North Site"
+        },
+        {
+          "type": "Amount",
+          "key": "Total Amount (Block 750E)",
+          "value": "$252,028.00",
+          "unit": "$",
+          "context": "Total fire protection cost for Block 750E"
+        },
+        {
+          "type": "Quantity",
+          "key": "Total Area (North Site)",
+          "value": "1453.3",
+          "unit": "m2",
+          "context": "Total fire protection area for North Site"
+        },
+        {
+          "type": "Quantity",
+          "key": "Total Area (Block 750E)",
+          "value": "751.6",
+          "unit": "m2",
+          "context": "Total fire protection area for Block 750E"
+        },
+        {
+          "type": "Company",
+          "key": "Client",
+          "value": "Vulcan Shield Global Pte Ltd",
+          "unit": null,
+          "context": "Client name"
+        },
+        {
+          "type": "TechnicalParam",
+          "key": "Work Scope",
+          "value": "Additional Fire Protection on 4Wall + RC Slab Soffit",
+          "unit": null,
+          "context": "Project description"
+        },
+        {
+          "type": "Identifier",
+          "key": "S/N",
+          "value": "1-9",
+          "unit": null,
+          "context": "Serial numbers for battery rooms",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Deadline",
+          "key": "Work Duration",
+          "value": "13 weeks for North Site, 7 weeks for Block 750E",
+          "unit": null,
+          "context": "Estimated project timeline"
+        },
+        {
+          "type": "Certification",
+          "key": "Certification Requirement",
+          "value": "per issue [optional]",
+          "unit": null,
+          "context": "Certification condition"
+        }
+      ],
+      "entities": {
+        "companies": [
+          "Vulcan Shield Global Pte Ltd"
+        ],
+        "products": [],
+        "persons": []
+      },
+      "summary": "Quotation for additional fire protection services on battery rooms and UPS rooms for Vulcan Shield Global Pte Ltd with total costs of $483,589.00 (North Site) and $252,028.00 (Block 750E)",
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  }
+]

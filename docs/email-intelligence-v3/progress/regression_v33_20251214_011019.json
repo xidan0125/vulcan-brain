@@ -1,0 +1,636 @@
+[
+  {
+    "file": "photos.pdf",
+    "success": true,
+    "document_type": "TechnicalSpec",
+    "fact_count": 9,
+    "identifier_count": 3,
+    "other_count": 0,
+    "reclassified_count": 0,
+    "identifier_categories": {
+      "UNKNOWN": 1,
+      "PRODUCT": 2
+    },
+    "duration": 38.395169,
+    "extraction": {
+      "document_type": "TechnicalSpec",
+      "facts": [
+        {
+          "type": "Product",
+          "key": "Product Name",
+          "value": "Anchor bolt",
+          "unit": "",
+          "context": "Anchor bolt"
+        },
+        {
+          "type": "Product",
+          "key": "Product Name",
+          "value": "Drill and dust collector link with vacuum",
+          "unit": "",
+          "context": "Drill and dust collector link with vacuum"
+        },
+        {
+          "type": "Product",
+          "key": "Product Name",
+          "value": "Oversize washer",
+          "unit": "",
+          "context": "Oversize washer"
+        },
+        {
+          "type": "Identifier",
+          "key": "Identifier",
+          "value": "R-23",
+          "unit": "",
+          "context": "Oversize washer",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "TechnicalParam",
+          "key": "h_NVS",
+          "value": "2 to 5",
+          "unit": "mm",
+          "context": "Nail head standoff = Distance from top of the nail head to the top surface of the washer."
+        },
+        {
+          "type": "Product",
+          "key": "Fastening tool",
+          "value": "BX3",
+          "unit": null,
+          "context": "fully automatic, mechanical driven"
+        },
+        {
+          "type": "Product",
+          "key": "collated nails",
+          "value": "X-P17 B3 MX, X-P20 B3 MX",
+          "unit": null,
+          "context": "applicable with Fastening tool BX3"
+        },
+        {
+          "type": "Identifier",
+          "key": "Fastening tool model",
+          "value": "BX3",
+          "unit": null,
+          "context": "Power-actuated fastening tool",
+          "identifier_category": "PRODUCT",
+          "identifier_subtype": "MODEL_NUMBER"
+        },
+        {
+          "type": "Identifier",
+          "key": "Nail model",
+          "value": "X-P17 B3 MX, X-P20 B3 MX",
+          "unit": null,
+          "context": "collated nails for BX3",
+          "identifier_category": "PRODUCT",
+          "identifier_subtype": "MODEL_NUMBER"
+        }
+      ],
+      "entities": {
+        "companies": [
+          "Hilti"
+        ],
+        "products": [
+          "Fastening tool BX3",
+          "Drill and dust collector link with vacuum",
+          "Oversize washer",
+          "collated nails X-P20 B3 MX",
+          "Anchor bolt",
+          "collated nails X-P17 B3 MX"
+        ],
+        "persons": []
+      },
+      "summary": "Technical specifications for anchor bolts, drill and dust collector link with vacuum, and oversize washers.",
+      "pages": 2,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "样件备货单- ABI SHOWATECH Pvt LTd 0506.pdf",
+    "success": true,
+    "document_type": "PurchaseOrder",
+    "fact_count": 12,
+    "identifier_count": 1,
+    "other_count": 0,
+    "reclassified_count": 0,
+    "identifier_categories": {
+      "UNKNOWN": 1
+    },
+    "duration": 34.52005,
+    "extraction": {
+      "document_type": "PurchaseOrder",
+      "facts": [
+        {
+          "type": "Identifier",
+          "key": "审批编号",
+          "value": "202505060015",
+          "unit": null,
+          "context": "审批编号",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "LONG_NUMBER"
+        },
+        {
+          "type": "Company",
+          "key": "客户名称",
+          "value": "ABI SHOWATECH Pvt Ltd",
+          "unit": null,
+          "context": "客户名称"
+        },
+        {
+          "type": "Date",
+          "key": "制作日期",
+          "value": "2025-05-06",
+          "unit": null,
+          "context": "制作日期"
+        },
+        {
+          "type": "Quantity",
+          "key": "送样次数",
+          "value": "第4次",
+          "unit": null,
+          "context": "送样次数"
+        },
+        {
+          "type": "Person",
+          "key": "销售负责人",
+          "value": "胡宇轩/David",
+          "unit": null,
+          "context": "销售负责人"
+        },
+        {
+          "type": "Date",
+          "key": "客户希望出货日期",
+          "value": "2025-05-12",
+          "unit": null,
+          "context": "客户希望出货日期"
+        },
+        {
+          "type": "Product",
+          "key": "品名",
+          "value": "氧化铝纤维针刺毯",
+          "unit": null,
+          "context": "品名"
+        },
+        {
+          "type": "Specification",
+          "key": "型号",
+          "value": "N-F-1600",
+          "unit": null,
+          "context": "型号"
+        },
+        {
+          "type": "Quantity",
+          "key": "数量",
+          "value": "1",
+          "unit": "卷",
+          "context": "数量"
+        },
+        {
+          "type": "TechnicalParam",
+          "key": "备货说明",
+          "value": "10m长，厚度3mm，容重128",
+          "unit": null,
+          "context": "备货说明"
+        },
+        {
+          "type": "Specification",
+          "key": "其他",
+          "value": "英文标签，正常包装",
+          "unit": null,
+          "context": "其他"
+        },
+        {
+          "type": "Specification",
+          "key": "其他",
+          "value": "幅宽根据库存"
+        }
+      ],
+      "entities": {
+        "companies": [],
+        "products": [],
+        "persons": []
+      },
+      "summary": null,
+      "pages": 1,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "MS Ei Thiri Lwin.pdf",
+    "success": false,
+    "error": "重试2次后仍失败: 模型返回List而非Dict! 内容: [{'type': 'WorkExperience', 'key': 'Work Experience', 'value': 'Account Executive', 'context': 'VSK ",
+    "duration": 129.131097
+  },
+  {
+    "file": "Resume - Ms. Khine Thandar Bo@Mia.pdf",
+    "success": false,
+    "error": "重试2次后仍失败: 模型返回List而非Dict! 内容: [{'type': 'Reference', 'key': 'Ms. Thet Nu Zin', 'value': 'Finance Manager (POSCO INTERNATIONAL Amar",
+    "duration": 103.382977
+  },
+  {
+    "file": "报关资料-Elcore.xls",
+    "success": false,
+    "error": "400 Client Error: Bad Request for url: http://localhost:8000/v1/chat/completions",
+    "duration": 3.006785
+  },
+  {
+    "file": "Accounts or Finance Executive.pdf",
+    "success": false,
+    "error": "重试2次后仍失败: 模型返回List而非Dict! 内容: [{'type': 'Contact', 'key': 'LinkedIn', 'value': 'www.linkedin.com/in/may-than-htike-508464201'}, ['",
+    "duration": 89.197908
+  },
+  {
+    "file": "abstract-templatedocxpdf.pdf",
+    "success": true,
+    "document_type": "Other",
+    "fact_count": 3,
+    "identifier_count": 0,
+    "other_count": 0,
+    "reclassified_count": 0,
+    "identifier_categories": {},
+    "duration": 38.033891,
+    "extraction": {
+      "document_type": "Other",
+      "facts": [
+        {
+          "type": "RegulationClause",
+          "key": "Submission Requirements",
+          "value": "Only Turkish participants are required to submit the title and abstract in both Turkish and English. Foreign participants may submit abstract titles and abstracts in English only.",
+          "unit": null,
+          "context": "关于摘要提交语言要求的规定"
+        },
+        {
+          "type": "Deadline",
+          "key": "Submission Deadline",
+          "value": "2025-05-01",
+          "unit": null,
+          "context": "Özet dökümanı 1 Mayıs 2025 tarihine kadar"
+        },
+        {
+          "type": "Contact",
+          "key": "Submission Email",
+          "value": "symposium@polymericcomposites.org",
+          "unit": null,
+          "context": "Submit the Abstract document to symposium@polymericcomposites.org"
+        }
+      ],
+      "entities": {
+        "companies": [],
+        "products": [],
+        "persons": [
+          "Aktaş Engin",
+          "Volkan Acar",
+          "M. Ozgur Seydibeyoglu",
+          "Kara Yahya",
+          "Tanoglu Metin",
+          "Beylergil Bertan"
+        ]
+      },
+      "summary": "该文档为摘要提交模板，规定土耳其参与者需用土耳其和英语提交标题与摘要，外国参与者可仅用英语提交。",
+      "pages": 3,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "EB7B38B3@6ABC9C4(05-15-09-36-33).jpg",
+    "success": true,
+    "document_type": "CustomsDeclaration",
+    "fact_count": 10,
+    "identifier_count": 3,
+    "other_count": 1,
+    "reclassified_count": 0,
+    "identifier_categories": {
+      "UNKNOWN": 3
+    },
+    "duration": 17.181293,
+    "extraction": {
+      "document_type": "CustomsDeclaration",
+      "document_date": null,
+      "facts": [
+        {
+          "type": "Identifier",
+          "key": "HS编码",
+          "value": "6806109001",
+          "unit": null,
+          "context": "商品信息",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "LONG_NUMBER"
+        },
+        {
+          "type": "Product",
+          "key": "品牌类型",
+          "value": "无品牌",
+          "unit": null,
+          "context": "规格型号"
+        },
+        {
+          "type": "RegulationClause",
+          "key": "出口享惠情况",
+          "value": "不能确定在最终目的国(地区)享受优惠关税",
+          "unit": null,
+          "context": "规格型号"
+        },
+        {
+          "type": "TechnicalParam",
+          "key": "材质",
+          "value": "xxx",
+          "unit": null,
+          "context": "规格型号"
+        },
+        {
+          "type": "TechnicalParam",
+          "key": "形状",
+          "value": "白色毯子形状",
+          "unit": null,
+          "context": "规格型号"
+        },
+        {
+          "type": "TechnicalParam",
+          "key": "石棉纤维含量",
+          "value": "不含石棉纤维",
+          "unit": null,
+          "context": "规格型号"
+        },
+        {
+          "type": "Identifier",
+          "key": "GTIN",
+          "value": "",
+          "unit": null,
+          "context": "规格型号",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "CAS",
+          "value": "",
+          "unit": null,
+          "context": "规格型号",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Other",
+          "key": "其他",
+          "value": "",
+          "unit": null,
+          "context": "规格型号"
+        },
+        {
+          "type": "Specification",
+          "key": "规格型号",
+          "value": "0|2|xxx|白色毯子形状|不含石棉纤维",
+          "unit": null,
+          "context": "规格型号"
+        }
+      ],
+      "entities": {
+        "companies": [],
+        "products": [
+          "氧化铝纤维针刺毯"
+        ],
+        "persons": []
+      },
+      "summary": "海关商品申报要素文档，包含HS编码、品牌类型、出口享惠情况、材质、形状及石棉纤维含量等关键信息用于商品归类申报。",
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "08012025114250-0001.pdf",
+    "success": true,
+    "document_type": "Invoice",
+    "fact_count": 11,
+    "identifier_count": 6,
+    "other_count": 0,
+    "reclassified_count": 0,
+    "identifier_categories": {
+      "FINANCE": 3,
+      "UNKNOWN": 3
+    },
+    "duration": 13.025259,
+    "extraction": {
+      "document_type": "Invoice",
+      "facts": [
+        {
+          "type": "Amount",
+          "key": "Amount (Before GST)",
+          "value": "20.00",
+          "unit": "SGD",
+          "context": "Service charges before GST"
+        },
+        {
+          "type": "Amount",
+          "key": "GST",
+          "value": "1.80",
+          "unit": "SGD",
+          "context": "9.0% GST on service charges"
+        },
+        {
+          "type": "Amount",
+          "key": "Total Amount",
+          "value": "21.80",
+          "unit": "SGD",
+          "context": "Total amount including GST"
+        },
+        {
+          "type": "Date",
+          "key": "Invoice Date",
+          "value": "2024-10-16",
+          "unit": null,
+          "context": "Date of invoice issuance"
+        },
+        {
+          "type": "Currency",
+          "key": "Currency",
+          "value": "SGD",
+          "unit": null,
+          "context": "Transaction currency"
+        },
+        {
+          "type": "Identifier",
+          "key": "GST Registration No",
+          "value": "MR-8500180-3",
+          "unit": null,
+          "context": "VULCAN SHIELD GLOBAL PTE. LTD.'s GST registration number",
+          "identifier_category": "FINANCE",
+          "identifier_subtype": "TAX_CODE"
+        },
+        {
+          "type": "Identifier",
+          "key": "Document No",
+          "value": "D035224490704",
+          "unit": null,
+          "context": "Invoice document reference number",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "Account No",
+          "value": "072-779492-2",
+          "unit": null,
+          "context": "Debited account number",
+          "identifier_category": "FINANCE",
+          "identifier_subtype": "ACCOUNT_NUMBER"
+        },
+        {
+          "type": "Identifier",
+          "key": "Transaction Reference",
+          "value": "FINANCIAL STD LTR",
+          "unit": null,
+          "context": "Transaction reference code",
+          "identifier_category": "FINANCE",
+          "identifier_subtype": "TRANSACTION_REF"
+        },
+        {
+          "type": "Identifier",
+          "key": "FS Reference",
+          "value": "GWF1010606265",
+          "unit": null,
+          "context": "Internal reference code",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "Page No",
+          "value": "01",
+          "unit": null,
+          "context": "Page number of the invoice",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        }
+      ],
+      "entities": {
+        "companies": [
+          "DBS BANK LTD",
+          "VULCAN SHIELD GLOBAL PTE. LTD."
+        ],
+        "products": [
+          "SERVICE CHARGES-DOCUMENTS"
+        ],
+        "persons": []
+      },
+      "summary": "DBS BANK LTD issued a tax invoice to VULCAN SHIELD GLOBAL PTE. LTD. for SGD 20.00 service charges with 9.0% GST, totaling SGD 21.80.",
+      "pages": 1,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "image011.png",
+    "success": true,
+    "document_type": "Other",
+    "fact_count": 12,
+    "identifier_count": 4,
+    "other_count": 1,
+    "reclassified_count": 0,
+    "identifier_categories": {
+      "UNKNOWN": 4
+    },
+    "duration": 23.136472,
+    "extraction": {
+      "document_type": "Other",
+      "document_date": "2024-10-21",
+      "facts": [
+        {
+          "type": "Amount",
+          "key": "Payment Amount",
+          "value": "5,591.70",
+          "unit": "SGD",
+          "context": "Payment Amount"
+        },
+        {
+          "type": "Date",
+          "key": "Payment Date",
+          "value": "2024-10-11",
+          "context": "Payment Date"
+        },
+        {
+          "type": "Date",
+          "key": "Debit Date",
+          "value": "2024-10-21",
+          "context": "Debit Date"
+        },
+        {
+          "type": "Identifier",
+          "key": "Your Reference",
+          "value": "PIGSVULCAA00053",
+          "context": "Your Reference",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "Payment Reference",
+          "value": "Q0000053",
+          "context": "Payment Reference",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "Batch Ref.",
+          "value": "C0000038",
+          "context": "Batch Ref.",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "UETR Number",
+          "value": "65facbbe-08f1-44d2-a65d-3401d5fdb672",
+          "context": "UETR Number",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Company",
+          "key": "Pay From",
+          "value": "VULCAN SHIELD GLOBAL PTE. LTD.",
+          "context": "Pay From"
+        },
+        {
+          "type": "Company",
+          "key": "Company Name",
+          "value": "VULCAN SHIELD GLOBAL PTE. LTD.",
+          "context": "Company Name"
+        },
+        {
+          "type": "Company",
+          "key": "Payee Nickname",
+          "value": "TUV SUD PSB Pte Ltd",
+          "context": "Payee Nickname"
+        },
+        {
+          "type": "Contact",
+          "key": "Generated By",
+          "value": "RENEE89",
+          "context": "Generated By"
+        },
+        {
+          "type": "Other",
+          "key": "Payment Type",
+          "value": "IBFT - INSTANT BANK FUND TRANSFER",
+          "context": "Payment Type"
+        }
+      ],
+      "entities": {
+        "companies": [
+          "VULCAN SHIELD GLOBAL PTE. LTD.",
+          "TUV SUD PSB Pte Ltd"
+        ],
+        "products": [],
+        "persons": [
+          "RENEE89"
+        ]
+      },
+      "summary": "Standard Chartered生成的支付交易确认，金额SGD 5,591.70，支付状态成功，由VULCAN SHIELD GLOBAL PTE. LTD.支付至TUV SUD PSB Pte Ltd。",
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  }
+]

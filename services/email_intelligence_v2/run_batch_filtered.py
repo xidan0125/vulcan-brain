@@ -154,10 +154,10 @@ async def run_batch(batch_size: int = 1000, total_limit: int = 0):
 
     # 配置 Pipeline
     config = PipelineConfig(
-        vllm_host='http://localhost:30000',
+        vllm_host='http://localhost:8000',
         batch_size=batch_size,
-        concurrency=1,
-        delay_between=0.3,
+        concurrency=4,
+        delay_between=0.1,
         skip_already_processed=True,
     )
 

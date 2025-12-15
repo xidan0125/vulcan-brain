@@ -1,0 +1,7 @@
+{
+  "model": "gemini-3-pro-preview",
+  "temperature": 0.3,
+  "max_tokens": 16000,
+  "web_search": false,
+  "description": "软件架构师 - 代码审计、技术债务评估、架构分析"
+}

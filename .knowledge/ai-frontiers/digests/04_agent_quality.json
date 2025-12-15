@@ -1,0 +1,130 @@
+{
+  "title": "Agent Quality",
+  "summary": "本白皮书提出了在非确定性世界中评估 Agent Quality 的新框架，强调 Observability、评估的持续循环以及从验证到价值判断的转变。",
+  "core_concepts": [
+    {
+      "name": "Agent Quality Flywheel",
+      "definition": "Agent Quality Flywheel 是一个自增强系统，通过持续评估驱动 Agent Quality 的提升。它包含四个步骤：定义质量 (Define Quality)、仪器化以实现可见性 (Instrument for Visibility)、评估过程 (Evaluate the Process) 和构建反馈循环 (Architect the Feedback Loop)。",
+      "key_points": [
+        "飞轮的每个步骤都增强了其他步骤，形成一个正向循环",
+        "Instrumentation for Visibility 是关键，它提供了测量 Four Pillars 所需的丰富证据",
+        "Evaluate the Process 涉及对最终输出和整个推理过程进行战略性的“outside-in”评估"
+      ]
+    },
+    {
+      "name": "Four Pillars of Agent Quality",
+      "definition": "Four Pillars of Agent Quality 是 Agent Quality 的四个相互关联的支柱：有效性 (Effectiveness)、效率 (Efficiency)、稳健性 (Robustness) 和安全与对齐 (Safety & Alignment)。它们为 Agent Quality 的评估提供了全面的框架。",
+      "key_points": [
+        "Effectiveness 衡量 Agent 是否成功实现了用户的实际意图",
+        "Efficiency 衡量 Agent 解决问题所需的资源消耗",
+        "Robustness 衡量 Agent 如何处理逆境和现实世界的混乱",
+        "Safety & Alignment 确保 Agent 在定义的道德边界和约束内运作"
+      ]
+    },
+    {
+      "name": "Observability",
+      "definition": "Observability 是洞察 Agent 内部“思维过程”的能力。它基于三个支柱：日志 (Logs)、追踪 (Traces) 和指标 (Metrics)，它们共同提供了对 Agent 行为、效率和有效性的清晰、数据驱动的视图。",
+      "key_points": [
+        "Logs 是 Agent 日记中的时间戳条目，记录了离散事件",
+        "Traces 将单个日志缝合到完整的端到端视图中，揭示了事件之间的因果关系",
+        "Metrics 是聚合的健康评分，用于快速了解 Agent 的整体性能"
+      ]
+    },
+    {
+      "name": "Outside-In Evaluation Hierarchy",
+      "definition": "Outside-In Evaluation Hierarchy 是一种战略评估方法，它优先考虑最终结果的 real-world 成功，然后再深入研究技术细节。它涉及两个阶段：首先使用黑盒方法，然后再开放它以进行更详细的分析。",
+      "key_points": [
+        "它从评估 Agent 是否实现了用户的目标开始",
+        "如果 Agent 未能成功，则使用“inside-out”视图分析组件",
+        "有助于避免陷入组件级指标的海洋中"
+      ]
+    },
+    {
+      "name": "LLM-as-a-Judge Paradigm",
+      "definition": "LLM-as-a-Judge Paradigm 涉及使用一个强大的、state-of-the-art 模型（如 Google 的 Gemini Advanced）来评估另一个 Agent 的输出。这种方法提供可扩展、快速且令人惊讶的细致反馈。",
+      "key_points": [
+        "它允许快速评估数千个场景的性能",
+        "可以有效地评估 Agent “Thought”的质量",
+        "不取代人工判断，而是使得迭代评估过程可行"
+      ]
+    },
+    {
+      "name": "Agent-as-a-Judge",
+      "definition": "Agent-as-a-Judge 范例使用一个 Agent 来评估另一个 Agent 的完整执行轨迹。这种方法超越了仅评估输出，而是评估了整个过程。",
+      "key_points": [
+        "这种方法对于过程评估特别有价值，在这些过程中，失败通常是由于有缺陷的中间步骤而不是最终输出引起的",
+        "关键评估维度包括计划质量 (Plan Quality)、工具使用 (Tool use) 和上下文处理 (Context handling)"
+      ]
+    },
+    {
+      "name": "System Metrics vs. Quality Metrics",
+      "definition": "系统指标 (System Metrics) 是可直接衡量的，用于衡量运营健康的指标，而质量指标 (Quality Metrics) 则是应用 Judgment Frameworks 导出的 second-order 指标，用于评估 Agent 的推理和最终输出质量。",
+      "key_points": [
+        "System Metrics 包括 Latency, Error Rates, API Costs 和 Token Consumption",
+        "Quality Metrics 包括 Correctness & Accuracy, Trajectory Adherence, Safety & Responsibility 和 Helpfulness & Relevance"
+      ]
+    },
+    {
+      "name": "OpenTelemetry",
+      "definition": "一个开源的可观测性框架，提供标准化接口来生成和收集 metrics、logs 和 traces 数据。",
+      "key_points": [
+        "Span：trace 中单独的命名操作 (例如，llm_call span，tool_execution span)。",
+        "Attribute：附加到每个 span 的丰富元数据 prompt_id、latency_ms、token_count、user_id 等。",
+        "Context Propagation：通过一个唯一的 trace_id，链接 span 的 magic，允许 Google Cloud Trace 等后端组装完整的图片。"
+      ]
+    }
+  ],
+  "best_practices": [
+    {
+      "practice": "Output Regression Test",
+      "description": "使用 Agent Development Kit (ADK) 构建 Output Regression Test。 当你收到想要设置为基准的理想响应时，将整个交互保存为 Eval Case。",
+      "example": "使用 `adk eval` 或 `pytest` 针对此保存的答案自动检查未来的 Agent 版本。"
+    },
+    {
+      "practice": "Pairwise Comparison for LLM-as-a-Judge",
+      "description": "优先考虑 pairwise comparison 而不是 single-scoring，以减轻 exact biases。对 evaluation set 的 Prompts 运行两个不同的 Agent 版本，并创建 LLM judge 来强制做出选择。",
+      "example": "“根据这个 User Query，哪个回复更有帮助：A 还是 B？ 解释你的推理。” 可以可扩展地计算新 Agent 的 win/loss/tie 率。"
+    },
+    {
+      "practice": "Implement Guardrails as Plugins",
+      "description": "将 Guardrails 实现为结构化的 `Plugin`，而不是隔离的函数。这种模式中，callback 是该机制 (ADK 提供的 hook)，而 Plugin 是你构建的可重用模块。",
+      "example": "Plugin 的 `check_input_safety()` 方法会注册 `before_model_callback`。Plugin 的 `check_output_pii()` 方法会注册 `after_model_callback`。"
+    },
+    {
+      "practice": "Dynamic Sampling",
+      "description": "使用 high-granularity logging (DEBUG level) 在开发环境中。在生产中，设置较低的默认日志级别 (INFO)，但实施动态采样。",
+      "example": "例如，可以决定仅跟踪 10% 的成功请求，但 100% 跟踪所有错误。"
+    }
+  ],
+  "architecture_patterns": [
+    {
+      "pattern": "黑盒评估 (Black Box Evaluation)",
+      "description": "评估 Agent 的最终结果，而不考虑其内部运作。",
+      "use_case": "快速确定 Agent 是否实现了用户的意图"
+    },
+    {
+      "pattern": "玻璃盒评估 (Glass Box Evaluation)",
+      "description": "分析 Agent 的内部过程和决策过程。",
+      "use_case": "识别性能问题和安全风险的根本原因"
+    },
+    {
+      "pattern": "中断工作流 (Interruption Workflow)",
+      "description": "配置 Agent 以在提交到 high-stakes 工具调用之前暂停其执行。将 Agent 的状态和计划的操作显示在 Reviewer Ul 中，其中人工操作员必须手动批准或拒绝该步骤，然后才能允许 Agent 继续操作。",
+      "use_case": "运行时安全，确保 Agent 操作符合预期。"
+    }
+  ],
+  "code_snippets": [
+    {
+      "description": "结构化的 Log 条目示例",
+      "language": "python",
+      "code": "{\n \"parts\":[{\"text\":\"Roll a 6 sided dice\"}), \"role\":\"user\"}\n {\"parts\":[{\"function_call\":{\"args\":{\"sides\":6},\"name\":\"roll_die\"}}],\"role\":\"model\"}\n {\"parts\":[{\"function_response\":{\"name\":\"roll_die\", \"response\":{\"result\":2}}}],\"role\":\"user\"}\n}"
+    }
+  ],
+  "key_takeaways": [
+    "Agent Quality 需要一种新的方法，超越传统的软件质量保证方法",
+    "Observability 是评估 Agent Quality 的基础",
+    "Agent Quality 的评估应是一个持续的循环，而不是一个 final 的步骤",
+    "Human Judgment 在评估 Agent Quality 方面仍然至关重要",
+    "将评估作为架构支柱进行处理"
+  ]
+}

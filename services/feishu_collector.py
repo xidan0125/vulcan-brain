@@ -1,9 +1,8 @@
 """
-飞书消息收集模块 - Acontext 重构版
+飞书消息收集模块 - MongoDB 版
 功能:
 1. 从飞书的群聊中收集消息
-2. 将消息存入 Acontext Session (用于历史记录)
-3. 将消息作为文档存入 Acontext Space (用于语义搜索)
+2. 将消息存入 MongoDB (MessageStore)
 """
 
 import json
@@ -13,8 +12,8 @@ from typing import Dict, List, Optional, Any
 import httpx
 import os
 
-# Acontext Integration
-from acontext_integration import get_acontext_manager, ACONTEXT_API_URL
+# 使用 MessageStore 存储
+from services.message_store import get_message_store
 
 logger = logging.getLogger("MessageCollector")
 
@@ -23,17 +22,15 @@ BRAIN_APP_ID = os.getenv("FEISHU_BRAIN_APP_ID", "")
 BRAIN_APP_SECRET = os.getenv("FEISHU_BRAIN_APP_SECRET", "")
 
 
-# ===== 飞书消息收集器 (Acontext Powered) =====
-
 class FeishuMessageCollector:
-    """飞书群聊消息收集器 (Acontext Backend)"""
+    """飞书群聊消息收集器 (MongoDB Backend)"""
     
     def __init__(self, app_id: str = None, app_secret: str = None):
         self.app_id = app_id or BRAIN_APP_ID
         self.app_secret = app_secret or BRAIN_APP_SECRET
-        self.acontext = get_acontext_manager()
+        self.store = get_message_store()  # 改用 MessageStore
         self._token_cache = {"token": None, "expires": 0}
-        self._user_cache = {}  # 用户名缓存 {open_id: name}
+        self._user_cache = {}
     
     async def get_token(self) -> str:
         """获取飞书 tenant_access_token"""
@@ -56,18 +53,6 @@ class FeishuMessageCollector:
             }
             return token
 
-    async def get_user_space_id(self, chat_id: str) -> str:
-        """获取或创建与群聊关联的 Acontext Knowledge Space."""
-        space_id = f"feishu_chat_{chat_id}"
-        try:
-            await self.acontext.client.create_space(name=space_id, description=f"Knowledge base for Feishu chat {chat_id}")
-        except httpx.HTTPStatusError as e:
-            if e.response.status_code == 409: # Conflict, already exists
-                pass
-            else:
-                raise
-        return space_id
-
     async def collect_chat_messages(
         self,
         chat_id: str,
@@ -75,7 +60,7 @@ class FeishuMessageCollector:
         container_id_type: str = "chat"
     ) -> Dict[str, Any]:
         """
-        收集群聊消息并存入 Acontext
+        收集群聊消息并存入 MongoDB
         """
         if not since:
             since = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
@@ -117,48 +102,20 @@ class FeishuMessageCollector:
                 if not page_token or not data.get("data", {}).get("has_more"):
                     break
         
-        # --- Acontext 保存逻辑 ---
-        inserted_count = 0
-        if feishu_messages:
-            space_id = await self.get_user_space_id(chat_id)
-            user_id = f"feishu_chat_{chat_id}" # Use chat_id as a synthetic user_id
-
-            for msg in feishu_messages:
-                try:
-                    # 1. Save to session for conversational history
-                    await self.acontext.save_message(
-                        user_id=user_id,
-                        session_id=chat_id, # Use chat_id as session_id
-                        role="user", # Assume all collected messages are from users
-                        content=msg['content']
-                    )
-                    
-                    # 2. Save to space for semantic search
-                    await self.acontext.client.add_document(
-                        space_id=space_id,
-                        content=msg['content'],
-                        title=f"Message from {msg['sender'].get('name', 'unknown')} at {msg['timestamp']}",
-                        metadata={
-                            "message_id": msg["message_id"],
-                            "sender_id": msg["sender"].get("id"),
-                            "sender_name": msg["sender"].get("name"),
-                            "timestamp": msg["timestamp"].isoformat()
-                        }
-                    )
-                    inserted_count += 1
-                except Exception as e:
-                    logger.error(f"保存消息到 Acontext 失败: {e}")
-
-        result = {"collected": len(feishu_messages), "inserted": inserted_count, "skipped": len(feishu_messages) - inserted_count}
-        logger.info(f"[MessageCollector] chat={chat_id}, collected={len(feishu_messages)}, inserted_to_acontext={inserted_count}")
+        # 批量保存到 MongoDB
+        result = await self.store.save_messages_batch(feishu_messages)
+        result["collected"] = len(feishu_messages)
+        
+        logger.info(f"[MessageCollector] chat={chat_id}, collected={len(feishu_messages)}, inserted={result['inserted']}, skipped={result['skipped']}")
         
         return result
 
     def _parse_message(self, item: Dict, chat_id: str) -> Optional[Dict]:
-        """解析飞书消息格式 (no change from original)"""
+        """解析飞书消息格式"""
         try:
             msg_type = item.get("msg_type", "")
-            if msg_type != "text": return None
+            if msg_type != "text":
+                return None
             
             content_str = item.get("body", {}).get("content", "{}")
             try:
@@ -166,7 +123,8 @@ class FeishuMessageCollector:
             except:
                 content = content_str
             
-            if not content.strip(): return None
+            if not content.strip():
+                return None
             
             sender = item.get("sender", {})
             return {
@@ -185,16 +143,16 @@ class FeishuMessageCollector:
             return None
 
     async def send_collection_notice(self, chat_id: str, result: Dict) -> bool:
-        """发送收集完成通知到群 (no change from original)"""
+        """发送收集完成通知到群"""
         token = await self.get_token()
         notice_text = (
-            f"📊 聊天记录已同步至 Acontext\n"
+            f"📊 聊天记录已收集\n"
             f"━━━━━━━━━━\n"
             f"📥 本次扫描: {result.get('collected', 0)} 条\n"
-            f"✅ 新增处理: {result.get('inserted', 0)} 条\n"
-            f"⏭️ 异常跳过: {result.get('skipped', 0)} 条\n"
+            f"✅ 新增入库: {result.get('inserted', 0)} 条\n"
+            f"⏭️ 已存在跳过: {result.get('skipped', 0)} 条\n"
             f"━━━━━━━━━━\n"
-            f"⏰ 同步时间: {datetime.now().strftime('%Y-%m-%d %H:%M')}"
+            f"⏰ 收集时间: {datetime.now().strftime('%Y-%m-%d %H:%M')}"
         )
         try:
             async with httpx.AsyncClient(timeout=30) as client:
@@ -214,17 +172,16 @@ class FeishuMessageCollector:
             logger.error(f"发送通知异常: {e}")
             return False
 
-# ===== 便捷函数 =====
 
+# 便捷函数
 def get_message_collector() -> FeishuMessageCollector:
     """获取消息收集器实例"""
     return FeishuMessageCollector()
 
 
-# ===== 定时任务支持 =====
-
+# 定时任务支持
 async def scheduled_collect_job(chat_ids: List[str]):
-    """定时收集任务 (在日报生成前调用)"""
+    """定时收集任务"""
     collector = get_message_collector()
     results = {}
     for chat_id in chat_ids:

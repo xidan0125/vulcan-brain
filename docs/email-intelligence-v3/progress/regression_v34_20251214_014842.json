@@ -1,0 +1,53 @@
+[
+  {
+    "file": "AAMkADVkYTU2ZmMx_SINIR06094668.pdf",
+    "success": true,
+    "document_type": "Other",
+    "fact_count": 0,
+    "identifier_count": 0,
+    "other_count": 0,
+    "identifier_categories": {},
+    "had_json_error": true,
+    "duration": 37.796568,
+    "extraction": {
+      "document_type": "Other",
+      "facts": [],
+      "entities": {
+        "companies": [],
+        "products": [],
+        "persons": []
+      },
+      "summary": "解析失败: Expecting value: line 1 column 1 (char 0)",
+      "pages": 2,
+      "_had_json_error": true,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "AAMkADYzNjY4ZmNi_image001.png",
+    "success": true,
+    "document_type": "Other",
+    "fact_count": 0,
+    "identifier_count": 0,
+    "other_count": 0,
+    "identifier_categories": {},
+    "had_json_error": true,
+    "duration": 28.355718,
+    "extraction": {
+      "document_type": "Other",
+      "facts": [],
+      "entities": {},
+      "summary": "解析失败: Expecting value: line 1 column 1 (char 0)",
+      "_had_json_error": true,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "AAMkAGViNzg3ODQw_28Oct2024 proposal for Battery Room.xlsx",
+    "success": false,
+    "error": "list indices must be integers or slices, not str",
+    "duration": 37.996143
+  }
+]

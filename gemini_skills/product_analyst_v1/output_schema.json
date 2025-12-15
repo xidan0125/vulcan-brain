@@ -1,0 +1,70 @@
+{
+  "type": "object",
+  "properties": {
+    "product_summary": {"type": "string"},
+    "core_value_proposition": {"type": "string"},
+    "feature_inventory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "description": {"type": "string"},
+          "status": {"type": "string", "enum": ["production", "beta", "mvp", "planned", "broken"]},
+          "completeness": {"type": "integer", "minimum": 0, "maximum": 100},
+          "key_files": {"type": "array", "items": {"type": "string"}},
+          "dependencies": {"type": "array", "items": {"type": "string"}},
+          "user_value": {"type": "string"}
+        }
+      }
+    },
+    "integrations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "service": {"type": "string"},
+          "purpose": {"type": "string"},
+          "status": {"type": "string", "enum": ["active", "partial", "broken"]}
+        }
+      }
+    },
+    "data_entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "description": {"type": "string"},
+          "storage": {"type": "string"}
+        }
+      }
+    },
+    "user_journeys": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "steps": {"type": "array", "items": {"type": "string"}},
+          "completeness": {"type": "integer"}
+        }
+      }
+    },
+    "feature_gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "gap": {"type": "string"},
+          "impact": {"type": "string", "enum": ["high", "medium", "low"]},
+          "suggestion": {"type": "string"}
+        }
+      }
+    },
+    "roadmap_hints": {"type": "array", "items": {"type": "string"}},
+    "overall_product_maturity": {"type": "string", "enum": ["early", "growing", "mature"]},
+    "recommended_next_features": {"type": "array", "items": {"type": "string"}}
+  },
+  "required": ["product_summary", "feature_inventory", "overall_product_maturity"]
+}

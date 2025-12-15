@@ -1,0 +1,25 @@
+{
+  "name": "email_intelligence_expert",
+  "alias": "email",
+  "description": "邮件数据智能架构师 - 设计实体提取/知识图谱/图数据库方案",
+  "model": "gemini-3-pro-preview",
+  "web_search": true,
+  "temperature": 0.7,
+  "max_tokens": 32768,
+  "features": {
+    "web_search": true
+  },
+  "context_sources": [
+    "docs/email-intelligence-v3/README.md",
+    "services/email_intelligence_v2/models/base.py",
+    "services/email_intelligence_v2/models/party.py"
+  ],
+  "use_cases": [
+    "Schema设计: Fact类型分类, Identifier子类型设计",
+    "图数据库建模: 节点/关系/超边设计, Cypher查询",
+    "实体消歧策略: 公司名/人名/产品名的匹配合并",
+    "VLM提取优化: Prompt工程, 输出稳定性"
+  ],
+  "version": "1.0.0",
+  "created_at": "2024-12-14"
+}

@@ -1,0 +1,136 @@
+{
+  "executive_summary": "Vulcan Brain 处于从'快速原型'向'企业级架构'转型的关键阵痛期。项目展现了极高的 AI 架构成熟度（Bicameral Mind, LOD, LangGraph），但在工程落地层面存在严重的'新旧共存'现象。核心业务逻辑（如 Email Intelligence V2）采用了优秀的 DDD 设计，但基础设施层（Store, Config）仍保留了单体应用的特征。最大的风险在于数据访问层的上帝类（God Class）和重复的飞书集成代码。",
+  "module_architecture": {
+    "primary_modules": [
+      {
+        "name": "Core Brain",
+        "chinese_name": "核心脑区",
+        "responsibility": "负责推理、决策、工具调度和双脑协作（CEO/CTO模式）",
+        "key_files": [
+          "vulcan_libs/bicameral_graph.py",
+          "vulcan_libs/ai_service.py",
+          "vulcan_libs/ceo_soul.py"
+        ],
+        "health_score": 85,
+        "status": "Advanced"
+      },
+      {
+        "name": "Business Services",
+        "chinese_name": "业务服务层",
+        "responsibility": "处理具体垂直领域的业务逻辑（邮件情报、项目管理、审批）",
+        "key_files": [
+          "services/email_intelligence_v2/",
+          "services/project_store.py",
+          "services/approval_service.py"
+        ],
+        "health_score": 75,
+        "status": "Mixed (V2 is good, others monolithic)"
+      },
+      {
+        "name": "Interface Layer",
+        "chinese_name": "接口层",
+        "responsibility": "对外暴露 API，处理 HTTP 请求和 Webhook 回调",
+        "key_files": [
+          "api_server.py",
+          "api/routers/",
+          "feishu/gateway.py"
+        ],
+        "health_score": 70,
+        "status": "Refactoring"
+      },
+      {
+        "name": "Infrastructure",
+        "chinese_name": "基础设施层",
+        "responsibility": "数据持久化、配置管理、外部系统集成",
+        "key_files": [
+          "vulcan_libs/store.py",
+          "settings.py",
+          "acontext_integration.py"
+        ],
+        "health_score": 40,
+        "status": "Critical Bottleneck"
+      },
+      {
+        "name": "Tooling System",
+        "chinese_name": "工具系统",
+        "responsibility": "提供原子能力供 AI 调用（MCP 模式）",
+        "key_files": [
+          "mcp_tools/",
+          "tools/",
+          "vulcan_libs/registry.py"
+        ],
+        "health_score": 60,
+        "status": "Duplicated (Old tools/ vs New mcp_tools/)"
+      }
+    ],
+    "dependency_graph": "Interface -> Core Brain -> Tooling -> Infrastructure <- Business Services"
+  },
+  "critical_issues": [
+    {
+      "issue": "God Class Anti-Pattern in Data Layer",
+      "severity": "critical",
+      "location": "vulcan_libs/store.py",
+      "impact": "该文件 (24k+ bytes) 混合了 User, Session, Memory, Soul, Alignment 等所有领域的数据库操作。导致代码高耦合，难以拆分微服务，且难以进行单元测试。",
+      "suggested_fix": "应用 Repository 模式，将 store.py 拆分为 `repositories/user_repo.py`, `repositories/session_repo.py` 等，并在 Service 层注入使用。"
+    },
+    {
+      "issue": "Duplicate & Legacy Code Rot",
+      "severity": "high",
+      "location": "feishu_api.py vs feishu/ directory",
+      "impact": "根目录存在巨大的 `feishu_api.py` (38k bytes) 和 `_deprecated` 文件夹，同时存在新的模块化 `feishu/` 包。新旧代码共存导致维护者困惑，且 `api_server.py` 中存在大量 try-import 逻辑来兼容旧模块。",
+      "suggested_fix": "立即删除根目录下的 `feishu_api.py` 和 `_deprecated` 文件夹，强制 `api_server.py` 只引用新的 `feishu/` 模块。"
+    },
+    {
+      "issue": "Configuration Schizophrenia",
+      "severity": "medium",
+      "location": "config.py vs settings.py",
+      "impact": "系统同时存在基于 Pydantic 的 `settings.py` (现代化) 和基于 os.getenv 的 `config.py` (旧式)。导致配置来源不唯一，增加了运维出错风险。",
+      "suggested_fix": "废弃 `config.py`，将所有配置迁移至 `settings.py` 并使用 Pydantic 进行类型验证。"
+    },
+    {
+      "issue": "Dual Memory Systems",
+      "severity": "medium",
+      "location": "vulcan_libs/memory.py vs acontext_integration.py",
+      "impact": "系统同时维护了基于 MongoDB 的本地记忆系统和基于 Acontext 的外部记忆服务。这会导致数据不一致和上下文分裂。",
+      "suggested_fix": "选定一个作为 Source of Truth。建议保留 Acontext 作为长期记忆/RAG 引擎，本地 MongoDB 仅作为缓存或特定业务数据存储。"
+    }
+  ],
+  "evolution_path": [
+    {
+      "phase": "Phase 1: Cleanup (1 week)",
+      "actions": [
+        "Delete `_archive/`, `_deprecated/`, `feishu_api.py`.",
+        "Remove try-except import blocks in `api_server.py`.",
+        "Unify configuration to `settings.py`."
+      ]
+    },
+    {
+      "phase": "Phase 2: Decoupling (2-3 weeks)",
+      "actions": [
+        "Refactor `vulcan_libs/store.py`: Split into domain-specific repositories.",
+        "Standardize Tools: Migrate all legacy `tools/` to `mcp_tools/` structure.",
+        "Isolate `email_intelligence_v2` as a standalone service module."
+      ]
+    },
+    {
+      "phase": "Phase 3: Architecture Upgrade (1 month)",
+      "actions": [
+        "Implement Dependency Injection for Services.",
+        "Fully adopt Bicameral V6 (SingleBrain) and deprecate V4/V5 kernels.",
+        "Standardize all API responses using `api/info_hub/schemas`."
+      ]
+    }
+  ],
+  "industry_benchmark": {
+    "architecture_style": "Modular Monolith (Transitioning)",
+    "comparison": "相比标准 Clean Architecture，当前架构在 Service 层和 Infrastructure 层边界模糊。但 `email_intelligence_v2` 模块展示了极高的 DDD 水准，是项目内的最佳实践标杆。",
+    "ai_maturity": "High. 采用了 LangGraph, LOD (Level of Detail), MCP 等前沿模式，远超一般 RAG 应用。",
+    "engineering_maturity": "Medium. 缺乏统一的错误处理规范（虽然有 exceptions.py 但未全覆盖），测试覆盖率低（大量 test_*.py 散落在根目录）。"
+  },
+  "stress_test_prediction": {
+    "bottleneck": "MongoDB Connection & Monolithic Store",
+    "scenario": "10x Traffic Increase",
+    "prediction": "`vulcan_libs/store.py` 中的单例连接池在高并发下将成为瓶颈。由于所有业务（聊天、审批、邮件分析）都通过此单一入口读写，数据库锁竞争将导致 API 延迟飙升。",
+    "mitigation": "拆分数据库连接池，对高频读写（如 Chat Session）使用 Redis 缓存，对分析类数据（Email Intel）使用读写分离。"
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "title": "Introduction to Agents",
+  "summary": "AI Agents是语言模型的自然进化，它们通过组合模型、工具和编排层，以自主的方式解决问题和执行任务。",
+  "core_concepts": [
+    {
+      "name": "AI Agent",
+      "definition": "AI Agent 是模型、工具、编排层和运行时服务的组合，利用 LM 在循环中实现目标。这些元素构成了任何自主系统的基本架构。",
+      "key_points": [
+        "模型（大脑）：作为Agent核心推理引擎的语言模型或基础模型",
+        "工具（手）：连接Agent推理与外部世界的机制，如API、代码函数、数据库等",
+        "编排层（神经系统）：管理Agent操作循环的过程，处理计划、记忆和推理策略执行",
+        "部署（身体和腿）：使Agent成为可靠且可访问的生产服务"
+      ]
+    },
+    {
+      "name": "Agentic Problem-Solving Process",
+      "definition": "Agentic 解决问题是一个持续的循环过程，Agent 通过获取任务、扫描场景、深入思考、采取行动以及观察和迭代来达到目标。",
+      "key_points": [
+        "Get the Mission：明确目标",
+        "Scan the Scene：收集上下文",
+        "Think It Through：制定计划",
+        "Take Action：执行步骤",
+        "Observe and Iterate：观察结果并重复循环"
+      ]
+    },
+    {
+      "name": "Taxonomy of Agentic Systems",
+      "definition": "Agentic 系统的分类体系根据复杂性将 Agent 分为几个层次，每个层次都建立在前一个层次的能力之上。",
+      "key_points": [
+        "Level 0: The Core Reasoning System: 仅依靠预训练知识推理",
+        "Level 1: The Connected Problem-Solver: 连接外部工具",
+        "Level 2: The Strategic Problem-Solver: 战略性地规划复杂目标",
+        "Level 3: The Collaborative Multi-Agent System: 多Agent协同工作",
+        "Level 4: The Self-Evolving System: 自主创建和适应"
+      ]
+    },
+    {
+      "name": "Core Agent Architecture",
+      "definition": "核心 Agent 架构由模型（大脑）、工具（手）和编排层组成。",
+      "key_points": [
+        "Model: LM是Agent的核心推理引擎，其选择是影响认知能力、运营成本和速度的关键架构决策。",
+        "Tools: 连接Agent推理与现实世界的机制，允许Agent检索实时信息和执行动作。",
+        "Orchestration Layer: 管理Agent操作循环，处理计划、记忆和推理策略执行的神经系统。"
+      ]
+    },
+    {
+      "name": "Agent Ops",
+      "definition": "Agent Ops 是一种结构化的方法，用于管理Agent的行为，包括度量、质量评估、调试和持续改进。",
+      "key_points": [
+        "Measure What Matters: 衡量关键绩效指标（KPI）以证明Agent交付价值",
+        "Quality Instead of Pass/Fail: 使用 LM Judge 评估质量",
+        "Metrics-Driven Development: 通过度量驱动的开发做出部署决策",
+        "Debug with OpenTelemetry Traces: 使用 OpenTelemetry 追踪调试",
+        "Cherish Human Feedback: 利用人类反馈指导自动化"
+      ]
+    },
+    {
+      "name": "Agent Interoperability",
+      "definition": "Agent 的互操作性涉及将 Agent 与用户和其他 Agent 互连。",
+      "key_points": [
+        "Agents and Humans: Agent-人类交互通常通过用户界面进行",
+        "Agents and Agents: Agent 2 Agent (A2A) 协议",
+        "Agents and Money: Agent支付协议(AP2)和X402"
+      ]
+    },
+    {
+      "name": "Securing Agents",
+      "definition": "保护 Agent 涉及处理效用和安全性之间的权衡，使用防御纵深方法。",
+      "key_points": [
+        "Defense-in-depth approach:传统、确定性 guardrails 和基于推理的 defenses 的混合",
+        "Agent Identity: 验证 Agent 身份",
+        "Policies to Constrain Access: 限制Agent能力",
+        "Callbacks and Plugins: 在运行时调整安全",
+        "Model Armor：用于动态安全检查的托管服务"
+      ]
+    },
+    {
+      "name": "Agent Governance",
+      "definition": "Agent治理涉及超越保护个人 Agent，实施更高阶的架构方法，比如集中式网关和注册表。",
+      "key_points": [
+        "Runtime Policy Enforcement: 执行安全策略",
+        "Centralized Governance: 提供可信数据来源"
+      ]
+    },
+    {
+      "name": "Agent Evolution and Learning",
+      "definition": "Agent 必须能够自主学习和进化，以适应动态环境，方法是从运行时经验和外部信号中学习。",
+      "key_points": [
+        "Runtime Experience: Agent从运行时artifacts，如session logs, traces, and memory等学习",
+        "External Signals: Agent从外部文档，如企业政策，公开指导等学习",
+        "Enhanced Context Engineering: Agent优化其prompts, few-shot示例，以及从记忆中检索的信息",
+        "Tool Optimization and Creation: Agent识别能力中的不足，并采取行动来填补它们。"
+      ]
+    },
+    {
+      "name": "Simulation and Agent Gym",
+      "definition": "Agent Gym 是一个专门的平台，用于在离线流程中使用高级工具和功能来优化多 Agent 系统。",
+      "key_points": [
+        "不在执行路径中: 是独立的生产后平台",
+        "提供模拟环境: Agent可以在新数据上'锻炼'",
+        "可调用高级合成数据生成器: 指导模拟",
+        "优化工具库不是固定的: 它可以采用新工具",
+        "能够连接到领域专家的人工架构"
+      ]
+    }
+  ],
+  "best_practices": [
+    {
+      "practice": "Defense-in-depth",
+      "description": "使用传统、确定性 guardrails 和基于推理的 defenses 的混合。",
+      "example": "使用策略引擎阻止超过 100 美元的购买或在 Agent 与外部 API 交互之前需要明确的用户确认。"
+    },
+    {
+      "practice": "Metrics-Driven Development",
+      "description": "使用度量指导Agent的开发和部署",
+      "example": "使用自动化评估测试新版本，并将其分数与现有生产版本进行比较。"
+    },
+    {
+      "practice": "Context Engineering",
+      "description": "主动选择、打包和管理每个计划步骤最相关的信息。",
+      "example": "例如，Agent查找咖啡店，会根据之前步骤的输出来自动创建一个新、集中的搜索查询。"
+    }
+  ],
+  "architecture_patterns": [
+    {
+      "pattern": "Coordinator",
+      "description": "管理器Agent分析一个复杂的请求，分割主要任务，并将每个子任务智能地路由到适当的专家Agent。",
+      "use_case": "适用于动态或非线性任务。"
+    },
+    {
+      "pattern": "Sequential",
+      "description": "一条流水线，上一个Agent的输出成为下一个Agent的输入",
+      "use_case": "适用于线性工作流程。"
+    },
+    {
+      "pattern": "Iterative Refinement",
+      "description": "创建一个反馈循环，使用“生成器”Agent来创建内容，并使用“批评者”Agent来评估它",
+      "use_case": "专注于质量和安全性"
+    },
+    {
+      "pattern": "Human-in-the-Loop (HITL)",
+      "description": "创建工作流中的一个刻意暂停，以便在Agent采取重要行动之前获得人的批准",
+      "use_case": "用于高风险任务。"
+    }
+  ],
+  "code_snippets": [
+    {
+      "description": "在 Agent Development Kit (ADK) 中，A before_tool_callback 允许在运行之前检查工具调用的参数，根据 Agent 的当前状态验证它们以防止操作不一致。",
+      "language": "python",
+      "code": "callbacks and Plugins. A before_tool_callback allows you to inspect the parameters\nof a tool call before it runs, validating them against the agent's current state to prevent\nmisaligned actions."
+    }
+  ],
+  "key_takeaways": [
+    "AI Agents 是下一代智能应用程序的基础，它们能够推理、行动和观察以完成目标。",
+    "成功取决于精心的架构设计、严格的工程实践以及持续的学习和适应。",
+    "通过遵循这些原则，组织可以充分利用 agentic AI 的力量，创造真正具有协作性、能力和适应性的新团队成员。"
+  ]
+}

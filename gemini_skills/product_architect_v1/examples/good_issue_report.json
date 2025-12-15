@@ -1,0 +1,23 @@
+{
+  "_comment": "这是一个高质量问题报告的示例",
+  "issue": {
+    "issue": "God Class 反模式：api_server.py 承担了过多职责",
+    "severity": "high",
+    "location": "api_server.py:1-1231",
+    "impact": "难以维护、难以测试、修改一处可能影响全局、新人上手成本高",
+    "suggested_fix": "按领域拆分为独立的 Router 模块：system_router.py, memory_router.py, agent_router.py 等，主文件仅负责注册和中间件配置"
+  },
+  "bad_example": {
+    "issue": "代码质量不好",
+    "severity": "high",
+    "location": "api_server.py",
+    "impact": "影响开发效率",
+    "suggested_fix": "建议重构"
+  },
+  "why_bad": [
+    "❌ '代码质量不好' 太模糊",
+    "❌ location 没有行号",
+    "❌ impact 没有具体说明怎么影响",
+    "❌ suggested_fix 是废话，没有可执行性"
+  ]
+}

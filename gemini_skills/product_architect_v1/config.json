@@ -1,0 +1,13 @@
+{
+  "model": "gemini-3-pro-preview",
+  "temperature": 0.3,
+  "max_tokens": 16384,
+  "top_p": 0.95,
+  "description": "AI Product Architect - 首席产品架构师",
+  "version": "1.0.0",
+  "author": "Vulcan Brain Team",
+  "tags": ["architecture", "analysis", "core"],
+  "requires_context": true,
+  "multi_turn": false,
+  "tools_enabled": false
+}

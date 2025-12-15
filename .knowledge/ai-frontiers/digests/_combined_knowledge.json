@@ -1,0 +1,590 @@
+{
+  "01_intro_to_agents": {
+    "title": "Introduction to Agents",
+    "summary": "AI Agents是语言模型的自然进化，它们通过组合模型、工具和编排层，以自主的方式解决问题和执行任务。",
+    "core_concepts": [
+      {
+        "name": "AI Agent",
+        "definition": "AI Agent 是模型、工具、编排层和运行时服务的组合，利用 LM 在循环中实现目标。这些元素构成了任何自主系统的基本架构。",
+        "key_points": [
+          "模型（大脑）：作为Agent核心推理引擎的语言模型或基础模型",
+          "工具（手）：连接Agent推理与外部世界的机制，如API、代码函数、数据库等",
+          "编排层（神经系统）：管理Agent操作循环的过程，处理计划、记忆和推理策略执行",
+          "部署（身体和腿）：使Agent成为可靠且可访问的生产服务"
+        ]
+      },
+      {
+        "name": "Agentic Problem-Solving Process",
+        "definition": "Agentic 解决问题是一个持续的循环过程，Agent 通过获取任务、扫描场景、深入思考、采取行动以及观察和迭代来达到目标。",
+        "key_points": [
+          "Get the Mission：明确目标",
+          "Scan the Scene：收集上下文",
+          "Think It Through：制定计划",
+          "Take Action：执行步骤",
+          "Observe and Iterate：观察结果并重复循环"
+        ]
+      },
+      {
+        "name": "Taxonomy of Agentic Systems",
+        "definition": "Agentic 系统的分类体系根据复杂性将 Agent 分为几个层次，每个层次都建立在前一个层次的能力之上。",
+        "key_points": [
+          "Level 0: The Core Reasoning System: 仅依靠预训练知识推理",
+          "Level 1: The Connected Problem-Solver: 连接外部工具",
+          "Level 2: The Strategic Problem-Solver: 战略性地规划复杂目标",
+          "Level 3: The Collaborative Multi-Agent System: 多Agent协同工作",
+          "Level 4: The Self-Evolving System: 自主创建和适应"
+        ]
+      },
+      {
+        "name": "Core Agent Architecture",
+        "definition": "核心 Agent 架构由模型（大脑）、工具（手）和编排层组成。",
+        "key_points": [
+          "Model: LM是Agent的核心推理引擎，其选择是影响认知能力、运营成本和速度的关键架构决策。",
+          "Tools: 连接Agent推理与现实世界的机制，允许Agent检索实时信息和执行动作。",
+          "Orchestration Layer: 管理Agent操作循环，处理计划、记忆和推理策略执行的神经系统。"
+        ]
+      },
+      {
+        "name": "Agent Ops",
+        "definition": "Agent Ops 是一种结构化的方法，用于管理Agent的行为，包括度量、质量评估、调试和持续改进。",
+        "key_points": [
+          "Measure What Matters: 衡量关键绩效指标（KPI）以证明Agent交付价值",
+          "Quality Instead of Pass/Fail: 使用 LM Judge 评估质量",
+          "Metrics-Driven Development: 通过度量驱动的开发做出部署决策",
+          "Debug with OpenTelemetry Traces: 使用 OpenTelemetry 追踪调试",
+          "Cherish Human Feedback: 利用人类反馈指导自动化"
+        ]
+      },
+      {
+        "name": "Agent Interoperability",
+        "definition": "Agent 的互操作性涉及将 Agent 与用户和其他 Agent 互连。",
+        "key_points": [
+          "Agents and Humans: Agent-人类交互通常通过用户界面进行",
+          "Agents and Agents: Agent 2 Agent (A2A) 协议",
+          "Agents and Money: Agent支付协议(AP2)和X402"
+        ]
+      },
+      {
+        "name": "Securing Agents",
+        "definition": "保护 Agent 涉及处理效用和安全性之间的权衡，使用防御纵深方法。",
+        "key_points": [
+          "Defense-in-depth approach:传统、确定性 guardrails 和基于推理的 defenses 的混合",
+          "Agent Identity: 验证 Agent 身份",
+          "Policies to Constrain Access: 限制Agent能力",
+          "Callbacks and Plugins: 在运行时调整安全",
+          "Model Armor：用于动态安全检查的托管服务"
+        ]
+      },
+      {
+        "name": "Agent Governance",
+        "definition": "Agent治理涉及超越保护个人 Agent，实施更高阶的架构方法，比如集中式网关和注册表。",
+        "key_points": [
+          "Runtime Policy Enforcement: 执行安全策略",
+          "Centralized Governance: 提供可信数据来源"
+        ]
+      },
+      {
+        "name": "Agent Evolution and Learning",
+        "definition": "Agent 必须能够自主学习和进化，以适应动态环境，方法是从运行时经验和外部信号中学习。",
+        "key_points": [
+          "Runtime Experience: Agent从运行时artifacts，如session logs, traces, and memory等学习",
+          "External Signals: Agent从外部文档，如企业政策，公开指导等学习",
+          "Enhanced Context Engineering: Agent优化其prompts, few-shot示例，以及从记忆中检索的信息",
+          "Tool Optimization and Creation: Agent识别能力中的不足，并采取行动来填补它们。"
+        ]
+      },
+      {
+        "name": "Simulation and Agent Gym",
+        "definition": "Agent Gym 是一个专门的平台，用于在离线流程中使用高级工具和功能来优化多 Agent 系统。",
+        "key_points": [
+          "不在执行路径中: 是独立的生产后平台",
+          "提供模拟环境: Agent可以在新数据上'锻炼'",
+          "可调用高级合成数据生成器: 指导模拟",
+          "优化工具库不是固定的: 它可以采用新工具",
+          "能够连接到领域专家的人工架构"
+        ]
+      }
+    ],
+    "best_practices": [
+      {
+        "practice": "Defense-in-depth",
+        "description": "使用传统、确定性 guardrails 和基于推理的 defenses 的混合。",
+        "example": "使用策略引擎阻止超过 100 美元的购买或在 Agent 与外部 API 交互之前需要明确的用户确认。"
+      },
+      {
+        "practice": "Metrics-Driven Development",
+        "description": "使用度量指导Agent的开发和部署",
+        "example": "使用自动化评估测试新版本，并将其分数与现有生产版本进行比较。"
+      },
+      {
+        "practice": "Context Engineering",
+        "description": "主动选择、打包和管理每个计划步骤最相关的信息。",
+        "example": "例如，Agent查找咖啡店，会根据之前步骤的输出来自动创建一个新、集中的搜索查询。"
+      }
+    ],
+    "architecture_patterns": [
+      {
+        "pattern": "Coordinator",
+        "description": "管理器Agent分析一个复杂的请求，分割主要任务，并将每个子任务智能地路由到适当的专家Agent。",
+        "use_case": "适用于动态或非线性任务。"
+      },
+      {
+        "pattern": "Sequential",
+        "description": "一条流水线，上一个Agent的输出成为下一个Agent的输入",
+        "use_case": "适用于线性工作流程。"
+      },
+      {
+        "pattern": "Iterative Refinement",
+        "description": "创建一个反馈循环，使用“生成器”Agent来创建内容，并使用“批评者”Agent来评估它",
+        "use_case": "专注于质量和安全性"
+      },
+      {
+        "pattern": "Human-in-the-Loop (HITL)",
+        "description": "创建工作流中的一个刻意暂停，以便在Agent采取重要行动之前获得人的批准",
+        "use_case": "用于高风险任务。"
+      }
+    ],
+    "code_snippets": [
+      {
+        "description": "在 Agent Development Kit (ADK) 中，A before_tool_callback 允许在运行之前检查工具调用的参数，根据 Agent 的当前状态验证它们以防止操作不一致。",
+        "language": "python",
+        "code": "callbacks and Plugins. A before_tool_callback allows you to inspect the parameters\nof a tool call before it runs, validating them against the agent's current state to prevent\nmisaligned actions."
+      }
+    ],
+    "key_takeaways": [
+      "AI Agents 是下一代智能应用程序的基础，它们能够推理、行动和观察以完成目标。",
+      "成功取决于精心的架构设计、严格的工程实践以及持续的学习和适应。",
+      "通过遵循这些原则，组织可以充分利用 agentic AI 的力量，创造真正具有协作性、能力和适应性的新团队成员。"
+    ]
+  },
+  "02_tools_and_mcp": {
+    "title": "Agent Tools & Interoperability with MCP",
+    "summary": "本白皮书介绍了 Agent Tools 与 Model Context Protocol (MCP) 的互操作性，讨论了工具设计、安全风险与实践。",
+    "core_concepts": [
+      {
+        "name": "Agent Tools",
+        "definition": "Al Agent 的“眼睛”和“双手”，允许它感知和行动于世界，通过调用外部函数或工具来完成模型自身能力之外的任务。",
+        "key_points": [
+          "分为 Function Tools, Built-in Tools, 和 Agent Tools 三种主要类型",
+          "Function Tools: 开发者定义外部函数，模型按需调用",
+          "Built-in Tools: 模型隐式集成的工具，如 Google Gemini API 的 Grounding, Code Execution 等",
+          "Agent Tools: 将一个 Agent 作为另一个 Agent 的工具来使用"
+        ]
+      },
+      {
+        "name": "Model Context Protocol (MCP)",
+        "definition": "一种开放标准，旨在简化 Al 应用与外部工具的集成过程，解决 “N x M” 集成问题，提供统一的插件式接口。",
+        "key_points": [
+          "核心组件包括 Host, Client 和 Server",
+          "通信层基于 JSON-RPC 2.0",
+          "定义了 Tools, Resources, Prompts (Server 端) 和 Sampling, Elicitation, Roots (Client 端) 等关键原语"
+        ]
+      },
+      {
+        "name": "Tools (MCP)",
+        "definition": "一种标准化的方式，用于 Server 描述其向 Client 提供的功能。MCP Servers 发布可用工具列表，包括描述和参数 schemas，供 agents 发现。",
+        "key_points": [
+          "Tool 定义必须符合 JSON schema",
+          "重要的字段包括 name, title, description, inputSchema, outputSchema, annotations",
+          "annotations 包含 destructiveHint, idempotentHint, openWorldHint, readOnlyHint 等属性"
+        ]
+      },
+      {
+        "name": "Resources (MCP)",
+        "definition": "一种 Server 端能力，旨在提供 Host 应用可以访问和使用的上下文数据。可以包含文件内容、数据库记录、数据库 schema 或图像。",
+        "key_points": [
+          "客户端应当验证资源并从受信 URL 检索",
+          "将任意外部内容引入 LLM 的上下文会带来重大的安全风险"
+        ]
+      },
+      {
+        "name": "Prompts (MCP)",
+        "definition": "另一种 Server 端能力，允许 Server 提供与其 Tools 和 Resources 相关的可重用 prompt 示例或模板。",
+        "key_points": [
+          "应该谨慎使用，直至开发出更强的安全模型",
+          "允许第三方服务将任意指令注入应用程序的执行路径存在风险"
+        ]
+      },
+      {
+        "name": "Sampling (MCP)",
+        "definition": "一种 Client 端能力，允许 MCP Server 请求 Client 完成 LLM completion。",
+        "key_points": [
+          "推荐 Client 在 Sampling 的循环中插入人工审核环节",
+          "允许工具利用 Host 的核心 Al 模型来执行子任务"
+        ]
+      },
+      {
+        "name": "Elicitation (MCP)",
+        "definition": "另一种 Client 端能力，类似于 Sampling，允许 MCP Server 请求 Client 提供额外的用户信息。",
+        "key_points": [
+          "服务器 *不得* 使用 Elicitation 请求敏感信息",
+          "客户端需要警惕潜在的滥用"
+        ]
+      },
+      {
+        "name": "Roots (MCP)",
+        "definition": "定义服务器可以在文件系统中运行的边界。Root 定义包括标识根目录的 URI。",
+        "key_points": [
+          "服务器 *应该* 尊重根边界",
+          "客户端开发人员不应过分依赖服务器关于 Roots 的行为"
+        ]
+      }
+    ],
+    "best_practices": [
+      {
+        "practice": "清晰的 Tool 名称",
+        "description": "Tool 的名称应该清晰、描述性强、易于理解，有助于模型决定使用哪个 Tool。",
+        "example": "create_critical_bug_in_jira_with_priority 比 update_jira 更清晰"
+      },
+      {
+        "practice": "描述所有输入和输出参数",
+        "description": "清晰描述 Tool 的所有输入，包括类型和用途。",
+        "example": null
+      },
+      {
+        "practice": "简化参数列表",
+        "description": "过长的参数列表会使模型困惑，保持参数列表简短并使用清晰的参数名称。",
+        "example": null
+      },
+      {
+        "practice": "详细的 Tool 描述",
+        "description": "提供清晰、详细的 Tool 描述，包括输入和输出参数、Tool 的目的以及有效调用 Tool 所需的任何其他详细信息。 避免使用简写或技术术语。",
+        "example": null
+      },
+      {
+        "practice": "添加有针对性的示例",
+        "description": "示例可以帮助解决歧义，展示如何处理棘手的请求，或澄清术语。",
+        "example": null
+      },
+      {
+        "practice": "提供默认值",
+        "description": "为关键参数提供默认值，并确保在 Tool 文档中记录和描述默认值。",
+        "example": null
+      },
+      {
+        "practice": "描述动作，而非实现",
+        "description": "模型指令应描述动作，而非特定工具。这对于消除关于如何使用工具的指令之间的任何冲突非常重要。",
+        "example": "说 “创建 bug 来描述问题”，而不是 “使用 create_bug tool”"
+      },
+      {
+        "practice": "发布任务，而非 API 调用",
+        "description": "工具应该封装 Agent 需要执行的任务，而不是外部 API。Tool 开发者应该定义清晰地捕获 Agent 可能代表用户采取的特定操作的工具，并记录所需的特定操作和参数。",
+        "example": null
+      },
+      {
+        "practice": "使工具尽可能精细",
+        "description": "保持函数简洁并限制为单个函数是标准编码最佳实践；定义工具时也遵循此指南。 这使得记录工具更容易，并使 Agent 在确定何时需要该工具时更加一致。",
+        "example": null
+      },
+      {
+        "practice": "设计简洁的输出",
+        "description": "设计不良的工具有时会返回大量数据，这会对性能和成本产生不利影响。",
+        "example": null
+      },
+      {
+        "practice": "有效利用验证",
+        "description": "大多数 Tool 调用框架都包含 Tool 输入和输出的可选 schema 验证。 尽可能使用此验证功能。 输入和输出 schema 在 LLM Tool 调用中扮演两个角色。",
+        "example": null
+      },
+      {
+        "practice": "提供描述性错误消息",
+        "description": "Tool 错误消息是被忽视的改进和记录 Tool 功能的机会。 通常，即使是记录良好的 Tool 也只会返回一个错误代码，或者最多是一个简短的、非描述性的错误消息。",
+        "example": null
+      }
+    ],
+    "architecture_patterns": [
+      {
+        "pattern": "Client-Server Model (MCP)",
+        "description": "MCP 实现了 Client-Server 模型，将 Al 应用与 Tool 集成分离。",
+        "use_case": "支持竞争性和创新的 Al 工具生态系统发展"
+      }
+    ],
+    "code_snippets": [
+      {
+        "description": "定义 set_light_values 工具的 Python 代码片段",
+        "language": "python",
+        "code": "def set_light_values(\n brightness: int,\n color_temp: str,\n context: ToolContext) -> dict(str, int | str]:\n \"\"\"This tool sets the brightness and color temperature of the room lights\n in the user's current location.\n Args:\n brightness: Light level from 0 to 100. Zero is off and 100 is full\n color_temp: Color temperature of the light fixture, which can be\n brightness\n `daylight`,`cool`or `warm`.\n context: A ToolContext object used to retrieve the user's location.\n Returns:\n A dictionary containing the set brightness and color temperature.\n \"\"\"\n user_room_id = context.state['room_id']\n # This is an imaginary room lighting control API\n room = light_system.get_room(user_room_id)\n response = room.set_lights(brightness, color_temp)\n return {\"tool_response\": response}"
+      },
+      {
+        "description": "调用 url_context 工具的 Python 代码片段",
+        "language": "python",
+        "code": "from google import genai\nfrom google.genai.types import (\n Tool,\n GenerateContentConfig,\n HttpOptions,\n UrlContext\n)\n\nclient = genai.Client(http_options=HttpOptions(api_version=\"v1\")\nmodel_id = \"gemini-2.5-flash\"\n\nurl_context_tool = Tool(\n url_context = UrlContext\n)\n\nur11 =\n \"https://www.foodnetwork.com/recipes/ina-garten/perfect-roast-chicken-recipe-19\\n 40592\"\nurl2 = \"https://www.allrecipes.com/recipe/70679/simple-whole-roasted-chicken/\"\n\nresponse = client.models.generate_content(\n model=model_id,\n contents=(\"Compare the ingredients and cooking times from\\n f\"the recipes at {url1} and {url2}\"),\n config=GenerateContentConfig(\n tools=[url_context_tool],\n response_modalities=[\"TEXT\"],\n)\n\nfor each in response.candidates[0].content.parts:\n print(each.text)\n\n# For verification, you can inspect the metadata to see which URLs the\nmodel retrieved\nprint(response.candidates[0].url_context_metadata)"
+      },
+      {
+        "description": "Agent Tool 定义的 Python 代码片段",
+        "language": "python",
+        "code": "from google.adk.agents import LlmAgent\nfrom google.adk.tools import AgentTool\n\ntool_agent = LlmAgent(\n model=\"gemini-2.5-flash\",\n name=\"capital_agent\",\n description=\"Returns the capital city for any country or state\"\n instruction=\"\"\"If the user gives you the name of a country or a state (e.g.\n Tennessee or New South Wales), answer with the name of the capital city of that\n country or state. Otherwise, tell the user you are not able to help them.\"\"\"\n)\n\nuser_agent = LlmAgent(\n model=\"gemini-2.5-flash\",\n name=\"user_advice_agent\",\n description=\"Answers user questions and gives advice\",\n instruction=\"\"\"Use the tools you have available to answer the\n user's questions\"\"\",\n tools=[AgentTool(agent=capital_agent)]\n)"
+      },
+      {
+        "description": "MCP 协议错误示例",
+        "language": "python",
+        "code": "{\n \"jsonrpc\": \"2.0\",\n \"id\": 3,\n \"error\": {\n \"code\": -32602,\n \"message\": \"Unknown tool: invalid_tool_name. It may be misspelled, or the tool\n may not exist on this server. Check the tool name and if necessary request an\n updated list of tools.\"\n }\n}"
+      },
+      {
+        "description": "Tool 执行错误示例",
+        "language": "python",
+        "code": "{\n \"jsonrpc\": \"2.0\",\n \"id\": 4,\n \"result\": {\n \"content\":[\n {\n \"type\": \"text\",\n \"text\": \"Failed to fetch weather data: API rate limit exceeded. Wait 15\n seconds before calling this tool again.\"\n }\n ],\n \"isError\": true\n }\n}"
+      },
+      {
+        "description": "MCP Tool 定义示例（JSON）",
+        "language": "JSON",
+        "code": "{\n \"name\": \"get_stock_price\",\n \"title\": \"Stock Price Retrieval Tool\",\n \"description\": \"Get stock price for a specific ticker symbol. If 'date' is\n provided, it will retrieve the last price or closing price for that date.\n Otherwise it will retrieve the latest price.\",\n \"inputSchema\": {\n \"type\": \"object\",\n \"properties\": {\n \"symbol\": {\n \"type\": \"string\",\n \"description\": \"Stock ticker symbol\"\n },\n \"date\": {\n \"type\":\"string\",\n \"description\": \"Date to retrieve (in YYYY-MM-DD format)\"\n }\n },\n \"required\": [\"symbol\"]\n },\n \"outputSchema\": {\n \"type\": \"object\",\n \"properties\": {\n \"price\": {\n \"type\": \"number\",\n \"description\": \"Stock price\"\n },\n \"date\": {\n \"type\": \"string\",\n \"description\": \"Stock price date\"\n }\n },\n \"required\": [\"price\", \"date\"]\n },\n \"annotations\": {\n \"readOnlyHint\": \"true\"\n }\n}"
+      }
+    ],
+    "key_takeaways": [
+      "MCP 为 Al 开发者工具箱增加了新的功能，但也存在一些重要的局限性和缺点，尤其是在企业集成应用中",
+      "企业需要构建安全、可审计和可靠的框架来支持 MCP 的运行",
+      "需要解决诸如 Dynamic Capability Injection、Tool Shadowing 和 “confused deputy” 漏洞等新的威胁"
+    ]
+  },
+  "03_context_and_memory": {
+    "error": "Expecting property name enclosed in double quotes: line 126 column 206 (char 6697)",
+    "raw": "\n{\n  \"title\": \"Context Engineering: Sessions, Memory\",\n  \"summary\": \"构建有状态、智能化 LLM Agent 的关键在于 Context Engineering，涉及 Sessions 和 Memory 的有效管理。\",\n  \"core_concepts\": [\n    {\n      \"name\": \"Context Engineering\",\n      \"definition\": \"Context Engineering 是动态组装和管理 LLM 上下文窗口内信息，以实现有状态、智能化 Agent 的过程。它涉及策略性地选择、总结和注入不同类型的信息，以最大化相关性并最小化噪音。\",\n      \"key_points\": [\n        \"是 Prompt Engineering 的演进，关注整个 payload 而非仅 system instructions\",\n        \"目标是构建针对特定任务的最佳上下文\",\n        \"涉及多个组件，例如 System Instructions、Tool Definitions、Few-Shot Examples、Evidential & Factual Data、Long-Term Memory、External Knowledge等\"\n      ]\n    },\n    {\n      \"name\": \"Sessions\",\n      \"definition\": \"Session 是一个会话的容器，包含与 Agent 完整对话的 chronological history 以及 Agent 的 working memory (state)。它是一个自包含的记录，与特定用户绑定，允许 Agent 维护上下文并在会话范围内提供连贯的响应。\",\n      \"key_points\": [\n        \"包含 events (对话 building blocks) 和 state (working memory)\",\n        \"不同的 Agent Framework 以不同的方式实现 Sessions、Events 和 State\",\n        \"生产环境需要考虑 security and privacy、data integrity 和 performance\"\n      ]\n    },\n    {\n      \"name\": \"Memory\",\n      \"definition\": \"Memory 是长期持久化机制，用于捕获和整合跨多个 Session 的关键信息，为 LLM Agent 提供连续和个性化的体验。它是从对话或数据源中提取的、有意义信息的快照，保存重要的上下文，使其对未来的交互有用。\",\n      \"key_points\": [\n        \"与 Sessions 共享共生关系：Sessions 是生成 Memory 的主要数据源\",\n        \"用于实现 personalization、context window management、data mining and insight 和 agent self-improvement and adaptation\",\n        \"涉及 Extraction、Consolidation、Storage 和 Retrieval 过程\",\n        \"需要考虑 types of memory, organization patterns, storage architectures, creation mechanisms, memory scope 和 multimodal memory\",\n        \"需要考虑 memory provenance，确保 trustworthiness\"\n      ]\n    },\n    {\n      \"name\": \"Memory Generation\",\n      \"definition\": \"Memory generation 是一个 LLM 驱动的 ETL (Extract, Transform, Load) pipeline，旨在从原始对话数据中提取和压缩记忆。 它涉及数据提取、过滤和整合，以创建结构化且有意义的 insights。\",\n      \"key_points\": [\n        \"分为 Ingestion, Extraction & Filtering, Consolidation, Storage 四个阶段\",\n        \"Extraction 目标是确定哪些信息足够重要以成为记忆\",\n        \"Consolidation 解决信息重复、信息冲突、信息演变等问题\",\n        \"触发方式可以基于 Count-Based Triggers、Time-Based Triggers 和 Event-Based Triggers\"\n      ]\n    },\n    {\n      \"name\": \"Memory Retrieval\",\n      \"definition\": \"Memory Retrieval 是搜索和选择与当前对话最相关的记忆的关键过程。 智能检索策略对于 Agent 的性能至关重要，需要仔细考虑应检索哪些记忆以及何时检索。\",\n      \"key_points\": [\n        \"评估指标包括 Relevance (Semantic Similarity)、Recency (Time-based) 和 Importance (Significance)\",\n        \"可以通过 query rewriting, reranking 或 specialized retrievers 来优化检索\",\n        \"时间选择上可以是 proactive retrieval 或 reactive retrieval (“Memory-as-a-Tool”)\"\n      ]\n    },\n        {\n      \"name\": \"Memory Provenance\",\n      \"definition\": \"Memory Provenance 是一个 Memory 的详细记录，包括其来源和历史。Provenance 对于评估 Memory 的质量至关重要，并且可以帮助 Agent 在推理过程中做出可靠的决定。\",\n      \"key_points\": [\n        \"用于确定 data source 的 trust，例如 Bootstrapped Data、User Input、Tool Output\",\n        \"Provenance 允许 memory manager 建立 information sources 的信任等级\",\n        \"记忆的 confidence 必须不断演变，并被纳入到推理过程中\"\n      ]\n    }\n  ],\n  \"best_practices\": [\n    {\n      \"practice\": \"PII Redaction\",\n      \"description\": \"在将 Session 数据写入存储之前，编辑个人身份信息 (PII) 是一个最佳实践，可以显著降低数据泄露的风险。可以使用 Model Armor 等工具。\",\n      \"example\": \"使用 Model Armor 工具，在将任何 Session 数据保存到持久存储之前，自动检测和删除 PII。\"\n    },\n    {\n      \"practice\": \"Asynchronous Memory Generation\",\n      \"description\": \"为了避免阻塞用户体验，Memory Generation 应该以 asynchronous background process 的方式处理。\",\n      \"example\": \"Agent 将原始会话数据推送到 Memory Manager，Memory Manager 在后台处理数据并更新 Memory，而不会影响 Agent 的响应时间。\"\n    },\n    {\n      \"practice\": \"Compacting Long Context Conversations\",\n      \"description\": \"使用 summarization、selective pruning 或其他 compaction techniques，动态地改变会话历史，以保存重要信息，同时管理总 token 数量。\",\n      \"example\": \"在对话超过一定数量的 token 时，使用 LLM 自动总结较早的对话内容，并将其替换为摘要。\"\n    }\n  ],\n  \"architecture_patterns\": [\n    {\n      \"pattern\": \"Shared, Unified History (Multi-Agent Systems)\",\n      \"description\": \"所有 Agent 都从同一个单一会话历史记录中读取和写入事件。每个 Agent 的消息、工具调用和观察结果都按时间顺序附加到一个中心日志中。\",\n      \"use_case\": \"适用于紧密耦合的协作任务，需要单一 truth 来源，例如多步骤问题解决过程，其中一个 Agent 的输出是下一个 Agent 的直接输入。\"\n    },\n    {\n      \"pattern\": \"Separate, Individual Histories (Multi-Agent Systems)\",\n      \"description\": \"每个 Agent 维护自己的私有会话历史记录，其他 Agent 将其视为黑盒。所有内部流程（例如中间想法、工具使用和推理步骤）都保留在 Agent 的私有日志中，对其他人不可见。\",\n      \"use_case\": \"适用于 Agent 间只通过明确消息通信的场景，其中 Agent 共享其最终输出，而不是其过程。\"\n    },\n    {\n      \"pattern\": \"Internal Memory\",\n      \"description\": \"将记忆管理直接构建到 Agent Framework 中。它方便入门，但通常缺乏高级功能。内部记忆可以使用外部存储，但生成记忆的机制是 Agent 内部的。\",\n      \"use_case\": \"适用于快速原型设计或简单应用，对记忆管理功能要求不高。\"\n    },\n    {\n      \"pattern\": \"External Memory\",\n      \"description\": \"使用专门的外部服务进行记忆管理（例如 Agent Engine Memory Bank, Mem0, Zep）。Agent Framework 调用此外部服务来存储、检索和处理记忆。\",\n      \"use_case\": \"适用于需要高级记忆管理功能的应用，例如语义搜索、实体提取和自动总结。\"\n    }\n  ],\n  \"code_snippets\": [\n    {\n      \"description\": \"Example multi-turn call to Gemini\",\n      \"language\": \"python\",\n      \"code\": \"contents = [\\n{\\n\\\"role\\\": \\\"user\\\",\\n\\\"parts\\\": [ {\\\"text\\\": \\\"What is the capital of France?\\\"} ]\\n},\\n{\\n\\\"role\\\": \\\"model\\\",\\n\\\"parts\\\": [ {\\\"text\\\": \\\"The capital of France is Paris.\\\"} ]\\n}\\n]\\nresponse = client.models.generate_content(\\nmodel=\\\"gemini-2.5-flash\\\",\\ncontents=contents\\n)\"\n    },\n    {\n      \"description\": \"Session truncation to only use the last N turns with ADK\",\n      \"language\": \"python\",\n      \"code\": \"from google.adk.apps import App\\nfrom google.adk.plugins.context_filter_plugin import ContextFilterPlugin\\n\\napp = App(\\n    name='hello_world_app',\\n    root_agent=agent,\\n    plugins=[\\n        # Keep the last 10 turns and the most recent user query.\\n        ContextFilterPlugin(num_invocations_to_keep=10),\\n    ],\\n)\"\n    },\n    {\n      \"description\": \"Session compaction using summarization with ADK\",\n      \"language\": \"python\",\n      \"code\": \"from google.adk.apps import App\\nfrom google.adk.apps.app import EventsCompactionConfig\\n\\napp = App(\\n    name='hello_world_app',\\n    root_agent=agent,\\n    events_compaction_config=EventsCompactionConfig(\\n        compaction_interval=5,\\n        overlap_size=1,\\n    ),\\n)\"\n    },\n    {\n      \"description\": \"Example memory generation API call for Agent Engine Memory Bank\",\n      \"language\": \"python\",\n      \"code\": \"types.Part.from_bytes(\\n    data=CONTENT_AS_BYTES,\\n    mime_type=MIME_TYPE\\n),\\ntypes.Part.from_uri(\\n    file_uri=\\\"file/path/to/content\\\",\\n    mime_type=MIME_TYPE\\n)\\n)\\nscope={\\\"user_id\\\": user_id}\\n])\"\n    },\n    {\n      \"description\": \"Generate memories with Agent Engine Memory Bank\",\n      \"language\": \"python\",\n      \"code\": \"from google.cloud import vertexai\\nclient = vertexai.Client(project=..., location=...)\\n\\nclient.agent_engines.memories.generate(\\n    name=\\\"projects/.../locations/...reasoningEngines/...\",\\n    scope={\\\"user_id\\\": \\\"123\\\"},\\n    direct_contents_source={\\n        \\\"events\\\": [...]\\n    },\\n    config={\\n        # Run memory generation in the background.\\n        \\\"wait_for_completion\\\": False\\n    }\\n)\"\n    },\n    {\n      \"description\": \"ADK agent using a custom tool to trigger memory generation\",\n      \"language\": \"python\",\n      \"code\": \"from google.adk.agents import LlmAgent\\nfrom google.adk.memory import VertexAiMemoryBankService\\nfrom google.adk.runners import Runner\\nfrom google.adk.tools import ToolContext\\n\\ndef generate_memories(tool_context: ToolContext):\\n    \\\"\\\"\\\"Triggers memory generation to remember the session.\\\"\\\"\\\"\\n    # Option 1: Extract memories from the complete conversation history using the\\n    # ADK memory service.\\n    tool_context._invocation_context.memory_service.add_session_to_memory(\\n        session\\n    )\\n\\n    # Option 2: Extract memories from the last conversation turn.\\n    client.agent_engines.memories.generate(\\n        name=\\\"projects/.../locations/...reasoningEngines/...\",\\n        direct_contents_source={\\n            \\\"events\\\": [\\n                {\\\"content\\\": tool_context._invocation_context.user_content}\\n            ]\\n        },\\n        scope={\\n            \\\"user_id\\\": tool_context._invocation_context.user_id,\\n            \\\"app_name\\\": tool_context._invocation_context.app_name\\n        },\\n        config={\\n            # Generate memories in the background\\n            \\\"wait_for_completion\\\": False\\n        }\\n    )\\n    return {\\\"status\\\": \\\"success\\\"}\\n\\nagent = LlmAgent(\\n    tools=[generate_memories]\\n)\\n\\nrunner = Runner(\\n    agent=agent,\\n    app_name=APP_NAME,\\n    session_service=session_service,\\n    memory_service=VertexAiMemoryBankService(\\n        agent_engine_id=AGENT_ENGINE_ID,\\n        project=PROJECT,\\n        location=LOCATION\\n    )\\n)\"\n    },\n    {\n      \"description\": \"ADK agent using a custom tool to extract memories from the conversation and trigger consolidation with Agent Engine Memory Bank\",\n      \"language\": \"python\",\n      \"code\": \"def extract_memories(query: str, tool_context: ToolContext):\\n    \\\"\\\"\\\"Triggers memory generation to remember information.\\n\\n    Args:\\n        query: Meaningful information that should be persisted about the user.\\n    \\\"\\\"\\\"\\n    client.agent_engines.memories.generate(\\n        name=\\\"projects/.../locations/...reasoningEngines/...\",\\n        # The meaningful information is already extracted from the conversation, so we\\n        # just want to consolidate it with existing memories for the same user.\\n        direct_memories_source={\\n            \\\"direct_memories\\\": [{\\“fact\\\\\": query}]\\n        },\\n        scope={\\n            \\\"user_id\\\": tool_context._invocation_context.user_id,\\n            \\\"app_name\\\": tool_context._invocation_context.app_name\\n        },\\n        config={\\\"wait_for_completion\\\": False}\\n    )\\n    return {\\\"status\\\": \\\"success\\\"}\\n\\nagent = LlmAgent(\\n    tools=[extract_memories]\\n)\"\n    },\n        {\n      \"description\": \"Retrieve memories at the start of every turn with ADK using a built-in tool or custom callback\",\n      \"language\": \"python\",\n      \"code\": \"# Option 1: Use the built-in PreloadMemoryTool which retrieves memories with\\n# similarity search every turn.\\nagent = LlmAgent(\\n    tools=[adk.tools.preload_memory_tool.PreloadMemoryTool()]\\n)\\n\\n# Option 2: Use a custom callback to have more control over how memories\\n# are retrieved.\\ndef retrieve_memories_callback(callback_context, llm_request):\\n    user_id = callback_context._invocation_context.user_id\\n    app_name = callback_context._invocation_context.app_name\\n\\n    response = client.agent_engines.memories.retrieve(\\n        name=\\\"projects/.../locations/...reasoningEngines/...\",\\n        scope={\\n            \\\"user_id\\\": user_id,\\n            \\\"app_name\\\": app_name\\n        }\\n    )\\n\\n    memories = [f\\\"* {memory.memory.fact}\\\" for memory in list(response)]\\n    if not memories:\\n        # No memories to add to System Instructions.\\n        return\\n\\n    # Append formatted memories to the System Instructions\\n    llm_request.config.system_instruction += \\\"\\\\nHere is information that you have about the user:\\\\n\\\"\\n    llm_request.config.system_instruction += \\\"\\\\n\\\".join(memories)\\n\\nagent = LlmAgent(\\n    ...\\n    before_model_callback=retrieve_memories_callback,\\n)\"\n    },\n    {\n      \"description\": \"Configure your ADK agent to decide when memories should be retrieved using a built-in or custom tool\",\n      \"language\": \"python\",\n      \"code\": \"# Option 1: Use the built-in LoadMemory.\\nagent = LlmAgent(\\n    tools=[adk.tools.load_memory_tool.LoadMemoryTool()]\\n)\\n\\n# Option 2: Use a Custom tool where you can describe what type of information\\n# might be available.\\ndef load_memory(query: str, tool_context: ToolContext):\\n    \\\"\\\"\\\"Retrieves memories for the user.\\n\\n    The following types of information may be stored for the user:\\n        * User preferences, like the user's favorite foods.\\n    \\\"\\\"\\\"\\n    # Retrieve memories using similarity search.\\n    response = tool_context.search_memory(query)\\n    return response.memories\\n\\nagent = LlmAgent(\\n    tools=[load_memory],\\n)\"\n    }\n  ],\n  \"key_takeaways\": [\n    \"Context Engineering 是构建智能化 LLM Agent 的关键环节\",\n    \"Sessions 用于管理单个会话的状态，而 Memory 用于长期持久化\",\n    \"Memory Management 涉及 Extraction、Consolidation、Storage 和 Retrieval 等复杂流程\",\n    \"需要考虑 Security、Privacy 和 Performance 等生产环境因素\"\n  ]\n}\n"
+  },
+  "04_agent_quality": {
+    "title": "Agent Quality",
+    "summary": "本白皮书提出了在非确定性世界中评估 Agent Quality 的新框架，强调 Observability、评估的持续循环以及从验证到价值判断的转变。",
+    "core_concepts": [
+      {
+        "name": "Agent Quality Flywheel",
+        "definition": "Agent Quality Flywheel 是一个自增强系统，通过持续评估驱动 Agent Quality 的提升。它包含四个步骤：定义质量 (Define Quality)、仪器化以实现可见性 (Instrument for Visibility)、评估过程 (Evaluate the Process) 和构建反馈循环 (Architect the Feedback Loop)。",
+        "key_points": [
+          "飞轮的每个步骤都增强了其他步骤，形成一个正向循环",
+          "Instrumentation for Visibility 是关键，它提供了测量 Four Pillars 所需的丰富证据",
+          "Evaluate the Process 涉及对最终输出和整个推理过程进行战略性的“outside-in”评估"
+        ]
+      },
+      {
+        "name": "Four Pillars of Agent Quality",
+        "definition": "Four Pillars of Agent Quality 是 Agent Quality 的四个相互关联的支柱：有效性 (Effectiveness)、效率 (Efficiency)、稳健性 (Robustness) 和安全与对齐 (Safety & Alignment)。它们为 Agent Quality 的评估提供了全面的框架。",
+        "key_points": [
+          "Effectiveness 衡量 Agent 是否成功实现了用户的实际意图",
+          "Efficiency 衡量 Agent 解决问题所需的资源消耗",
+          "Robustness 衡量 Agent 如何处理逆境和现实世界的混乱",
+          "Safety & Alignment 确保 Agent 在定义的道德边界和约束内运作"
+        ]
+      },
+      {
+        "name": "Observability",
+        "definition": "Observability 是洞察 Agent 内部“思维过程”的能力。它基于三个支柱：日志 (Logs)、追踪 (Traces) 和指标 (Metrics)，它们共同提供了对 Agent 行为、效率和有效性的清晰、数据驱动的视图。",
+        "key_points": [
+          "Logs 是 Agent 日记中的时间戳条目，记录了离散事件",
+          "Traces 将单个日志缝合到完整的端到端视图中，揭示了事件之间的因果关系",
+          "Metrics 是聚合的健康评分，用于快速了解 Agent 的整体性能"
+        ]
+      },
+      {
+        "name": "Outside-In Evaluation Hierarchy",
+        "definition": "Outside-In Evaluation Hierarchy 是一种战略评估方法，它优先考虑最终结果的 real-world 成功，然后再深入研究技术细节。它涉及两个阶段：首先使用黑盒方法，然后再开放它以进行更详细的分析。",
+        "key_points": [
+          "它从评估 Agent 是否实现了用户的目标开始",
+          "如果 Agent 未能成功，则使用“inside-out”视图分析组件",
+          "有助于避免陷入组件级指标的海洋中"
+        ]
+      },
+      {
+        "name": "LLM-as-a-Judge Paradigm",
+        "definition": "LLM-as-a-Judge Paradigm 涉及使用一个强大的、state-of-the-art 模型（如 Google 的 Gemini Advanced）来评估另一个 Agent 的输出。这种方法提供可扩展、快速且令人惊讶的细致反馈。",
+        "key_points": [
+          "它允许快速评估数千个场景的性能",
+          "可以有效地评估 Agent “Thought”的质量",
+          "不取代人工判断，而是使得迭代评估过程可行"
+        ]
+      },
+      {
+        "name": "Agent-as-a-Judge",
+        "definition": "Agent-as-a-Judge 范例使用一个 Agent 来评估另一个 Agent 的完整执行轨迹。这种方法超越了仅评估输出，而是评估了整个过程。",
+        "key_points": [
+          "这种方法对于过程评估特别有价值，在这些过程中，失败通常是由于有缺陷的中间步骤而不是最终输出引起的",
+          "关键评估维度包括计划质量 (Plan Quality)、工具使用 (Tool use) 和上下文处理 (Context handling)"
+        ]
+      },
+      {
+        "name": "System Metrics vs. Quality Metrics",
+        "definition": "系统指标 (System Metrics) 是可直接衡量的，用于衡量运营健康的指标，而质量指标 (Quality Metrics) 则是应用 Judgment Frameworks 导出的 second-order 指标，用于评估 Agent 的推理和最终输出质量。",
+        "key_points": [
+          "System Metrics 包括 Latency, Error Rates, API Costs 和 Token Consumption",
+          "Quality Metrics 包括 Correctness & Accuracy, Trajectory Adherence, Safety & Responsibility 和 Helpfulness & Relevance"
+        ]
+      },
+      {
+        "name": "OpenTelemetry",
+        "definition": "一个开源的可观测性框架，提供标准化接口来生成和收集 metrics、logs 和 traces 数据。",
+        "key_points": [
+          "Span：trace 中单独的命名操作 (例如，llm_call span，tool_execution span)。",
+          "Attribute：附加到每个 span 的丰富元数据 prompt_id、latency_ms、token_count、user_id 等。",
+          "Context Propagation：通过一个唯一的 trace_id，链接 span 的 magic，允许 Google Cloud Trace 等后端组装完整的图片。"
+        ]
+      }
+    ],
+    "best_practices": [
+      {
+        "practice": "Output Regression Test",
+        "description": "使用 Agent Development Kit (ADK) 构建 Output Regression Test。 当你收到想要设置为基准的理想响应时，将整个交互保存为 Eval Case。",
+        "example": "使用 `adk eval` 或 `pytest` 针对此保存的答案自动检查未来的 Agent 版本。"
+      },
+      {
+        "practice": "Pairwise Comparison for LLM-as-a-Judge",
+        "description": "优先考虑 pairwise comparison 而不是 single-scoring，以减轻 exact biases。对 evaluation set 的 Prompts 运行两个不同的 Agent 版本，并创建 LLM judge 来强制做出选择。",
+        "example": "“根据这个 User Query，哪个回复更有帮助：A 还是 B？ 解释你的推理。” 可以可扩展地计算新 Agent 的 win/loss/tie 率。"
+      },
+      {
+        "practice": "Implement Guardrails as Plugins",
+        "description": "将 Guardrails 实现为结构化的 `Plugin`，而不是隔离的函数。这种模式中，callback 是该机制 (ADK 提供的 hook)，而 Plugin 是你构建的可重用模块。",
+        "example": "Plugin 的 `check_input_safety()` 方法会注册 `before_model_callback`。Plugin 的 `check_output_pii()` 方法会注册 `after_model_callback`。"
+      },
+      {
+        "practice": "Dynamic Sampling",
+        "description": "使用 high-granularity logging (DEBUG level) 在开发环境中。在生产中，设置较低的默认日志级别 (INFO)，但实施动态采样。",
+        "example": "例如，可以决定仅跟踪 10% 的成功请求，但 100% 跟踪所有错误。"
+      }
+    ],
+    "architecture_patterns": [
+      {
+        "pattern": "黑盒评估 (Black Box Evaluation)",
+        "description": "评估 Agent 的最终结果，而不考虑其内部运作。",
+        "use_case": "快速确定 Agent 是否实现了用户的意图"
+      },
+      {
+        "pattern": "玻璃盒评估 (Glass Box Evaluation)",
+        "description": "分析 Agent 的内部过程和决策过程。",
+        "use_case": "识别性能问题和安全风险的根本原因"
+      },
+      {
+        "pattern": "中断工作流 (Interruption Workflow)",
+        "description": "配置 Agent 以在提交到 high-stakes 工具调用之前暂停其执行。将 Agent 的状态和计划的操作显示在 Reviewer Ul 中，其中人工操作员必须手动批准或拒绝该步骤，然后才能允许 Agent 继续操作。",
+        "use_case": "运行时安全，确保 Agent 操作符合预期。"
+      }
+    ],
+    "code_snippets": [
+      {
+        "description": "结构化的 Log 条目示例",
+        "language": "python",
+        "code": "{\n \"parts\":[{\"text\":\"Roll a 6 sided dice\"}), \"role\":\"user\"}\n {\"parts\":[{\"function_call\":{\"args\":{\"sides\":6},\"name\":\"roll_die\"}}],\"role\":\"model\"}\n {\"parts\":[{\"function_response\":{\"name\":\"roll_die\", \"response\":{\"result\":2}}}],\"role\":\"user\"}\n}"
+      }
+    ],
+    "key_takeaways": [
+      "Agent Quality 需要一种新的方法，超越传统的软件质量保证方法",
+      "Observability 是评估 Agent Quality 的基础",
+      "Agent Quality 的评估应是一个持续的循环，而不是一个 final 的步骤",
+      "Human Judgment 在评估 Agent Quality 方面仍然至关重要",
+      "将评估作为架构支柱进行处理"
+    ]
+  },
+  "05_prototype_to_production": {
+    "title": "Prototype to Production",
+    "summary": "本文档概述了将AI Agent从原型到生产环境部署的关键步骤和最佳实践，强调自动化、安全性和互操作性，旨在帮助Al/ML工程师、DevOps专业人员和系统架构师。",
+    "core_concepts": [
+      {
+        "name": "Evaluation-Gated Deployment",
+        "definition": "强调任何Agent版本在没有通过全面的评估测试之前，不应该被发布给用户。这种预生产阶段的目标是将手动的不确定性替换为自动化的信心。",
+        "key_points": [
+          "Rigorous evaluation process",
+          "Automated CI/CD pipeline",
+          "Safe rollout strategies"
+        ]
+      },
+      {
+        "name": "CI/CD Pipeline for AI Agents",
+        "definition": "AI Agent包含代码、prompt、工具定义和配置文件，CI/CD pipeline 用于确保这些组件的质量和一致性，通过分阶段测试，在Agent发布给用户之前建立信心。",
+        "key_points": [
+          "Pre-Merge Integration (CI)",
+          "Post-Merge Validation in Staging (CD)",
+          "Gated Deployment to Production"
+        ]
+      },
+      {
+        "name": "Infrastructure as Code (laC)",
+        "definition": "使用Terraform等工具以编程方式定义环境，确保环境的相同性、可重复性和版本控制。",
+        "key_points": [
+          "Terraform configurations for complete agent infrastructure including Vertex AI, Cloud Run, and BigQuery resources"
+        ]
+      },
+      {
+        "name": "Secure Al Agents (SAIF)",
+        "definition": "构建安全AI Agent的框架，通过三层防御来应对Agent的独特风险。",
+        "key_points": [
+          "Policy Definition and System Instructions (The Agent's Constitution)",
+          "Guardrails, Safeguards, and Filtering (The Enforcement Layer)",
+          "Continuous Assurance and Testing"
+        ]
+      },
+      {
+        "name": "AgentOps Lifecycle",
+        "definition": "运营Al Agents的核心方法论，包括观察(Observe)，行动(Act)和进化(Evolve)三个阶段，用于保证 Al Agents 的可靠，安全和高效。",
+        "key_points": [
+          "Observe: Your Agent's Sensory System",
+          "Act: The Levers of Operational Control",
+          "Evolve: Learning from Production"
+        ]
+      },
+      {
+        "name": "A2A (Agent2Agent) Protocol",
+        "definition": "用于智能Agent之间进行复杂、有状态的协作的协议，通过Agent Cards来实现Agent的发现和连接。",
+        "key_points": [
+          "Agent Cards (standardized JSON specifications)",
+          "Distributed tracing",
+          "State management"
+        ]
+      },
+      {
+        "name": "MCP (Model Context Protocol)",
+        "definition": "提供工具集成的通用标准，适用于简单、无状态的函数，例如获取天气数据或查询数据库。",
+        "key_points": [
+          "Tools and resources—primitives with well-defined, structured inputs and outputs"
+        ]
+      }
+    ],
+    "best_practices": [
+      {
+        "practice": "Safe Rollout Strategies",
+        "description": "通过渐进式发布降低风险，并进行仔细监控。",
+        "example": "Canary, Blue-Green, A/B Testing, Feature Flags"
+      },
+      {
+        "practice": "Managing Risk: The Security Response Playbook",
+        "description": "制定快速containment的剧本，当检测到威胁时，响应应遵循一个清晰的序列：contain，triage，and resolve。",
+        "example": "使用“circuit breaker”立即禁用受影响的工具"
+      }
+    ],
+    "architecture_patterns": [
+      {
+        "pattern": "Layered Architecture (A2A and MCP)",
+        "description": "最强大的agentic 系统在分层架构中使用这两种协议。应用程序可能主要使用A2A来协调多个智能代理之间的高级协作，而每个代理在内部使用MCP与其自身特定的一组工具和资源进行交互。",
+        "use_case": "多个智能Agent的协作"
+      },
+      {
+        "pattern": "Tool Registry",
+        "description": "使用类似MCP的协议来编目所有资产，从函数到API。创建精选列表，而不是让代理访问数千个工具，从而产生三种常见的模式：Generalist agents, Specialist agents, Dynamic agents.",
+        "use_case": "大规模工具管理"
+      }
+    ],
+    "code_snippets": [
+      {
+        "description": "A sample agent card for the check_prime_agent",
+        "language": "python",
+        "code": "{\n  \"name\": \"check_prime_agent\",\n  \"version\": \"1.0.0\",\n  \"description\": \"An agent specialized in checking whether numbers are prime\",\n  \"capabilities\": {},\n  \"securitySchemes\": {\n    \"agent_oauth_2_0\": {\n      \"type\": \"oauth2\",\n    }\n  },\n  \"defaultInputModes\": [\"text/plain\"],\n  \"defaultOutputModes\": [ \"application/json\"],\n  \"skills\": [\n    {\n      \"id\": \"prime_checking\",\n      \"name\": \"Prime Number Checking\",\n      \"description\": \"Check if numbers are prime using efficient algorithms\",\n      \"tags\": [\"mathematical\", \"computation\", \"prime\"]\n    }\n  ],\n  \"url\": \"http://localhost:8001/a2a/check_prime_agent\"\n}"
+      },
+      {
+        "description": "Using the ADK's to_a2a utility to wrap an existing agent and expose it for A2A communication",
+        "language": "python",
+        "code": "# Example using ADK: Exposing an agent via A2A\nfrom google.adk.a2a.utils.agent_to_a2a import to_a2a\n\n# Your existing agent\nroot_agent = Agent(\n    name='hello_world_agent',\n    # your agent code ...\n)\n\n# Make it A2A-compatible\na2a_app = to_a2a(root_agent, port=8001)\n\n# Serve with uvicorn\n# uvicorn agent:a2a_app --host localhost --port 8001\n# Or serve with Agent Engine\n# from vertexai.preview.reasoning_engines import A2aAgent\n# from google.adk.a2a.executor.a2a_agent_executor import A2aAgentExecutor\n# a2a_agent = A2aAgent(\n#     agent_executor_builder=lambda: A2aAgentExecutor(agent=root_agent)\n# )"
+      },
+      {
+        "description": "Using the ADK's RemoteA2aAgent class to connect to and consume a remote agent",
+        "language": "python",
+        "code": "# Example using ADK: Consuming a remote agent via A2A\nfrom google.adk.agents.remote_a2a_agent import RemoteA2aAgent\n\nprime_agent = RemoteA2aAgent(\n    name=\"prime_agent\",\n    description=\"Agent that handles checking if numbers are prime.\",\n    agent_card=\"http://localhost:8001/a2a/check_prime_agent/\\.well-known/agent-card.json\"\n)"
+      },
+      {
+        "description": "Using a remote A2A agent (prime_agent) as a sub-agent within a hierarchical agent structure in the ADK",
+        "language": "python",
+        "code": "# Example using ADK: Hierarchical agent composition\n# ADK Local sub-agent for dice rolling\nroll_agent = Agent(\n    name=\"roll_agent\",\n    instruction=\"You are an expert at rolling dice.\"\n)\n\n# ADK Remote A2A agent for prime checking\nprime_agent = RemoteA2aAgent(\n    name=\"prime_agent\",\n    agent_card=\"http://localhost:8001/\\.well-known/agent-card.json\"\n)\n\n# ADK Root orchestrator combining both\nroot_agent = Agent(\n    name=\"root_agent\",\n    instruction='\"Delegate rolling dice to roll_agent, prime checking to prime_agent.\"'\",\n    sub_agents=[roll_agent, prime_agent]\n)"
+      }
+    ],
+    "key_takeaways": [
+      "构建 Al Agents 需要关注 infrastructure, security, validation, 而不仅仅是核心智能",
+      "需要构建 Automated Evaluation, Automated Deployment (CI/CD), 和 Comprehensive Observability 的基石",
+      "要实现 Al Agents 之间的互操作性，需要遵循 A2A 和 MCP 协议"
+    ]
+  }
+}

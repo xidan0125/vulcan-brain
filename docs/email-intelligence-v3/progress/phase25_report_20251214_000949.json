@@ -1,0 +1,396 @@
+{
+  "timestamp": "2025-12-14T00:09:49.549829",
+  "summary": {
+    "total": 5,
+    "success": 3,
+    "failed": 2,
+    "success_rate": 0.6
+  },
+  "doc_type_distribution": {
+    "其他": 2,
+    "未知": 1
+  },
+  "fact_type_distribution": {
+    "金额": 1,
+    "联系方式": 8,
+    "地址": 5,
+    "日期": 5,
+    "其他": 18,
+    "公司": 2,
+    "时间": 1,
+    "人名": 1,
+    "条款": 1
+  },
+  "results": [
+    {
+      "filename": "Resume - Ms.Yin Nyein Oo.pdf",
+      "email_subject": "Application for the “ Senior Accountant” position",
+      "email_intent": "UNKNOWN",
+      "success": true,
+      "error": null,
+      "duration_seconds": 58.860061,
+      "extraction": {
+        "document_type": "其他",
+        "facts": [
+          {
+            "type": "金额",
+            "key": "薪资",
+            "value": "2500-3500",
+            "unit": "SGD",
+            "context": "薪资范围"
+          },
+          {
+            "type": "联系方式",
+            "key": "邮箱",
+            "value": "yinnyeinoo54@gmail.com",
+            "unit": null,
+            "context": "电子邮箱"
+          },
+          {
+            "type": "联系方式",
+            "key": "电话",
+            "value": "+959 759286546",
+            "unit": null,
+            "context": "联系电话"
+          },
+          {
+            "type": "地址",
+            "key": "地址",
+            "value": "Blk 715 Jurong West Street 71",
+            "unit": null,
+            "context": "居住地址"
+          },
+          {
+            "type": "日期",
+            "key": "工作时间",
+            "value": "June 2022 – February 2024",
+            "unit": null,
+            "context": "工作经历时间"
+          },
+          {
+            "type": "其他",
+            "key": "公司",
+            "value": "Consumer Goods Myanmar Co., Ltd",
+            "unit": null,
+            "context": "工作经历中的公司名称"
+          },
+          {
+            "type": "其他",
+            "key": "职位",
+            "value": "Accounts Executive",
+            "unit": null,
+            "context": "工作经历中的职位"
+          },
+          {
+            "type": "其他",
+            "key": "教育背景",
+            "value": "Association of Chartered Accountant",
+            "unit": null,
+            "context": "专业资格"
+          },
+          {
+            "type": "其他",
+            "key": "教育课程",
+            "value": "Accountant in Business (AB, ACCA Part 1) (Studying)",
+            "unit": null,
+            "context": "相关课程"
+          },
+          {
+            "type": "其他",
+            "key": "教育课程",
+            "value": "Management Accounting (MA, ACCA Part 1) (Studying)",
+            "unit": null,
+            "context": "相关课程"
+          },
+          {
+            "type": "其他",
+            "key": "教育课程",
+            "value": "Financial Accounting (FA, ACCA Part 1) (Exemption)",
+            "unit": null,
+            "context": "相关课程"
+          },
+          {
+            "type": "其他",
+            "key": "语言",
+            "value": "English, Burmese",
+            "unit": null,
+            "context": "语言能力"
+          },
+          {
+            "type": "其他",
+            "key": "国籍",
+            "value": "Myanmar",
+            "unit": null,
+            "context": "国籍"
+          },
+          {
+            "type": "其他",
+            "key": "性别",
+            "value": "Female",
+            "unit": null,
+            "context": "性别"
+          },
+          {
+            "type": "其他",
+            "key": "宗教",
+            "value": "Buddhist",
+            "unit": null,
+            "context": "宗教信仰"
+          },
+          {
+            "type": "其他",
+            "key": "婚姻状况",
+            "value": "Single",
+            "unit": null,
+            "context": "婚姻状况"
+          },
+          {
+            "type": "日期",
+            "key": "工作经历时间",
+            "value": "May 2020 - Apr 2022",
+            "unit": null,
+            "context": "Accounts Assistant工作经历时间"
+          },
+          {
+            "type": "公司",
+            "key": "工作单位",
+            "value": "Tri Engineering Co., Ltd",
+            "unit": null,
+            "context": "Accounts Assistant工作单位"
+          },
+          {
+            "type": "公司",
+            "key": "培训单位",
+            "value": "Stairway Academy Co., Ltd",
+            "unit": null,
+            "context": "Job Training for Professional Accountant培训单位"
+          },
+          {
+            "type": "地址",
+            "key": "培训地址",
+            "value": "Yangon, Myanmar",
+            "unit": null,
+            "context": "Stairway Academy Co., Ltd地址"
+          },
+          {
+            "type": "其他",
+            "key": "会计相关证书",
+            "value": "LCCI Level-3 Diploma in Accounting and Finance",
+            "unit": null,
+            "context": "会计和金融文凭"
+          },
+          {
+            "type": "其他",
+            "key": "会计相关证书",
+            "value": "Certificate of Job Training for Professional Accountant",
+            "unit": null,
+            "context": "专业会计师培训证书"
+          },
+          {
+            "type": "其他",
+            "key": "IT相关证书",
+            "value": "Certificate of Information Technology",
+            "unit": null,
+            "context": "信息技术证书"
+          },
+          {
+            "type": "其他",
+            "key": "会计软件证书",
+            "value": "Certificate of Computerized Accounting Training (QNE) Software",
+            "unit": null,
+            "context": "计算机化会计培训证书"
+          },
+          {
+            "type": "其他",
+            "key": "Excel应用证书",
+            "value": "Certificate of Microsoft Excel in Business Application",
+            "unit": null,
+            "context": "Microsoft Excel商业应用证书"
+          },
+          {
+            "type": "联系方式",
+            "key": "联系电话",
+            "value": "+959 782515306",
+            "unit": null,
+            "context": "Mr. Nay Lin Aung (Nay Lin Aung Finance & Accountancy Academy Co., Ltd)"
+          },
+          {
+            "type": "联系方式",
+            "key": "联系电话",
+            "value": "+959 420248122",
+            "unit": null,
+            "context": "Ms. Ohnmar Tun (Consumer Goods Myanmar Co., Ltd)"
+          },
+          {
+            "type": "联系方式",
+            "key": "电子邮箱",
+            "value": "anml.acca@gmail.com",
+            "unit": null,
+            "context": "Ms. Aye Mya Lwin (Stairway Academy Co., Ltd & Ex-Audit Manager, International Business Management Consultants Pte Ltd, Singapore)"
+          },
+          {
+            "type": "联系方式",
+            "key": "联系电话",
+            "value": "+959 799841619",
+            "unit": null,
+            "context": "Ms. Aye Mya Lwin (Stairway Academy Co., Ltd & Ex-Audit Manager, International Business Management Consultants Pte Ltd, Singapore)"
+          }
+        ],
+        "entities": {
+          "companies": [
+            "Consumer Goods Myanmar Co., Ltd",
+            "Stairway Academy Co., Ltd",
+            "International Business Management Consultants Pte Ltd",
+            "Tri Engineering Co., Ltd",
+            "Nay Lin Aung Finance & Accountancy Academy Co., Ltd"
+          ],
+          "products": [],
+          "persons": [
+            "Ms. Aye Mya Lwin",
+            "Ms. Ohnmar Tun",
+            "MS. YIN NYEIN OO",
+            "Mr. Nay Lin Aung"
+          ]
+        },
+        "summary": "一份会计职位的简历，包含工作经历、教育背景及个人信息。",
+        "pages_processed": 3
+      }
+    },
+    {
+      "filename": "Circular _ (MBFC T2) _Fire Evacuation Drill on 24 October 2025.pdf",
+      "email_subject": "Circular - (MBFC T2) - Fire Evacuation Drill on 24",
+      "email_intent": "UNKNOWN",
+      "success": true,
+      "error": null,
+      "duration_seconds": 35.57621,
+      "extraction": {
+        "document_type": "其他",
+        "facts": [
+          {
+            "type": "日期",
+            "key": "消防演习日期",
+            "value": "24 October 2025",
+            "context": "FIRE EVACUATION DRILL (FRIDAY, 24 October 2025)"
+          },
+          {
+            "type": "日期",
+            "key": "延期日期",
+            "value": "07 November 2025",
+            "context": "In the event the weather does not permit for the drill to be conducted on the designated date, it will be postponed to 07 November 2025."
+          },
+          {
+            "type": "地址",
+            "key": "建筑地址",
+            "value": "10 Marina Boulevard, Marina Bay Financial Centre Tower 2, #08-01, Singapore 018983",
+            "context": "10 Marina Boulevard, Marina Bay Financial Centre Tower 2, #08-01, Singapore 018983"
+          },
+          {
+            "type": "联系方式",
+            "key": "DID",
+            "value": "6654 1592",
+            "context": "DID: 6654 1592"
+          },
+          {
+            "type": "联系方式",
+            "key": "FAX",
+            "value": "6634 9262",
+            "context": "FAX: 6634 9262"
+          },
+          {
+            "type": "日期",
+            "key": "简报会日期",
+            "value": "08 October 2025, 16 October 2025, 22 October 2025",
+            "context": "Briefing Sessions for Fire Wardens"
+          },
+          {
+            "type": "时间",
+            "key": "简报会时间",
+            "value": "3pm to 4.30pm, 2pm to 3.30pm, 11am to 12.30pm",
+            "context": "Briefing Sessions for Fire Wardens"
+          },
+          {
+            "type": "地址",
+            "key": "简报会地点",
+            "value": "T2 Training Room",
+            "context": "Briefing Sessions for Fire Wardens"
+          },
+          {
+            "type": "其他",
+            "key": "管理方",
+            "value": "BFC Development LLP",
+            "context": "BFC Development LLP"
+          },
+          {
+            "type": "人名",
+            "key": "联系人",
+            "value": "Jason Tan",
+            "context": "Fire Safety Manager"
+          },
+          {
+            "type": "地址",
+            "key": "地址",
+            "value": "Marina Bay Financial Centre, Marina Bay Residences, Tower 1, Tower 2, Tower 3, The Promontory @ Marina Bay, The Lawn @ Marina Bay, Downtown Station (Downtown Line), Marina Boulevard, Straits View, Marina View",
+            "unit": null,
+            "context": "地图中显示的区域及地点名称"
+          },
+          {
+            "type": "其他",
+            "key": "集合区",
+            "value": "Assembly Area",
+            "unit": null,
+            "context": "疏散路线中的集合区域"
+          },
+          {
+            "type": "条款",
+            "key": "Note",
+            "value": "Fire Warden shall maintain up-to-date name list of employees in the respective floor or unit. If there is insufficient space, please prepare a separate list.",
+            "unit": "",
+            "context": "Note"
+          }
+        ],
+        "entities": {
+          "companies": [
+            "BFC Development LLP",
+            "Raffles Quay Asset Management Pte Ltd",
+            "Marina Bay Financial Centre"
+          ],
+          "products": [],
+          "persons": [
+            "Jason Tan"
+          ]
+        },
+        "summary": "通知Marina Bay Financial Centre Tower 2租户关于2025年10月24日的消防疏散演习及相关安排。",
+        "pages_processed": 3
+      }
+    },
+    {
+      "filename": "SINIR06094668.pdf",
+      "email_subject": "Your latest DHL invoice: SINIR06094668 for account",
+      "email_intent": "UNKNOWN",
+      "success": false,
+      "error": "Unterminated string starting at: line 141 column 7 (char 2901)",
+      "duration_seconds": 36.037438,
+      "extraction": null
+    },
+    {
+      "filename": "image001.png",
+      "email_subject": "RE: 回复：RE: 海运订舱/FCA 上海工厂 S399273308 EHO 6395988584",
+      "email_intent": "UNKNOWN",
+      "success": false,
+      "error": "Expecting value: line 155 column 40 (char 3682)",
+      "duration_seconds": 35.565874,
+      "extraction": null
+    },
+    {
+      "filename": "28Oct2024 proposal for Battery Room.xlsx",
+      "email_subject": "RE: RFQ for Insulation installation works ",
+      "email_intent": "UNKNOWN",
+      "success": true,
+      "error": null,
+      "duration_seconds": 0.217319,
+      "extraction": {
+        "error": "不支持的文件类型: .xlsx"
+      }
+    }
+  ]
+}

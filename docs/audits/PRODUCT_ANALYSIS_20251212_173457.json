@@ -1,0 +1,308 @@
+{
+  "product_summary": "Vulcan Brain是一个企业级AI智能中枢和自动化平台。它通过深度整合公司内部的通信工具（如邮件、飞书群聊）和业务系统（如审批、项目管理），将海量非结构化数据提炼为结构化的、可行动的商业洞察。该产品旨在为管理层提供一个统一的“信息中心”（InfoHub），并通过一系列具备特定领域知识的AI代理（Agent）来辅助决策、自动化报告生成和执行复杂任务，扮演着“AI数字幕僚”或“管理层AI副驾驶”的角色。",
+  "core_value_proposition": "解决企业内部信息过载和数据孤岛问题。通过AI技术自动从日常沟通和工作中挖掘、汇总、分析关键信息，将管理者从繁杂的信息检索和报告整理中解放出来，提供实时、深入的业务洞察，从而提升决策效率和质量。",
+  "feature_inventory": [
+    {
+      "name": "信息中心 (InfoHub) & 每日报告",
+      "description": "产品的核心仪表盘，自动聚合来自邮件、聊天、审批、人员和项目维度的信息，并生成每日AI洞察报告。用户可以按日期导航，并下钻到每个维度的详细数据。",
+      "status": "production",
+      "completeness": 90,
+      "key_files": [
+        "api/info_hub/daily.py",
+        "services/daily_report.py",
+        "services/chat_summarizer.py",
+        "services/email_summarizer.py",
+        "vulcan-ui/src/app/info-hub/daily-report/page.tsx"
+      ],
+      "dependencies": [
+        "mongodb",
+        "ms365",
+        "feishu"
+      ],
+      "user_value": "为管理者提供每日业务活动的全景视图，通过AI摘要快速把握关键动态、决策和风险，极大节省跨系统查阅信息的时间。"
+    },
+    {
+      "name": "邮件智能分析 (Email Intelligence)",
+      "description": "通过连接MS365邮箱，自动提取邮件中的实体（人、公司、项目）和它们之间的关系，构建企业知识图谱。前端提供关系图可视化界面，帮助用户发现隐藏的商业联系和情报。",
+      "status": "beta",
+      "completeness": 85,
+      "key_files": [
+        "email_intel_api.py",
+        "services/email_intelligence_service.py",
+        "services/email_intelligence_v2/extractors/master_extractor.py",
+        "scripts/email_pipeline.py",
+        "vulcan-ui/src/app/email-intel/page.tsx"
+      ],
+      "dependencies": [
+        "mongodb",
+        "ms365",
+        "lightrag (internal library)"
+      ],
+      "user_value": "将非结构化的邮件通信转化为结构化情报，对销售、业务拓展和管理层了解组织内外动态关系网非常有价值。"
+    },
+    {
+      "name": "飞书机器人与工作流集成",
+      "description": "深度集成飞书（Lark），提供一个功能强大的机器人。它能处理消息和菜单命令，并能主动推送日报、审批请求、任务更新等内容的交互式卡片。用户可以直接在飞书内完成审批等操作。",
+      "status": "production",
+      "completeness": 95,
+      "key_files": [
+        "feishu/gateway.py",
+        "feishu/scheduler.py",
+        "feishu/handlers/approval_handler.py",
+        "feishu/handlers/message_handler.py",
+        "feishu/cards/approval_cards.py"
+      ],
+      "dependencies": [
+        "feishu API",
+        "mongodb"
+      ],
+      "user_value": "将AI洞察和业务流程无缝嵌入到用户的日常工作流中，实现“在聊天中工作”，提高了操作的便捷性和响应速度。"
+    },
+    {
+      "name": "领域专家AI代理 (Specialized AI Agents)",
+      "description": "提供四种具有预设角色和专业能力的AI代理：财务投资、HR管理、替身写作、业务雷达。每个代理都有详细的系统提示词来定义其专家身份和工作原则，支持流式对话和代码执行能力。",
+      "status": "beta",
+      "completeness": 75,
+      "key_files": [
+        "agent_prompts.py",
+        "api/routers/agent_router.py",
+        "vulcan-ui/src/app/agents/page.tsx",
+        "vulcan-ui/src/app/components/agents/AgentChatPageLOD.tsx"
+      ],
+      "dependencies": [
+        "Ollama/Gemini LLM",
+        "Acontext",
+        "Code Execution Sandbox"
+      ],
+      "user_value": "提供超越通用聊天机器人的、特定领域的专家级AI辅助，帮助用户完成专业的分析、写作和监控任务。"
+    },
+    {
+      "name": "双脑AI内核 (Bicameral Mind)",
+      "description": "一个先进的AI代理架构，模仿人类左右脑协作。它将负责高级规划、推理的“CEO脑”与负责执行代码、调用工具的“CTO脑”分离。该架构基于LangGraph实现，并使用PostgreSQL进行状态持久化，能够处理需要多步规划和执行的复杂任务。",
+      "status": "beta",
+      "completeness": 70,
+      "key_files": [
+        "bicameral_api.py",
+        "kernel_bicameral_v5.py",
+        "vulcan_libs/bicameral_graph.py",
+        "vulcan_libs/cto_executor.py",
+        "vulcan_libs/checkpointer.py"
+      ],
+      "dependencies": [
+        "LangGraph",
+        "PostgreSQL",
+        "Ollama/Gemini LLM",
+        "Code Execution Sandbox"
+      ],
+      "user_value": "赋予AI解决复杂问题的能力，使其能够自主规划、编写并执行代码来完成数据分析等任务，能力远超普通问答机器人。"
+    },
+    {
+      "name": "用户认证与AI个性化 (Auth & Soul)",
+      "description": "提供基于JWT的用户登录认证系统。其特色是“灵魂（Soul）”模块，允许用户通过“创世问答”和制定“宪法”来深度定制和校准AI的价值观、沟通风格和行为红线，从而建立用户与AI之间的信任。",
+      "status": "production",
+      "completeness": 85,
+      "key_files": [
+        "auth_api.py",
+        "soul_api.py",
+        "boss_constitution.yaml",
+        "vulcan-ui/src/app/soul/page.tsx",
+        "vulcan-ui/src/app/calibration/page.tsx"
+      ],
+      "dependencies": [
+        "mongodb"
+      ],
+      "user_value": "让AI成为真正符合用户价值观和行事风格的个人代理，而不是一个通用的、无个性的工具。"
+    },
+    {
+      "name": "审批流程管理",
+      "description": "从飞书收集所有审批流程数据，提供API和仪表盘用于查询、统计和分析。用户可以在InfoHub中查看待办、已办审批，并通过飞书卡片快速处理。",
+      "status": "production",
+      "completeness": 95,
+      "key_files": [
+        "approval_api.py",
+        "services/approval_service.py",
+        "services/approval_store.py",
+        "feishu/handlers/approval_handler.py"
+      ],
+      "dependencies": [
+        "mongodb",
+        "feishu API"
+      ],
+      "user_value": "集中管理和分析审批流，提高审批效率，并为管理者提供关于组织流程健康度的洞察。"
+    },
+    {
+      "name": "代码执行沙箱",
+      "description": "为AI代理提供一个安全的Python代码执行环境。AI生成的代码（例如用于数据分析的pandas脚本）在此沙箱中运行，并将结果返回给AI，从而实现程序化工具调用和复杂计算。",
+      "status": "beta",
+      "completeness": 80,
+      "key_files": [
+        "api/routers/code_execution_router.py",
+        "tools/code_executor.py",
+        "mcp_tools/compute/sandbox.py"
+      ],
+      "dependencies": [],
+      "user_value": "极大地扩展了AI的能力边界，使其能执行数据分析、数学计算等传统LLM难以完成的任务。"
+    }
+  ],
+  "integrations": [
+    {
+      "service": "Feishu (Lark)",
+      "purpose": "作为核心的用户交互界面、通知渠道以及聊天和审批数据的来源。",
+      "status": "active"
+    },
+    {
+      "service": "Microsoft 365",
+      "purpose": "用于同步用户邮件和组织架构（人员）数据。",
+      "status": "active"
+    },
+    {
+      "service": "MongoDB",
+      "purpose": "作为主要的业务数据库，存储邮件、聊天、审批、用户、项目等核心业务数据。",
+      "status": "active"
+    },
+    {
+      "service": "PostgreSQL",
+      "purpose": "用于为“双脑AI内核”提供状态持久化和检查点功能。",
+      "status": "active"
+    },
+    {
+      "service": "Acontext",
+      "purpose": "一个外部SaaS服务，用于管理对话会话历史和记录用户体验数据，以供AI学习。",
+      "status": "active"
+    },
+    {
+      "service": "Ollama / Gemini (LLMs)",
+      "purpose": "作为驱动所有AI功能的底层大语言模型引擎。",
+      "status": "active"
+    }
+  ],
+  "data_entities": [
+    {
+      "name": "Email",
+      "description": "从MS365同步的原始邮件、清洗后的正文以及提取的实体和关系。",
+      "storage": "mongodb"
+    },
+    {
+      "name": "ChatMessage",
+      "description": "从飞书群聊中收集的聊天记录。",
+      "storage": "mongodb"
+    },
+    {
+      "name": "Approval",
+      "description": "从飞书同步的审批实例、定义和处理记录。",
+      "storage": "mongodb"
+    },
+    {
+      "name": "Person / User",
+      "description": "员工档案，数据源为MS365，并通过邮件、聊天等活动数据进行丰富。",
+      "storage": "mongodb"
+    },
+    {
+      "name": "Project / Task",
+      "description": "项目和任务信息，用于项目管理和报告。",
+      "storage": "mongodb"
+    },
+    {
+      "name": "DailyReport",
+      "description": "每日生成的、聚合了多维度信息的AI分析报告。",
+      "storage": "mongodb"
+    },
+    {
+      "name": "Soul / Constitution",
+      "description": "用户的AI个性化配置，包括价值观、沟通风格和行为准则。",
+      "storage": "mongodb"
+    },
+    {
+      "name": "BicameralState",
+      "description": "“双脑”AI代理在执行复杂任务时的状态快照。",
+      "storage": "postgresql"
+    },
+    {
+      "name": "ConversationSession",
+      "description": "用户与AI的对话历史记录。",
+      "storage": "Acontext (External API)"
+    }
+  ],
+  "user_journeys": [
+    {
+      "name": "管理者每日晨报",
+      "steps": [
+        "登录系统或在飞书中接收到每日报告推送。",
+        "浏览InfoHub仪表盘，快速了解各维度的核心指标和AI生成的摘要。",
+        "点击进入“聊天”维度，查看重点群聊的决策和待办事项总结。",
+        "切换到“审批”维度，查看待处理审批的数量和类型分布。",
+        "完成晨间信息同步，开始一天的工作。"
+      ],
+      "completeness": 90
+    },
+    {
+      "name": "AI个性化校准",
+      "steps": [
+        "新用户首次登录，进入“灵魂校准”页面。",
+        "完成“创世问答”20题，建立AI的初始价值观画像。",
+        "系统根据问答结果生成一套初始的AI“宪法”（核心原则、行为红线）。",
+        "用户审查并编辑“宪法”条目，以完全符合个人要求。",
+        "保存配置，AI从此按照此“灵魂”设定进行交互。"
+      ],
+      "completeness": 85
+    },
+    {
+      "name": "通过飞书处理审批",
+      "steps": [
+        "员工在飞书提交了一个“采购申请”。",
+        "Vulcan Brain机器人向审批人（经理）发送一个包含申请详情的交互式卡片。",
+        "经理在飞书聊天中直接点击卡片上的“批准”按钮，并填写意见。",
+        "Vulcan Brain系统记录审批结果，并向申请人发送一个“已批准”的结果通知卡片。",
+        "整个流程在飞书内闭环完成。"
+      ],
+      "completeness": 95
+    },
+    {
+      "name": "使用AI代理进行数据分析",
+      "steps": [
+        "用户进入“AI代理”页面，选择“财务投资”代理。",
+        "上传一份销售数据CSV文件（此功能暂未在代码中明确体现，为推断）。",
+        "向代理提问：“请分析上个季度各产品线的销售趋势，并用代码生成一个柱状图”。",
+        "AI代理理解任务，编写Python（pandas, matplotlib）代码。",
+        "代码在沙箱中安全执行，生成分析结果和图表。",
+        "代理将分析摘要和生成的图表一并返回给用户。"
+      ],
+      "completeness": 70
+    }
+  ],
+  "feature_gaps": [
+    {
+      "gap": "项目管理功能不完整",
+      "impact": "high",
+      "suggestion": "InfoHub中的“项目”维度目前是占位符。需要将pm_api.py的功能与InfoHub和每日报告完全整合，提供项目进度、风险和资源分配的AI洞察。"
+    },
+    {
+      "gap": "知识库与AI代理脱节",
+      "impact": "medium",
+      "suggestion": "系统有知识库文件上传功能（knowledge_router.py），但AI代理（尤其是双脑内核）似乎没有利用这些知识进行RAG（检索增强生成）。应将知识库作为一个核心工具，让所有代理都能查询内部文档来回答问题。"
+    },
+    {
+      "gap": "前端UI体验不一致",
+      "impact": "medium",
+      "suggestion": "InfoHub等核心页面功能完善但信息密度高，而AI代理等页面的功能较为初级或为占位符。需要统一和优化前端体验，特别是为高级AI功能设计更丰富的交互界面。"
+    },
+    {
+      "gap": "数据源连接方式单一",
+      "impact": "low",
+      "suggestion": "目前主要集成MS365和飞书。为了成为真正的企业大脑，未来需要支持更多数据源的连接器，如Jira, Salesforce, Confluence等。"
+    }
+  ],
+  "roadmap_hints": [
+    "项目管理（PM）功能的完善是明确的“Phase 2”规划。",
+    "双脑AI内核（Bicameral Mind）存在V5和V6版本文件，表明其正处于快速迭代中，未来将是产品核心竞争力的关键，可能会变得更加自主和强大。",
+    "邮件智能分析（Email Intelligence）已发展到V2，并有完整的迁移脚本，预示着该功能会持续深化，可能会有V3版本，提供更精准的实体和关系抽取。",
+    "存在`gemini_skills`目录，暗示未来可能会构建一个更正式的、基于Gemini function calling的技能（Skill）系统，使AI工具调用更规范和强大。",
+    "从自建会话存储迁移到Acontext服务，表明产品策略倾向于将非核心的通用模块外包，更专注于核心AI能力的研发。"
+  ],
+  "overall_product_maturity": "growing",
+  "recommended_next_features": [
+    "全面整合项目管理数据到InfoHub",
+    "将内部知识库（RAG）赋能给所有AI代理",
+    "增强“业务雷达”代理的主动性，使其能基于数据变化在飞书中自动预警"
+  ]
+}

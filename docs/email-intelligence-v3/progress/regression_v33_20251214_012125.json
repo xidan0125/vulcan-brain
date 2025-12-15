@@ -1,0 +1,1055 @@
+[
+  {
+    "file": "Invoice OIS2505191.pdf",
+    "success": true,
+    "document_type": "Invoice",
+    "fact_count": 12,
+    "identifier_count": 0,
+    "other_count": 0,
+    "reclassified_count": 0,
+    "identifier_categories": {},
+    "duration": 68.426268,
+    "extraction": {
+      "document_type": "Invoice",
+      "facts": [
+        {
+          "type": "Amount",
+          "key": "Sub Total",
+          "value": "21.05",
+          "unit": "SGD",
+          "context": "Sub Total amount before GST"
+        },
+        {
+          "type": "Amount",
+          "key": "GST Amount",
+          "value": "1.89",
+          "unit": "SGD",
+          "context": "GST 9% amount"
+        },
+        {
+          "type": "Amount",
+          "key": "Total Amount",
+          "value": "22.94",
+          "unit": "SGD",
+          "context": "Total amount including GST"
+        },
+        {
+          "type": "Amount",
+          "key": "Amount in Words",
+          "value": "SGD TWENTY TWO DOLLARS AND NINETY FOUR CENTS",
+          "unit": null,
+          "context": "Amount written in words"
+        },
+        {
+          "type": "Date",
+          "key": "Invoice Date",
+          "value": "2025-05-02",
+          "unit": null,
+          "context": "Date of the invoice"
+        },
+        {
+          "type": "Quantity",
+          "key": "Black and White Usage Copies",
+          "value": "1024",
+          "unit": "copies",
+          "context": "Usage copies for Black and White"
+        },
+        {
+          "type": "Quantity",
+          "key": "Colour Usage Copies",
+          "value": "69",
+          "unit": "copies",
+          "context": "Usage copies for Colour"
+        },
+        {
+          "type": "Quantity",
+          "key": "Black and White Charge",
+          "value": "1001",
+          "unit": "ea",
+          "context": "Charge quantity for Black and White"
+        },
+        {
+          "type": "Quantity",
+          "key": "Colour Charge",
+          "value": "69",
+          "unit": "ea",
+          "context": "Charge quantity for Colour"
+        },
+        {
+          "type": "Currency",
+          "key": "Currency",
+          "value": "SGD",
+          "unit": null,
+          "context": "Currency used for all amounts"
+        },
+        {
+          "type": "Price",
+          "key": "Black and White Unit Price",
+          "value": "0.010",
+          "unit": "$",
+          "context": "Unit price for Black and White"
+        },
+        {
+          "type": "Price"
+        }
+      ],
+      "entities": {
+        "companies": [],
+        "products": [],
+        "persons": []
+      },
+      "summary": null,
+      "pages": 1,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "RFQ (5)rfq.pdf",
+    "success": false,
+    "error": "重试2次后仍失败: 模型返回List而非Dict! 内容: [['Crossbridge Energy A/S'], {'type': 'RegulationClause', 'key': 'Clause 3.8', 'value': 'No goods to",
+    "duration": 202.694449
+  },
+  {
+    "file": "样件备货单- Flexatherm Expanllow Pvt. Ltd 0325.pdf",
+    "success": true,
+    "document_type": "PurchaseOrder",
+    "fact_count": 12,
+    "identifier_count": 1,
+    "other_count": 0,
+    "reclassified_count": 0,
+    "identifier_categories": {
+      "UNKNOWN": 1
+    },
+    "duration": 34.744508,
+    "extraction": {
+      "document_type": "PurchaseOrder",
+      "facts": [
+        {
+          "type": "Identifier",
+          "key": "审批编号",
+          "value": "202503250015",
+          "unit": null,
+          "context": "订单审批唯一编号",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "LONG_NUMBER"
+        },
+        {
+          "type": "Company",
+          "key": "客户名称",
+          "value": "Flexatherm Expanilow Pvt. Ltd",
+          "unit": null,
+          "context": "采购方公司名称"
+        },
+        {
+          "type": "Date",
+          "key": "制作日期",
+          "value": "2025-03-25",
+          "unit": null,
+          "context": "备货单生成日期"
+        },
+        {
+          "type": "Date",
+          "key": "客户希望出货日期",
+          "value": "2025-03-31",
+          "unit": null,
+          "context": "客户指定出货时间"
+        },
+        {
+          "type": "Quantity",
+          "key": "送样次数",
+          "value": "1",
+          "unit": "次",
+          "context": "本次送样批次"
+        },
+        {
+          "type": "Contact",
+          "key": "销售负责人",
+          "value": "胡宇轩/David",
+          "unit": null,
+          "context": "订单对接人"
+        },
+        {
+          "type": "Product",
+          "key": "品名",
+          "value": "氧化铝纤维布",
+          "unit": null,
+          "context": "产品名称"
+        },
+        {
+          "type": "TechnicalParam",
+          "key": "型号",
+          "value": "W-F100A2-510",
+          "unit": null,
+          "context": "氧化铝纤维布规格型号"
+        },
+        {
+          "type": "Quantity",
+          "key": "数量",
+          "value": "1",
+          "unit": "块",
+          "context": "氧化铝纤维布数量"
+        },
+        {
+          "type": "TechnicalParam",
+          "key": "备货说明",
+          "value": "1.5m, 幅宽600mm, 库存, 72B纤维",
+          "unit": null,
+          "context": "氧化铝纤维布详细规格"
+        },
+        {
+          "type": "Product",
+          "key": "品名",
+          "value": "样品册",
+          "unit": null,
+          "context": "产品名称"
+        },
+        {
+          "type": "Quantity",
+          "key": "数量"
+        }
+      ],
+      "entities": {
+        "companies": [],
+        "products": [],
+        "persons": []
+      },
+      "summary": null,
+      "pages": 1,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "image011.jpg",
+    "success": true,
+    "document_type": "Other",
+    "fact_count": 6,
+    "identifier_count": 1,
+    "other_count": 1,
+    "reclassified_count": 0,
+    "identifier_categories": {
+      "UNKNOWN": 1
+    },
+    "duration": 18.203642,
+    "extraction": {
+      "document_type": "Other",
+      "document_date": null,
+      "facts": [
+        {
+          "type": "Company",
+          "key": "Company Name",
+          "value": "PXISE Energy Solutions",
+          "unit": null,
+          "context": "主要运营公司名称"
+        },
+        {
+          "type": "Company",
+          "key": "Parent Company",
+          "value": "Yokogawa Company",
+          "unit": null,
+          "context": "母公司名称"
+        },
+        {
+          "type": "Product",
+          "key": "Product Name",
+          "value": "DERMS DER Management + Communication Platform",
+          "unit": null,
+          "context": "展示的DERMS平台产品"
+        },
+        {
+          "type": "Product",
+          "key": "Product Name",
+          "value": "Microgrid Controller Renewable Power Plant Controller",
+          "unit": null,
+          "context": "展示的微电网控制器产品"
+        },
+        {
+          "type": "Identifier",
+          "key": "Exhibit Number",
+          "value": "2749",
+          "unit": null,
+          "context": "展位编号",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Other",
+          "key": "Company Description",
+          "value": "PXISE provides the most effective software for managing the complexities arising from a 21st century grid.",
+          "unit": null,
+          "context": "公司宣传语，描述核心业务"
+        }
+      ],
+      "entities": {
+        "companies": [
+          "PXISE Energy Solutions",
+          "Yokogawa Company"
+        ],
+        "products": [
+          "DERMS DER Management + Communication Platform",
+          "Microgrid Controller Renewable Power Plant Controller"
+        ],
+        "persons": []
+      },
+      "summary": "PXISE Energy Solutions的展会摊位，展示其能源管理软件和微电网控制器产品，包含展位编号2749。",
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "2025 05 Dai ZM_Empl Confirm for Australia Visa s.pdf",
+    "success": true,
+    "document_type": null,
+    "fact_count": 0,
+    "identifier_count": 0,
+    "other_count": 0,
+    "reclassified_count": 0,
+    "identifier_categories": {},
+    "duration": 0.012687,
+    "extraction": {
+      "document_type": null,
+      "facts": [],
+      "entities": {
+        "companies": [],
+        "products": [],
+        "persons": []
+      },
+      "summary": null,
+      "pages": 0,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "箱单&发票 AdiNal Engineering Pvt.Ltd.10.23.xlsx",
+    "success": true,
+    "document_type": "Invoice",
+    "fact_count": 16,
+    "identifier_count": 1,
+    "other_count": 0,
+    "reclassified_count": 0,
+    "identifier_categories": {
+      "FINANCE": 1
+    },
+    "duration": 37.971099,
+    "extraction": {
+      "document_type": "Invoice",
+      "document_date": "2025-10-23",
+      "facts": [
+        {
+          "type": "Company",
+          "key": "Customer",
+          "value": "AdiNal Engineering Pvt.Ltd"
+        },
+        {
+          "type": "Address",
+          "key": "ship to Address",
+          "value": "Crescent Innovation and Incubation Centre(CIC) Block-2, Office No.9, Behind B.S. Abdur Rahman Crescent Institute, SeethaKathi Estate, G.S.T Road, Vandalur, Chennai 600048,Tamilnadu, India"
+        },
+        {
+          "type": "Contact",
+          "key": "Attn",
+          "value": "S. Satish"
+        },
+        {
+          "type": "Contact",
+          "key": "Tel",
+          "value": "00919940044307"
+        },
+        {
+          "type": "Contact",
+          "key": "Email",
+          "value": "marketing@adinalgroup.com"
+        },
+        {
+          "type": "Identifier",
+          "key": "Invoice No",
+          "value": "20251023",
+          "identifier_category": "FINANCE",
+          "identifier_subtype": "INVOICE_NUMBER"
+        },
+        {
+          "type": "Date",
+          "key": "Date",
+          "value": "2025-10-23"
+        },
+        {
+          "type": "Product",
+          "key": "Product",
+          "value": "Product brochure"
+        },
+        {
+          "type": "Quantity",
+          "key": "Qty",
+          "value": "25"
+        },
+        {
+          "type": "Unit",
+          "key": "Unit",
+          "value": "PC"
+        },
+        {
+          "type": "Price",
+          "key": "Unit Price",
+          "value": "0.4"
+        },
+        {
+          "type": "Price",
+          "key": "Amount Price",
+          "value": "10"
+        },
+        {
+          "type": "Currency",
+          "key": "Currency",
+          "value": "USD"
+        },
+        {
+          "type": "Weight",
+          "key": "Total G.W",
+          "value": "10kg"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "CTN Size",
+          "value": "640*330*230mm"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "Measurement",
+          "value": "0.05cbm"
+        }
+      ],
+      "entities": {
+        "companies": [
+          "AdiNal Engineering Pvt.Ltd"
+        ],
+        "products": [
+          "Product brochure"
+        ],
+        "persons": [
+          "S. Satish"
+        ]
+      },
+      "summary": "Invoice for Product brochure from AdiNal Engineering Pvt.Ltd to customer with reference 20251023.",
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "Resume - Ms. Khin Yamin Htwe.pdf",
+    "success": true,
+    "document_type": "Resume",
+    "fact_count": 34,
+    "identifier_count": 0,
+    "other_count": 7,
+    "reclassified_count": 0,
+    "identifier_categories": {},
+    "duration": 83.221303,
+    "extraction": {
+      "document_type": "Resume",
+      "facts": [
+        {
+          "type": "Contact",
+          "key": "Email",
+          "value": "khinyaminhtwe83@gmail.com"
+        },
+        {
+          "type": "Contact",
+          "key": "Phone",
+          "value": "+66 629499811"
+        },
+        {
+          "type": "Amount",
+          "key": "Salary",
+          "value": "SGD 2500 – 3500",
+          "unit": "SGD"
+        },
+        {
+          "type": "Date",
+          "key": "Date of Birth",
+          "value": "08 March 1999"
+        },
+        {
+          "type": "Address",
+          "key": "Location",
+          "value": "Bangkok, Thailand"
+        },
+        {
+          "type": "WorkExperience",
+          "key": "Position",
+          "value": "Finance Executive",
+          "context": "Myanmar Shining Star Distribution Co., Ltd. (Nov 2022 – May 2025)"
+        },
+        {
+          "type": "Certification",
+          "key": "Certification",
+          "value": "Association of Chartered Certified Accountant (ACCA Part 1)"
+        },
+        {
+          "type": "Education",
+          "key": "Course",
+          "value": "Accountant in Business (AB, ACCA Part 1) (Studying)"
+        },
+        {
+          "type": "Education",
+          "key": "Course",
+          "value": "Financial Accounting (FA, ACCA Part 1) (Exemption)"
+        },
+        {
+          "type": "Education",
+          "key": "Course",
+          "value": "Management Accounting (MA, ACCA Part 1) (Studying)"
+        },
+        {
+          "type": "Other",
+          "key": "Gender",
+          "value": "Female"
+        },
+        {
+          "type": "Other",
+          "key": "Religion",
+          "value": "Buddhist"
+        },
+        {
+          "type": "Other",
+          "key": "Ethnicity",
+          "value": "Myanmar"
+        },
+        {
+          "type": "Other",
+          "key": "Marital Status",
+          "value": "Single"
+        },
+        {
+          "type": "Education",
+          "key": "LCCI Level-3 Diploma in Accounting and Finance",
+          "value": "2017",
+          "unit": "",
+          "context": "Diploma in Accounting and Finance (2017)"
+        },
+        {
+          "type": "Education",
+          "key": "Single Subject Diploma in Financial Management",
+          "value": "2019",
+          "unit": "",
+          "context": "Institute of Commercial Management, UK"
+        },
+        {
+          "type": "Education",
+          "key": "Single Subject Diploma in Business Management & Administration",
+          "value": "2020",
+          "unit": "",
+          "context": "Institute of Commercial Management, UK"
+        },
+        {
+          "type": "Education",
+          "key": "Bachelor of Science with Chemistry",
+          "value": "2018",
+          "unit": "",
+          "context": "Yangon University of Distance Education, Myanmar"
+        },
+        {
+          "type": "WorkExperience",
+          "key": "Accounts Executive",
+          "value": "Jun 2020 - Oct 2022",
+          "unit": "",
+          "context": "Royal Myanmar Engineering Co., Ltd"
+        },
+        {
+          "type": "WorkExperience",
+          "key": "Junior Accountant",
+          "value": "Mar 2019 – May 2020",
+          "unit": "",
+          "context": "Consumer Goods Myanmar Limited"
+        },
+        {
+          "type": "Certification",
+          "key": "Certificate of Job Training for Professional Accountant",
+          "value": "SingAcc Professional Service Pte Ltd",
+          "unit": "",
+          "context": ""
+        },
+        {
+          "type": "Certification",
+          "key": "Certificate in Book-keeping and Accounts (IAS)",
+          "value": "Distinction",
+          "unit": "",
+          "context": ""
+        },
+        {
+          "type": "Certification",
+          "key": "Certificate of Business Management & Administration",
+          "value": "",
+          "unit": "",
+          "context": ""
+        },
+        {
+          "type": "Certification",
+          "key": "Certificate of Financial Management",
+          "value": "",
+          "unit": "",
+          "context": ""
+        },
+        {
+          "type": "Date",
+          "key": "Work Experience Start Date",
+          "value": "Mar 2019",
+          "unit": "",
+          "context": "Junior Accountant at Consumer Goods Myanmar Limited"
+        },
+        {
+          "type": "Date",
+          "key": "Work Experience End Date",
+          "value": "May 2020",
+          "unit": "",
+          "context": "Junior Accountant at Consumer Goods Myanmar Limited"
+        },
+        {
+          "type": "Date",
+          "key": "Work Experience Start Date",
+          "value": "Jun 2020",
+          "unit": "",
+          "context": "Accounts Executive at Royal Myanmar Engineering Co., Ltd"
+        },
+        {
+          "type": "Date",
+          "key": "Work Experience End Date",
+          "value": "Oct 2022",
+          "unit": "",
+          "context": "Accounts Executive at Royal Myanmar Engineering Co., Ltd"
+        },
+        {
+          "type": "Other",
+          "key": "Relevant Coursework",
+          "value": "Certificate in Accounting (VRQ) (Merit), Advanced Business Calculations (Distinction), Certificate in Cost and Management Accounting (VRQ) (Merit), Financial Management, Business Management, Human Resource Management, Organic Chemistry, General Physics, Chemistry in Society, Biochemistry",
+          "unit": "",
+          "context": "Relevant coursework for various qualifications"
+        },
+        {
+          "type": "Other",
+          "key": "Responsibilities",
+          "value": "Ensure the timely recording of financial data and preparation of requisite financial and management reports in compliance with regulatory standards, exercise prudent control over expenses relative to revenues, develop and implement systems and protocols to facilitate the prompt collection of receivables, proactively pursue overdue payments, assess and report on delinquent accounts, and manage cash flow effectively, process purchase requests from various departments efficiently, prepare month-end balance sheet reconciliations pertaining to accounts payable, maintain comprehensive records of all payments and expenditures, ensure timely and accurate payment to suppliers, foster strong vendor relationships, prepare accruals for month-end closing procedures, coordinate and oversee scheduled physical stock takes, prepare necessary audit schedules and provide support during auditing processes, foster effective communication and collaboration with external stakeholders, including suppliers, bankers, auditors, and tax agents, perform any additional duties as directed by the Assistant Director of Finance",
+          "unit": "",
+          "context": "Responsibilities for Accounts Executive position"
+        },
+        {
+          "type": "Other",
+          "key": "Responsibilities",
+          "value": "Compile daily sales reports, monitor and report on various daily and monthly sales and stock activities, analyze sales quantities and amounts for each customer, comparing on a monthly and yearly basis, generate and process accounting reports, including invoices and aging reports, record collections made by cheque and cash",
+          "unit": "",
+          "context": "Responsibilities for Junior Accountant position"
+        },
+        {
+          "type": "Skill",
+          "key": "Computer Skills",
+          "value": "Microsoft Word, Advance Excel, Microsoft Power Point, Microsoft Outlook, Email and Internet, MYOB, QuickBooks, Tally ERP 9, Xero Software",
+          "unit": null,
+          "context": "List of computer software proficiency"
+        },
+        {
+          "type": "Contact",
+          "key": "References",
+          "value": "Mr. Nay Lin Aung (Principal, Finance & Accountancy Academy, Yangon, Myanmar, Hp: +959 782515306), Ms. Lwin Me Ko (Manager, Myanmar Shining Star Distribution Co, Ltd, Email: lwinmeko51@gmail.com, Hp: +959 421105900), Ms. Shwe Kyi Thet (Lecturer, SingAcc Professional Account and Admin Job Training, Finance Manager, SingAcc Professional Services Pte Ltd, Email: shwekyithet.acca@gmail.com, HP: +6588326494)",
+          "unit": null,
+          "context": "Professional references with contact details"
+        },
+        {
+          "type": "WorkExperience",
+          "key": "Work Experience",
+          "value": "Full-set of accounts, Account Payable/ Account Receivable Management, Prepare CPF e-submission and method for CPF calculation rate, Submission of GST and schedules for internal record purpose, Form C/ Form Cs submission to comptroller of income tax, Estimate Chargeable Income (ECI) submission, Bank reconciliation, Aging Reports and Statement of Control, Preparation of financial Report in accordance with Singapore Financial Reporting Standards, Preparation of IR8A form and personal income tax submission, Submission of Tax Clearance IR21, Preparation of year end schedule for annual audit and letter requesting for bank confirmations, Debtors and creditors circularization, Analysis and interpretation of financial result and performance of the company",
+          "unit": null,
+          "context": "List of accounting and administrative responsibilities covered"
+        }
+      ],
+      "entities": {
+        "companies": [
+          "SingAcc Professional Services Pte Ltd",
+          "SingAcc Professional Account and Admin Job Training",
+          "Yangon University of Distance Education, Myanmar",
+          "Consumer Goods Myanmar Limited",
+          "Institute of Commercial Management, UK",
+          "Royal Myanmar Engineering Co., Ltd",
+          "Finance & Accountancy Academy",
+          "SingAcc Professional Service Pte Ltd",
+          "Myanmar Shining Star Distribution Co, Ltd",
+          "Myanmar Shining Star Distribution Co., Ltd."
+        ],
+        "products": [],
+        "persons": [
+          "MS. KHIN YAMIN HTWE",
+          "Ms. Shwe Kyi Thet",
+          "Ms. Lwin Me Ko",
+          "Mr. Nay Lin Aung"
+        ]
+      },
+      "summary": "MS. KHIN YAMIN HTWE's resume details her finance executive role, accounting certifications, and contact information.",
+      "pages": 3,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "Purchase Order - P2504054.pdf",
+    "success": false,
+    "error": "重试2次后仍失败: 模型返回List而非Dict! 内容: [['FibreCast Inc.', 'Vulcan Shield Global PTE LTD'], ['FC-3000 PCW 1/8\" x 24\" x 787.4\" 8 lb/ft3', 'F",
+    "duration": 68.713154
+  },
+  {
+    "file": "Resume - Ms. Thuzar Lay.pdf",
+    "success": true,
+    "document_type": "Resume",
+    "fact_count": 38,
+    "identifier_count": 0,
+    "other_count": 1,
+    "reclassified_count": 0,
+    "identifier_categories": {},
+    "duration": 59.290933,
+    "extraction": {
+      "document_type": "Resume",
+      "facts": [
+        {
+          "type": "Contact",
+          "key": "Email",
+          "value": "Thuzarlayacca11@gmail.com",
+          "unit": null,
+          "context": null
+        },
+        {
+          "type": "Contact",
+          "key": "Phone",
+          "value": "+65 94726648",
+          "unit": null,
+          "context": null
+        },
+        {
+          "type": "Contact",
+          "key": "Address",
+          "value": "Blk 715 Jurong West Street 71(S)640715",
+          "unit": null,
+          "context": null
+        },
+        {
+          "type": "WorkExperience",
+          "key": "Position",
+          "value": "Chief Accountant",
+          "unit": null,
+          "context": "Nov 2021 – Feb 2024"
+        },
+        {
+          "type": "WorkExperience",
+          "key": "Company",
+          "value": "Three Eagle Gold & Jewellery",
+          "unit": null,
+          "context": null
+        },
+        {
+          "type": "WorkExperience",
+          "key": "Duration",
+          "value": "Nov 2021 – Feb 2024",
+          "unit": null,
+          "context": null
+        },
+        {
+          "type": "Education",
+          "key": "Degree",
+          "value": "Association of Chartered Certified Accountant (ACCA Part 1)",
+          "unit": null,
+          "context": null
+        },
+        {
+          "type": "Certification",
+          "key": "Certification",
+          "value": "ACCA Part 1",
+          "unit": null,
+          "context": null
+        },
+        {
+          "type": "Amount",
+          "key": "Salary",
+          "value": "2500-3500",
+          "unit": "SGD",
+          "context": "Negotiable"
+        },
+        {
+          "type": "Skill",
+          "key": "Language",
+          "value": "English, Burmese",
+          "unit": null,
+          "context": null
+        },
+        {
+          "type": "Skill",
+          "key": "Skills",
+          "value": "problem-solving, organizational, analytical skills",
+          "unit": null,
+          "context": "From Career Objective section"
+        },
+        {
+          "type": "Education",
+          "key": "Bachelor of Arts with Economics",
+          "value": "2013",
+          "context": "Yangon University of Distance Education, Yangon, Myanmar"
+        },
+        {
+          "type": "Education",
+          "key": "LCCI Level 2",
+          "value": "2012",
+          "context": "London Chamber of Commerce and Industry"
+        },
+        {
+          "type": "WorkExperience",
+          "key": "Senior Accountant",
+          "value": "Jul 2018 – Oct 2021",
+          "context": "Helta Light Engineering Co Ltd"
+        },
+        {
+          "type": "WorkExperience",
+          "key": "Finance Officer",
+          "value": "Nov 2016 – May 2018",
+          "context": "Belico Battery (Head Office - Thailand)"
+        },
+        {
+          "type": "Skill",
+          "key": "Computer Skills",
+          "value": "Windows 10, Microsoft Word, Microsoft Excel, Microsoft Power Point, Microsoft Outlook, Adobe Photoshop, Email and Internet",
+          "context": "Computer skills"
+        },
+        {
+          "type": "Skill",
+          "key": "Accounting Software",
+          "value": "MYOB, Peachtree, QuickBooks, Auto Count, Tally ERP 9, UBS, ACCPAC",
+          "context": "Accounting software"
+        },
+        {
+          "type": "Certification",
+          "key": "Certificate in Book-keeping and Accounts",
+          "value": "2012",
+          "context": "London Chamber of Commerce and Industry"
+        },
+        {
+          "type": "Other",
+          "key": "Relevant Course Work",
+          "value": "English, Cost Accounting, Financial Accounting, Microeconomic Analysis, Applied Statistics",
+          "context": "Relevant course work"
+        },
+        {
+          "type": "Date",
+          "key": "Bachelor's Degree Completion",
+          "value": "2013",
+          "context": "Bachelor of Arts with Economics"
+        },
+        {
+          "type": "Date",
+          "key": "LCCI Level 2 Completion",
+          "value": "2012",
+          "context": "LCCI Level 2"
+        },
+        {
+          "type": "Date",
+          "key": "Senior Accountant Tenure",
+          "value": "Jul 2018 – Oct 2021",
+          "context": "Helta Light Engineering Co Ltd"
+        },
+        {
+          "type": "Date",
+          "key": "Finance Officer Tenure",
+          "value": "Nov 2016 – May 2018",
+          "context": "Belico Battery"
+        },
+        {
+          "type": "Address",
+          "key": "University Address",
+          "value": "Yangon, Myanmar",
+          "context": "Yangon University of Distance Education"
+        },
+        {
+          "type": "WorkExperience",
+          "key": "Finance Executive",
+          "value": "Aug 2014 – Oct 2016",
+          "context": "Truly Myanmar Travel & Tour"
+        },
+        {
+          "type": "Company",
+          "key": "Company Name",
+          "value": "Truly Myanmar Travel & Tour"
+        },
+        {
+          "type": "Certification",
+          "key": "Certificate of Job Training for Professional Accountant",
+          "value": "Stairway Academy",
+          "context": "Stairway Academy"
+        },
+        {
+          "type": "Certification",
+          "key": "Certificate of LCCI Level I & II",
+          "value": "LCCI Level I & II"
+        },
+        {
+          "type": "Certification",
+          "key": "Certificate of Information Technology",
+          "value": "Information Technology"
+        },
+        {
+          "type": "Certification",
+          "key": "Certificate of Microsoft Excel in Business Application",
+          "value": "Microsoft Excel in Business Application"
+        },
+        {
+          "type": "Certification",
+          "key": "Certificate of Job Training for Accounting",
+          "value": "Job Training for Accounting"
+        },
+        {
+          "type": "Certification",
+          "key": "Certificate of Introduction to using Email & Internet",
+          "value": "Introduction to using Email & Internet"
+        },
+        {
+          "type": "Skill",
+          "key": "Task Management",
+          "value": "Capable of managing multiple tasks while upholding quality standards and meticulous attention to detail"
+        },
+        {
+          "type": "Skill",
+          "key": "Stress Management",
+          "value": "Manages stress adeptly and stays composed when facing high-pressure scenarios, exhibiting resilience amidst demanding circumstances"
+        },
+        {
+          "type": "Skill",
+          "key": "Compliance",
+          "value": "Consistently followed company policies and industry regulations, guaranteeing compliance and accountability across all operational aspects"
+        },
+        {
+          "type": "Skill",
+          "key": "Decision-Making",
+          "value": "Shows flexibility in decision-making, altering approaches according to changing situations or newly acquired information"
+        },
+        {
+          "type": "Skill",
+          "key": "Team Collaboration",
+          "value": "Contributes actively to team problem-solving initiatives by presenting constructive ideas and solutions to address challenges"
+        },
+        {
+          "type": "Date",
+          "key": "Work Period",
+          "value": "Aug 2014 – Oct 2016"
+        }
+      ],
+      "entities": {
+        "companies": [
+          "London Chamber of Commerce and Industry",
+          "Helta Light Engineering Co Ltd",
+          "Three Eagle Gold & Jewellery",
+          "Belico Battery",
+          "Yangon University of Distance Education",
+          "Truly Myanmar Travel & Tour"
+        ],
+        "products": [],
+        "persons": [
+          "MS. THUZAR LAY"
+        ]
+      },
+      "summary": "Ms. Thuzar Lay's resume details her work experience as Chief Accountant at Three Eagle Gold & Jewellery, educational background in ACCA Part 1, and key skills including problem-solving and language proficiency.",
+      "pages": 3,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "Acceptance letter VSG HIPA_28072025.pdf",
+    "success": true,
+    "document_type": "OfficialNotice",
+    "fact_count": 10,
+    "identifier_count": 1,
+    "other_count": 0,
+    "reclassified_count": 0,
+    "identifier_categories": {
+      "UNKNOWN": 1
+    },
+    "duration": 30.956326,
+    "extraction": {
+      "document_type": "OfficialNotice",
+      "facts": [
+        {
+          "type": "Amount",
+          "key": "Grant Amount",
+          "value": "16471125000",
+          "unit": "HUF",
+          "context": "The grant offer amount accepted by Vulcan Shield Global PTE Ltd."
+        },
+        {
+          "type": "Date",
+          "key": "Document Date",
+          "value": "2025-07-27",
+          "context": "Date of this letter (27 July 2025)"
+        },
+        {
+          "type": "Date",
+          "key": "Reference Letter Date",
+          "value": "2025-07-25",
+          "context": "Date of the reference letter from HIPA (25 July 2025)"
+        },
+        {
+          "type": "Currency",
+          "key": "Currency",
+          "value": "HUF",
+          "context": "Currency of the grant amount"
+        },
+        {
+          "type": "Company",
+          "key": "Granting Agency",
+          "value": "Hungarian Investment Promotion Agency",
+          "context": "The agency providing the grant offer"
+        },
+        {
+          "type": "Company",
+          "key": "Recipient Company",
+          "value": "Vulcan Shield Global PTE Ltd.",
+          "context": "The company accepting the grant offer"
+        },
+        {
+          "type": "Address",
+          "key": "Agency Address",
+          "value": "1055 Budapest, Honvéd u. 20.",
+          "context": "Address of Hungarian Investment Promotion Agency"
+        },
+        {
+          "type": "Identifier",
+          "key": "Reference Number",
+          "value": "4255/2025/HIPA",
+          "context": "Reference number of the grant offer letter",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Person",
+          "key": "Recipient Contact",
+          "value": "Mr István JOÓ",
+          "context": "CEO of Hungarian Investment Promotion Agency"
+        },
+        {
+          "type": "Person",
+          "key": "Signatory",
+          "value": "Shuren Sun",
+          "context": "Chairman of Vulcan Shield Global PTE Ltd."
+        }
+      ],
+      "entities": {
+        "companies": [
+          "Vulcan Shield Global PTE Ltd.",
+          "Hungarian Investment Promotion Agency"
+        ],
+        "products": [],
+        "persons": [
+          "Shuren Sun",
+          "Mr István JOÓ"
+        ]
+      },
+      "summary": "Letter from Vulcan Shield Global PTE Ltd. confirming acceptance of a HUF 16,471,125,000 grant offer from Hungarian Investment Promotion Agency.",
+      "pages": 1,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  }
+]

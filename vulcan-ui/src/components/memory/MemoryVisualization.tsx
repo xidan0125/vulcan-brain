@@ -32,7 +32,7 @@ interface ConversationEntry {
 
 interface MemoryProfileResponse {
   user_id: string;
-  memories: string[];
+  memories: { id: string; content: string; category: string; created_at: string; }[];
   memory_count: number;
   last_updated: string;
 }
@@ -83,7 +83,7 @@ export default function MemoryVisualization() {
           role: "系统用户",
           expertise: ["AI Engineering", "System Architecture"],
           preferences: data.memories.map((mem) => {
-            const [key, ...valueParts] = mem.split(':');
+            const content = typeof mem === "string" ? mem : mem.content || ""; const [key, ...valueParts] = content.split(':');
             return {
               key: key.trim(),
               value: valueParts.join(':').trim()

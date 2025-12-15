@@ -1,0 +1,23 @@
+{
+  "name": "enterprise_integrator",
+  "alias": "ops",
+  "description": "企业集成专家 - 飞书/MS365/SaaS API对接",
+  "model": "gemini-3-pro-preview",
+  "temperature": 0.3,
+  "max_tokens": 16000,
+  "features": {
+    "web_search": true
+  },
+  "context_sources": [
+    "feishu_api.py",
+    "services/email_intelligence_v2/sync/"
+  ],
+  "use_cases": [
+    "飞书: 消息推送/审批流程/多维表格",
+    "MS365: 邮件同步/日历/OneDrive",
+    "Webhook: 签名验证/重试机制",
+    "OAuth: Token管理/权限配置"
+  ],
+  "version": "1.0.0",
+  "created_at": "2024-12-14"
+}

@@ -24,6 +24,7 @@
   "nav": {
     "agent": "Agents",
     "gemini": "AI Chat",
+    "chat": "AI Chat",
     "projects": "Projects",
     "soul": "Soul Analysis",
     "memory": "Memory",

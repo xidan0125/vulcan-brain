@@ -1,0 +1,3168 @@
+[
+  {
+    "file": "SME_S2B SetUp May24.pdf",
+    "success": true,
+    "document_type": "Business Setup Form",
+    "fact_count": 123,
+    "identifier_count": 2,
+    "other_count": 0,
+    "identifier_categories": {
+      "UNKNOWN": 1,
+      "FINANCE": 1
+    },
+    "had_json_error": true,
+    "duration": 46.279806,
+    "extraction": {
+      "document_type": "Business Setup Form",
+      "facts": [
+        {
+          "type": "Company",
+          "key": "Company Name",
+          "value": "Standard Chartered Bank (Singapore) Limited"
+        },
+        {
+          "type": "Company",
+          "key": "Reg. No",
+          "value": "201224747C"
+        },
+        {
+          "type": "Product",
+          "key": "Product Name",
+          "value": "Straight2Bank"
+        },
+        {
+          "type": "Product",
+          "key": "Product Version",
+          "value": "New/Existing S2B Users"
+        },
+        {
+          "type": "Identifier",
+          "key": "Group ID",
+          "value": "Existing Straight2Bank Group ID (If applicable)",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "Account Number",
+          "value": "Existing account number",
+          "identifier_category": "FINANCE",
+          "identifier_subtype": "ACCOUNT_NUMBER"
+        },
+        {
+          "type": "Contact",
+          "key": "Email Domain",
+          "value": "Standard Chartered Bank should send emails to (part of email address after the @ symbol e.g. @sc.com)",
+          "_reclassified_from": "Identifier"
+        },
+        {
+          "type": "Currency",
+          "key": "Base Currency",
+          "value": "SGD"
+        },
+        {
+          "type": "Date",
+          "key": "Form Date",
+          "value": "May 2024"
+        },
+        {
+          "type": "Copyright",
+          "key": "Copyright",
+          "value": "© Copyright 2024 Standard Chartered Bank. All rights reserved."
+        },
+        {
+          "type": "Section",
+          "key": "Section 1",
+          "value": "Online banking general settings"
+        },
+        {
+          "type": "Section",
+          "key": "Section 2",
+          "value": "Authorisation matrix rules"
+        },
+        {
+          "type": "Section",
+          "key": "Section 3",
+          "value": "Authorisation matrix signing rules"
+        },
+        {
+          "type": "Rule",
+          "key": "Payment Approval",
+          "value": "Can the same user create and authorise the same payment? Yes"
+        },
+        {
+          "type": "Rule",
+          "key": "Payment Order Approval",
+          "value": "Do you require authorisers to approve payments in the order that the Signing Group is listed? No"
+        },
+        {
+          "type": "Rule",
+          "key": "Payment Auto-Send",
+          "value": "Would you like the payment to be automatically sent to the bank for processing once fully approved? Yes"
+        },
+        {
+          "type": "Rule",
+          "key": "Administrator Control",
+          "value": "Should your administrators have sole control or operate under dual control? Single Administrator"
+        },
+        {
+          "type": "Rule",
+          "key": "Account Application",
+          "value": "Apply to all active operating accounts at the point of this application"
+        },
+        {
+          "type": "Limit Example",
+          "key": "Example 1",
+          "value": "Unlimited - 1 'A' (Singly)"
+        },
+        {
+          "type": "Limit Example",
+          "key": "Example 2",
+          "value": "Unlimited - 2 'A'"
+        },
+        {
+          "type": "Limit Example",
+          "key": "Example 3",
+          "value": "Up to $100k - 1 'A' + 1 'B'; Unlimited - 1 'B' + 1 'C'"
+        },
+        {
+          "type": "Limit Example",
+          "key": "Example 4",
+          "value": "Up to $50k - 1 'A' + 1 'B'; Up to $150k - 1 'A' + 1 'C'; Unlimited - 1 'B' + 1 'C'"
+        },
+        {
+          "type": "Company",
+          "key": "Company Name",
+          "value": "Standard Chartered Bank (Singapore) Limited"
+        },
+        {
+          "type": "Company",
+          "key": "Company Registration No",
+          "value": "Reg. No. 201224747C"
+        },
+        {
+          "type": "Document",
+          "key": "Document Title",
+          "value": "Straight2Bank Set Up (New/Existing S2B Users)"
+        },
+        {
+          "type": "Document",
+          "key": "Document Version",
+          "value": "Page 2 of 3"
+        },
+        {
+          "type": "Document",
+          "key": "Document Copyright",
+          "value": "Copyright 2024 Standard Chartered Bank. All rights reserved."
+        },
+        {
+          "type": "User Role",
+          "key": "Administrator",
+          "value": "For user management (creation, modification and deletion of user assigned 'Operator' and/or 'Viewer' role and the corresponding service entitlements) as well as token management."
+        },
+        {
+          "type": "User Role",
+          "key": "Viewer",
+          "value": "View account details and transactions."
+        },
+        {
+          "type": "User Role",
+          "key": "Operator",
+          "value": "Create all types of transactions."
+        },
+        {
+          "type": "User Role",
+          "key": "Authoriser",
+          "value": "Approve transactions."
+        },
+        {
+          "type": "User Role",
+          "key": "Foreign Exchange User",
+          "value": "User assigned with 'Operator' and/or 'Authoriser' role will be allowed to book and accept a foreign exchange rate on your behalf during cross currency payment initiation or creation of a foreign exchange transaction. Once the exchange rate has been accepted by a user, a foreign exchange contract is made and a foreign exchange contract reference will be assigned to the agreed rate. The foreign exchange contract reference must be linked to a payment which is to be made by the value date as specified in the foreign exchange contract. If payment is not made by such date or has been cancelled, you agree to be liable for the costs of, and/or any loss incurred by the Bank (directly or indirectly) arising from, the unwinding (of a part or the whole, as the case may be) of the foreign exchange transaction. Please select 'No' if you do not wish to grant user the access to Request for Quote (RFQ)."
+        },
+        {
+          "type": "User Role",
+          "key": "New User Preferred User ID",
+          "value": "min 3, max 10 characters with no spacing between characters and no symbols. The Bank will assign User ID at its sole discretion if the Preferred User ID is left blank or cannot be allocated."
+        },
+        {
+          "type": "User Role",
+          "key": "User Role Options",
+          "value": "Administrator, Viewer, Operator, Authoriser - Approving group"
+        },
+        {
+          "type": "User Role",
+          "key": "Payroll Access",
+          "value": "Local salary payment: Yes/No"
+        },
+        {
+          "type": "User Role",
+          "key": "RFQ Access",
+          "value": "Yes/No"
+        },
+        {
+          "type": "Account Access",
+          "key": "Accounts Access Options",
+          "value": "All active operating accounts at the point of processing this application, Specific account no(s)"
+        },
+        {
+          "type": "Payment Types",
+          "key": "Payment Types Options",
+          "value": "All, Specific payment types"
+        },
+        {
+          "type": "Document Reference",
+          "key": "Setup Guide Location",
+          "value": "Straight2Bank Setup Guide can be found in the Bank's website under Services > Useful Forms > Straight2Bank."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For the list of specific payment types, please refer to the Straight2Bank Setup Guide."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "The guide can be found in our Bank's website under Services > Useful Forms > Straight2Bank."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For New User, please indicate your preferred User ID (min 3, max 10 characters with no spacing between characters and no symbols). The Bank will assign User ID at its sole discretion if the Preferred User ID is left blank or cannot be allocated."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "Please read the notes below before you fill up this section."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For the list of specific payment types, please refer to the Straight2Bank Setup Guide."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "The guide can be found in our Bank's website under Services > Useful Forms > Straight2Bank."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For New User, please indicate your preferred User ID (min 3, max 10 characters with no spacing between characters and no symbols). The Bank will assign User ID at its sole discretion if the Preferred User ID is left blank or cannot be allocated."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "Please read the notes below before you fill up this section."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For the list of specific payment types, please refer to the Straight2Bank Setup Guide."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "The guide can be found in our Bank's website under Services > Useful Forms > Straight2Bank."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For New User, please indicate your preferred User ID (min 3, max 10 characters with no spacing between characters and no symbols). The Bank will assign User ID at its sole discretion if the Preferred User ID is left blank or cannot be allocated."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "Please read the notes below before you fill up this section."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For the list of specific payment types, please refer to the Straight2Bank Setup Guide."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "The guide can be found in our Bank's website under Services > Useful Forms > Straight2Bank."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For New User, please indicate your preferred User ID (min 3, max 10 characters with no spacing between characters and no symbols). The Bank will assign User ID at its sole discretion if the Preferred User ID is left blank or cannot be allocated."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "Please read the notes below before you fill up this section."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For the list of specific payment types, please refer to the Straight2Bank Setup Guide."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "The guide can be found in our Bank's website under Services > Useful Forms > Straight2Bank."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For New User, please indicate your preferred User ID (min 3, max 10 characters with no spacing between characters and no symbols). The Bank will assign User ID at its sole discretion if the Preferred User ID is left blank or cannot be allocated."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "Please read the notes below before you fill up this section."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For the list of specific payment types, please refer to the Straight2Bank Setup Guide."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "The guide can be found in our Bank's website under Services > Useful Forms > Straight2Bank."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For New User, please indicate your preferred User ID (min 3, max 10 characters with no spacing between characters and no symbols). The Bank will assign User ID at its sole discretion if the Preferred User ID is left blank or cannot be allocated."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "Please read the notes below before you fill up this section."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For the list of specific payment types, please refer to the Straight2Bank Setup Guide."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "The guide can be found in our Bank's website under Services > Useful Forms > Straight2Bank."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For New User, please indicate your preferred User ID (min 3, max 10 characters with no spacing between characters and no symbols). The Bank will assign User ID at its sole discretion if the Preferred User ID is left blank or cannot be allocated."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "Please read the notes below before you fill up this section."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For the list of specific payment types, please refer to the Straight2Bank Setup Guide."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "The guide can be found in our Bank's website under Services > Useful Forms > Straight2Bank."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For New User, please indicate your preferred User ID (min 3, max 10 characters with no spacing between characters and no symbols). The Bank will assign User ID at its sole discretion if the Preferred User ID is left blank or cannot be allocated."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "Please read the notes below before you fill up this section."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For the list of specific payment types, please refer to the Straight2Bank Setup Guide."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "The guide can be found in our Bank's website under Services > Useful Forms > Straight2Bank."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For New User, please indicate your preferred User ID (min 3, max 10 characters with no spacing between characters and no symbols). The Bank will assign User ID at its sole discretion if the Preferred User ID is left blank or cannot be allocated."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "Please read the notes below before you fill up this section."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For the list of specific payment types, please refer to the Straight2Bank Setup Guide."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "The guide can be found in our Bank's website under Services > Useful Forms > Straight2Bank."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For New User, please indicate your preferred User ID (min 3, max 10 characters with no spacing between characters and no symbols). The Bank will assign User ID at its sole discretion if the Preferred User ID is left blank or cannot be allocated."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "Please read the notes below before you fill up this section."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For the list of specific payment types, please refer to the Straight2Bank Setup Guide."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "The guide can be found in our Bank's website under Services > Useful Forms > Straight2Bank."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For New User, please indicate your preferred User ID (min 3, max 10 characters with no spacing between characters and no symbols). The Bank will assign User ID at its sole discretion if the Preferred User ID is left blank or cannot be allocated."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "Please read the notes below before you fill up this section."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For the list of specific payment types, please refer to the Straight2Bank Setup Guide."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "The guide can be found in our Bank's website under Services > Useful Forms > Straight2Bank."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For New User, please indicate your preferred User ID (min 3, max 10 characters with no spacing between characters and no symbols). The Bank will assign User ID at its sole discretion if the Preferred User ID is left blank or cannot be allocated."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "Please read the notes below before you fill up this section."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For the list of specific payment types, please refer to the Straight2Bank Setup Guide."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "The guide can be found in our Bank's website under Services > Useful Forms > Straight2Bank."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For New User, please indicate your preferred User ID (min 3, max 10 characters with no spacing between characters and no symbols). The Bank will assign User ID at its sole discretion if the Preferred User ID is left blank or cannot be allocated."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "Please read the notes below before you fill up this section."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For the list of specific payment types, please refer to the Straight2Bank Setup Guide."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "The guide can be found in our Bank's website under Services > Useful Forms > Straight2Bank."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For New User, please indicate your preferred User ID (min 3, max 10 characters with no spacing between characters and no symbols). The Bank will assign User ID at its sole discretion if the Preferred User ID is left blank or cannot be allocated."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "Please read the notes below before you fill up this section."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For the list of specific payment types, please refer to the Straight2Bank Setup Guide."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "The guide can be found in our Bank's website under Services > Useful Forms > Straight2Bank."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For New User, please indicate your preferred User ID (min 3, max 10 characters with no spacing between characters and no symbols). The Bank will assign User ID at its sole discretion if the Preferred User ID is left blank or cannot be allocated."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "Please read the notes below before you fill up this section."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For the list of specific payment types, please refer to the Straight2Bank Setup Guide."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "The guide can be found in our Bank's website under Services > Useful Forms > Straight2Bank."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For New User, please indicate your preferred User ID (min 3, max 10 characters with no spacing between characters and no symbols). The Bank will assign User ID at its sole discretion if the Preferred User ID is left blank or cannot be allocated."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "Please read the notes below before you fill up this section."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For the list of specific payment types, please refer to the Straight2Bank Setup Guide."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "The guide can be found in our Bank's website under Services > Useful Forms > Straight2Bank."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For New User, please indicate your preferred User ID (min 3, max 10 characters with no spacing between characters and no symbols). The Bank will assign User ID at its sole discretion if the Preferred User ID is left blank or cannot be allocated."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "Please read the notes below before you fill up this section."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For the list of specific payment types, please refer to the Straight2Bank Setup Guide."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "The guide can be found in our Bank's website under Services > Useful Forms > Straight2Bank."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For New User, please indicate your preferred User ID (min 3, max 10 characters with no spacing between characters and no symbols). The Bank will assign User ID at its sole discretion if the Preferred User ID is left blank or cannot be allocated."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "Please read the notes below before you fill up this section."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For the list of specific payment types, please refer to the Straight2Bank Setup Guide."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "The guide can be found in our Bank's website under Services > Useful Forms > Straight2Bank."
+        },
+        {
+          "type": "Document Reference",
+          "key": "Additional Information",
+          "value": "For New User, please indicate your preferred User ID (min 3, max 10 characters with no spacing between characters and no symbols). The Bank will assign User ID at its sole discretion if the Preferred User ID is left"
+        },
+        {
+          "type": "company",
+          "key": "company_name",
+          "value": "Standard Chartered Bank (Singapore) Limited"
+        },
+        {
+          "type": "company",
+          "key": "company_registration_number",
+          "value": "Reg. No. 201224747C"
+        },
+        {
+          "type": "company",
+          "key": "copyright",
+          "value": "© Copyright 2024 Standard Chartered Bank. All rights reserved."
+        },
+        {
+          "type": "form_name",
+          "key": "form_name",
+          "value": "Straight2Bank Set Up (New/Existing S2B Users)"
+        },
+        {
+          "type": "form_version",
+          "key": "form_version",
+          "value": "SME/May 2024"
+        },
+        {
+          "type": "form_page",
+          "key": "form_page",
+          "value": "Page 3 of 3"
+        },
+        {
+          "type": "special_instruction",
+          "key": "special_instruction",
+          "value": "[including any deletion requests of Group ID and User ID, please indicate here]"
+        },
+        {
+          "type": "signature_section",
+          "key": "signature_section",
+          "value": "I/We, the Approving signatory/signatories, confirm that users have the authority to perform roles and functions designated in this form."
+        },
+        {
+          "type": "signature_fields",
+          "key": "signature_fields",
+          "value": "Full name, Title/Position, Date"
+        }
+      ],
+      "entities": {
+        "companies": [],
+        "products": [],
+        "persons": []
+      },
+      "summary": "This document is a Straight2Bank setup form for new or existing S2B users, issued by Standard Chartered Bank (Singapore) Limited. It outlines online banking general settings, authorisation matrix rules, and signing rules. Key details include the base currency (SGD), email domain requirements, and specific rules for payment approval, administrator control, and account application. The form also provides examples of authorisation limits for different transaction amounts.",
+      "pages": 3,
+      "_had_json_error": true,
+      "_post_processed": true,
+      "_reclassified_count": 1
+    }
+  },
+  {
+    "file": "FB7B4866@92722543.09CC2D6700000000.png",
+    "success": true,
+    "document_type": "商业发票",
+    "fact_count": 34,
+    "identifier_count": 0,
+    "other_count": 0,
+    "identifier_categories": {},
+    "had_json_error": false,
+    "duration": 11.033869,
+    "extraction": {
+      "document_type": "商业发票",
+      "document_date": "20241108",
+      "facts": [
+        {
+          "type": "company",
+          "key": "seller",
+          "value": "上海榕融新材料技术有限公司"
+        },
+        {
+          "type": "company",
+          "key": "buyer",
+          "value": "SILCA GMBH"
+        },
+        {
+          "type": "company",
+          "key": "shipper",
+          "value": "上海榕融新材料技术有限公司"
+        },
+        {
+          "type": "company",
+          "key": "consignee",
+          "value": "SILCA GMBH"
+        },
+        {
+          "type": "company",
+          "key": "carrier",
+          "value": "水路运输"
+        },
+        {
+          "type": "company",
+          "key": "port_of_loading",
+          "value": "洋山港"
+        },
+        {
+          "type": "company",
+          "key": "port_of_discharge",
+          "value": "哥打巴鲁（印度尼西亚）"
+        },
+        {
+          "type": "company",
+          "key": "destination",
+          "value": "哥打巴鲁（印度尼西亚）"
+        },
+        {
+          "type": "company",
+          "key": "transportation",
+          "value": "CMA CGM CONCORDE/OFMHIW"
+        },
+        {
+          "type": "company",
+          "key": "invoice_no",
+          "value": "OOLU4122434010"
+        },
+        {
+          "type": "company",
+          "key": "order_no",
+          "value": "RJJS-YXHT-202411-0005"
+        },
+        {
+          "type": "company",
+          "key": "tracking_no",
+          "value": "OOLU4122434010"
+        },
+        {
+          "type": "company",
+          "key": "payment_terms",
+          "value": "随附单证2:发票;代理报关委托协议(纸质)"
+        },
+        {
+          "type": "company",
+          "key": "remarks",
+          "value": "备注:“OCL吸尘器”集装箱箱数及号码:0;"
+        },
+        {
+          "type": "company",
+          "key": "total_quantity",
+          "value": "332.00000"
+        },
+        {
+          "type": "company",
+          "key": "total_weight",
+          "value": "3478.02000"
+        },
+        {
+          "type": "company",
+          "key": "total_amount",
+          "value": "65360.00"
+        },
+        {
+          "type": "company",
+          "key": "currency",
+          "value": "美元"
+        },
+        {
+          "type": "product",
+          "key": "product_1",
+          "value": "6806109001 氧化铝纤维针刺毯 0|2|三氧化二铝,二氧化硅|白色毯子形状|不含石棉纤维"
+        },
+        {
+          "type": "product",
+          "key": "product_2",
+          "value": "6806109001 氧化铝纤维针刺毯 0|2|三氧化二铝,二氧化硅|白色毯子形状|不含石棉纤维"
+        },
+        {
+          "type": "product",
+          "key": "product_3",
+          "value": "6806109001 氧化铝纤维针刺毯 0|2|三氧化二铝,二氧化硅|白色毯子形状|不含石棉纤维"
+        },
+        {
+          "type": "product",
+          "key": "product_4",
+          "value": "6806109001 氧化铝纤维针刺毯 0|2|三氧化二铝,二氧化硅|白色毯子形状|不含石棉纤维"
+        },
+        {
+          "type": "product",
+          "key": "product_5",
+          "value": "6806109001 氧化铝纤维针刺毯 0|2|三氧化二铝,二氧化硅|白色毯子形状|不含石棉纤维"
+        },
+        {
+          "type": "company",
+          "key": "hs_code",
+          "value": "6806109001"
+        },
+        {
+          "type": "company",
+          "key": "country_of_origin",
+          "value": "中国"
+        },
+        {
+          "type": "company",
+          "key": "country_of_destination",
+          "value": "印度尼西亚"
+        },
+        {
+          "type": "company",
+          "key": "port_of_loading",
+          "value": "洋山港"
+        },
+        {
+          "type": "company",
+          "key": "port_of_discharge",
+          "value": "哥打巴鲁（印度尼西亚）"
+        },
+        {
+          "type": "company",
+          "key": "transportation",
+          "value": "CMA CGM CONCORDE/OFMHIW"
+        },
+        {
+          "type": "company",
+          "key": "invoice_no",
+          "value": "OOLU4122434010"
+        },
+        {
+          "type": "company",
+          "key": "order_no",
+          "value": "RJJS-YXHT-202411-0005"
+        },
+        {
+          "type": "company",
+          "key": "tracking_no",
+          "value": "OOLU4122434010"
+        },
+        {
+          "type": "company",
+          "key": "payment_terms",
+          "value": "随附单证2:发票;代理报关委托协议(纸质)"
+        },
+        {
+          "type": "company",
+          "key": "remarks",
+          "value": "备注:“OCL吸尘器”集装箱箱数及号码:0;"
+        }
+      ],
+      "summary": "这是一份商业发票，显示上海榕融新材料技术有限公司向SILCA GMBH销售氧化铝纤维针刺毯，总数量332.00000千克，总重量3478.02000千克，总金额65360.00美元。货物从中国洋山港装运，目的地为印度尼西亚哥打巴鲁，运输方式为水路运输，运输船为CMA CGM CONCORDE/OFMHIW。发票号为OOLU4122434010，订单号为RJJS-YXHT-202411-0005，付款条件为随附单证2:发票;代理报关委托协议(纸质)。",
+      "_had_json_error": false,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "B465FC53@C64C1736.1617306800000000.png",
+    "success": true,
+    "document_type": "Customer Service Recognition/Compliance Document",
+    "fact_count": 5,
+    "identifier_count": 0,
+    "other_count": 0,
+    "identifier_categories": {},
+    "had_json_error": false,
+    "duration": 3.025266,
+    "extraction": {
+      "document_type": "Customer Service Recognition/Compliance Document",
+      "document_date": "Not explicitly stated",
+      "facts": [
+        {
+          "type": "Customer Service Recognition",
+          "key": "Exceptional Customer Service",
+          "value": "The document highlights 'Exceptional Customer Service' as a key theme, indicating recognition or appreciation for outstanding customer service performance."
+        },
+        {
+          "type": "Customer Service Recognition",
+          "key": "Customer Service Appreciation",
+          "value": "The circular badge on the right side of the document states 'Customer Service Appreciation', reinforcing the theme of recognizing customer service excellence."
+        },
+        {
+          "type": "Visual Elements",
+          "key": "Fireworks",
+          "value": "Red fireworks graphics are present, suggesting celebration or achievement related to customer service."
+        },
+        {
+          "type": "Visual Elements",
+          "key": "Hand Icon",
+          "value": "A hand icon holding a person icon is part of the 'Customer Service Appreciation' badge, symbolizing support and care in customer service."
+        },
+        {
+          "type": "Visual Elements",
+          "key": "Company Logo",
+          "value": "No explicit company logo is visible in the document; however, the design suggests it is likely for a business that values customer service."
+        }
+      ],
+      "summary": "This document is a customer service recognition or appreciation graphic. It emphasizes 'Exceptional Customer Service' and 'Customer Service Appreciation' through text and visual elements like fireworks and a hand icon. There are no explicit details such as company name, specific dates, amounts, or identifiers (e.g., invoice numbers, order numbers) present in the image. The document appears to be a celebratory or motivational piece for customer service excellence rather than a transactional business document like an invoice or order confirmation.",
+      "_had_json_error": false,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "05072024095018-0001.pdf",
+    "success": true,
+    "document_type": "Tax Invoice",
+    "fact_count": 40,
+    "identifier_count": 4,
+    "other_count": 0,
+    "identifier_categories": {
+      "FINANCE": 2,
+      "UNKNOWN": 1,
+      "LEGAL": 1
+    },
+    "had_json_error": false,
+    "duration": 15.775566,
+    "extraction": {
+      "document_type": "Tax Invoice",
+      "facts": [
+        {
+          "type": "Company",
+          "key": "Company Name",
+          "value": "VULCAN SHIELD GLOBAL PTE. LTD."
+        },
+        {
+          "type": "Company",
+          "key": "Company Address",
+          "value": "10 MARINA BOULEVARD #13-01 SINGAPORE 018983"
+        },
+        {
+          "type": "Company",
+          "key": "Company Name",
+          "value": "Singapore Telecommunications Limited"
+        },
+        {
+          "type": "Company",
+          "key": "Company Address",
+          "value": "Singapore Post Centre 10 Eunos Road 8 #07-31 Singapore 408600"
+        },
+        {
+          "type": "Identifier",
+          "key": "Account No",
+          "value": "63459069",
+          "identifier_category": "FINANCE",
+          "identifier_subtype": "ACCOUNT_NUMBER"
+        },
+        {
+          "type": "Identifier",
+          "key": "Bill ID",
+          "value": "0009",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "Registration No",
+          "value": "199201624D",
+          "identifier_category": "LEGAL",
+          "identifier_subtype": "REGISTRATION_NUMBER"
+        },
+        {
+          "type": "Identifier",
+          "key": "Tax Invoice GST Registration No",
+          "value": "MR-8500432-2",
+          "identifier_category": "FINANCE",
+          "identifier_subtype": "INVOICE_NUMBER"
+        },
+        {
+          "type": "Amount",
+          "key": "Total Due (SGD)",
+          "value": "247.97"
+        },
+        {
+          "type": "Amount",
+          "key": "Balance Brought Forward",
+          "value": "181.40"
+        },
+        {
+          "type": "Amount",
+          "key": "Payments & Other Transactions",
+          "value": "181.40"
+        },
+        {
+          "type": "Amount",
+          "key": "Current Charges",
+          "value": "247.97"
+        },
+        {
+          "type": "Amount",
+          "key": "Outstanding Balance",
+          "value": "0.00"
+        },
+        {
+          "type": "Amount",
+          "key": "Adjustments of Previous Bill",
+          "value": "0.00"
+        },
+        {
+          "type": "Date",
+          "key": "Bill Date",
+          "value": "29 Jun 2024"
+        },
+        {
+          "type": "Date",
+          "key": "Due Date for Current Charges",
+          "value": "13 Jul 2024"
+        },
+        {
+          "type": "Date",
+          "key": "Payment Date",
+          "value": "14 Jun 2024"
+        },
+        {
+          "type": "Contact",
+          "key": "Billing Enquiries",
+          "value": "1606"
+        },
+        {
+          "type": "Contact",
+          "key": "Quick Self-help",
+          "value": "1800 7383330 (24 Hrs)"
+        },
+        {
+          "type": "Note",
+          "key": "Payment Method Note",
+          "value": "With effect from 31 January 2024, we will stop accepting payment via cheque. Please visit www.singtel.com/bizpayment for other payment methods."
+        },
+        {
+          "type": "Note",
+          "key": "eBill Note",
+          "value": "Sign up for eBill by creating an account on Empower Portal"
+        },
+        {
+          "type": "Account Information",
+          "key": "Account No",
+          "value": "63459069"
+        },
+        {
+          "type": "Invoice Information",
+          "key": "Invoice No",
+          "value": "65138802"
+        },
+        {
+          "type": "Company Information",
+          "key": "Company Name",
+          "value": "Singtel"
+        },
+        {
+          "type": "Product Information",
+          "key": "Product",
+          "value": "SingNet eVolve Broadband 1Gbps Static Unlimited (36 mths)"
+        },
+        {
+          "type": "Product Information",
+          "key": "Product",
+          "value": "SingNet BizVoice Starter Plan"
+        },
+        {
+          "type": "Product Information",
+          "key": "Product",
+          "value": "WiFi Mesh (Twin Pack)"
+        },
+        {
+          "type": "Product Information",
+          "key": "Product",
+          "value": "SingNet BizVoice Starter Plan"
+        },
+        {
+          "type": "Amount Information",
+          "key": "Total Current Charges",
+          "value": "247.97"
+        },
+        {
+          "type": "Amount Information",
+          "key": "GST",
+          "value": "20.48"
+        },
+        {
+          "type": "Amount Information",
+          "key": "Current Taxable Charges",
+          "value": "227.49"
+        },
+        {
+          "type": "Date Information",
+          "key": "Bill Date",
+          "value": "29 Jun 2024"
+        },
+        {
+          "type": "Date Information",
+          "key": "Subscription Period",
+          "value": "25 Jun 2024 to 24 Jul 2024"
+        },
+        {
+          "type": "Date Information",
+          "key": "Usage Period",
+          "value": "27 May 2024 to 24 Jun 2024"
+        },
+        {
+          "type": "Other Information",
+          "key": "Paper Bill Charge",
+          "value": "2.50"
+        },
+        {
+          "type": "Other Information",
+          "key": "Local Call Charge",
+          "value": "0.00"
+        },
+        {
+          "type": "Other Information",
+          "key": "GST Rate",
+          "value": "9%"
+        },
+        {
+          "type": "Other Information",
+          "key": "Note 1",
+          "value": "This bill may include the charges of entities (including third party service providers) that have assigned billing and/or collection functions to Singtel, which you have consented to. Singtel assumes no liability for services provided by these entities. You are required to pay Singtel all amounts in this bill, unless otherwise stated."
+        },
+        {
+          "type": "Other Information",
+          "key": "Note 2",
+          "value": "Singtel may send a reminder for overdue bills. A reminder fee of SGD0.55 will be charged per reminder. For business customers, if the bill remains unpaid, a final reminder may be sent and a late payment fee of SGD21.80 will be levied. There will be a reconnection fee of SGD21.80 per line or circuit if services are disconnected due to non-payment. All fees are inclusive of prevailing GST."
+        },
+        {
+          "type": "Other Information",
+          "key": "Note 3",
+          "value": "Details on GST rate change in January 2024 is available at www.singtel.com/business/gst-change"
+        }
+      ],
+      "entities": {
+        "companies": [],
+        "products": [],
+        "persons": []
+      },
+      "summary": "This is a tax invoice from Singtel for VULCAN SHIELD GLOBAL PTE. LTD., with an account number of 63459069 and bill ID 0009. The invoice is dated 29 Jun 2024, with a total due of SGD 247.97 for current charges due on 13 Jul 2024. The company's address is 10 MARINA BOULEVARD #13-01 SINGAPORE 018983. The invoice includes details of balance brought forward (SGD 181.40), payments (SGD 181.40 on 14 Jun 2024), and current charges (SGD 247.97). The outstanding balance is SGD 0.00. Contact information for billing enquiries and self-help is provided, along with a note about payment methods.",
+      "pages": 2,
+      "_had_json_error": false,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "SINR014364158.pdf",
+    "success": true,
+    "document_type": "TAX INVOICE",
+    "fact_count": 81,
+    "identifier_count": 5,
+    "other_count": 0,
+    "identifier_categories": {
+      "LOGISTICS": 3,
+      "FINANCE": 2
+    },
+    "had_json_error": false,
+    "duration": 26.130877,
+    "extraction": {
+      "document_type": "TAX INVOICE",
+      "facts": [
+        {
+          "type": "company",
+          "key": "company_name",
+          "value": "VULCAN SHIELD GLOBAL PTE. LTD."
+        },
+        {
+          "type": "company",
+          "key": "company_address",
+          "value": "10 MARINA BOULEVARD #13-01, MARINA BAY FINANCIAL CENTRE 018983 SINGAPORE"
+        },
+        {
+          "type": "company",
+          "key": "company_email",
+          "value": "financequery@dhl.com"
+        },
+        {
+          "type": "company",
+          "key": "company_phone",
+          "value": "6389-5601"
+        },
+        {
+          "type": "company",
+          "key": "company_gst",
+          "value": "202216425K"
+        },
+        {
+          "type": "company",
+          "key": "company_account",
+          "value": "618855894"
+        },
+        {
+          "type": "company",
+          "key": "company_bank",
+          "value": "Standard Chartered Bank (Singapore) Limited"
+        },
+        {
+          "type": "company",
+          "key": "company_bank_branch",
+          "value": "9496/001"
+        },
+        {
+          "type": "company",
+          "key": "company_bank_swift",
+          "value": "SCBLSG22"
+        },
+        {
+          "type": "company",
+          "key": "company_bank_account",
+          "value": "01-0-054823-7"
+        },
+        {
+          "type": "company",
+          "key": "company_bank_account_name",
+          "value": "DHL Express (Singapore) Pte Ltd"
+        },
+        {
+          "type": "company",
+          "key": "company_co_reg_no",
+          "value": "197700524Z"
+        },
+        {
+          "type": "company",
+          "key": "company_gst_reg_no",
+          "value": "M2-0026281-6"
+        },
+        {
+          "type": "identifier",
+          "key": "invoice_no",
+          "value": "SINR014364158"
+        },
+        {
+          "type": "identifier",
+          "key": "account_no",
+          "value": "618855894"
+        },
+        {
+          "type": "identifier",
+          "key": "invoice_date",
+          "value": "31/08/2025"
+        },
+        {
+          "type": "identifier",
+          "key": "payment_due_date",
+          "value": "30/09/2025"
+        },
+        {
+          "type": "amount",
+          "key": "total_amount_excl_gst",
+          "value": "41.55"
+        },
+        {
+          "type": "amount",
+          "key": "total_amount_incl_gst",
+          "value": "41.55"
+        },
+        {
+          "type": "amount",
+          "key": "gst_amount",
+          "value": "0.00"
+        },
+        {
+          "type": "service",
+          "key": "service_type",
+          "value": "EXPRESS WORLDWIDE DOC"
+        },
+        {
+          "type": "service",
+          "key": "service_number_of_shipments",
+          "value": "1"
+        },
+        {
+          "type": "service",
+          "key": "service_total_weight",
+          "value": "0.50"
+        },
+        {
+          "type": "service",
+          "key": "service_number_of_pieces",
+          "value": "1"
+        },
+        {
+          "type": "service",
+          "key": "service_standard_shipping_charge",
+          "value": "31.72"
+        },
+        {
+          "type": "service",
+          "key": "service_total_extra_charges",
+          "value": "9.83"
+        },
+        {
+          "type": "service",
+          "key": "service_total_amount_incl_gst",
+          "value": "41.55"
+        },
+        {
+          "type": "service",
+          "key": "service_gst_code",
+          "value": "C"
+        },
+        {
+          "type": "service",
+          "key": "service_gst_description",
+          "value": "GST 0% INT. SERVICE - Export"
+        },
+        {
+          "type": "service",
+          "key": "service_gst_rate",
+          "value": "0.00%"
+        },
+        {
+          "type": "service",
+          "key": "service_gst_taxable_total",
+          "value": "41.55"
+        },
+        {
+          "type": "service",
+          "key": "service_gst_amount",
+          "value": "0.00"
+        },
+        {
+          "type": "payment",
+          "key": "payment_method",
+          "value": "By Credit / Debit Card, By Cheque, By Bank Transfer / AXS/ Cash"
+        },
+        {
+          "type": "payment",
+          "key": "payment_credit_debit_card",
+          "value": "Pay online by credit/debit card using your DHL MyBill account. Go to www.mybill.dhl.com/login to login and make a payment."
+        },
+        {
+          "type": "payment",
+          "key": "payment_cheque",
+          "value": "Send cheque and remittance details to DHL EXPRESS (SINGAPORE) PTE LTD, 1 TAI SENG DRIVE, Singapore 535215"
+        },
+        {
+          "type": "payment",
+          "key": "payment_bank_transfer",
+          "value": "Standard Chartered Bank (Singapore) Limited, 9496/001, SCBLSG22, 01-0-054823-7, DHL Express (Singapore) Pte Ltd"
+        },
+        {
+          "type": "payment",
+          "key": "payment_remittance_advice",
+          "value": "Remittance advices should be emailed to: sscreceiptingiro@dhl.com. Please state your DHL Invoice Number and Account Number as a reference when making a payment."
+        },
+        {
+          "type": "payment",
+          "key": "payment_remittance_advice_barcode",
+          "value": "618855894"
+        },
+        {
+          "type": "payment",
+          "key": "payment_remittance_advice_barcode_invoice_no",
+          "value": "SINR014364158"
+        },
+        {
+          "type": "identifier",
+          "key": "Invoice Number",
+          "value": "SINR014364158"
+        },
+        {
+          "type": "identifier",
+          "key": "Account Number",
+          "value": "618855894"
+        },
+        {
+          "type": "identifier",
+          "key": "Air Waybill Number",
+          "value": "6876235833"
+        },
+        {
+          "type": "date",
+          "key": "Shipment Origin Date",
+          "value": "27/08/2025"
+        },
+        {
+          "type": "company",
+          "key": "Shipper",
+          "value": "VULCAN SHIELD GLOBAL PTE LTD"
+        },
+        {
+          "type": "company",
+          "key": "Consignee",
+          "value": "CENTRAL EUROPEAN INVESTMENT SERVICES"
+        },
+        {
+          "type": "address",
+          "key": "Shipper Address",
+          "value": "QIN HAO\n10 Marina Boulevard,\nLevel 13-01\nSG-018983, SINGAPORE"
+        },
+        {
+          "type": "address",
+          "key": "Consignee Address",
+          "value": "Bilek Peter\nCorvin ter 10\nCorvin Haz\nHU-1011, BUDAPEST"
+        },
+        {
+          "type": "location",
+          "key": "Shipment Origin",
+          "value": "SIN, SINGAPORE"
+        },
+        {
+          "type": "location",
+          "key": "Destination",
+          "value": "BUD, BUDAPEST"
+        },
+        {
+          "type": "service",
+          "key": "Type of Service",
+          "value": "EXPRESS WORLDWIDE doc"
+        },
+        {
+          "type": "weight",
+          "key": "Weight in Kg",
+          "value": "0.50"
+        },
+        {
+          "type": "quantity",
+          "key": "Number of Pieces",
+          "value": "1"
+        },
+        {
+          "type": "amount",
+          "key": "Standard Charge",
+          "value": "31.72"
+        },
+        {
+          "type": "amount",
+          "key": "Extra Charges Description",
+          "value": "FUEL SURCHARGE"
+        },
+        {
+          "type": "amount",
+          "key": "Extra Charges Amount",
+          "value": "9.83"
+        },
+        {
+          "type": "amount",
+          "key": "Total amount (incl. GST)",
+          "value": "41.55"
+        },
+        {
+          "type": "amount",
+          "key": "Service Subtotal",
+          "value": "41.55"
+        },
+        {
+          "type": "amount",
+          "key": "Total: SGD",
+          "value": "41.55"
+        },
+        {
+          "type": "Identifier",
+          "key": "Waybill No",
+          "value": "6876235833",
+          "identifier_category": "LOGISTICS",
+          "identifier_subtype": "TRACKING_NUMBER"
+        },
+        {
+          "type": "Identifier",
+          "key": "Tracking No",
+          "value": "6876235833",
+          "identifier_category": "LOGISTICS",
+          "identifier_subtype": "TRACKING_NUMBER"
+        },
+        {
+          "type": "Identifier",
+          "key": "Invoice No",
+          "value": "6876235833",
+          "identifier_category": "FINANCE",
+          "identifier_subtype": "INVOICE_NUMBER"
+        },
+        {
+          "type": "Identifier",
+          "key": "PO No",
+          "value": "6876235833",
+          "identifier_category": "LOGISTICS",
+          "identifier_subtype": "PO_NUMBER"
+        },
+        {
+          "type": "Identifier",
+          "key": "Account No",
+          "value": "6876235833",
+          "identifier_category": "FINANCE",
+          "identifier_subtype": "ACCOUNT_NUMBER"
+        },
+        {
+          "type": "Company",
+          "key": "Shipper",
+          "value": "Vulcan Shield Global Pte Ltd"
+        },
+        {
+          "type": "Company",
+          "key": "Shipper Address",
+          "value": "10 Marina Boulevard, Level 13-01, Marina Bay Financial Centre Tower 2, 018983 SINGAPORE"
+        },
+        {
+          "type": "Company",
+          "key": "Shipper Contact",
+          "value": "+6586107871"
+        },
+        {
+          "type": "Company",
+          "key": "Receiver",
+          "value": "Central European Investment Services"
+        },
+        {
+          "type": "Company",
+          "key": "Receiver Address",
+          "value": "Bilek Peter Corvin tor 10, Corvin Ház 1011 BUDAPEST Hungary"
+        },
+        {
+          "type": "Company",
+          "key": "Receiver Contact",
+          "value": "+36305724214"
+        },
+        {
+          "type": "Company",
+          "key": "Receiver Email",
+          "value": "qin.hao@vulcanshield.com"
+        },
+        {
+          "type": "Product",
+          "key": "Product Details",
+          "value": "[D] EXPRESS WORLDWIDE (42)"
+        },
+        {
+          "type": "Product",
+          "key": "Features / Services",
+          "value": "Automated Digital Imaging (FJ)"
+        },
+        {
+          "type": "Product",
+          "key": "Contents",
+          "value": "Annual reports"
+        },
+        {
+          "type": "Shipment",
+          "key": "Weight",
+          "value": "0.3 kg"
+        },
+        {
+          "type": "Shipment",
+          "key": "Pieces",
+          "value": "1"
+        },
+        {
+          "type": "Shipment",
+          "key": "Freight A/C",
+          "value": "618855894"
+        },
+        {
+          "type": "Shipment",
+          "key": "Duty A/C",
+          "value": ""
+        },
+        {
+          "type": "Shipment",
+          "key": "Taxes A/C",
+          "value": ""
+        },
+        {
+          "type": "Shipment",
+          "key": "Ref",
+          "value": ""
+        },
+        {
+          "type": "Shipment",
+          "key": "Cust Decl Shpt Wgt (UOM) / Dim Wgt (UOM)",
+          "value": "0.3 kg"
+        },
+        {
+          "type": "Shipment",
+          "key": "Pieces",
+          "value": "1"
+        }
+      ],
+      "entities": {
+        "companies": [],
+        "products": [],
+        "persons": []
+      },
+      "summary": "This is a DHL Express tax invoice for VULCAN SHIELD GLOBAL PTE. LTD., dated 31/08/2025, with invoice number SINR014364158. The invoice details a single shipment of 0.50 weight units under the service type EXPRESS WORLDWIDE DOC, with a total amount of 41.55 SGD (inclusive of GST). The payment is due by 30/09/2025, and multiple payment methods are available including credit/debit card, cheque, and bank transfer. The invoice includes detailed bank transfer information for Standard Chartered Bank (Singapore) Limited.",
+      "pages": 3,
+      "_had_json_error": false,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "样件备货单- Enersens absolute insulation 0318.pdf",
+    "success": true,
+    "document_type": "样品备货单",
+    "fact_count": 23,
+    "identifier_count": 0,
+    "other_count": 0,
+    "identifier_categories": {},
+    "had_json_error": false,
+    "duration": 7.153664,
+    "extraction": {
+      "document_type": "样品备货单",
+      "facts": [
+        {
+          "type": "company",
+          "key": "company_name",
+          "value": "上海榕融新材料技术有限公司"
+        },
+        {
+          "type": "identifier",
+          "key": "approval_number",
+          "value": "202503180028"
+        },
+        {
+          "type": "identifier",
+          "key": "customer_name",
+          "value": "Energens absolute insulation"
+        },
+        {
+          "type": "date",
+          "key": "production_feedback_delivery_date",
+          "value": "2025年3月25日"
+        },
+        {
+          "type": "date",
+          "key": "customer_wish_delivery_date",
+          "value": "2025年3月25日"
+        },
+        {
+          "type": "identifier",
+          "key": "sales_responsible",
+          "value": "胡宇轩/David"
+        },
+        {
+          "type": "date",
+          "key": "production_date",
+          "value": "2025年3月18日"
+        },
+        {
+          "type": "product",
+          "key": "product_1",
+          "value": "氧化铝纤维针刺毯"
+        },
+        {
+          "type": "product",
+          "key": "product_2",
+          "value": "氧化铝纤维针刺毯"
+        },
+        {
+          "type": "product",
+          "key": "product_3",
+          "value": "氧化铝纤维水刺纸"
+        },
+        {
+          "type": "product",
+          "key": "product_1_spec",
+          "value": "N-F-1600, 厚3mm, 幅宽610, 容重128"
+        },
+        {
+          "type": "product",
+          "key": "product_2_spec",
+          "value": "N-F-1600, 厚6mm, 幅宽610, 容重128"
+        },
+        {
+          "type": "product",
+          "key": "product_3_spec",
+          "value": "FP-F-72, 幅宽1m, 厚1mm"
+        },
+        {
+          "type": "product",
+          "key": "product_1_quantity",
+          "value": "1"
+        },
+        {
+          "type": "product",
+          "key": "product_2_quantity",
+          "value": "1"
+        },
+        {
+          "type": "product",
+          "key": "product_3_quantity",
+          "value": "0.5"
+        },
+        {
+          "type": "product",
+          "key": "product_1_unit",
+          "value": "米"
+        },
+        {
+          "type": "product",
+          "key": "product_2_unit",
+          "value": "米"
+        },
+        {
+          "type": "product",
+          "key": "product_3_unit",
+          "value": "米"
+        },
+        {
+          "type": "other",
+          "key": "other_info",
+          "value": "英文标签, 正常包装"
+        },
+        {
+          "type": "other",
+          "key": "high_temperature",
+          "value": "否"
+        },
+        {
+          "type": "other",
+          "key": "quality_report",
+          "value": "否"
+        },
+        {
+          "type": "other",
+          "key": "delivery_times",
+          "value": "第1次"
+        }
+      ],
+      "entities": {
+        "companies": [],
+        "products": [],
+        "persons": []
+      },
+      "summary": "上海榕融新材料技术有限公司于2025年3月18日制作样品备货单，客户为Energens absolute insulation，订单编号202503180028，销售负责人胡宇轩/David。备货包含3种产品：氧化铝纤维针刺毯（2种规格，各1米）和氧化铝纤维水刺纸（0.5米），生产反馈及客户期望出货日期均为2025年3月25日。产品需英文标签、正常包装，无需高温处理及质量报告，本次为第1次送样。",
+      "pages": 1,
+      "_had_json_error": false,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "PO 00137 VULCAN 25-26.pdf",
+    "success": true,
+    "document_type": "Purchase Order",
+    "fact_count": 165,
+    "identifier_count": 12,
+    "other_count": 0,
+    "identifier_categories": {
+      "LOGISTICS": 1,
+      "FINANCE": 2,
+      "UNKNOWN": 9
+    },
+    "had_json_error": true,
+    "duration": 51.983305,
+    "extraction": {
+      "document_type": "Purchase Order",
+      "facts": [
+        {
+          "type": "Company",
+          "key": "Supplier",
+          "value": "VULCAN SHIELD GLOBAL PTE. LTD"
+        },
+        {
+          "type": "Company",
+          "key": "Buyer",
+          "value": "ASACO"
+        },
+        {
+          "type": "Identifier",
+          "key": "PO No",
+          "value": "PUR-ORD-2025-2026-00137",
+          "identifier_category": "LOGISTICS",
+          "identifier_subtype": "PO_NUMBER"
+        },
+        {
+          "type": "Identifier",
+          "key": "GST/VAT",
+          "value": "36AADCA1129L1ZT",
+          "identifier_category": "FINANCE",
+          "identifier_subtype": "TAX_CODE"
+        },
+        {
+          "type": "Identifier",
+          "key": "PAN",
+          "value": "AADCA1129L",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "CIN",
+          "value": "U29100TG1969PTC003800",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "TAN",
+          "value": "HYDA02043G",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "Quotation No",
+          "value": "VSG-CI-00049",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "Invoice No",
+          "value": "VSG-CI-00049",
+          "identifier_category": "FINANCE",
+          "identifier_subtype": "INVOICE_NUMBER"
+        },
+        {
+          "type": "Date",
+          "key": "Required By",
+          "value": "21-06-2025"
+        },
+        {
+          "type": "Date",
+          "key": "FY",
+          "value": "2025-2026"
+        },
+        {
+          "type": "Address",
+          "key": "Supplier Address",
+          "value": "10 MARINA BOULEVARD #13-01, MARINA BAY FINANCIAL CENTRE TOWER 2 SINGAPORE Singapore"
+        },
+        {
+          "type": "Address",
+          "key": "Buyer Billing Address",
+          "value": "Plot No. 19, Samuha Aerospace Park Adibatla(PO), Ibrahimpatnam Hyderabad Telangana, State Code: 36 Postal Code: 501510 India"
+        },
+        {
+          "type": "Address",
+          "key": "Buyer Shipping Address",
+          "value": "Plot No. 19, Samuha Aerospace Park Adibatla(PO), Ibrahimpatnam Hyderabad Telangana, State Code: 36 Postal Code: 501510 India"
+        },
+        {
+          "type": "Product",
+          "key": "Item",
+          "value": "ALUMINA FIBER NEEDLED BLANKET - NEEDLED BLANKET N-F-1600C-(2000 X 1220 X 3 MM)"
+        },
+        {
+          "type": "Product",
+          "key": "Item Code",
+          "value": "ASA-ITEM-2025-01166"
+        },
+        {
+          "type": "Product",
+          "key": "HSN/SAC",
+          "value": "68061000"
+        },
+        {
+          "type": "Product",
+          "key": "Quantity",
+          "value": "1.0"
+        },
+        {
+          "type": "Product",
+          "key": "UOM",
+          "value": "Nos"
+        },
+        {
+          "type": "Product",
+          "key": "Rate",
+          "value": "$ 550.00"
+        },
+        {
+          "type": "Product",
+          "key": "Amount",
+          "value": "$ 550.00"
+        },
+        {
+          "type": "Amount",
+          "key": "Total",
+          "value": "$ 550.00"
+        },
+        {
+          "type": "Identifier",
+          "key": "Cost Center",
+          "value": "Purchase-SPMB - A",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "Supplier PAN",
+          "value": "None",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Contact",
+          "key": "Email",
+          "value": "purchase@asaco.in"
+        },
+        {
+          "type": "Contact",
+          "key": "Phone",
+          "value": "+91 7799 787 747, +91 9703 762 578"
+        },
+        {
+          "type": "Contact",
+          "key": "Fax",
+          "value": "(0) 2266 459 136"
+        },
+        {
+          "type": "Amount",
+          "key": "Grand Total",
+          "value": "$550.00"
+        },
+        {
+          "type": "Amount",
+          "key": "Rounded Total",
+          "value": "$550.00"
+        },
+        {
+          "type": "Amount",
+          "key": "Amount in Words",
+          "value": "USD Five Hundred And Fifty only."
+        },
+        {
+          "type": "Delivery",
+          "key": "Delivery Time",
+          "value": "4-5 DAYS"
+        },
+        {
+          "type": "Payment",
+          "key": "Payment Terms",
+          "value": "100% ADVANCE"
+        },
+        {
+          "type": "Company",
+          "key": "Supplier",
+          "value": "ASACO PRIVATE LIMITED HYDERABAD"
+        },
+        {
+          "type": "Company",
+          "key": "Customer",
+          "value": "ASACO"
+        },
+        {
+          "type": "Product",
+          "key": "Product Code",
+          "value": "Not explicitly mentioned in the document"
+        },
+        {
+          "type": "Identifier",
+          "key": "Document Version",
+          "value": "ASA-F/PUR-01 REV00",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "Page",
+          "value": "Page 2 of 5",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Identifier",
+          "key": "Document Code",
+          "value": "E & OE",
+          "identifier_category": "UNKNOWN",
+          "identifier_subtype": "GENERIC_ID"
+        },
+        {
+          "type": "Requirement",
+          "key": "Record Retention",
+          "value": "Suppliers shall retain verifiable objective evidence of build, inspection & test records, special process certifications, raw material certifications and certificates of conformance for a minimum of ten (10) years from date of shipment, unless a longer period is otherwise specified. The data shall be made available to ASACO upon request."
+        },
+        {
+          "type": "Requirement",
+          "key": "Calibration System",
+          "value": "Calibration of measuring and test equipment used for product acceptance shall be traceable to established international or national measurement standards (e.g., ISO/IEC 17025 Complied). Procedures for periodic calibration, certification and maintenance of tools and equipment shall be established and followed."
+        },
+        {
+          "type": "Requirement",
+          "key": "Inspection System",
+          "value": "Suppliers shall develop inspection procedures and maintain records of inspection. Records shall include evidence of inspection for all attributes (i.e. first article inspection) of products / processes supplied to ASACO. The inspection system shall evaluate products/processes to ensure that only hardware/services that conform to purchase order requirements are delivered to ASACO."
+        },
+        {
+          "type": "Requirement",
+          "key": "Travelers",
+          "value": "Suppliers shall maintain a traveler or equivalent control mechanism that directs procedures appropriate for"
+        },
+        {
+          "type": "Requirement",
+          "key": "Order Confirmation",
+          "value": "Order Confirmation should reach us within 7 days from date of purchase, Order failing which it will considered the order has been accepted by you as per our terms and conditions"
+        },
+        {
+          "type": "Requirement",
+          "key": "Invoice Address",
+          "value": "Invoice should be prepared only on our factory address"
+        },
+        {
+          "type": "Requirement",
+          "key": "TAN",
+          "value": "Please indicate our TAN in your Delivery Challan & Invoice"
+        },
+        {
+          "type": "Requirement",
+          "key": "Supplier Quality Requirements",
+          "value": "Supplier shall comply the SQR-01 (Supplier Quality Requirements)"
+        },
+        {
+          "type": "Requirement",
+          "key": "Purchase Order Reference",
+          "value": "Please indicate our purchase order reference in your D.C ,Invoice, packing list and all other relevant correspondences"
+        },
+        {
+          "type": "公司信息",
+          "key": "ASACO",
+          "value": "ASACO（采购方）"
+        },
+        {
+          "type": "公司信息",
+          "key": "供应商",
+          "value": "供应商（包括经销商和分销商）"
+        },
+        {
+          "type": "产品信息",
+          "key": "产品",
+          "value": "ASACO设计控制下的产品、服务、硬件"
+        },
+        {
+          "type": "产品信息",
+          "key": "特殊工艺",
+          "value": "ASACO批准的特殊工艺供应商"
+        },
+        {
+          "type": "产品信息",
+          "key": "认证",
+          "value": "ASACO认证的供应商"
+        },
+        {
+          "type": "产品信息",
+          "key": "合规性",
+          "value": "ASACO设计控制下的产品、服务、硬件"
+        },
+        {
+          "type": "产品信息",
+          "key": "非合规产品",
+          "value": "不符合规定要求的产品"
+        },
+        {
+          "type": "产品信息",
+          "key": "保证/保修",
+          "value": "12个月保证期，供应商负责更换有缺陷的物品"
+        },
+        {
+          "type": "产品信息",
+          "key": "保密要求",
+          "value": "供应商不得披露采购订单的技术或商业条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "交付条款",
+          "value": "供应商需遵守ASACO的交付条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "行业规范",
+          "value": "军事、联邦和行业规范和标准"
+        },
+        {
+          "type": "产品信息",
+          "key": "统计技术",
+          "value": "控制图技术，ANSI/ASQ Z1.4 (MIL-STD-105), Level II 1.0 AQL, c = 0"
+        },
+        {
+          "type": "产品信息",
+          "key": "证书",
+          "value": "合规证书，包含ASACO零件号、图纸修订号、采购订单号、数量、日期和授权代表签名"
+        },
+        {
+          "type": "产品信息",
+          "key": "访问权",
+          "value": "ASACO客户和相关监管机构有权访问供应商和相关设施"
+        },
+        {
+          "type": "产品信息",
+          "key": "责任",
+          "value": "供应商对可接受产品和后续拒绝负责"
+        },
+        {
+          "type": "产品信息",
+          "key": "特定要求",
+          "value": "防止使用假冒零件，确保员工了解其对产品或服务合规性、产品安全和道德行为的贡献"
+        },
+        {
+          "type": "产品信息",
+          "key": "交付条款",
+          "value": "供应商需遵守ASACO的交付条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保密要求",
+          "value": "供应商不得披露采购订单的技术或商业条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保证/保修",
+          "value": "12个月保证期，供应商负责更换有缺陷的物品"
+        },
+        {
+          "type": "产品信息",
+          "key": "行业规范",
+          "value": "军事、联邦和行业规范和标准"
+        },
+        {
+          "type": "产品信息",
+          "key": "统计技术",
+          "value": "控制图技术，ANSI/ASQ Z1.4 (MIL-STD-105), Level II 1.0 AQL, c = 0"
+        },
+        {
+          "type": "产品信息",
+          "key": "证书",
+          "value": "合规证书，包含ASACO零件号、图纸修订号、采购订单号、数量、日期和授权代表签名"
+        },
+        {
+          "type": "产品信息",
+          "key": "访问权",
+          "value": "ASACO客户和相关监管机构有权访问供应商和相关设施"
+        },
+        {
+          "type": "产品信息",
+          "key": "责任",
+          "value": "供应商对可接受产品和后续拒绝负责"
+        },
+        {
+          "type": "产品信息",
+          "key": "特定要求",
+          "value": "防止使用假冒零件，确保员工了解其对产品或服务合规性、产品安全和道德行为的贡献"
+        },
+        {
+          "type": "产品信息",
+          "key": "交付条款",
+          "value": "供应商需遵守ASACO的交付条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保密要求",
+          "value": "供应商不得披露采购订单的技术或商业条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保证/保修",
+          "value": "12个月保证期，供应商负责更换有缺陷的物品"
+        },
+        {
+          "type": "产品信息",
+          "key": "行业规范",
+          "value": "军事、联邦和行业规范和标准"
+        },
+        {
+          "type": "产品信息",
+          "key": "统计技术",
+          "value": "控制图技术，ANSI/ASQ Z1.4 (MIL-STD-105), Level II 1.0 AQL, c = 0"
+        },
+        {
+          "type": "产品信息",
+          "key": "证书",
+          "value": "合规证书，包含ASACO零件号、图纸修订号、采购订单号、数量、日期和授权代表签名"
+        },
+        {
+          "type": "产品信息",
+          "key": "访问权",
+          "value": "ASACO客户和相关监管机构有权访问供应商和相关设施"
+        },
+        {
+          "type": "产品信息",
+          "key": "责任",
+          "value": "供应商对可接受产品和后续拒绝负责"
+        },
+        {
+          "type": "产品信息",
+          "key": "特定要求",
+          "value": "防止使用假冒零件，确保员工了解其对产品或服务合规性、产品安全和道德行为的贡献"
+        },
+        {
+          "type": "产品信息",
+          "key": "交付条款",
+          "value": "供应商需遵守ASACO的交付条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保密要求",
+          "value": "供应商不得披露采购订单的技术或商业条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保证/保修",
+          "value": "12个月保证期，供应商负责更换有缺陷的物品"
+        },
+        {
+          "type": "产品信息",
+          "key": "行业规范",
+          "value": "军事、联邦和行业规范和标准"
+        },
+        {
+          "type": "产品信息",
+          "key": "统计技术",
+          "value": "控制图技术，ANSI/ASQ Z1.4 (MIL-STD-105), Level II 1.0 AQL, c = 0"
+        },
+        {
+          "type": "产品信息",
+          "key": "证书",
+          "value": "合规证书，包含ASACO零件号、图纸修订号、采购订单号、数量、日期和授权代表签名"
+        },
+        {
+          "type": "产品信息",
+          "key": "访问权",
+          "value": "ASACO客户和相关监管机构有权访问供应商和相关设施"
+        },
+        {
+          "type": "产品信息",
+          "key": "责任",
+          "value": "供应商对可接受产品和后续拒绝负责"
+        },
+        {
+          "type": "产品信息",
+          "key": "特定要求",
+          "value": "防止使用假冒零件，确保员工了解其对产品或服务合规性、产品安全和道德行为的贡献"
+        },
+        {
+          "type": "产品信息",
+          "key": "交付条款",
+          "value": "供应商需遵守ASACO的交付条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保密要求",
+          "value": "供应商不得披露采购订单的技术或商业条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保证/保修",
+          "value": "12个月保证期，供应商负责更换有缺陷的物品"
+        },
+        {
+          "type": "产品信息",
+          "key": "行业规范",
+          "value": "军事、联邦和行业规范和标准"
+        },
+        {
+          "type": "产品信息",
+          "key": "统计技术",
+          "value": "控制图技术，ANSI/ASQ Z1.4 (MIL-STD-105), Level II 1.0 AQL, c = 0"
+        },
+        {
+          "type": "产品信息",
+          "key": "证书",
+          "value": "合规证书，包含ASACO零件号、图纸修订号、采购订单号、数量、日期和授权代表签名"
+        },
+        {
+          "type": "产品信息",
+          "key": "访问权",
+          "value": "ASACO客户和相关监管机构有权访问供应商和相关设施"
+        },
+        {
+          "type": "产品信息",
+          "key": "责任",
+          "value": "供应商对可接受产品和后续拒绝负责"
+        },
+        {
+          "type": "产品信息",
+          "key": "特定要求",
+          "value": "防止使用假冒零件，确保员工了解其对产品或服务合规性、产品安全和道德行为的贡献"
+        },
+        {
+          "type": "产品信息",
+          "key": "交付条款",
+          "value": "供应商需遵守ASACO的交付条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保密要求",
+          "value": "供应商不得披露采购订单的技术或商业条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保证/保修",
+          "value": "12个月保证期，供应商负责更换有缺陷的物品"
+        },
+        {
+          "type": "产品信息",
+          "key": "行业规范",
+          "value": "军事、联邦和行业规范和标准"
+        },
+        {
+          "type": "产品信息",
+          "key": "统计技术",
+          "value": "控制图技术，ANSI/ASQ Z1.4 (MIL-STD-105), Level II 1.0 AQL, c = 0"
+        },
+        {
+          "type": "产品信息",
+          "key": "证书",
+          "value": "合规证书，包含ASACO零件号、图纸修订号、采购订单号、数量、日期和授权代表签名"
+        },
+        {
+          "type": "产品信息",
+          "key": "访问权",
+          "value": "ASACO客户和相关监管机构有权访问供应商和相关设施"
+        },
+        {
+          "type": "产品信息",
+          "key": "责任",
+          "value": "供应商对可接受产品和后续拒绝负责"
+        },
+        {
+          "type": "产品信息",
+          "key": "特定要求",
+          "value": "防止使用假冒零件，确保员工了解其对产品或服务合规性、产品安全和道德行为的贡献"
+        },
+        {
+          "type": "产品信息",
+          "key": "交付条款",
+          "value": "供应商需遵守ASACO的交付条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保密要求",
+          "value": "供应商不得披露采购订单的技术或商业条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保证/保修",
+          "value": "12个月保证期，供应商负责更换有缺陷的物品"
+        },
+        {
+          "type": "产品信息",
+          "key": "行业规范",
+          "value": "军事、联邦和行业规范和标准"
+        },
+        {
+          "type": "产品信息",
+          "key": "统计技术",
+          "value": "控制图技术，ANSI/ASQ Z1.4 (MIL-STD-105), Level II 1.0 AQL, c = 0"
+        },
+        {
+          "type": "产品信息",
+          "key": "证书",
+          "value": "合规证书，包含ASACO零件号、图纸修订号、采购订单号、数量、日期和授权代表签名"
+        },
+        {
+          "type": "产品信息",
+          "key": "访问权",
+          "value": "ASACO客户和相关监管机构有权访问供应商和相关设施"
+        },
+        {
+          "type": "产品信息",
+          "key": "责任",
+          "value": "供应商对可接受产品和后续拒绝负责"
+        },
+        {
+          "type": "产品信息",
+          "key": "特定要求",
+          "value": "防止使用假冒零件，确保员工了解其对产品或服务合规性、产品安全和道德行为的贡献"
+        },
+        {
+          "type": "产品信息",
+          "key": "交付条款",
+          "value": "供应商需遵守ASACO的交付条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保密要求",
+          "value": "供应商不得披露采购订单的技术或商业条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保证/保修",
+          "value": "12个月保证期，供应商负责更换有缺陷的物品"
+        },
+        {
+          "type": "产品信息",
+          "key": "行业规范",
+          "value": "军事、联邦和行业规范和标准"
+        },
+        {
+          "type": "产品信息",
+          "key": "统计技术",
+          "value": "控制图技术，ANSI/ASQ Z1.4 (MIL-STD-105), Level II 1.0 AQL, c = 0"
+        },
+        {
+          "type": "产品信息",
+          "key": "证书",
+          "value": "合规证书，包含ASACO零件号、图纸修订号、采购订单号、数量、日期和授权代表签名"
+        },
+        {
+          "type": "产品信息",
+          "key": "访问权",
+          "value": "ASACO客户和相关监管机构有权访问供应商和相关设施"
+        },
+        {
+          "type": "产品信息",
+          "key": "责任",
+          "value": "供应商对可接受产品和后续拒绝负责"
+        },
+        {
+          "type": "产品信息",
+          "key": "特定要求",
+          "value": "防止使用假冒零件，确保员工了解其对产品或服务合规性、产品安全和道德行为的贡献"
+        },
+        {
+          "type": "产品信息",
+          "key": "交付条款",
+          "value": "供应商需遵守ASACO的交付条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保密要求",
+          "value": "供应商不得披露采购订单的技术或商业条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保证/保修",
+          "value": "12个月保证期，供应商负责更换有缺陷的物品"
+        },
+        {
+          "type": "产品信息",
+          "key": "行业规范",
+          "value": "军事、联邦和行业规范和标准"
+        },
+        {
+          "type": "产品信息",
+          "key": "统计技术",
+          "value": "控制图技术，ANSI/ASQ Z1.4 (MIL-STD-105), Level II 1.0 AQL, c = 0"
+        },
+        {
+          "type": "产品信息",
+          "key": "证书",
+          "value": "合规证书，包含ASACO零件号、图纸修订号、采购订单号、数量、日期和授权代表签名"
+        },
+        {
+          "type": "产品信息",
+          "key": "访问权",
+          "value": "ASACO客户和相关监管机构有权访问供应商和相关设施"
+        },
+        {
+          "type": "产品信息",
+          "key": "责任",
+          "value": "供应商对可接受产品和后续拒绝负责"
+        },
+        {
+          "type": "产品信息",
+          "key": "特定要求",
+          "value": "防止使用假冒零件，确保员工了解其对产品或服务合规性、产品安全和道德行为的贡献"
+        },
+        {
+          "type": "产品信息",
+          "key": "交付条款",
+          "value": "供应商需遵守ASACO的交付条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保密要求",
+          "value": "供应商不得披露采购订单的技术或商业条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保证/保修",
+          "value": "12个月保证期，供应商负责更换有缺陷的物品"
+        },
+        {
+          "type": "产品信息",
+          "key": "行业规范",
+          "value": "军事、联邦和行业规范和标准"
+        },
+        {
+          "type": "产品信息",
+          "key": "统计技术",
+          "value": "控制图技术，ANSI/ASQ Z1.4 (MIL-STD-105), Level II 1.0 AQL, c = 0"
+        },
+        {
+          "type": "产品信息",
+          "key": "证书",
+          "value": "合规证书，包含ASACO零件号、图纸修订号、采购订单号、数量、日期和授权代表签名"
+        },
+        {
+          "type": "产品信息",
+          "key": "访问权",
+          "value": "ASACO客户和相关监管机构有权访问供应商和相关设施"
+        },
+        {
+          "type": "产品信息",
+          "key": "责任",
+          "value": "供应商对可接受产品和后续拒绝负责"
+        },
+        {
+          "type": "产品信息",
+          "key": "特定要求",
+          "value": "防止使用假冒零件，确保员工了解其对产品或服务合规性、产品安全和道德行为的贡献"
+        },
+        {
+          "type": "产品信息",
+          "key": "交付条款",
+          "value": "供应商需遵守ASACO的交付条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保密要求",
+          "value": "供应商不得披露采购订单的技术或商业条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保证/保修",
+          "value": "12个月保证期，供应商负责更换有缺陷的物品"
+        },
+        {
+          "type": "产品信息",
+          "key": "行业规范",
+          "value": "军事、联邦和行业规范和标准"
+        },
+        {
+          "type": "产品信息",
+          "key": "统计技术",
+          "value": "控制图技术，ANSI/ASQ Z1.4 (MIL-STD-105), Level II 1.0 AQL, c = 0"
+        },
+        {
+          "type": "产品信息",
+          "key": "证书",
+          "value": "合规证书，包含ASACO零件号、图纸修订号、采购订单号、数量、日期和授权代表签名"
+        },
+        {
+          "type": "产品信息",
+          "key": "访问权",
+          "value": "ASACO客户和相关监管机构有权访问供应商和相关设施"
+        },
+        {
+          "type": "产品信息",
+          "key": "责任",
+          "value": "供应商对可接受产品和后续拒绝负责"
+        },
+        {
+          "type": "产品信息",
+          "key": "特定要求",
+          "value": "防止使用假冒零件，确保员工了解其对产品或服务合规性、产品安全和道德行为的贡献"
+        },
+        {
+          "type": "产品信息",
+          "key": "交付条款",
+          "value": "供应商需遵守ASACO的交付条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保密要求",
+          "value": "供应商不得披露采购订单的技术或商业条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保证/保修",
+          "value": "12个月保证期，供应商负责更换有缺陷的物品"
+        },
+        {
+          "type": "产品信息",
+          "key": "行业规范",
+          "value": "军事、联邦和行业规范和标准"
+        },
+        {
+          "type": "产品信息",
+          "key": "统计技术",
+          "value": "控制图技术，ANSI/ASQ Z1.4 (MIL-STD-105), Level II 1.0 AQL, c = 0"
+        },
+        {
+          "type": "产品信息",
+          "key": "证书",
+          "value": "合规证书，包含ASACO零件号、图纸修订号、采购订单号、数量、日期和授权代表签名"
+        },
+        {
+          "type": "产品信息",
+          "key": "访问权",
+          "value": "ASACO客户和相关监管机构有权访问供应商和相关设施"
+        },
+        {
+          "type": "产品信息",
+          "key": "责任",
+          "value": "供应商对可接受产品和后续拒绝负责"
+        },
+        {
+          "type": "产品信息",
+          "key": "特定要求",
+          "value": "防止使用假冒零件，确保员工了解其对产品或服务合规性、产品安全和道德行为的贡献"
+        },
+        {
+          "type": "产品信息",
+          "key": "交付条款",
+          "value": "供应商需遵守ASACO的交付条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保密要求",
+          "value": "供应商不得披露采购订单的技术或商业条款"
+        },
+        {
+          "type": "产品信息",
+          "key": "保证/保修",
+          "value": "12个月保证期，供应商负责更换有缺陷"
+        }
+      ],
+      "entities": {
+        "companies": [],
+        "products": [],
+        "persons": []
+      },
+      "summary": "This is a Purchase Order document issued by ASACO to VULCAN SHIELD GLOBAL PTE. LTD. The PO number is PUR-ORD-2025-2026-00137, dated 17-06-2025, with a required delivery date of 21-06-2025. The order includes one unit of ALUMINA FIBER NEEDLED BLANKET (Item Code: ASA-ITEM-2025-01166) at a rate of $550.00, totaling $550.00. The document contains detailed company information, addresses, and contact details for both parties.",
+      "pages": 3,
+      "_had_json_error": true,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "image008.png",
+    "success": true,
+    "document_type": "B2B商业文档",
+    "fact_count": 11,
+    "identifier_count": 0,
+    "other_count": 0,
+    "identifier_categories": {},
+    "had_json_error": false,
+    "duration": 3.420005,
+    "extraction": {
+      "document_type": "B2B商业文档",
+      "document_date": "2025-09-08至2025-09-11",
+      "facts": [
+        {
+          "type": "公司信息",
+          "key": "参展公司",
+          "value": "Vulcan Shield Global Pte. Ltd."
+        },
+        {
+          "type": "公司信息",
+          "key": "展位号",
+          "value": "C71"
+        },
+        {
+          "type": "展会信息",
+          "key": "展会名称",
+          "value": "CAMX 2025"
+        },
+        {
+          "type": "展会信息",
+          "key": "展会日期",
+          "value": "September 8 - 11, 2025"
+        },
+        {
+          "type": "展会信息",
+          "key": "展会地点",
+          "value": "Orlando, FL, USA"
+        },
+        {
+          "type": "产品信息",
+          "key": "产品/服务",
+          "value": "Freeman Service Kit"
+        },
+        {
+          "type": "产品信息",
+          "key": "产品/服务",
+          "value": "Additional Guidelines & Essential Forms"
+        },
+        {
+          "type": "产品信息",
+          "key": "产品/服务",
+          "value": "Certificate of Insurance"
+        },
+        {
+          "type": "产品信息",
+          "key": "产品/服务",
+          "value": "Registration and Housing"
+        },
+        {
+          "type": "产品信息",
+          "key": "产品/服务",
+          "value": "Sponsorship & Booth Upgrades"
+        },
+        {
+          "type": "其他信息",
+          "key": "文档类型",
+          "value": "资源列表"
+        }
+      ],
+      "summary": "该文档为CAMX 2025展会的资源列表，展示了Vulcan Shield Global Pte. Ltd.参展信息（展位C71）及提供的各类服务资源，包括Freeman Service Kit等。展会于2025年9月8-11日在美国奥兰多举行。",
+      "_had_json_error": false,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "Resume - Ms. Wai Wai Htwe .pdf",
+    "success": true,
+    "document_type": "简历",
+    "fact_count": 94,
+    "identifier_count": 0,
+    "other_count": 0,
+    "identifier_categories": {},
+    "had_json_error": false,
+    "duration": 31.722053,
+    "extraction": {
+      "document_type": "简历",
+      "facts": [
+        {
+          "type": "金额",
+          "key": "薪资期望",
+          "value": "SGD 2500 - 3500 (Negotiable)"
+        },
+        {
+          "type": "日期",
+          "key": "入职时间",
+          "value": "Immediately"
+        },
+        {
+          "type": "日期",
+          "key": "出生日期",
+          "value": "25 May 1994"
+        },
+        {
+          "type": "日期",
+          "key": "工作时间",
+          "value": "Mar 2019 - Aug 2024"
+        },
+        {
+          "type": "公司名",
+          "key": "工作单位",
+          "value": "Shyang Peng Cheng Co., Ltd"
+        },
+        {
+          "type": "联系方式",
+          "key": "邮箱",
+          "value": "augest1788@gmail.com"
+        },
+        {
+          "type": "联系方式",
+          "key": "WhatsApp",
+          "value": "65 8178 3006"
+        },
+        {
+          "type": "联系方式",
+          "key": "地址",
+          "value": "Blk 189,#04-254,Boon Lay Drive,Singapore 640189"
+        },
+        {
+          "type": "身份信息",
+          "key": "姓名",
+          "value": "MS. WAI WAI HTWE"
+        },
+        {
+          "type": "身份信息",
+          "key": "性别",
+          "value": "Female"
+        },
+        {
+          "type": "身份信息",
+          "key": "宗教",
+          "value": "Buddhist"
+        },
+        {
+          "type": "身份信息",
+          "key": "国籍",
+          "value": "Myanmar"
+        },
+        {
+          "type": "身份信息",
+          "key": "语言",
+          "value": "English, Burmese"
+        },
+        {
+          "type": "教育背景",
+          "key": "证书",
+          "value": "Association of Chartered Certified Accountant (ACCA Part 2)"
+        },
+        {
+          "type": "教育背景",
+          "key": "相关课程",
+          "value": "1. Performance Management (PM, ACCA Part 2) (Studying)\n2. Financial Reporting (FR, ACCA Part 2) (Studying)\n3. Audit and Assurance (AA, ACCA Part 2) (Studying)"
+        },
+        {
+          "type": "工作职责",
+          "key": "主要职责",
+          "value": "Responsible for timely recording of financial data and preparation of financial and management reports\nMonitor cash flow requirement and manage treasury function\nHandle full spectrum of financial and cost accounting role e.g., AR, AP, GL\nCo-ordinate and simulate budget, and monitor the actual expenses vs the budget from time to time\nContinuously assess and enhance operational efficiency, cost-effectiveness, and internal controls\nMonitor revenue and overheads and, where appropriate, propose corrective action in relation to deviations against budget\nGuide, develop and manage people of different levels in the finance team\nLead the month-end review and report on financial results relating to account reconciliations, covering KPI’s, cash flow and ad-hoc financial information\nPromptly update customer receipts and prepare and send timely statements of accounts, diligently following up on customer repayments\nEnsure precise and punctual recording of vendor invoices, conducting thorough checks on supporting documents\nEnsure that receipts & payments are processed accurately and assist in timely processing of payments through various modes\nUpdate & maintain fixed asset register (acquisition, depreciation, disposal etc.)\nManage full spectrum of payroll, managing employee leaves, medical and claim matters"
+        },
+        {
+          "type": "公司名",
+          "key": "London Chambered of Commerce and Industry (LCCI Level-3)",
+          "value": "London Chambered of Commerce and Industry (LCCI Level-3) (2014)"
+        },
+        {
+          "type": "公司名",
+          "key": "London Chamber of Commerce and Industry (LCCI Level 2)",
+          "value": "London Chamber of Commerce and Industry (LCCI Level 2) (2014)"
+        },
+        {
+          "type": "公司名",
+          "key": "Salute Construction Co., Ltd",
+          "value": "Salute Construction Co., Ltd"
+        },
+        {
+          "type": "公司名",
+          "key": "Myanmar Accountancy Council",
+          "value": "Myanmar Accountancy Council, Myanmar"
+        },
+        {
+          "type": "公司名",
+          "key": "Taungoo University",
+          "value": "Taungoo University, Myanmar"
+        },
+        {
+          "type": "日期",
+          "key": "LCCI Level-3",
+          "value": "2014"
+        },
+        {
+          "type": "日期",
+          "key": "LCCI Level 2",
+          "value": "2014"
+        },
+        {
+          "type": "日期",
+          "key": "Finance Executive",
+          "value": "Oct 2016 – Feb 2019"
+        },
+        {
+          "type": "日期",
+          "key": "Diploma in Accountancy",
+          "value": "2022"
+        },
+        {
+          "type": "日期",
+          "key": "Bachelor of Arts with English",
+          "value": "2015"
+        },
+        {
+          "type": "产品",
+          "key": "Business Statistics",
+          "value": "Business Statistics (Distinction)"
+        },
+        {
+          "type": "产品",
+          "key": "Advanced Business Calculations",
+          "value": "Advanced Business Calculations (Distinction)"
+        },
+        {
+          "type": "产品",
+          "key": "Certificate in Accounting",
+          "value": "Certificate in Accounting (Merit)"
+        },
+        {
+          "type": "产品",
+          "key": "Certificate in Book-keeping and Accounts",
+          "value": "Certificate in Book-keeping and Accounts (Distinction)"
+        },
+        {
+          "type": "产品",
+          "key": "Business Accounting",
+          "value": "Business Accounting"
+        },
+        {
+          "type": "产品",
+          "key": "Cost and Management Accounting",
+          "value": "Cost and Management Accounting"
+        },
+        {
+          "type": "产品",
+          "key": "Financial Accounting",
+          "value": "Financial Accounting"
+        },
+        {
+          "type": "产品",
+          "key": "Business Law",
+          "value": "Business Law"
+        },
+        {
+          "type": "产品",
+          "key": "Methodology",
+          "value": "Methodology"
+        },
+        {
+          "type": "产品",
+          "key": "Grammar & Syntax",
+          "value": "Grammar & Syntax"
+        },
+        {
+          "type": "产品",
+          "key": "Academic Writing",
+          "value": "Academic Writing"
+        },
+        {
+          "type": "产品",
+          "key": "Assessment",
+          "value": "Assessment"
+        },
+        {
+          "type": "产品",
+          "key": "Prepare audit schedules and assist in auditing matters",
+          "value": "Prepare audit schedules and assist in auditing matters"
+        },
+        {
+          "type": "产品",
+          "key": "Liaise with external partners",
+          "value": "Liaise with external partners including banks, tax authorities, government agencies etc."
+        },
+        {
+          "type": "产品",
+          "key": "Perform additional tasks or responsibilities as assigned",
+          "value": "Perform additional tasks or responsibilities as assigned"
+        },
+        {
+          "type": "产品",
+          "key": "Prepare and analyze monthly financial statements and management reports",
+          "value": "Prepare and analyze monthly financial statements and management reports independently within given timelines"
+        },
+        {
+          "type": "产品",
+          "key": "Coordinate and simulate budgets",
+          "value": "Coordinate and simulate budgets, and monitor actual expenses versus the budget periodically"
+        },
+        {
+          "type": "产品",
+          "key": "Oversee the full spectrum of accounting functions",
+          "value": "Oversee the full spectrum of accounting functions and manage a full set of books (including reviewing payment vouchers, subcontractor payments, petty cash disbursements, bank reconciliations, invoices, and preparing/reviewing journal vouchers)"
+        },
+        {
+          "type": "产品",
+          "key": "Update Billings & Project Claims Report",
+          "value": "Update Billings & Project Claims Report weekly"
+        },
+        {
+          "type": "产品",
+          "key": "Oversee invoice processing",
+          "value": "Oversee invoice processing, ensuring all invoices are paid accurately and promptly"
+        },
+        {
+          "type": "产品",
+          "key": "Administer accounts receivable and accounts payable ledgers",
+          "value": "Administer accounts receivable and accounts payable ledgers"
+        },
+        {
+          "type": "产品",
+          "key": "Prepare and mail out customer statements of accounts",
+          "value": "Prepare and mail out customer statements of accounts"
+        },
+        {
+          "type": "产品",
+          "key": "Prepare aging reports",
+          "value": "Prepare aging reports, conduct credit risk evaluations and analyses, and follow up on debt collections"
+        },
+        {
+          "type": "产品",
+          "key": "Reconcile bank statements with general ledgers",
+          "value": "Reconcile bank statements with general ledgers"
+        },
+        {
+          "type": "产品",
+          "key": "Prepare monthly payroll",
+          "value": "Prepare monthly payroll, and submit related personal income tax returns and social security contributions"
+        },
+        {
+          "type": "产品",
+          "key": "Process monthly incentives and allowances",
+          "value": "Process monthly incentives and allowances, ensuring timely and accurate payouts to eligible employees"
+        },
+        {
+          "type": "产品",
+          "key": "Handle inquiries about construction materials' prices",
+          "value": "Handle inquiries about construction materials' prices"
+        },
+        {
+          "type": "产品",
+          "key": "Collaborate with the store team",
+          "value": "Collaborate with the store team to manage the annual stock take, ensuring accurate counting and recording of inventory"
+        },
+        {
+          "type": "产品",
+          "key": "Communicate and coordinate with statutory auditors",
+          "value": "Communicate and coordinate with statutory auditors, providing necessary schedules and information for the audit process"
+        },
+        {
+          "type": "产品",
+          "key": "Perform team processes and more complex activities",
+          "value": "Perform team processes and more complex activities"
+        },
+        {
+          "type": "company",
+          "key": "公司名称",
+          "value": "Super Coffeemix Manufacturing & Distribution Co.,Ltd"
+        },
+        {
+          "type": "company",
+          "key": "公司名称",
+          "value": "Stairway Academy Co., Ltd"
+        },
+        {
+          "type": "position",
+          "key": "职位",
+          "value": "Junior Accountant"
+        },
+        {
+          "type": "date",
+          "key": "任职时间",
+          "value": "Mar 2015 – Sep 2016"
+        },
+        {
+          "type": "qualification",
+          "key": "资格证书",
+          "value": "Certificate of Job Training for Professional Accountant (Stairway Academy)"
+        },
+        {
+          "type": "qualification",
+          "key": "资格证书",
+          "value": "Certificate in Accounting LCCI Level 3 (Merit)"
+        },
+        {
+          "type": "qualification",
+          "key": "资格证书",
+          "value": "Certificate of DTP Course"
+        },
+        {
+          "type": "qualification",
+          "key": "资格证书",
+          "value": "Certificate of ISO 9001: 2015 Internal Auditor Training Course"
+        },
+        {
+          "type": "qualification",
+          "key": "资格证书",
+          "value": "Certificate of Awareness and Interpretation of ISO 9001: 2015 Requirements Training Course"
+        },
+        {
+          "type": "qualification",
+          "key": "资格证书",
+          "value": "Certificate for attending of Training of Trainers (TOT) Courses"
+        },
+        {
+          "type": "qualification",
+          "key": "资格证书",
+          "value": "Job Training for Professional Accountant (Singapore) Stairway Academy Co., Ltd, Yangon, Myanmar"
+        },
+        {
+          "type": "responsibility",
+          "key": "职责",
+          "value": "Manage daily accounting transactions"
+        },
+        {
+          "type": "responsibility",
+          "key": "职责",
+          "value": "Ledger posting"
+        },
+        {
+          "type": "responsibility",
+          "key": "职责",
+          "value": "Ensure the accurate and timely processing of daily wages payroll and validates monthly payroll"
+        },
+        {
+          "type": "responsibility",
+          "key": "职责",
+          "value": "Monitoring and chasing up collection of outstanding debtors"
+        },
+        {
+          "type": "responsibility",
+          "key": "职责",
+          "value": "Perform AP duties which includes payment processing and ensure proper supporting documents for approval of payments"
+        },
+        {
+          "type": "responsibility",
+          "key": "职责",
+          "value": "Prepare monthly supplier statement reconciliations"
+        },
+        {
+          "type": "responsibility",
+          "key": "职责",
+          "value": "Verify and process refund payment to customer"
+        },
+        {
+          "type": "responsibility",
+          "key": "职责",
+          "value": "Bank in cash and cheques on a daily basis"
+        },
+        {
+          "type": "responsibility",
+          "key": "职责",
+          "value": "Update General Cashier report"
+        },
+        {
+          "type": "responsibility",
+          "key": "职责",
+          "value": "Process staff claims and petty cash disbursement"
+        },
+        {
+          "type": "responsibility",
+          "key": "职责",
+          "value": "Update Prepayment Schedules"
+        },
+        {
+          "type": "responsibility",
+          "key": "职责",
+          "value": "Creditor Reconciliations"
+        },
+        {
+          "type": "responsibility",
+          "key": "职责",
+          "value": "Ensuring accurate and prompt billing with proper documentation"
+        },
+        {
+          "type": "responsibility",
+          "key": "职责",
+          "value": "Update accounts receivable records"
+        },
+        {
+          "type": "responsibility",
+          "key": "职责",
+          "value": "Check AR settlement entries against bank statements"
+        },
+        {
+          "type": "responsibility",
+          "key": "职责",
+          "value": "Maintain up-to-date debtors’ records and monitor customers’ overdue balances, send reminders if payments are not received on time"
+        },
+        {
+          "type": "responsibility",
+          "key": "职责",
+          "value": "Attend to queries on payment / invoices matters"
+        },
+        {
+          "type": "responsibility",
+          "key": "职责",
+          "value": "Any other duties as assigned by the Senior Accountant"
+        },
+        {
+          "type": "skill",
+          "key": "技能",
+          "value": "Possesses acute attention to precision in financial statements, reports, and computations"
+        },
+        {
+          "type": "skill",
+          "key": "技能",
+          "value": "Demonstrates robust analytical abilities to detect patterns, trends, and disparities in financial data, offering valuable perspectives"
+        },
+        {
+          "type": "skill",
+          "key": "技能",
+          "value": "Takes initiative to achieve objectives, even amid obstacles or complexities"
+        },
+        {
+          "type": "skill",
+          "key": "技能",
+          "value": "Exhibits resilience by promptly rebounding from setbacks and discovering alternative routes to achieve objectives"
+        },
+        {
+          "type": "skill",
+          "key": "技能",
+          "value": "Pursues ongoing enhancement of substantive knowledge pertinent to the current role"
+        },
+        {
+          "type": "skill",
+          "key": "技能",
+          "value": "Effectively prioritizes tasks, meets deadlines, and handles multiple projects concurrently"
+        },
+        {
+          "type": "training",
+          "key": "培训内容",
+          "value": "Full-set of accounts"
+        },
+        {
+          "type": "training",
+          "key": "培训内容",
+          "value": "Account Payable/ Account Receivable Management"
+        },
+        {
+          "type": "training",
+          "key": "培训内容",
+          "value": "Prepare CPF e-submission and method for CPF calculation rate"
+        }
+      ],
+      "entities": {
+        "companies": [],
+        "products": [],
+        "persons": []
+      },
+      "summary": "这是一份财务专业人士的简历，展示了其在Shyang Peng Cheng Co., Ltd担任Accounts Supervisor期间的工作经验、教育背景和技能。简历中包含了薪资期望、联系方式、出生日期等个人信息，以及详细的财务工作职责描述，包括财务数据记录、预算管理、团队管理等内容。该求职者持有ACCA Part 2证书，正在学习相关课程，具备财务报告、CPV、ECI、GST申报、所得税计算、Form C/CS申报等专业技能。",
+      "pages": 3,
+      "_had_json_error": false,
+      "_post_processed": true,
+      "_reclassified_count": 0
+    }
+  },
+  {
+    "file": "报关资料-Alpha.xls",
+    "success": false,
+    "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=300)",
+    "duration": 302.483964
+  }
+]

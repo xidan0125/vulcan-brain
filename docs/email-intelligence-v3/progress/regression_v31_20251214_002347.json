@@ -1,0 +1,433 @@
+[
+  {
+    "file": "AAMkADVkYTU2ZmMx_SINIR06094668.pdf",
+    "success": true,
+    "document_type": "Invoice",
+    "fact_count": 35,
+    "duration": 34.259983,
+    "json_repaired": false,
+    "extraction": {
+      "document_type": "Invoice",
+      "facts": [
+        {
+          "type": "Amount",
+          "key": "Total (Incl. GST)",
+          "value": "44.71",
+          "unit": "SGD",
+          "context": "Total amount including GST"
+        },
+        {
+          "type": "Amount",
+          "key": "Total (Excl. GST)",
+          "value": "44.71",
+          "unit": "SGD",
+          "context": "Total amount excluding GST"
+        },
+        {
+          "type": "Amount",
+          "key": "GST",
+          "value": "0.00",
+          "unit": "SGD",
+          "context": "GST amount"
+        },
+        {
+          "type": "Amount",
+          "key": "Total Extra Charges",
+          "value": "44.71",
+          "unit": "SGD",
+          "context": "Total extra charges including import/export taxes and duty tax paid"
+        },
+        {
+          "type": "Amount",
+          "key": "Import Export Taxes",
+          "value": "10.71",
+          "unit": "SGD",
+          "context": "Import/export taxes component"
+        },
+        {
+          "type": "Amount",
+          "key": "Duty Tax Paid",
+          "value": "34.00",
+          "unit": "SGD",
+          "context": "Duty tax paid component"
+        },
+        {
+          "type": "Date",
+          "key": "Invoice Date",
+          "value": "2024-12-27",
+          "unit": null,
+          "context": "Date of invoice issuance"
+        },
+        {
+          "type": "Date",
+          "key": "Payment Due Date",
+          "value": "2025-01-03",
+          "unit": null,
+          "context": "Due date for payment"
+        },
+        {
+          "type": "Quantity",
+          "key": "Number of Shipments",
+          "value": "1",
+          "unit": null,
+          "context": "Total shipments processed"
+        },
+        {
+          "type": "Quantity",
+          "key": "Number of Pieces",
+          "value": "0",
+          "unit": null,
+          "context": "Total pieces processed"
+        },
+        {
+          "type": "Quantity",
+          "key": "Total Weight",
+          "value": "0.00",
+          "unit": null,
+          "context": "Total weight of shipments"
+        },
+        {
+          "type": "Currency",
+          "key": "Currency",
+          "value": "SGD",
+          "unit": null,
+          "context": "Currency used for invoicing"
+        },
+        {
+          "type": "Company",
+          "key": "Billing Company",
+          "value": "VULCAN SHIELD GLOBAL PTE. LTD.",
+          "unit": null,
+          "context": "Company billed for services"
+        },
+        {
+          "type": "Company",
+          "key": "Service Provider",
+          "value": "DHL Express (Singapore) Pte Ltd",
+          "unit": null,
+          "context": "Company providing services"
+        },
+        {
+          "type": "Address",
+          "key": "Billing Address",
+          "value": "10 MARINA BOULEVARD #13-01, MARINA BAY FINANCIAL CENTRE 018983 SINGAPORE",
+          "unit": null,
+          "context": "Address of billing company"
+        },
+        {
+          "type": "Address",
+          "key": "Service Provider Address",
+          "value": "P.O. Box 2101 Robinson Road Post Office, Singapore 904101",
+          "unit": null,
+          "context": "Address of service provider"
+        },
+        {
+          "type": "Contact",
+          "key": "Telephone",
+          "value": "6880-6405",
+          "unit": null,
+          "context": "Contact telephone for invoice inquiries"
+        },
+        {
+          "type": "Contact",
+          "key": "Email",
+          "value": "financequery@dhl.com",
+          "unit": null,
+          "context": "Contact email for invoice inquiries"
+        },
+        {
+          "type": "Contact",
+          "key": "Account Number",
+          "value": "618855894",
+          "unit": null,
+          "context": "Account number for payment"
+        },
+        {
+          "type": "Contact",
+          "key": "Invoice Number",
+          "value": "SINIR06094668",
+          "unit": null,
+          "context": "Invoice identification number"
+        },
+        {
+          "type": "Contact",
+          "key": "Company Registration Number",
+          "value": "202216425K",
+          "unit": null,
+          "context": "Company registration number"
+        },
+        {
+          "type": "InvoiceNumber",
+          "key": "Invoice Number",
+          "value": "SINIR06094668",
+          "unit": null,
+          "context": null
+        },
+        {
+          "type": "AccountNumber",
+          "key": "Account Number",
+          "value": "618855894",
+          "unit": null,
+          "context": null
+        },
+        {
+          "type": "Quantity",
+          "key": "Number of Pages",
+          "value": "2",
+          "unit": null,
+          "context": null
+        },
+        {
+          "type": "TrackingNumber",
+          "key": "Air Waybill Number",
+          "value": "3076731582",
+          "unit": null,
+          "context": null
+        },
+        {
+          "type": "Date",
+          "key": "Shipment Origin / Consignor Date",
+          "value": "2024-12-23",
+          "unit": null,
+          "context": null
+        },
+        {
+          "type": "Address",
+          "key": "Destination / Consignee",
+          "value": "TYO, TOKYO",
+          "unit": null,
+          "context": null
+        },
+        {
+          "type": "Weight",
+          "key": "Weight in Kg",
+          "value": "0.00",
+          "unit": "Kg",
+          "context": null
+        },
+        {
+          "type": "Quantity",
+          "key": "Number of Pieces",
+          "value": "0",
+          "unit": null,
+          "context": null
+        },
+        {
+          "type": "Amount",
+          "key": "Standard Charge",
+          "value": "0.00",
+          "unit": "SGD",
+          "context": null
+        },
+        {
+          "type": "Amount",
+          "key": "Extra Charges Amount (IMPORT EXPORT TAXES)",
+          "value": "10.71",
+          "unit": "SGD",
+          "context": "IMPORT EXPORT TAXES"
+        },
+        {
+          "type": "Amount",
+          "key": "Extra Charges Amount (DUTY TAX PAID)",
+          "value": "34.00",
+          "unit": "SGD",
+          "context": "DUTY TAX PAID"
+        },
+        {
+          "type": "Amount",
+          "key": "Total amount (incl. GST)",
+          "value": "44.71",
+          "unit": "SGD",
+          "context": null
+        },
+        {
+          "type": "Amount",
+          "key": "Service Subtotal",
+          "value": "44.71",
+          "unit": "SGD",
+          "context": "DUTIES & TAXES"
+        },
+        {
+          "type": "Amount",
+          "key": "Total SGD",
+          "value": "44.71",
+          "unit": "SGD",
+          "context": null
+        }
+      ],
+      "entities": {
+        "companies": [
+          "VULCAN SHIELD GLOBAL PTE LTD",
+          "VULCAN SHIELD GLOBAL PTE. LTD.",
+          "DHL Express (Singapore) Pte Ltd",
+          "DHL"
+        ],
+        "products": [],
+        "persons": []
+      },
+      "summary": "DHL Express tax invoice for services rendered to VULCAN SHIELD GLOBAL PTE. LTD. with total amount of 44.71 SGD, due on 2025-01-03.",
+      "pages": 2,
+      "json_repaired": false
+    }
+  },
+  {
+    "file": "AAMkADYzNjY4ZmNi_image001.png",
+    "success": true,
+    "document_type": "ShippingDoc",
+    "fact_count": 23,
+    "duration": 30.136442,
+    "json_repaired": false,
+    "extraction": {
+      "document_type": "ShippingDoc",
+      "document_date": null,
+      "facts": [
+        {
+          "type": "Company",
+          "key": "SHIPPER",
+          "value": "VULCAN SHIELD GLOBAL PTE. LTD."
+        },
+        {
+          "type": "Address",
+          "key": "SHIPPER Address",
+          "value": "10 MARINA BOULEVARD #13-01,MARINA BAY FINANCIAL CENTRE TOWER 2, SINGAPORE 018983."
+        },
+        {
+          "type": "Company",
+          "key": "CONSIGNEE",
+          "value": "SPACE EXPLORATION TECHNOLOGIES CORP."
+        },
+        {
+          "type": "Address",
+          "key": "CONSIGNEE Address",
+          "value": "5219 JOANNA ST BROWNSVILLE, TX 78521-8931 UNITED STATES"
+        },
+        {
+          "type": "Company",
+          "key": "FORWARDING AGENT",
+          "value": "BEIJING KANGJIEKONG INTERNATIONAL CARGO AGENT CO., LTD."
+        },
+        {
+          "type": "Address",
+          "key": "FORWARDING AGENT Address",
+          "value": "SHANGHAI 200335"
+        },
+        {
+          "type": "TrackingNumber",
+          "key": "BOOKING NUMBER",
+          "value": "COSU6427293780"
+        },
+        {
+          "type": "TrackingNumber",
+          "key": "B/L NUMBER",
+          "value": "639598854"
+        },
+        {
+          "type": "TrackingNumber",
+          "key": "SEAL",
+          "value": "cw096858"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "PORT OF LOADING",
+          "value": "SHANGHAI"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "PORT OF DISCHARGE",
+          "value": "LONG BEACH, CA"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "PLACE OF RECEIPT",
+          "value": "SHANGHAI"
+        },
+        {
+          "type": "ShippingInfo",
+          "key": "PLACE OF DELIVERY",
+          "value": "MCLEAN, TX"
+        },
+        {
+          "type": "Quantity",
+          "key": "NO. OF PACKAGES",
+          "value": "6PLTS"
+        },
+        {
+          "type": "Product",
+          "key": "DESCRIPTION",
+          "value": "ALUMINA BRICKS, NOS; ALUMINA FIBER NEEDLED BLANKET"
+        },
+        {
+          "type": "Weight",
+          "key": "GROSS WEIGHT",
+          "value": "1346.00",
+          "unit": "KG"
+        },
+        {
+          "type": "Measurement",
+          "key": "MEASUREMENT",
+          "value": "15.410",
+          "unit": "M3"
+        },
+        {
+          "type": "Contact",
+          "key": "ATTENTION",
+          "value": "CARLOS TORREJON"
+        },
+        {
+          "type": "Contact",
+          "key": "EMAIL",
+          "value": "CARLOS.TORREJON@SPACEX.COM"
+        },
+        {
+          "type": "Quantity",
+          "key": "TOTALS",
+          "value": "100 CTNS"
+        },
+        {
+          "type": "TrackingNumber",
+          "key": "CFS/CFS",
+          "value": "00C4985400"
+        },
+        {
+          "type": "Other",
+          "key": "CNEE REF",
+          "value": "3318672,4568,EXW,QMEF044346."
+        },
+        {
+          "type": "Other",
+          "key": "FORWARDING AGENT REFERENCE",
+          "value": "MC#2268,CH#6926"
+        }
+      ],
+      "entities": {
+        "companies": [
+          "VULCAN SHIELD GLOBAL PTE. LTD.",
+          "SPACE EXPLORATION TECHNOLOGIES CORP.",
+          "BEIJING KANGJIEKONG INTERNATIONAL CARGO AGENT CO., LTD."
+        ],
+        "products": [
+          "ALUMINA BRICKS",
+          "ALUMINA FIBER NEEDLED BLANKET"
+        ],
+        "persons": [
+          "CARLOS TORREJON"
+        ]
+      },
+      "summary": "海运提单显示VULCAN SHIELD GLOBAL PTE. LTD.为发货人，运输ALUMINA BRICKS和ALUMINA FIBER NEEDLED BLANKET至美国，总重1346.00 KG，体积15.410 M3，涉及多个运输节点及联系人信息。",
+      "json_repaired": false
+    }
+  },
+  {
+    "file": "AAMkAGViNzg3ODQw_28Oct2024 proposal for Battery Room.xlsx",
+    "success": true,
+    "document_type": "N/A",
+    "fact_count": 0,
+    "duration": 0.048475,
+    "json_repaired": false,
+    "extraction": {
+      "error": "【Excel读取错误: Missing optional dependency 'tabulate'.  Use pip or conda to install tabulate.】",
+      "facts": [],
+      "json_repaired": false
+    }
+  }
+]

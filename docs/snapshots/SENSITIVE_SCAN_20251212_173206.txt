@@ -1,0 +1,163 @@
+================================================================================
+  SENSITIVE INFORMATION SCAN REPORT
+  Generated: 2025-12-12 17:32:10
+================================================================================
+
+Total potential sensitive items found: 87
+
+IMPORTANT: Review these items before sharing the codebase!
+
+--------------------------------------------------------------------------------
+
+## API Key/Secret (17 found)
+----------------------------------------
+  File: acontext_integration.py
+  Line: 21
+  Preview: ACONTEXT_BEARER_TOKEN = "sk-ac-your-root-api-bearer-token"...
+
+  File: acontext_sdk_helper.py
+  Line: 9
+  Preview: ACONTEXT_API_KEY = "sk-ac-your-root-api-bearer-token"...
+
+  File: api/routers/agent_router.py
+  Line: 71
+  Preview: client = OpenAI(base_url="http://localhost:11434/v1", api_key="not-needed")...
+
+  File: api/routers/agent_router.py
+  Line: 114
+  Preview: client = OpenAI(base_url="http://localhost:11434/v1", api_key="not-needed")...
+
+  File: final_test.py
+  Line: 33
+  Preview: 'api_key': 'EMPTY',...
+
+  File: gemini_consult.py
+  Line: 10
+  Preview: GEMINI_API_KEY = "AIzaSyBZpfHZtDajDj60ixhGLWulJSceRdf7Vpo"...
+
+  File: vulcan-ui/src/components/soul/TwinDashboard.tsx
+  Line: 511
+  Preview: fetch(`${API_BASE}/api/soul/stats`, { headers: getAuthHeaders(), credentials: 'i...
+
+  File: vulcan-ui/src/components/soul/TwinDashboard.tsx
+  Line: 512
+  Preview: fetch(`${API_BASE}/api/soul/sandbox/daily_v2`, { headers: getAuthHeaders(), cred...
+
+  File: vulcan-ui/src/components/soul/TwinDashboard.tsx
+  Line: 513
+  Preview: fetch(`${API_BASE}/api/soul/hot_topics`, { headers: getAuthHeaders(), credential...
+
+  File: vulcan-ui/src/components/soul/TwinDashboard.tsx
+  Line: 544
+  Preview: credentials: 'include',...
+
+  ... and 7 more
+
+## Bearer Token (15 found)
+----------------------------------------
+  File: data/lightrag/kv_store_full_docs.json
+  Line: 38
+  Preview: "content": "邮件ID: AAMkADUxNWY3MWVkLTUwZjUtNDUzMC05MjQyLTY0ODkwZGI2OTRhYQBGAAAAAA...
+
+  File: data/lightrag/kv_store_full_docs.json
+  Line: 45
+  Preview: "content": "邮件ID: AAMkADUxNWY3MWVkLTUwZjUtNDUzMC05MjQyLTY0ODkwZGI2OTRhYQBGAAAAAA...
+
+  File: data/lightrag/kv_store_full_docs.json
+  Line: 52
+  Preview: "content": "邮件ID: AAMkADUxNWY3MWVkLTUwZjUtNDUzMC05MjQyLTY0ODkwZGI2OTRhYQBGAAAAAA...
+
+  File: data/lightrag/kv_store_llm_response_cache.json
+  Line: 106
+  Preview: "original_prompt": "---Task---\nExtract entities and relationships from the inpu...
+
+  File: data/lightrag/kv_store_llm_response_cache.json
+  Line: 116
+  Preview: "original_prompt": "---Task---\nBased on the last extraction task, identify and ...
+
+  File: data/lightrag/kv_store_llm_response_cache.json
+  Line: 126
+  Preview: "original_prompt": "---Task---\nExtract entities and relationships from the inpu...
+
+  File: data/lightrag/kv_store_llm_response_cache.json
+  Line: 136
+  Preview: "original_prompt": "---Task---\nBased on the last extraction task, identify and ...
+
+  File: data/lightrag/kv_store_llm_response_cache.json
+  Line: 146
+  Preview: "original_prompt": "---Task---\nExtract entities and relationships from the inpu...
+
+  File: data/lightrag/kv_store_llm_response_cache.json
+  Line: 156
+  Preview: "original_prompt": "---Task---\nBased on the last extraction task, identify and ...
+
+  File: data/lightrag/kv_store_text_chunks.json
+  Line: 74
+  Preview: "content": "邮件ID: AAMkADUxNWY3MWVkLTUwZjUtNDUzMC05MjQyLTY0ODkwZGI2OTRhYQBGAAAAAA...
+
+  ... and 5 more
+
+## MongoDB URI (51 found)
+----------------------------------------
+  File: api/info_hub/daily.py
+  Line: 26
+  Preview: _client = AsyncIOMotorClient(os.getenv("MONGO_URI", "mongodb://localhost:27017")...
+
+  File: api/info_hub/email.py
+  Line: 18
+  Preview: _client = AsyncIOMotorClient(os.getenv("MONGO_URI", "mongodb://localhost:27017")...
+
+  File: api/info_hub/people.py
+  Line: 27
+  Preview: _mongo_client = MongoClient(os.getenv('MONGODB_URI', 'mongodb://localhost:27017'...
+
+  File: config.py
+  Line: 43
+  Preview: MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")...
+
+  File: email_intel_api.py
+  Line: 310
+  Preview: client = MongoClient(os.environ.get('MONGODB_URI', 'mongodb://localhost:27017'))...
+
+  File: email_intel_api.py
+  Line: 351
+  Preview: client = MongoClient(os.environ.get('MONGODB_URI', 'mongodb://localhost:27017'))...
+
+  File: email_intel_api.py
+  Line: 389
+  Preview: client = MongoClient(os.environ.get('MONGODB_URI', 'mongodb://localhost:27017'))...
+
+  File: email_intel_api.py
+  Line: 457
+  Preview: client = MongoClient(os.environ.get('MONGODB_URI', 'mongodb://localhost:27017'))...
+
+  File: generate_mock_approvals.py
+  Line: 13
+  Preview: mongo_uri = os.getenv("MONGO_URI", "mongodb://localhost:27017")...
+
+  File: info_hub_api.py
+  Line: 19
+  Preview: _client = AsyncIOMotorClient(os.getenv("MONGO_URI", "mongodb://localhost:27017")...
+
+  ... and 41 more
+
+## PostgreSQL URI (3 found)
+----------------------------------------
+  File: vulcan_libs/bicameral_graph.py
+  Line: 41
+  Preview: POSTGRES_URI = "postgresql://admin:vulcan%402025@localhost:5432/vulcan_brain"...
+
+  File: vulcan_libs/bicameral_graph_v6.py
+  Line: 41
+  Preview: POSTGRES_URI = "postgresql://admin:vulcan%402025@localhost:5432/vulcan_brain"...
+
+  File: vulcan_libs/checkpointer.py
+  Line: 32
+  Preview: DEFAULT_URI = "postgresql://admin:vulcan%402025@localhost:5432/vulcan_brain"...
+
+
+## Redis URI (1 found)
+----------------------------------------
+  File: system_snapshot.py
+  Line: 40
+  Preview: (r'redis://[^\s"\']+', 'Redis URI'),...

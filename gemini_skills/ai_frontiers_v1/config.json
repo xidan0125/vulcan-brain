@@ -1,0 +1,10 @@
+{
+  "model": "gemini-3-pro-preview",
+  "temperature": 0.4,
+  "max_tokens": 16000,
+  "features": {
+    "web_search": true,
+    "code_execution": false
+  },
+  "knowledge_base": "../.knowledge/ai-frontiers/digests/_combined_knowledge.json"
+}

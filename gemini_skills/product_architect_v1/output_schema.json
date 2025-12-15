@@ -1,0 +1,164 @@
+{
+  "type": "object",
+  "description": "AI Product Architect 架构分析报告",
+  "properties": {
+    "executive_summary": {
+      "type": "string",
+      "description": "一句话概括系统架构现状和核心建议"
+    },
+    "system_identity": {
+      "type": "object",
+      "description": "系统身份识别",
+      "properties": {
+        "product_name": {"type": "string"},
+        "product_type": {"type": "string", "enum": ["SaaS", "Platform", "Tool", "Framework", "Hybrid"]},
+        "maturity_level": {"type": "string", "enum": ["prototype", "mvp", "growing", "mature", "legacy"]},
+        "tech_stack": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "module_architecture": {
+      "type": "object",
+      "description": "Q1 & Q2: 模块边界与职责",
+      "properties": {
+        "primary_modules": {
+          "type": "array",
+          "description": "一级模块列表（3-7个）",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "chinese_name": {"type": "string"},
+              "responsibility": {"type": "string", "description": "单一职责描述"},
+              "key_files": {"type": "array", "items": {"type": "string"}},
+              "dependencies": {"type": "array", "items": {"type": "string"}, "description": "依赖的其他模块"},
+              "health_score": {"type": "integer", "minimum": 0, "maximum": 100},
+              "issues": {"type": "array", "items": {"type": "string"}}
+            }
+          }
+        },
+        "dependency_graph_mermaid": {
+          "type": "string",
+          "description": "模块依赖关系的 Mermaid 图"
+        },
+        "circular_dependencies": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "检测到的循环依赖"
+        }
+      }
+    },
+    "architecture_assessment": {
+      "type": "object",
+      "description": "Q3: 优势与问题",
+      "properties": {
+        "strengths": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "point": {"type": "string"},
+              "evidence": {"type": "string", "description": "具体文件或代码引用"}
+            }
+          }
+        },
+        "critical_issues": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "issue": {"type": "string"},
+              "severity": {"type": "string", "enum": ["critical", "high", "medium", "low"]},
+              "location": {"type": "string", "description": "具体文件:行号"},
+              "impact": {"type": "string"},
+              "suggested_fix": {"type": "string"}
+            }
+          }
+        },
+        "tech_debt_score": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "技术债务评分（越高越多债务）"
+        },
+        "architecture_pattern": {
+          "type": "string",
+          "description": "识别的架构模式（如 Layered, Event-Driven）"
+        }
+      }
+    },
+    "evolution_roadmap": {
+      "type": "object",
+      "description": "Q4: 演进路径",
+      "properties": {
+        "current_state": {"type": "string"},
+        "target_state": {"type": "string"},
+        "phases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "phase": {"type": "integer"},
+              "title": {"type": "string"},
+              "description": {"type": "string"},
+              "deliverables": {"type": "array", "items": {"type": "string"}},
+              "effort": {"type": "string", "enum": ["low", "medium", "high"]},
+              "risk": {"type": "string", "enum": ["low", "medium", "high"]},
+              "business_value": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "industry_benchmark": {
+      "type": "object",
+      "description": "Q5: 行业对标",
+      "properties": {
+        "clean_architecture_alignment": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "与 Clean Architecture 的对齐程度"
+        },
+        "gaps": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "over_engineering": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "过度工程的地方"
+        },
+        "under_engineering": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "工程不足的地方"
+        }
+      }
+    },
+    "stress_test": {
+      "type": "object",
+      "description": "Q6: 压力测试",
+      "properties": {
+        "bottleneck_component": {"type": "string", "description": "10x 流量下最先崩溃的组件"},
+        "bottleneck_reason": {"type": "string"},
+        "scaling_strategy": {"type": "string"},
+        "estimated_breaking_point": {"type": "string"}
+      }
+    },
+    "action_items": {
+      "type": "array",
+      "description": "可执行的任务清单（按优先级排序）",
+      "items": {
+        "type": "object",
+        "properties": {
+          "priority": {"type": "integer", "minimum": 1, "maximum": 10},
+          "action": {"type": "string"},
+          "rationale": {"type": "string"},
+          "effort": {"type": "string", "enum": ["1h", "1d", "3d", "1w", "2w", "1m"]},
+          "impact": {"type": "string", "enum": ["critical", "high", "medium", "low"]}
+        }
+      }
+    }
+  },
+  "required": ["executive_summary", "module_architecture", "architecture_assessment", "action_items"]
+}
