@@ -9,15 +9,98 @@ from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 import json
+import re
 import httpx
 import os
 
 from auth_api import get_current_user
 from vulcan_libs.llm_client import get_llm_client, ChatMessage, ModelType, StreamChunk
-from tool_definitions import TOOL_DEFINITIONS, execute_tool, get_tool_names
+from core.tools import execute_tool, get_tool_names, get_tool_schemas, ToolExecutor
+from core.tools.base import ToolContext
 from services.session_manager import get_session_manager
 from services.context_manager import compact_session, should_compact, build_context, MAX_HISTORY_TURNS
 from services.memory_service import get_memory_service
+from services.memory_extractor import get_memory_extractor
+
+# ==================== 编排层 ====================
+# Phase 1: IntentRouter 集成 - 解决 Sticky Tool 问题
+
+ENABLE_ORCHESTRATION = True  # Feature flag, 关闭则回退旧逻辑
+
+_intent_router = None
+
+def get_intent_router():
+    """获取 IntentRouter 单例"""
+    global _intent_router
+    if _intent_router is None:
+        try:
+            from core.orchestration import IntentRouter
+            _intent_router = IntentRouter()
+        except ImportError as e:
+            import logging
+            logging.getLogger(__name__).warning(f"IntentRouter not available: {e}")
+            return None
+    return _intent_router
+
+
+def filter_tools_by_intent(intent_name: str, all_tool_schemas: list) -> list:
+    """
+    根据意图过滤工具 - 物理隔离防止 Sticky Tool
+
+    关键: intent=chat 时返回空列表，模型无法调用任何工具
+    """
+    from core.orchestration import Intent, get_tools_for_intent
+
+    try:
+        intent = Intent(intent_name)
+    except ValueError:
+        # 未知意图，返回所有工具
+        return all_tool_schemas
+
+    allowed_tool_names = get_tools_for_intent(intent)
+
+    if not allowed_tool_names:
+        # 空列表 = 物理隔离
+        return []
+
+    # 过滤: 只保留 allowed 的工具
+    return [t for t in all_tool_schemas if t.get("function", {}).get("name") in allowed_tool_names]
+
+
+# ==================== 异步记忆提取 ====================
+
+async def extract_memories_async(user_id: str, session_id: str, message: str):
+    """异步提取记忆 (不阻塞主响应)"""
+    try:
+        from services.memory_service import get_memory_service
+        from services.memory_extractor import get_memory_extractor
+        
+        extractor = get_memory_extractor()
+        svc = get_memory_service()
+        
+        # LLM 提取
+        extractions = await extractor.extract(message)
+        
+        if not extractions:
+            return
+        
+        # 存入待确认
+        for ext in extractions:
+            await svc.add_pending(
+                user_id=user_id,
+                session_id=session_id,
+                key=ext["key"],
+                value=ext["value"],
+                category=ext.get("category", "fact"),
+                confidence=ext.get("confidence", 0.8),
+                context=message
+            )
+        
+        import logging
+        logging.getLogger(__name__).info(f"Extracted {len(extractions)} memories for user {user_id}")
+    except Exception as e:
+        import logging
+        logging.getLogger(__name__).warning(f"Memory extraction failed: {e}")
 
 # ==================== 路由器 ====================
 
@@ -204,7 +287,7 @@ async def list_tools():
     """列出可用工具"""
     return {
         "tools": get_tool_names(),
-        "definitions": TOOL_DEFINITIONS
+        "definitions": get_tool_schemas()
     }
 
 
@@ -244,20 +327,24 @@ async def chat_stream(
             # 2. 获取历史消息 (截断到最大轮数)
             history = await manager.get_history(session_id, max_turns=MAX_HISTORY_TURNS)
 
-            # 2.5 注入记忆上下文 (如果有)
+            # 2.5 注入记忆上下文和工具使用指令
             try:
                 memory_service = get_memory_service()
                 memory_context = await memory_service.build_context(user_id)
+                
+                # 构建 system 消息 (包含记忆工具使用指南)
+                memory_instruction = """你是 Vulcan Brain AI 助手，专注于高效完成用户任务。"""
+                
                 if memory_context:
-                    # 在历史开头插入 system 消息
-                    system_msg = f"[用户记忆]\n{memory_context}\n[/用户记忆]"
-                    # 检查是否已有 system 消息
-                    if history and history[0].get("role") == "system":
-                        # 合并到现有 system 消息
-                        history[0]["content"] = system_msg + "\n\n" + history[0]["content"]
-                    else:
-                        # 插入新 system 消息
-                        history.insert(0, {"role": "system", "content": system_msg})
+                    system_msg = memory_instruction + f"\n\n[用户记忆]\n{memory_context}\n[/用户记忆]"
+                else:
+                    system_msg = memory_instruction
+                
+                # 检查是否已有 system 消息
+                if history and history[0].get("role") == "system":
+                    history[0]["content"] = system_msg + "\n\n" + history[0]["content"]
+                else:
+                    history.insert(0, {"role": "system", "content": system_msg})
             except Exception as e:
                 import logging
                 logging.warning(f"Memory context injection failed: {e}")
@@ -278,8 +365,7 @@ async def chat_stream(
             # 4. 调用 LLM
             full_response = ""
 
-            if False:  # TEMP: tools disabled until vLLM restart
-                # if request.model == "qwen3" and request.enable_tools:
+            if request.enable_tools:  # 启用工具时使用 ReAct 循环
                 async for event in react_chat_stream_with_history(request, history):
                     if event["type"] == "token":
                         full_response += event.get("content", "")
@@ -293,6 +379,11 @@ async def chat_stream(
             # 5. 保存助手响应到 session
             if full_response:
                 await manager.add_message(session_id, "assistant", full_response)
+
+            # 6. 异步提取记忆 (从用户消息中提取)
+            if current_user_msg:
+                import asyncio
+                asyncio.create_task(extract_memories_async(user_id, session_id, current_user_msg))
 
             # 检查是否需要压缩 (异步执行，不阻塞响应)
             session = await manager.get_session(session_id)
@@ -357,6 +448,52 @@ async def simple_chat_stream_with_history(
     yield {"type": "done", "content": ""}
 
 
+
+# ==================== Thinking 内容分离 (ReAct 专用) ====================
+
+def parse_thinking_content(raw_content: str):
+    """
+    解析原始内容，分离 thinking 和 final content
+    
+    支持两种格式:
+    1. <think>思考内容</think>最终回复
+    2. 思考内容</think>最终回复 (无开始标签，vLLM 常见行为)
+    
+    Returns: (thinking_text, content_text)
+    """
+    if not raw_content:
+        return None, raw_content
+    
+    # 检查是否有 </think> 标签
+    if "</think>" in raw_content:
+        # 情况1: 有完整的 <think>...</think>
+        if "<think>" in raw_content:
+            match = re.search(r"<think>(.*?)</think>", raw_content, re.DOTALL)
+            if match:
+                thinking = match.group(1).strip()
+                final_content = raw_content.split("</think>", 1)[-1].strip()
+                return thinking, final_content
+        else:
+            # 情况2: 只有 </think> 结束标签 (vLLM 常见行为)
+            parts = raw_content.split("</think>", 1)
+            thinking = parts[0].strip()
+            final_content = parts[1].strip() if len(parts) > 1 else ""
+            return thinking, final_content
+    
+    return None, raw_content
+
+    
+    # 检查是否有 <think> 标签
+    if "<think>" in raw_content and "</think>" in raw_content:
+        match = re.search(r"<think>(.*?)</think>", raw_content, re.DOTALL)
+        if match:
+            thinking = match.group(1).strip()
+            final_content = raw_content.split("</think>", 1)[-1].strip()
+            return thinking, final_content
+    
+    return None, raw_content
+
+
 # ==================== ReAct 聊天 (带工具) ====================
 
 async def react_chat_stream_with_history(
@@ -366,6 +503,40 @@ async def react_chat_stream_with_history(
     """ReAct 流式聊天，使用历史上下文"""
     messages = [{"role": m["role"], "content": m["content"]} for m in history]
 
+    # ====== Phase 1: 意图路由 (解决 Sticky Tool) ======
+    current_tools = get_tool_schemas()  # 默认全部工具
+
+    if ENABLE_ORCHESTRATION:
+        router_instance = get_intent_router()
+        if router_instance:
+            # 获取最新用户消息
+            user_message = ""
+            for m in reversed(history):
+                if m.get("role") == "user":
+                    user_message = m.get("content", "")
+                    break
+
+            if user_message:
+                try:
+                    decision = await router_instance.route(user_message)
+
+                    # 发送路由事件 (前端可展示)
+                    yield {
+                        "type": "routing",
+                        "intent": decision.intent.value,
+                        "model_tier": decision.model_tier.value,
+                        "reasoning": decision.reasoning,
+                        "use_tools": decision.use_tools
+                    }
+
+                    # 始终基于意图过滤工具 (CHAT 意图保留 remember/recall)
+                    current_tools = filter_tools_by_intent(decision.intent.value, get_tool_schemas())
+
+                except Exception as e:
+                    import logging
+                    logging.getLogger(__name__).warning(f"Routing failed, using all tools: {e}")
+
+    # ====== 原有逻辑 ======
     iteration = 0
 
     while iteration < MAX_TOOL_ITERATIONS:
@@ -373,7 +544,7 @@ async def react_chat_stream_with_history(
 
         response = await call_qwen3_with_tools(
             messages=messages,
-            tools=TOOL_DEFINITIONS,
+            tools=current_tools,
             temperature=request.temperature,
             max_tokens=request.max_tokens
         )
@@ -382,10 +553,21 @@ async def react_chat_stream_with_history(
         tool_calls = assistant_message.get("tool_calls", [])
         content = assistant_message.get("content", "")
 
-        if content:
-            yield {"type": "token", "content": content}
-
-        if not tool_calls:
+        # 工具调用模式下的思考分离逻辑:
+        # - 有 tool_calls: content 全部是思考过程
+        # - 无 tool_calls: 需要解析 </think> 标签
+        if tool_calls:
+            # 有工具调用，content 是思考过程
+            if content:
+                yield {"type": "thinking", "content": content}
+        else:
+            # 无工具调用，这是最终回复，解析 </think>
+            if content:
+                thinking_text, final_content = parse_thinking_content(content)
+                if thinking_text:
+                    yield {"type": "thinking", "content": thinking_text}
+                if final_content:
+                    yield {"type": "token", "content": final_content}
             yield {"type": "done", "content": ""}
             return
 
@@ -403,7 +585,9 @@ async def react_chat_stream_with_history(
                 "arguments": tool_args
             }
 
-            result = execute_tool(tool_name, tool_args)
+            tool_context = ToolContext(user_id="system", permissions=["execute_destructive"])
+            result_obj = await ToolExecutor.execute_async(tool_name, tool_args, tool_context)
+            result = result_obj.to_llm_string()
 
             yield {
                 "type": "tool_result",
@@ -427,12 +611,29 @@ async def call_qwen3_with_tools(
     messages: List[dict],
     tools: List[dict],
     temperature: float = 0.7,
-    max_tokens: int = 4096
+    max_tokens: int = 4096,
+    enable_thinking: bool = False  # 工具调用默认禁用思考
 ) -> dict:
     """调用 Qwen3 vLLM API (带工具)"""
+    # 处理 messages - 禁用思考时加 /no_think
+    processed_messages = []
+    for i, msg in enumerate(messages):
+        if not enable_thinking and i == 0 and msg.get("role") == "system":
+            # 在 system prompt 末尾加 /no_think
+            processed_messages.append({
+                "role": "system",
+                "content": msg.get("content", "") + " /no_think"
+            })
+        else:
+            processed_messages.append(msg)
+    
+    # 如果没有 system message 且需要禁用思考，插入一条
+    if not enable_thinking and (not processed_messages or processed_messages[0].get("role") != "system"):
+        processed_messages.insert(0, {"role": "system", "content": "你是一个高效的AI助手，直接执行任务。/no_think"})
+    
     payload = {
         "model": QWEN3_MODEL,
-        "messages": messages,
+        "messages": processed_messages,
         "tools": tools,
         "tool_choice": "auto",
         "temperature": temperature,
