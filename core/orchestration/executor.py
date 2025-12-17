@@ -200,14 +200,17 @@ class AgentExecutor:
         
         # 2. 获取 Agent 配置
         agent_config = self._get_agent_config(decision)
+        logger.info(f"[PROCESS] Got agent config: {agent_config.id}, type={agent_config.agent_type}")
         
         # 3. 记录用户消息
         self.session.add_message("user", user_input)
+        logger.info(f"[PROCESS] Added user message, session has {len(self.session.messages)} messages")
         
         # 4. 根据 Agent 类型执行
         full_response = ""
         
         try:
+            logger.info(f"[PROCESS] Starting agent execution, type={agent_config.agent_type}")
             if agent_config.agent_type == AgentType.CONVERSATIONAL:
                 # 对话型: 共享历史
                 async for event in self._run_conversational(user_input, agent_config, decision):
@@ -262,15 +265,26 @@ class AgentExecutor:
         
         messages = self.session.get_messages_for_llm()
         
+        # DEBUG
+        logger.info(f"[DEBUG] _run_conversational called")
+        logger.info(f"[DEBUG] user_input: {user_input[:50] if user_input else 'EMPTY'}")
+        logger.info(f"[DEBUG] config: tier={config.model_tier}, endpoint={config.model_endpoint}")
+        logger.info(f"[DEBUG] messages count: {len(messages)}")
+        for i, m in enumerate(messages[:3]):
+            logger.info(f"[DEBUG] msg[{i}]: role={m.get('role')}, content={str(m.get('content', ''))[:30]}...")
+        
         # 添加 system prompt
         if config.system_prompt:
             messages.insert(0, {"role": "system", "content": config.system_prompt})
         
-        # 调用模型
-        if config.model_tier == ModelTier.GPU:
+        # 调用模型 - 使用 Router 的 model_tier 决策，而不是 Agent Config 的默认值
+        actual_tier = decision.model_tier  # Router 决策优先
+        logger.info(f"[MODEL] Using tier from router: {actual_tier.value}")
+        
+        if actual_tier == ModelTier.GPU:
             async for event in self._call_gpu_stream(messages, config, decision):
                 yield event
-        elif config.model_tier == ModelTier.CPU:
+        elif actual_tier == ModelTier.CPU:
             async for event in self._call_cpu_stream(messages, config, decision):
                 yield event
         else:
@@ -374,7 +388,7 @@ class AgentExecutor:
             
             async with client.stream(
                 "POST",
-                f"{config.model_endpoint}/chat/completions",
+                "http://localhost:8000/v1/chat/completions",  # GPU 端点
                 json=payload
             ) as response:
                 async for line in response.aiter_lines():
@@ -433,7 +447,7 @@ class AgentExecutor:
                     payload["tool_choice"] = "auto"
                 
                 response = await client.post(
-                    f"{config.model_endpoint}/chat/completions",
+                    "http://localhost:8000/v1/chat/completions",  # GPU 端点
                     json=payload
                 )
                 
@@ -494,24 +508,34 @@ class AgentExecutor:
         config: AgentConfig,
         decision: RoutingDecision
     ) -> AsyncIterator[StreamEvent]:
-        """调用 CPU 模型 (流式)"""
+        """调用 CPU 模型 (流式) - 使用 chat/completions API"""
         
-        # CPU 简单对话，不带工具
-        prompt = self._messages_to_prompt(messages)
+        # 禁用思考模式 (加 /no_think)
+        processed_msgs = []
+        for i, msg in enumerate(messages):
+            if i == 0 and msg.get("role") == "system":
+                processed_msgs.append({
+                    "role": "system",
+                    "content": msg.get("content", "") + " /no_think"
+                })
+            else:
+                processed_msgs.append(msg)
+        
+        if not processed_msgs or processed_msgs[0].get("role") != "system":
+            processed_msgs.insert(0, {"role": "system", "content": "你是一个AI助手。/no_think"})
         
         async with httpx.AsyncClient(timeout=60.0) as client:
             payload = {
-                "model": "qwen3-8b",
-                "prompt": prompt,
+                "model": "auto",
+                "messages": processed_msgs,
                 "temperature": config.temperature,
                 "max_tokens": config.max_tokens,
-                "stream": True,
-                "stop": ["<|im_end|>"]
+                "stream": True
             }
             
             async with client.stream(
                 "POST",
-                f"{config.model_endpoint}/completions",
+                "http://localhost:8002/v1/chat/completions",  # CPU 端点
                 json=payload
             ) as response:
                 async for line in response.aiter_lines():
@@ -524,9 +548,17 @@ class AgentExecutor:
                     
                     try:
                         chunk = json.loads(data)
-                        text = chunk["choices"][0].get("text", "")
+                        delta = chunk.get("choices", [{}])[0].get("delta", {})
+                        
+                        # 处理 content
+                        text = delta.get("content", "")
                         if text:
                             yield StreamEvent(type=EventType.TOKEN, content=text)
+                        
+                        # 处理 reasoning_content (如果有)
+                        reasoning = delta.get("reasoning_content", "")
+                        if reasoning:
+                            yield StreamEvent(type=EventType.THINKING, content=reasoning)
                     except:
                         continue
     
