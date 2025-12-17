@@ -265,13 +265,7 @@ class AgentExecutor:
         
         messages = self.session.get_messages_for_llm()
         
-        # DEBUG
-        logger.info(f"[DEBUG] _run_conversational called")
-        logger.info(f"[DEBUG] user_input: {user_input[:50] if user_input else 'EMPTY'}")
-        logger.info(f"[DEBUG] config: tier={config.model_tier}, endpoint={config.model_endpoint}")
-        logger.info(f"[DEBUG] messages count: {len(messages)}")
         for i, m in enumerate(messages[:3]):
-            logger.info(f"[DEBUG] msg[{i}]: role={m.get('role')}, content={str(m.get('content', ''))[:30]}...")
         
         # 添加 system prompt
         if config.system_prompt:
@@ -317,7 +311,9 @@ class AgentExecutor:
         full_response = ""
         
         # 根据模型层级选择执行方式
-        if config.model_tier == ModelTier.CPU:
+        # 使用 Router 决策的 model_tier
+        actual_tier = decision.model_tier
+        if actual_tier == ModelTier.CPU:
             # CPU: 使用 ReAct 工具调用
             async for event in self.cpu_handler.run_react_loop(agent_input, context=config.system_prompt):
                 if event["type"] == "thinking":

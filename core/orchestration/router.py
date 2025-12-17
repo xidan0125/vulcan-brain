@@ -20,7 +20,7 @@ class Intent(str, Enum):
     DATA = "data"              # 数据查询 → GPU, 数据工具
     FINANCE = "finance"        # 财务相关 → GPU, 财务工具
     CODE = "code"              # 代码相关 → GPU, 代码工具
-    WEB_SEARCH = "web_search"  # 联网搜索 → Gemini
+    WEB_SEARCH = "web_search"  # 联网搜索 → GPU + web_search工具
 
 
 class ModelTier(str, Enum):
@@ -147,7 +147,7 @@ class IntentRouter:
         # Step 3: 默认 CHAT
         return RoutingDecision(
             intent=Intent.CHAT,
-            model_tier=ModelTier.GPU,
+            model_tier=ModelTier.CPU,
             confidence=0.5,
             reasoning="default_fallback",
             use_tools=False
@@ -215,11 +215,11 @@ class IntentRouter:
         for kw in self.SEARCH_KEYWORDS:
             if kw in text:
                 return RoutingDecision(
-                    intent=Intent.WEB_SEARCH,
-                    model_tier=ModelTier.GEMINI,
+                    intent=Intent.DATA,
+                    model_tier=ModelTier.CPU,
                     confidence=0.85,
-                    reasoning=f"search_keyword:{kw}",
-                    use_tools=False  # Gemini 内置搜索
+                    reasoning=f"data_keyword:{kw}",
+                    use_tools=True  # GPU + web_search 工具
                 )
         
         return None
@@ -246,12 +246,12 @@ class IntentRouter:
         
         # 映射到 Intent
         mapping = {
-            "chat": (Intent.CHAT, ModelTier.GPU, False),
+            "chat": (Intent.CHAT, ModelTier.CPU, False),
             "feishu": (Intent.FEISHU, ModelTier.CPU, True),
             "data": (Intent.DATA, ModelTier.GPU, True),
             "finance": (Intent.FINANCE, ModelTier.GPU, True),
             "code": (Intent.CODE, ModelTier.GPU, True),
-            "web_search": (Intent.WEB_SEARCH, ModelTier.GEMINI, False),
+            "web_search": (Intent.DATA, ModelTier.CPU, True),
         }
         
         if category in mapping:
@@ -267,7 +267,7 @@ class IntentRouter:
         # 默认 CHAT
         return RoutingDecision(
             intent=Intent.CHAT,
-            model_tier=ModelTier.GPU,
+            model_tier=ModelTier.CPU,
             confidence=0.5,
             reasoning=f"llm_unknown:{category}",
             use_tools=False

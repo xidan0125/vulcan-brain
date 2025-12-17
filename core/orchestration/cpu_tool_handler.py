@@ -89,13 +89,29 @@ class CPUToolHandler:
         self.tool_descriptions = self._build_tool_descriptions()
     
     def _build_tool_descriptions(self) -> str:
-        """构建工具描述"""
+        """构建工具描述 - 包含 core.tools 的工具"""
         descriptions = []
+        
+        # 本地注册的工具
         for name, func in self.tools.items():
             doc = getattr(func, "__doc__", None) or "无描述"
             descriptions.append(f"- {name}: {doc}")
+        
+        # 从 core.tools 获取
+        try:
+            from core.tools import get_tool_schemas
+            schemas = get_tool_schemas()
+            for schema in schemas:
+                func_def = schema.get("function", {})
+                name = func_def.get("name", "")
+                desc = func_def.get("description", "无描述")
+                if name and name not in self.tools:
+                    descriptions.append(f"- {name}: {desc[:100]}...")
+        except Exception as e:
+            logger.warning(f"Failed to get core.tools schemas: {e}")
+        
         return "\n".join(descriptions) if descriptions else "无可用工具"
-    
+
     def get_system_prompt(self) -> str:
         """获取系统提示"""
         return self.SYSTEM_PROMPT.format(tool_descriptions=self.tool_descriptions)
@@ -145,34 +161,38 @@ class CPUToolHandler:
         return None
     
     async def execute_tool(self, tool_call: ToolCall) -> ToolResult:
-        """执行工具"""
+        """执行工具 - 使用 core.tools 执行"""
         tool_name = tool_call.name
         params = tool_call.params
         
-        if tool_name not in self.tools:
-            return ToolResult(
-                success=False,
-                result=None,
-                error=f"未知工具: {tool_name}"
-            )
-        
-        try:
-            func = self.tools[tool_name]
-            
-            # 检查是否是异步函数
-            if hasattr(func, "__call__"):
+        # 先检查本地注册的工具
+        if tool_name in self.tools:
+            try:
+                func = self.tools[tool_name]
                 import asyncio
                 if asyncio.iscoroutinefunction(func):
                     result = await func(**params)
                 else:
                     result = func(**params)
-            else:
-                result = func(**params)
+                return ToolResult(success=True, result=result)
+            except Exception as e:
+                logger.error(f"Tool execution error: {e}")
+                return ToolResult(success=False, result=None, error=str(e))
+        
+        # 尝试使用 core.tools 执行
+        try:
+            from core.tools import ToolExecutor
+            from core.tools.base import ToolContext
             
-            return ToolResult(success=True, result=result)
+            context = ToolContext(user_id="system", permissions=["execute_destructive"])
+            params_json = json.dumps(params, ensure_ascii=False)
             
+            result_obj = await ToolExecutor.execute_async(tool_name, params_json, context)
+            result_str = result_obj.to_llm_string() if hasattr(result_obj, "to_llm_string") else str(result_obj)
+            
+            return ToolResult(success=True, result=result_str)
         except Exception as e:
-            logger.error(f"Tool execution error: {e}")
+            logger.error(f"core.tools execution error: {e}")
             return ToolResult(success=False, result=None, error=str(e))
     
     def format_tool_result(self, result: ToolResult) -> str:
