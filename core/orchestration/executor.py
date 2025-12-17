@@ -265,8 +265,6 @@ class AgentExecutor:
         
         messages = self.session.get_messages_for_llm()
         
-        for i, m in enumerate(messages[:3]):
-        
         # 添加 system prompt
         if config.system_prompt:
             messages.insert(0, {"role": "system", "content": config.system_prompt})
@@ -368,7 +366,7 @@ class AgentExecutor:
         
         async with httpx.AsyncClient(timeout=120.0) as client:
             payload = {
-                "model": "auto",  # vLLM 自动选择
+                "model": "Qwen/Qwen3-VL-30B-A3B-Thinking-FP8",  # vLLM 自动选择
                 "messages": messages,
                 "temperature": config.temperature,
                 "max_tokens": config.max_tokens,
@@ -431,7 +429,7 @@ class AgentExecutor:
             
             async with httpx.AsyncClient(timeout=120.0) as client:
                 payload = {
-                    "model": "auto",
+                    "model": "Qwen/Qwen3-VL-30B-A3B-Thinking-FP8",
                     "messages": messages,
                     "temperature": config.temperature,
                     "max_tokens": config.max_tokens,
@@ -522,7 +520,7 @@ class AgentExecutor:
         
         async with httpx.AsyncClient(timeout=60.0) as client:
             payload = {
-                "model": "auto",
+                "model": "Qwen/Qwen3-VL-30B-A3B-Thinking-FP8",
                 "messages": processed_msgs,
                 "temperature": config.temperature,
                 "max_tokens": config.max_tokens,

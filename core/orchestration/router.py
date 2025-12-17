@@ -147,7 +147,7 @@ class IntentRouter:
         # Step 3: 默认 CHAT
         return RoutingDecision(
             intent=Intent.CHAT,
-            model_tier=ModelTier.CPU,
+            model_tier=ModelTier.GPU,
             confidence=0.5,
             reasoning="default_fallback",
             use_tools=False
@@ -161,7 +161,7 @@ class IntentRouter:
             if text.startswith(kw) or text == kw:
                 return RoutingDecision(
                     intent=Intent.CHAT,
-                    model_tier=ModelTier.CPU,
+                    model_tier=ModelTier.GPU,
                     confidence=0.95,
                     reasoning=f"chat_keyword:{kw}",
                     use_tools=False
@@ -183,7 +183,7 @@ class IntentRouter:
             if kw in text:
                 return RoutingDecision(
                     intent=Intent.DATA,
-                    model_tier=ModelTier.GPU,  # 数据分析用 GPU
+                    model_tier=ModelTier.CPU,  # 数据工具 → CPU ReAct
                     confidence=0.85,
                     reasoning=f"data_keyword:{kw}",
                     use_tools=True
@@ -194,7 +194,7 @@ class IntentRouter:
             if kw in text:
                 return RoutingDecision(
                     intent=Intent.FINANCE,
-                    model_tier=ModelTier.GPU,
+                    model_tier=ModelTier.CPU,
                     confidence=0.85,
                     reasoning=f"finance_keyword:{kw}",
                     use_tools=True
@@ -246,12 +246,12 @@ class IntentRouter:
         
         # 映射到 Intent
         mapping = {
-            "chat": (Intent.CHAT, ModelTier.CPU, False),
-            "feishu": (Intent.FEISHU, ModelTier.CPU, True),
-            "data": (Intent.DATA, ModelTier.GPU, True),
-            "finance": (Intent.FINANCE, ModelTier.GPU, True),
-            "code": (Intent.CODE, ModelTier.GPU, True),
-            "web_search": (Intent.DATA, ModelTier.CPU, True),
+            "chat": (Intent.CHAT, ModelTier.GPU, False),      # 聊天需要智能 → GPU
+            "feishu": (Intent.FEISHU, ModelTier.CPU, True),   # 工具执行 → CPU ReAct
+            "data": (Intent.DATA, ModelTier.CPU, True),       # 工具执行 → CPU ReAct
+            "finance": (Intent.FINANCE, ModelTier.CPU, True), # 工具执行 → CPU ReAct
+            "code": (Intent.CODE, ModelTier.GPU, True),       # 代码生成需要智能 → GPU
+            "web_search": (Intent.DATA, ModelTier.CPU, True), # 搜索工具 → CPU ReAct
         }
         
         if category in mapping:
@@ -267,7 +267,7 @@ class IntentRouter:
         # 默认 CHAT
         return RoutingDecision(
             intent=Intent.CHAT,
-            model_tier=ModelTier.CPU,
+            model_tier=ModelTier.GPU,
             confidence=0.5,
             reasoning=f"llm_unknown:{category}",
             use_tools=False
