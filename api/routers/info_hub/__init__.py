@@ -8,6 +8,8 @@ from .chat_router import router as chat_router
 from .people_router import router as people_router
 from .approval_router import router as approval_router
 from .misc_router import router as misc_router
+from .feishu_router import router as feishu_router
+from .briefing_router import router as briefing_router
 
 # 主路由，聚合所有子路由
 router = APIRouter(prefix="/info-hub", tags=["InfoHub"])
@@ -18,3 +20,5 @@ router.include_router(chat_router)
 router.include_router(people_router)
 router.include_router(approval_router)
 router.include_router(misc_router)
+router.include_router(feishu_router)
+router.include_router(briefing_router)

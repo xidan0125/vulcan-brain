@@ -31,7 +31,10 @@ module.exports = {
         // Microsoft 365
         MS365_CLIENT_ID: "675bcdcf-19da-4700-9ccf-889dbe2d1239",
         MS365_TENANT_ID: "f7f20c78-407d-4ec2-bb4a-67f3b3ab26b7",
-        MS365_CLIENT_SECRET: "uEo8Q~nIjfE2RU5xykw7V_sNqX4ao.QG1.z_icZ5"
+        MS365_CLIENT_SECRET: "uEo8Q~nIjfE2RU5xykw7V_sNqX4ao.QG1.z_icZ5",
+        
+        // Gemini API
+        GEMINI_API_KEY: "AIzaSyAzdtbNnuG9fE3ilV4mKYewlkJbakbvWAM"
       }
     },
     {

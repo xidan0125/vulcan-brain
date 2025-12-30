@@ -15,7 +15,7 @@ from .router import IntentRouter, RoutingDecision, Intent, ModelTier, get_tools_
 from .briefcase import Briefcase, BriefcaseManager, Artifact, ArtifactType
 from .session_context import SessionContext, AgentType
 from .cpu_tool_handler import CPUToolHandler
-from .thinking_parser import ThinkingStreamParser, clean_response
+from .thinking_parser import ThinkingStreamParser, clean_response, parse_thinking_content
 
 logger = logging.getLogger(__name__)
 
@@ -360,17 +360,19 @@ class AgentExecutor:
         config: AgentConfig,
         decision: RoutingDecision
     ) -> AsyncIterator[StreamEvent]:
-        """调用 GPU 模型 (流式)"""
-        
-        self.thinking_parser.reset()
+        """
+        调用 GPU 模型
+        使用非流式调用 + parse_thinking_content 分离思考内容
+        然后模拟流式输出
+        """
         
         async with httpx.AsyncClient(timeout=120.0) as client:
             payload = {
-                "model": "Qwen/Qwen3-VL-30B-A3B-Thinking-FP8",  # vLLM 自动选择
+                "model": "Qwen/Qwen3-VL-30B-A3B-Thinking-FP8",
                 "messages": messages,
                 "temperature": config.temperature,
                 "max_tokens": config.max_tokens,
-                "stream": True
+                "stream": False  # 非流式调用以获取完整响应
             }
             
             # 工具注入
@@ -380,37 +382,47 @@ class AgentExecutor:
                     payload["tools"] = tools
                     payload["tool_choice"] = "auto"
             
-            async with client.stream(
-                "POST",
-                "http://localhost:8000/v1/chat/completions",  # GPU 端点
+            response = await client.post(
+                "http://localhost:8000/v1/chat/completions",
                 json=payload
-            ) as response:
-                async for line in response.aiter_lines():
-                    if not line.startswith("data: "):
-                        continue
-                    
-                    data = line[6:].strip()
-                    if data == "[DONE]":
-                        break
-                    
-                    try:
-                        chunk = json.loads(data)
-                        parsed = self.thinking_parser.parse_chunk(chunk)
-                        
-                        if parsed:
-                            if parsed.thinking:
-                                yield StreamEvent(type=EventType.THINKING, content=parsed.thinking)
-                            if parsed.content:
-                                yield StreamEvent(type=EventType.TOKEN, content=parsed.content)
-                            if parsed.tool_calls:
-                                for tc in parsed.tool_calls:
-                                    yield StreamEvent(
-                                        type=EventType.TOOL_CALL,
-                                        content=tc.get("function", {}).get("name"),
-                                        metadata={"tool_call": tc}
-                                    )
-                    except json.JSONDecodeError:
-                        continue
+            )
+            response.raise_for_status()
+            data = response.json()
+            
+            choice = data["choices"][0]
+            message = choice.get("message", {})
+            content = message.get("content", "")
+            tool_calls = message.get("tool_calls", [])
+            
+            # 处理工具调用
+            if tool_calls:
+                for tc in tool_calls:
+                    yield StreamEvent(
+                        type=EventType.TOOL_CALL,
+                        content=tc.get("function", {}).get("name"),
+                        metadata={"tool_call": tc}
+                    )
+                return
+            
+            # 分离 thinking 和 content
+            thinking_text, final_content = parse_thinking_content(content)
+            
+            # 发送 thinking (如果有)
+            if thinking_text:
+                yield StreamEvent(type=EventType.THINKING, content=thinking_text)
+            
+            # 模拟流式输出 final_content
+            if final_content:
+                # 按句子分割，模拟流式效果
+                import re
+                sentences = re.split(r'([。！？.!?\n])', final_content)
+                for i in range(0, len(sentences), 2):
+                    chunk = sentences[i]
+                    if i + 1 < len(sentences):
+                        chunk += sentences[i + 1]
+                    if chunk:
+                        yield StreamEvent(type=EventType.TOKEN, content=chunk)
+                        await asyncio.sleep(0.02)  # 模拟延迟
     
     async def _call_gpu_with_tools(
         self,

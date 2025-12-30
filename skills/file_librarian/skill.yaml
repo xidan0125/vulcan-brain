@@ -1,0 +1,33 @@
+# File Librarian Skill
+# 文件管理员 - 读取、分类、整理文件库
+
+name: file_librarian
+display_name: 文件管理员
+description: |
+  读取未分类文件，分析内容，生成摘要和关键词，
+  判断所属分类，移动到正确目录。
+
+version: "1.0.0"
+author: vulcan-brain
+
+# 触发条件
+triggers:
+  - manual          # 手动触发
+  - scheduled       # 定时任务
+  - on_new_file     # 新文件入库时
+
+# 可用工具
+tools:
+  - list_uncategorized     # 列出未分类文件
+  - read_file_content      # 读取文件内容（提取文本）
+  - get_folder_structure   # 获取目录结构
+  - update_file_metadata   # 更新文件元数据（摘要、关键词、实体）
+  - move_file              # 移动文件到新目录
+  - create_folder          # 创建新目录（如新客户）
+  - batch_process          # 批量处理
+
+# 配置
+config:
+  max_files_per_run: 20           # 每次最多处理文件数
+  require_confirmation: false     # 是否需要人工确认移动
+  auto_create_entity_folder: true # 自动创建实体目录（如客户名）

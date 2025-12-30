@@ -1,315 +1,348 @@
 """
-Vulcan Brain - 上下文工程管理器
-实现对话历史的截断和压缩
+Vulcan Brain - 上下文工程管理器 v2
+基于 Token 数量的上下文压缩
 
-基于 Google/Kaggle 白皮书 Context Engineering:
-- Truncation: 保留最后 N 轮对话
-- Compaction: 使用 LLM 摘要压缩旧对话
+关键改进:
+1. Token 估算（中文约 2 字符/token，英文约 4 字符/token）
+2. 请求前检查并压缩，而不是请求后
+3. 智能截断：保留最近对话 + 压缩旧对话
 """
 
 import os
 import logging
 import httpx
-from typing import List, Dict, Optional
-from datetime import datetime, timezone
+from typing import List, Dict, Optional, Tuple
+from dataclasses import dataclass
 
 logger = logging.getLogger("ContextManager")
 
 # ==================== 配置 ====================
 
-# Qwen3 本地模型配置
-QWEN3_BASE_URL = os.getenv("QWEN3_BASE_URL", "http://localhost:8000/v1")
-QWEN3_MODEL = os.getenv("QWEN3_MODEL", "Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8")
+# vLLM 配置
+VLLM_BASE_URL = os.getenv("VLLM_BASE_URL", "http://localhost:8000/v1")
 
-# 上下文工程参数
-MAX_HISTORY_TURNS = 20          # 最大保留轮数
-COMPACTION_THRESHOLD = 30       # 触发压缩的消息数阈值
-COMPACTION_KEEP_RECENT = 10     # 压缩后保留最近几条
+# 上下文限制
+MAX_CONTEXT_TOKENS = 40000      # 最大上下文 token (留 8K 给响应)
+COMPRESS_THRESHOLD = 30000      # 超过这个就开始压缩
+KEEP_RECENT_TOKENS = 8000       # 压缩后保留最近多少 token
+MIN_MESSAGES_TO_COMPRESS = 6    # 至少有这么多消息才值得压缩
 
 
-# ==================== 摘要提示词 ====================
+# ==================== Token 估算 ====================
 
-SUMMARY_PROMPT = """请将以下对话历史压缩成一段简洁的摘要。
+def estimate_tokens(text: str) -> int:
+    """
+    估算文本的 token 数量
+    
+    中文: ~1.5-2 字符/token
+    英文: ~4 字符/token
+    混合内容取折中值
+    """
+    if not text:
+        return 0
+    
+    # 统计中文字符
+    chinese_chars = sum(1 for c in text if '\u4e00' <= c <= '\u9fff')
+    other_chars = len(text) - chinese_chars
+    
+    # 中文约 1.5 字符/token，其他约 4 字符/token
+    chinese_tokens = chinese_chars / 1.5
+    other_tokens = other_chars / 4
+    
+    return int(chinese_tokens + other_tokens) + 10  # +10 buffer
+
+
+def estimate_messages_tokens(messages: List[Dict]) -> int:
+    """估算消息列表的总 token 数"""
+    total = 0
+    for msg in messages:
+        content = msg.get("content", "")
+        total += estimate_tokens(content)
+        total += 4  # role/formatting overhead
+    return total
+
+
+# ==================== 摘要生成 ====================
+
+SUMMARY_PROMPT = """请将以下对话历史压缩成简洁的摘要。
 
 要求:
 1. 保留关键信息：用户的主要问题、重要决定、关键结论
-2. 保留上下文：用户身份、偏好、正在进行的任务
-3. 简洁明了：控制在 200 字以内
-4. 使用第三人称：如"用户询问了..."、"助手建议..."
+2. 保留上下文：用户身份、偏好、正在进行的任务状态
+3. 控制在 300 字以内
+4. 使用第三人称
 
-对话历史:
+对话:
 {conversation}
 
-请输出摘要:"""
+摘要:"""
 
 
-# ==================== 核心函数 ====================
-
-def truncate_history(history: List[Dict], max_turns: int = MAX_HISTORY_TURNS) -> List[Dict]:
+async def generate_summary(messages: List[Dict], model: str = None) -> Optional[str]:
     """
-    截断历史到最后 N 轮
-
-    Args:
-        history: 消息列表 [{role, content, ...}]
-        max_turns: 最大保留轮数
-
-    Returns:
-        截断后的消息列表
+    使用 vLLM 生成对话摘要
     """
-    if len(history) <= max_turns:
-        return history
-
-    truncated = history[-max_turns:]
-    logger.info(f"Truncated history: {len(history)} -> {len(truncated)} messages")
-    return truncated
-
-
-def should_compact(message_count: int, is_compacted: bool = False) -> bool:
-    """
-    判断是否需要压缩
-
-    Args:
-        message_count: 当前消息数量
-        is_compacted: 是否已经压缩过
-
-    Returns:
-        是否需要压缩
-    """
-    # 如果已经压缩过，用更高的阈值
-    threshold = COMPACTION_THRESHOLD * 2 if is_compacted else COMPACTION_THRESHOLD
-    return message_count >= threshold
-
-
-def format_history_for_summary(history: List[Dict], exclude_recent: int = COMPACTION_KEEP_RECENT) -> str:
-    """
-    将历史格式化为用于摘要的文本
-
-    Args:
-        history: 消息列表
-        exclude_recent: 排除最近几条（这些不需要摘要）
-
-    Returns:
-        格式化的对话文本
-    """
-    # 只摘要旧消息
-    messages_to_summarize = history[:-exclude_recent] if len(history) > exclude_recent else []
-
-    if not messages_to_summarize:
-        return ""
-
+    if not messages:
+        return None
+    
+    # 格式化对话
     lines = []
-    for msg in messages_to_summarize:
+    for msg in messages:
         role = msg.get("role", "unknown")
-        content = msg.get("content", "")
-
+        content = msg.get("content", "")[:500]  # 截断长内容
+        
         if role == "user":
             lines.append(f"用户: {content}")
         elif role == "assistant":
-            lines.append(f"助手: {content}")
+            # 去掉 thinking 内容
+            if "<think>" in content:
+                content = content.split("</think>")[-1].strip()
+            lines.append(f"助手: {content[:300]}")
         elif role == "system":
-            lines.append(f"[系统] {content}")
-        elif role == "tool":
-            tool_name = msg.get("name", "工具")
-            lines.append(f"[工具调用: {tool_name}] {content[:100]}...")
-
-    return "\n".join(lines)
-
-
-async def generate_summary(history: List[Dict]) -> Optional[str]:
-    """
-    使用 Qwen3 本地模型生成对话摘要
-
-    Args:
-        history: 消息历史
-
-    Returns:
-        摘要文本，失败返回 None
-    """
-    # 格式化对话
-    conversation_text = format_history_for_summary(history)
-
-    if not conversation_text:
-        logger.info("No messages to summarize")
-        return None
-
+            lines.append(f"[系统] {content[:200]}")
+    
+    conversation_text = "\n".join(lines)
     prompt = SUMMARY_PROMPT.format(conversation=conversation_text)
-
-    payload = {
-        "model": QWEN3_MODEL,
-        "messages": [
-            {"role": "user", "content": prompt}
-        ],
-        "temperature": 0.3,  # 低温度保证稳定输出
-        "max_tokens": 500
-    }
-
+    
     try:
         async with httpx.AsyncClient(timeout=30.0) as client:
+            # 动态获取模型名
+            if not model:
+                resp = await client.get(f"{VLLM_BASE_URL}/models")
+                if resp.status_code == 200:
+                    models = resp.json().get("data", [])
+                    model = models[0]["id"] if models else "default"
+            
             response = await client.post(
-                f"{QWEN3_BASE_URL}/chat/completions",
-                json=payload
+                f"{VLLM_BASE_URL}/chat/completions",
+                json={
+                    "model": model,
+                    "messages": [{"role": "user", "content": prompt}],
+                    "temperature": 0.3,
+                    "max_tokens": 500
+                }
             )
             response.raise_for_status()
-
+            
             result = response.json()
-            summary = result["choices"][0]["message"]["content"]
-
-            # 清理输出
-            summary = summary.strip()
+            summary = result["choices"][0]["message"]["content"].strip()
+            
+            # 清理
             if summary.startswith("摘要:") or summary.startswith("摘要："):
                 summary = summary[3:].strip()
-
-            logger.info(f"Generated summary: {len(summary)} chars")
+            
+            logger.info(f"Generated summary: {len(summary)} chars, ~{estimate_tokens(summary)} tokens")
             return summary
-
-    except httpx.TimeoutException:
-        logger.error("Summary generation timed out")
-        return None
+            
     except Exception as e:
         logger.error(f"Summary generation failed: {e}")
         return None
 
 
-async def compact_session(
-    session_manager,
-    session_id: str,
-    force: bool = False
-) -> bool:
-    """
-    压缩会话历史
+# ==================== 核心压缩逻辑 ====================
 
-    流程:
-    1. 检查是否需要压缩
-    2. 生成摘要
-    3. 保存摘要到 session
-    4. 清理旧历史
-
-    Args:
-        session_manager: SessionManager 实例
-        session_id: 会话 ID
-        force: 是否强制压缩
-
-    Returns:
-        是否成功压缩
-    """
-    session = await session_manager.get_session(session_id)
-    if not session:
-        logger.error(f"Session not found: {session_id}")
-        return False
-
-    message_count = session.get("message_count", 0)
-    is_compacted = session.get("is_compacted", False)
-    history = session.get("history", [])
-
-    # 检查是否需要压缩
-    if not force and not should_compact(message_count, is_compacted):
-        logger.debug(f"Session {session_id} does not need compaction (count={message_count})")
-        return False
-
-    logger.info(f"Starting compaction for session {session_id} (count={message_count})")
-
-    # 生成摘要
-    summary = await generate_summary(history)
-
-    if not summary:
-        logger.warning(f"Failed to generate summary for session {session_id}")
-        return False
-
-    # 合并旧摘要和新摘要
-    old_summary = session.get("summary", "")
-    if old_summary:
-        summary = f"{old_summary}\n\n[后续对话摘要] {summary}"
-
-    # 保存摘要
-    await session_manager.set_summary(session_id, summary)
-
-    # 清理旧历史
-    await session_manager.clear_old_history(session_id, keep_last=COMPACTION_KEEP_RECENT)
-
-    logger.info(f"Compaction complete for session {session_id}")
-    return True
+@dataclass
+class ContextResult:
+    """压缩结果"""
+    messages: List[Dict]        # 最终消息列表
+    token_count: int            # 估算 token 数
+    was_compressed: bool        # 是否进行了压缩
+    summary: Optional[str]      # 生成的摘要（如果有）
 
 
-# ==================== 上下文构建 ====================
-
-def build_context(
-    history: List[Dict],
-    summary: Optional[str] = None,
+async def prepare_context(
+    messages: List[Dict],
     system_prompt: Optional[str] = None,
-    max_turns: int = MAX_HISTORY_TURNS
-) -> List[Dict]:
+    existing_summary: Optional[str] = None,
+    max_tokens: int = MAX_CONTEXT_TOKENS,
+    compress_threshold: int = COMPRESS_THRESHOLD
+) -> ContextResult:
     """
-    构建 LLM 上下文
-
+    准备 LLM 上下文，必要时进行压缩
+    
+    策略:
+    1. 如果 token < threshold，直接返回
+    2. 如果 token >= threshold，压缩旧消息生成摘要
+    3. 返回: [system_prompt] + [summary] + [recent_messages]
+    
     Args:
-        history: 原始对话历史
-        summary: 压缩摘要
+        messages: 原始消息列表
         system_prompt: 系统提示词
-        max_turns: 最大轮数
-
+        existing_summary: 已有的摘要
+        max_tokens: 最大允许 token
+        compress_threshold: 触发压缩的阈值
+    
     Returns:
-        构建好的消息列表
+        ContextResult with prepared messages
     """
-    context = []
-
-    # 1. 系统提示词
+    # 1. 估算当前 token 数
+    current_tokens = estimate_messages_tokens(messages)
     if system_prompt:
-        context.append({"role": "system", "content": system_prompt})
+        current_tokens += estimate_tokens(system_prompt)
+    if existing_summary:
+        current_tokens += estimate_tokens(existing_summary)
+    
+    logger.info(f"Context tokens: {current_tokens} (threshold: {compress_threshold})")
+    
+    # 2. 如果不需要压缩，直接构建上下文
+    if current_tokens < compress_threshold:
+        final_messages = _build_messages(messages, system_prompt, existing_summary)
+        return ContextResult(
+            messages=final_messages,
+            token_count=current_tokens,
+            was_compressed=False,
+            summary=existing_summary
+        )
+    
+    # 3. 需要压缩
+    logger.info(f"Compressing context: {current_tokens} tokens > {compress_threshold}")
+    
+    # 3.1 找到需要保留的最近消息
+    recent_messages = []
+    recent_tokens = 0
+    
+    for msg in reversed(messages):
+        msg_tokens = estimate_tokens(msg.get("content", "")) + 4
+        if recent_tokens + msg_tokens > KEEP_RECENT_TOKENS:
+            break
+        recent_messages.insert(0, msg)
+        recent_tokens += msg_tokens
+    
+    # 至少保留最后一条用户消息
+    if not recent_messages and messages:
+        recent_messages = [messages[-1]]
+    
+    # 3.2 压缩旧消息
+    old_messages = messages[:-len(recent_messages)] if len(recent_messages) < len(messages) else []
+    
+    new_summary = None
+    if old_messages and len(old_messages) >= MIN_MESSAGES_TO_COMPRESS:
+        new_summary = await generate_summary(old_messages)
+        
+        # 合并旧摘要
+        if existing_summary and new_summary:
+            new_summary = f"{existing_summary}\n\n[后续] {new_summary}"
+        elif existing_summary:
+            new_summary = existing_summary
+    else:
+        new_summary = existing_summary
+    
+    # 3.3 构建最终上下文
+    final_messages = _build_messages(recent_messages, system_prompt, new_summary)
+    final_tokens = estimate_messages_tokens(final_messages)
+    
+    logger.info(f"Compression done: {current_tokens} -> {final_tokens} tokens")
+    
+    return ContextResult(
+        messages=final_messages,
+        token_count=final_tokens,
+        was_compressed=True,
+        summary=new_summary
+    )
 
-    # 2. 历史摘要
+
+def _build_messages(
+    messages: List[Dict],
+    system_prompt: Optional[str],
+    summary: Optional[str]
+) -> List[Dict]:
+    """构建最终消息列表"""
+    result = []
+    
+    # System prompt
+    if system_prompt:
+        result.append({"role": "system", "content": system_prompt})
+    
+    # Summary as system message
     if summary:
-        context.append({
-            "role": "system",
+        result.append({
+            "role": "system", 
             "content": f"[对话历史摘要]\n{summary}"
         })
-
-    # 3. 最近对话 (截断)
-    recent_history = truncate_history(history, max_turns)
-
-    for msg in recent_history:
-        context.append({
+    
+    # Recent messages
+    for msg in messages:
+        result.append({
             "role": msg.get("role", "user"),
             "content": msg.get("content", "")
         })
+    
+    return result
 
-    return context
+
+# ==================== 简单截断（备用方案）====================
+
+def truncate_to_token_limit(
+    messages: List[Dict],
+    max_tokens: int = MAX_CONTEXT_TOKENS
+) -> List[Dict]:
+    """
+    简单截断到 token 限制（不生成摘要）
+    用于紧急情况或摘要生成失败时
+    """
+    total_tokens = 0
+    result = []
+    
+    # 从后往前保留
+    for msg in reversed(messages):
+        msg_tokens = estimate_tokens(msg.get("content", "")) + 4
+        if total_tokens + msg_tokens > max_tokens:
+            break
+        result.insert(0, msg)
+        total_tokens += msg_tokens
+    
+    if not result and messages:
+        # 至少保留最后一条，但截断内容
+        last_msg = messages[-1].copy()
+        content = last_msg.get("content", "")
+        # 粗略截断到 max_tokens * 2 字符
+        last_msg["content"] = content[:max_tokens * 2]
+        result = [last_msg]
+    
+    return result
 
 
 # ==================== 测试 ====================
 
 if __name__ == "__main__":
     import asyncio
-
+    
     async def test():
-        # 模拟历史
-        history = [
-            {"role": "user", "content": "你好，我是张三"},
-            {"role": "assistant", "content": "你好张三！有什么可以帮助你的？"},
-            {"role": "user", "content": "我想了解一下 AI Agent 的架构"},
-            {"role": "assistant", "content": "AI Agent 通常由三个核心组件组成：模型（大脑）、工具（双手）和编排层（神经系统）..."},
-            {"role": "user", "content": "工具调用是怎么实现的？"},
-            {"role": "assistant", "content": "工具调用主要通过 Function Calling 实现。模型会分析用户意图，决定是否需要调用工具..."},
-        ]
-
-        # 测试截断
-        print("=== Truncation Test ===")
-        truncated = truncate_history(history, max_turns=4)
-        print(f"Original: {len(history)}, Truncated: {len(truncated)}")
-
-        # 测试摘要生成
-        print("\n=== Summary Test ===")
-        summary = await generate_summary(history)
-        print(f"Summary: {summary}")
-
-        # 测试上下文构建
-        print("\n=== Context Build Test ===")
-        context = build_context(
-            history=history,
-            summary=summary,
+        # 模拟长对话
+        messages = []
+        for i in range(30):
+            messages.append({"role": "user", "content": f"这是第 {i+1} 条用户消息，包含一些测试内容。" * 10})
+            messages.append({"role": "assistant", "content": f"这是第 {i+1} 条助手回复，也包含一些测试内容。" * 10})
+        
+        print(f"Original messages: {len(messages)}")
+        print(f"Estimated tokens: {estimate_messages_tokens(messages)}")
+        
+        result = await prepare_context(
+            messages=messages,
             system_prompt="你是 Vulcan Brain AI 助手",
-            max_turns=4
+            compress_threshold=5000  # 低阈值用于测试
         )
-        for msg in context:
-            print(f"[{msg['role']}] {msg['content'][:50]}...")
-
+        
+        print(f"\nAfter compression:")
+        print(f"Messages: {len(result.messages)}")
+        print(f"Tokens: {result.token_count}")
+        print(f"Was compressed: {result.was_compressed}")
+        if result.summary:
+            print(f"Summary: {result.summary[:200]}...")
+    
     asyncio.run(test())
+
+# Stub functions for chat_router compatibility
+MAX_HISTORY_TURNS = 20
+
+def should_compact(message_count: int, is_compacted: bool) -> bool:
+    """判断是否需要压缩会话"""
+    return message_count > 50 and not is_compacted
+
+async def compact_session(manager, session_id: str):
+    """压缩会话 (stub - 暂未实现)"""
+    pass
+
+def build_context(messages):
+    """构建上下文 (stub)"""
+    return messages

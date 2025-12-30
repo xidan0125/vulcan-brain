@@ -62,7 +62,15 @@ class SessionManager:
 
         Returns:
             session_id (str)
+            
+        Raises:
+            ValueError: 如果 user_id 为空或 'anonymous'
         """
+        # 架构级验证: 禁止创建 anonymous session
+        if not user_id or user_id == "anonymous":
+            logger.error(f"Attempted to create session with invalid user_id: {user_id}")
+            raise ValueError(f"Invalid user_id: {user_id}. Anonymous sessions are not allowed.")
+            
         session = {
             "user_id": user_id,
             "agent_id": agent_id,
@@ -80,10 +88,21 @@ class SessionManager:
         logger.info(f"✅ Created session {session_id} for user {user_id}")
         return session_id
 
-    async def get_session(self, session_id: str) -> Optional[Dict]:
-        """获取会话"""
+    async def get_session(self, session_id: str, user_id: str = None) -> Optional[Dict]:
+        """
+        获取会话 (带用户验证)
+        
+        Args:
+            session_id: 会话ID
+            user_id: 用户ID (如果提供，会验证会话归属)
+        """
         try:
-            session = await self.collection.find_one({"_id": ObjectId(session_id)})
+            query = {"_id": ObjectId(session_id)}
+            # 如果提供了 user_id，验证会话归属
+            if user_id:
+                query["user_id"] = user_id
+                
+            session = await self.collection.find_one(query)
             if session:
                 session["_id"] = str(session["_id"])
             return session
@@ -100,17 +119,23 @@ class SessionManager:
         """
         获取现有会话或创建新会话
 
-        如果提供 session_id 且存在，返回该会话
+        如果提供 session_id 且存在且属于该用户，返回该会话
         否则创建新会话
+        
+        安全: 始终验证 session 属于请求的 user_id
         """
         if session_id:
-            session = await self.get_session(session_id)
+            # 验证会话存在且属于该用户
+            session = await self.get_session(session_id, user_id=user_id)
             if session:
                 return session
+            else:
+                # session_id 无效或不属于该用户，记录日志
+                logger.warning(f"Session {session_id} not found or not owned by user {user_id}")
 
         # 创建新会话
         new_session_id = await self.create_session(user_id, agent_id)
-        return await self.get_session(new_session_id)
+        return await self.get_session(new_session_id, user_id=user_id)
 
     async def add_message(
         self,
@@ -210,6 +235,23 @@ class SessionManager:
             logger.error(f"Error updating state for session {session_id}: {e}")
             return False
 
+    async def update_title(self, session_id: str, title: str) -> bool:
+        """更新会话标题"""
+        try:
+            result = await self.collection.update_one(
+                {"_id": ObjectId(session_id)},
+                {
+                    "$set": {
+                        "title": title,
+                        "updated_at": datetime.now(timezone.utc)
+                    }
+                }
+            )
+            return result.modified_count > 0
+        except Exception as e:
+            logger.error(f"Error updating title for session {session_id}: {e}")
+            return False
+
     async def set_summary(self, session_id: str, summary: str) -> bool:
         """设置会话摘要 (compaction 后调用)"""
         try:
@@ -260,6 +302,34 @@ class SessionManager:
             )
             logger.info(f"Cleared history for session {session_id}: {len(history)} -> {len(new_history)}")
             return result.modified_count > 0
+
+        except Exception as e:
+            logger.error(f"Error clearing history for session {session_id}: {e}")
+            return False
+    async def replace_history(
+        self,
+        session_id: str,
+        new_history: list
+    ) -> bool:
+        """
+        替换整个历史 (用于 token-based compaction)
+        """
+        try:
+            result = await self.collection.update_one(
+                {"_id": ObjectId(session_id)},
+                {
+                    "$set": {
+                        "history": new_history,
+                        "is_compacted": True,
+                        "updated_at": datetime.now(timezone.utc)
+                    }
+                }
+            )
+            logger.info(f"Replaced history for session {session_id}: now {len(new_history)} messages")
+            return result.modified_count > 0
+        except Exception as e:
+            logger.error(f"Failed to replace history: {e}")
+            return False
         except Exception as e:
             logger.error(f"Error clearing history for session {session_id}: {e}")
             return False
@@ -280,6 +350,7 @@ class SessionManager:
         async for session in cursor:
             sessions.append({
                 "session_id": str(session["_id"]),
+                "title": session.get("title"), # 新增 title
                 "agent_id": session.get("agent_id", "general"),
                 "message_count": session.get("message_count", 0),
                 "created_at": session.get("created_at"),
@@ -288,10 +359,13 @@ class SessionManager:
             })
         return sessions
 
-    async def delete_session(self, session_id: str) -> bool:
+    async def delete_session(self, session_id: str, user_id: str = None) -> bool:
         """删除会话"""
         try:
-            result = await self.collection.delete_one({"_id": ObjectId(session_id)})
+            query = {"_id": ObjectId(session_id)}
+            if user_id:
+                query["user_id"] = user_id
+            result = await self.collection.delete_one(query)
             return result.deleted_count > 0
         except Exception as e:
             logger.error(f"Error deleting session {session_id}: {e}")

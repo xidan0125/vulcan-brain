@@ -351,14 +351,6 @@
       ]
     },
     {
-      "canonical": "WP Mail SMTP",
-      "aliases": [
-        "product",
-        "WP Mail SMTP",
-        "WP Mail SMTP Pro"
-      ]
-    },
-    {
       "canonical": "Vulcan shield",
       "aliases": [
         "Vulcan shield",
@@ -444,14 +436,6 @@
       "aliases": [
         "Michael",
         "Company"
-      ]
-    },
-    {
-      "canonical": "Christoph",
-      "aliases": [
-        "Christoph",
-        "Chris",
-        "David Wang"
       ]
     },
     {
@@ -722,15 +706,6 @@
       "aliases": [
         "spacex",
         "spaceX"
-      ]
-    },
-    {
-      "canonical": "Alumina Fiber Blanket",
-      "aliases": [
-        "Alumina Fiber Blanket",
-        "氧化铝纤维针刺毯",
-        "Diamond Bar",
-        "Needled blanket"
       ]
     },
     {
@@ -1367,6 +1342,385 @@
       "aliases": [
         "张维"
       ]
+    },
+    {
+      "canonical": "Matthias Maria Blass",
+      "aliases": [
+        "Matthias.Blaess"
+      ]
+    },
+    {
+      "canonical": "Shanghai Rongrong New Materials Technology Co.,",
+      "aliases": [
+        "上海榕融新材料技术有限公司"
+      ]
+    },
+    {
+      "canonical": "Alumina Oxide Fiber",
+      "aliases": [
+        "Alumina Fiber Woven Fabric"
+      ]
+    },
+    {
+      "canonical": "Best Petrol & Diesel Supply Pte",
+      "aliases": [
+        "Best Petrol & Diesel Supply Pte",
+        "Best Petrol & Diesel Supply Pte Ltd"
+      ]
+    },
+    {
+      "canonical": "Dear Sir/Madam",
+      "aliases": [
+        "Dear Sir/Madam",
+        "Dear Sir / Madam"
+      ]
+    },
+    {
+      "canonical": "Alumina Fiber",
+      "aliases": [
+        "Alumina Fiber",
+        "Alumina Fiber Products"
+      ]
+    },
+    {
+      "canonical": "3mm blanket",
+      "aliases": [
+        "3mm blanket",
+        "3mm blanket spacer"
+      ]
+    },
+    {
+      "canonical": "VULCAN SHELD GLOBAL",
+      "aliases": [
+        "VULCAN SHELD GLOBAL",
+        "Vulcan Sheild Global"
+      ]
+    },
+    {
+      "canonical": "Globalization Partners Singapore Pte.",
+      "aliases": [
+        "Globalization Partners Singapore Pte.",
+        "Globalization Partners Singapore Pte Ltd"
+      ]
+    },
+    {
+      "canonical": "Sheng Kai Fong",
+      "aliases": [
+        "Fong Sheng Kai"
+      ]
+    },
+    {
+      "canonical": "GMOあおぞらネット銀行株式会社",
+      "aliases": [
+        "ＧＭＯあおぞらネット銀行株式会社"
+      ]
+    },
+    {
+      "canonical": "DHL Express",
+      "aliases": [
+        "DHL International GmbH"
+      ]
+    },
+    {
+      "canonical": "VSG Singapore",
+      "aliases": [
+        "Emma Vsg",
+        "Tony Vsg"
+      ]
+    },
+    {
+      "canonical": "Eranthe.Gnin",
+      "aliases": [
+        "Gnin Pei Zhen Eranthe"
+      ]
+    },
+    {
+      "canonical": "Lumin VSG",
+      "aliases": [
+        "Long Long Vsg",
+        "Vel Tan Vsg"
+      ]
+    },
+    {
+      "canonical": "Paris-Nord Villepinte",
+      "aliases": [
+        "Paris Nord Villepinte"
+      ]
+    },
+    {
+      "canonical": "DG Data Service Pte",
+      "aliases": [
+        "DG Data Service Pte Ltd"
+      ]
+    },
+    {
+      "canonical": "Alumina Fiber",
+      "aliases": [
+        "Alumina Fabric",
+        "Alumina Fiber Needled Blanket"
+      ]
+    },
+    {
+      "canonical": "W-F100B1-240",
+      "aliases": [
+        "W-F100B1-310"
+      ]
+    },
+    {
+      "canonical": "Ctrip Corporate Travel Holding (Hongkong)",
+      "aliases": [
+        "Ctrip Corporate Travel Holding"
+      ]
+    },
+    {
+      "canonical": "Vulcan Shield Global",
+      "aliases": [
+        "Sheryl Sim Vsg",
+        "Vulcan Shield Global alumina fibres"
+      ]
+    },
+    {
+      "canonical": "Frenzelit GmbH",
+      "aliases": [
+        "duotherm Heiz- und Isoliersysteme GmbH & Co. KG"
+      ]
+    },
+    {
+      "canonical": "Fire fighting equipment",
+      "aliases": [
+        "automobile fire fighting equipment"
+      ]
+    },
+    {
+      "canonical": "Chopped Alumina Fibre",
+      "aliases": [
+        "Vulcan Shield Global alumina fibres"
+      ]
+    },
+    {
+      "canonical": "VULCAN SHIELD GLOBAL PTE LTD-INV2024",
+      "aliases": [
+        "Vulcan Shield Global Alumina Fibre"
+      ]
+    },
+    {
+      "canonical": "ABBA MAINTENANCE SERVICES PTE",
+      "aliases": [
+        "ABBA MAINTENANCE SERVICES PTE LTD-INV2024"
+      ]
+    },
+    {
+      "canonical": "bulk fibre",
+      "aliases": [
+        "Sample bulk fiber"
+      ]
+    },
+    {
+      "canonical": "Alumina fiber",
+      "aliases": [
+        "alumina fibres"
+      ]
+    },
+    {
+      "canonical": "Benjamin Blanchard",
+      "aliases": [
+        "Blanchard, Benjamin"
+      ]
+    },
+    {
+      "canonical": "VSG China",
+      "aliases": [
+        "Jasmine Vsg"
+      ]
+    },
+    {
+      "canonical": "UNITEX INT'L FORWARDING (HK)",
+      "aliases": [
+        "UNITEX INT'L FORWARDING (GUANGZHOU)"
+      ]
+    },
+    {
+      "canonical": "Globalization Partners",
+      "aliases": [
+        "Globalization Partners"
+      ]
+    },
+    {
+      "canonical": "Shanghai Rongrong New Materials Technology Co.,",
+      "aliases": [
+        "Shanghai Rongrong New Materials Technology Co.,",
+        "Rong Rong"
+      ]
+    },
+    {
+      "canonical": "Uber B.V.",
+      "aliases": [
+        "Uber B.V."
+      ]
+    },
+    {
+      "canonical": "Informa Markets",
+      "aliases": [
+        "Informa Markets"
+      ]
+    },
+    {
+      "canonical": "Singapore Telecommunications",
+      "aliases": [
+        "Singtel"
+      ]
+    },
+    {
+      "canonical": "Sun Shuren",
+      "aliases": [
+        "Shuren Sun"
+      ]
+    },
+    {
+      "canonical": "Hi Vel",
+      "aliases": [
+        "Dear Vel"
+      ]
+    },
+    {
+      "canonical": "DHL Express",
+      "aliases": [
+        "DHL Express"
+      ]
+    },
+    {
+      "canonical": "THS Technische Textilien GmbH",
+      "aliases": [
+        "THS Technische Textilien GmbH"
+      ]
+    },
+    {
+      "canonical": "St Gobain",
+      "aliases": [
+        "St Gobain"
+      ]
+    },
+    {
+      "canonical": "Tata Steel",
+      "aliases": [
+        "Tata Steel"
+      ]
+    },
+    {
+      "canonical": "CompositesWorld",
+      "aliases": [
+        "CompositesWorld"
+      ]
+    },
+    {
+      "canonical": "Composites United",
+      "aliases": [
+        "Composites United"
+      ]
+    },
+    {
+      "canonical": "DG Data Service Pte",
+      "aliases": [
+        "DG Data Service Pte"
+      ]
+    },
+    {
+      "canonical": "JEC World",
+      "aliases": [
+        "JEC Expo"
+      ]
+    },
+    {
+      "canonical": "PT Indo Termal Material",
+      "aliases": [
+        "PT Indo Termal Material"
+      ]
+    },
+    {
+      "canonical": "Messe Düsseldorf",
+      "aliases": [
+        "Messe Düsseldorf"
+      ]
+    },
+    {
+      "canonical": "VULCAN SHIELD GLOBAL PTE LTD",
+      "aliases": [
+        "VULCAN SHIELD GLOBAL PTE LTD-INV2024"
+      ]
+    },
+    {
+      "canonical": "THE SUPREME HR ADVISORY PTE LTD",
+      "aliases": [
+        "THE SUPREME HR ADVISORY PTE"
+      ]
+    },
+    {
+      "canonical": "Rothman & Roman",
+      "aliases": [
+        "Rothman & Roman"
+      ]
+    },
+    {
+      "canonical": "UNITEX INT'L FORWARDING (HK)",
+      "aliases": [
+        "UNITEX INT'L FORWARDING (HK)"
+      ]
+    },
+    {
+      "canonical": "SHANGHAI JIYYUAN INDUSTRIAL CO",
+      "aliases": [
+        "SHANGHAI JIYYUAN INDUSTRIAL CO"
+      ]
+    },
+    {
+      "canonical": "VSG China",
+      "aliases": [
+        "VSG China"
+      ]
+    },
+    {
+      "canonical": "SIG Distribution",
+      "aliases": [
+        "SIG Distribution"
+      ]
+    },
+    {
+      "canonical": "Quotz Pte",
+      "aliases": [
+        "Quotz Pte"
+      ]
+    },
+    {
+      "canonical": "Verz Design Pte.",
+      "aliases": [
+        "Verz Design Pte."
+      ]
+    },
+    {
+      "canonical": "NSR Co.",
+      "aliases": [
+        "NSR Co.,",
+        "NSR CO.,",
+        "NSR Co,."
+      ]
+    },
+    {
+      "canonical": "Trelleborg Aerospace",
+      "aliases": [
+        "Trelleborg Sealing Solutions UK"
+      ]
+    },
+    {
+      "canonical": "SHANGHAI RONGRONG NEW MATERIALS TECHNOLOGY CO.",
+      "aliases": [
+        "SHANGHAI RONGRONG NEW MATERIALS TECHNOLOGY CO.,"
+      ]
+    },
+    {
+      "canonical": "SIG PLC",
+      "aliases": [
+        "SIG PLC"
+      ]
     }
   ],
   "dictionary": {
@@ -1396,8 +1750,6 @@
     "Juan Carlos Contreras": "Juan Contreras",
     "Mexico": "United States",
     "Alison Vsg": "Vsg",
-    "product": "WP Mail SMTP",
-    "WP Mail SMTP Pro": "WP Mail SMTP",
     "shield wraps": "Vulcan shield",
     "VULCAN SHIELD GLOBAL PTE LTD-INV2025": "VULCAN SHIELD GLOBAL PTE LTD",
     "VSG Gaskets": "Singapore Telecommunications",
@@ -1406,8 +1758,6 @@
     "Martin Wilson": "Martin",
     "上海榕融新材料": "上海",
     "Company": "Michael",
-    "Chris": "Christoph",
-    "David Wang": "Christoph",
     "Jj": "Andy",
     "Shanghai Rongrong New Materials\nTechnology Co.,": "Shanghai Rongrong New Materials Technology Co.,",
     "Heathfield\nStreet": "Heathfield Street",
@@ -1419,9 +1769,6 @@
     "Needled Blanket": "Needle Blanket",
     "needled blanket": "Needle Blanket",
     "spaceX": "spacex",
-    "氧化铝纤维针刺毯": "Alumina Fiber Blanket",
-    "Diamond Bar": "Alumina Fiber Blanket",
-    "Needled blanket": "Alumina Fiber Blanket",
     "DBS IDEAL\nTM": "VULCAN SHEILD",
     "E\nRanthe Gnin": "Eranthe Gnin",
     "Air Export\nDirect": "Air Export Direct",
@@ -1433,11 +1780,56 @@
     "Samples of Chopped Alumina Fibre": "Alumina Fibers",
     "Haidian District": "Haidian District",
     "ＶＵＬＣＡＮ　ＳＨＩＥＬＤ　ＧＬＯＢＡＬ株式会社": "Panasonic",
-    "Oliver": "Shenzhen"
+    "Oliver": "Shenzhen",
+    "Matthias.Blaess": "Matthias Maria Blass",
+    "上海榕融新材料技术有限公司": "Shanghai Rongrong New Materials Technology Co.,",
+    "Alumina Fiber Woven Fabric": "Alumina Oxide Fiber",
+    "Best Petrol & Diesel Supply Pte Ltd": "Best Petrol & Diesel Supply Pte",
+    "Dear Sir / Madam": "Dear Sir/Madam",
+    "Alumina Fiber Products": "Alumina Fiber",
+    "3mm blanket spacer": "3mm blanket",
+    "Vulcan Sheild Global": "VULCAN SHELD GLOBAL",
+    "Globalization Partners Singapore Pte Ltd": "Globalization Partners Singapore Pte.",
+    "Fong Sheng Kai": "Sheng Kai Fong",
+    "ＧＭＯあおぞらネット銀行株式会社": "GMOあおぞらネット銀行株式会社",
+    "DHL International GmbH": "DHL Express",
+    "Emma Vsg": "VSG Singapore",
+    "Tony Vsg": "VSG Singapore",
+    "Gnin Pei Zhen Eranthe": "Eranthe.Gnin",
+    "Long Long Vsg": "Lumin VSG",
+    "Vel Tan Vsg": "Lumin VSG",
+    "Paris Nord Villepinte": "Paris-Nord Villepinte",
+    "DG Data Service Pte Ltd": "DG Data Service Pte",
+    "Alumina Fabric": "Alumina Fiber",
+    "Alumina Fiber Needled Blanket": "Alumina Fiber",
+    "W-F100B1-310": "W-F100B1-240",
+    "Ctrip Corporate Travel Holding": "Ctrip Corporate Travel Holding (Hongkong)",
+    "Sheryl Sim Vsg": "Vulcan Shield Global",
+    "Vulcan Shield Global alumina fibres": "Chopped Alumina Fibre",
+    "duotherm Heiz- und Isoliersysteme GmbH & Co. KG": "Frenzelit GmbH",
+    "automobile fire fighting equipment": "Fire fighting equipment",
+    "Vulcan Shield Global Alumina Fibre": "VULCAN SHIELD GLOBAL PTE LTD-INV2024",
+    "ABBA MAINTENANCE SERVICES PTE LTD-INV2024": "ABBA MAINTENANCE SERVICES PTE",
+    "Sample bulk fiber": "bulk fibre",
+    "alumina fibres": "Alumina fiber",
+    "Blanchard, Benjamin": "Benjamin Blanchard",
+    "Jasmine Vsg": "VSG China",
+    "UNITEX INT'L FORWARDING (GUANGZHOU)": "UNITEX INT'L FORWARDING (HK)",
+    "Rong Rong": "Shanghai Rongrong New Materials Technology Co.,",
+    "Singtel": "Singapore Telecommunications",
+    "Shuren Sun": "Sun Shuren",
+    "Dear Vel": "Hi Vel",
+    "JEC Expo": "JEC World",
+    "VULCAN SHIELD GLOBAL PTE LTD-INV2024": "VULCAN SHIELD GLOBAL PTE LTD",
+    "THE SUPREME HR ADVISORY PTE": "THE SUPREME HR ADVISORY PTE LTD",
+    "NSR Co.,": "NSR Co.",
+    "NSR CO.,": "NSR Co.",
+    "NSR Co,.": "NSR Co.",
+    "Trelleborg Sealing Solutions UK": "Trelleborg Aerospace",
+    "SHANGHAI RONGRONG NEW MATERIALS TECHNOLOGY CO.,": "SHANGHAI RONGRONG NEW MATERIALS TECHNOLOGY CO."
   },
   "stats": {
-    "processed": 1000,
-    "clusters": 220,
-    "mappings": 64
+    "total_clusters": 278,
+    "total_mappings": 103
   }
 }

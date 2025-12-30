@@ -18,7 +18,7 @@ from api.dependencies import (
     update_performance,
     add_thinking_log
 )
-from auth_api import get_current_user
+from api.routers.auth_router import get_current_user
 
 router = APIRouter(tags=["Core Chat"])
 

@@ -14,10 +14,23 @@ import asyncio
 from datetime import datetime, date, timedelta
 from typing import List, Dict, Any, Optional
 from fastapi import APIRouter, HTTPException, BackgroundTasks, Depends
-from auth_api import get_current_user
+from api.routers.auth_router import get_current_user
 from pydantic import BaseModel
 from bson import ObjectId
-from llama_index.llms.ollama import Ollama
+import httpx
+
+VLLM_BASE_URL = "http://localhost:8000"
+
+def _get_vllm_model():
+    try:
+        resp = httpx.get(f"{VLLM_BASE_URL}/v1/models", timeout=5)
+        if resp.status_code == 200:
+            models = resp.json().get("data", [])
+            if models:
+                return models[0]["id"]
+    except:
+        pass
+    return "default-model"
 
 # 使用统一的异步数据存储
 from vulcan_libs.store import store
@@ -27,10 +40,32 @@ router = APIRouter()
 # LLM实例（懒加载）
 _llm_instance = None
 
+class VLLMClient:
+    """简单的 vLLM 客户端"""
+    def __init__(self):
+        self.base_url = VLLM_BASE_URL
+        self.model = _get_vllm_model()
+    
+    async def acomplete(self, prompt: str) -> str:
+        async with httpx.AsyncClient(timeout=120.0) as client:
+            response = await client.post(
+                f"{self.base_url}/v1/chat/completions",
+                json={
+                    "model": self.model,
+                    "messages": [{"role": "user", "content": prompt}],
+                    "temperature": 0.7,
+                    "max_tokens": 4096,
+                    "stream": False
+                }
+            )
+            response.raise_for_status()
+            data = response.json()
+            return data["choices"][0]["message"]["content"]
+
 def get_llm():
     global _llm_instance
     if _llm_instance is None:
-        _llm_instance = Ollama(model="qwen3:30b-a3b", request_timeout=120)
+        _llm_instance = VLLMClient()
     return _llm_instance
 
 

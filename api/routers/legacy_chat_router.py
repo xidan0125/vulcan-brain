@@ -7,7 +7,7 @@ from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
 
 from vulcan_libs.store import store
-from auth_api import get_current_user
+from api.routers.auth_router import get_current_user
 
 router = APIRouter()
 

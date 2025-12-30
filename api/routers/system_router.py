@@ -13,7 +13,7 @@ from api.dependencies import (
     thinking_logs,
     GPU_AVAILABLE
 )
-from auth_api import get_current_user
+from api.routers.auth_router import get_current_user
 
 router = APIRouter(tags=["System"])
 

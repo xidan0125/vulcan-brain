@@ -54,10 +54,17 @@ async def step1_sync_emails():
     
     result = await store.sync_all_users(since=since, max_per_folder=5000)
     
-    # 更新同步时间
+    # 更新同步时间 - 只有找到新邮件时才更新 last_sync
+    update_data = {'result': result}
+    if result.get('inserted', 0) > 0:
+        update_data['last_sync'] = datetime.now()
+        logger.info(f"已同步 {result['inserted']} 封新邮件，更新 last_sync")
+    else:
+        logger.info("没有新邮件，保持 last_sync 不变")
+    
     db.sync_meta.update_one(
         {'_id': 'email_sync'},
-        {'$set': {'last_sync': datetime.now(), 'result': result}},
+        {'$set': update_data},
         upsert=True
     )
     

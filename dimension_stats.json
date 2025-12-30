@@ -1,0 +1,629 @@
+{
+  "field_types": {
+    "id": "categorical",
+    "event_type": "categorical",
+    "event_date": "categorical",
+    "summary": "categorical",
+    "amount": "numeric",
+    "currency": "categorical",
+    "created_at": "categorical",
+    "direction": "categorical",
+    "status": "categorical",
+    "counterparty": "categorical",
+    "counterparty_role": "categorical"
+  },
+  "stats": {
+    "Contract": {
+      "event_type": {
+        "entropy": 0.0,
+        "score": 0.0,
+        "cardinality": 1,
+        "total": 113,
+        "useful": false,
+        "reason": "Contract占100.0%",
+        "top3": {
+          "Contract": 113
+        },
+        "type": "categorical"
+      },
+      "event_date": {
+        "entropy": 0.986,
+        "score": 0.592,
+        "cardinality": 94,
+        "total": 113,
+        "useful": true,
+        "reason": "类别过多(94个)",
+        "top3": {
+          "2025-11-19": 3,
+          "2024-09-13": 3,
+          "2024-04-19": 3
+        },
+        "type": "categorical"
+      },
+      "amount": {
+        "entropy": 0.96,
+        "score": 0.96,
+        "cardinality": 5,
+        "total": 46,
+        "useful": true,
+        "reason": null,
+        "top3": {
+          "1K-10K": 14,
+          "<1K": 12,
+          ">1M": 8
+        },
+        "type": "numeric",
+        "non_zero_count": 46
+      },
+      "currency": {
+        "entropy": 0.0,
+        "score": 0.0,
+        "cardinality": 1,
+        "total": 113,
+        "useful": false,
+        "reason": "USD占100.0%",
+        "top3": {
+          "USD": 113
+        },
+        "type": "categorical"
+      },
+      "direction": {
+        "entropy": 0.912,
+        "score": 0.912,
+        "cardinality": 4,
+        "total": 113,
+        "useful": true,
+        "reason": null,
+        "top3": {
+          "internal": 46,
+          "outbound": 31,
+          "unknown": 27
+        },
+        "type": "categorical"
+      },
+      "status": {
+        "entropy": 0.157,
+        "score": 0.016,
+        "cardinality": 3,
+        "total": 113,
+        "useful": false,
+        "reason": "completed占96.5%",
+        "top3": {
+          "completed": 109,
+          "pending": 3,
+          "unknown": 1
+        },
+        "type": "categorical"
+      },
+      "counterparty": {
+        "entropy": 0.964,
+        "score": 0.578,
+        "cardinality": 84,
+        "total": 113,
+        "useful": true,
+        "reason": "类别过多(84个)",
+        "top3": {
+          "STANDARD CHARTERED BANK SINGAPORE": 7,
+          "(空)": 5,
+          "DBS BANK": 4
+        },
+        "type": "categorical"
+      },
+      "counterparty_role": {
+        "entropy": 0.75,
+        "score": 0.75,
+        "cardinality": 5,
+        "total": 113,
+        "useful": true,
+        "reason": null,
+        "top3": {
+          "other": 66,
+          "bank": 18,
+          "supplier": 15
+        },
+        "type": "categorical"
+      }
+    },
+    "Order": {
+      "event_type": {
+        "entropy": 0.0,
+        "score": 0.0,
+        "cardinality": 1,
+        "total": 32,
+        "useful": false,
+        "reason": "Order占100.0%",
+        "top3": {
+          "Order": 32
+        },
+        "type": "categorical"
+      },
+      "event_date": {
+        "entropy": 0.997,
+        "score": 0.598,
+        "cardinality": 31,
+        "total": 32,
+        "useful": true,
+        "reason": "类别过多(31个)",
+        "top3": {
+          "2025-05-08": 2,
+          "2024-07-22": 1,
+          "2025-01-03": 1
+        },
+        "type": "categorical"
+      },
+      "amount": {
+        "entropy": 0.873,
+        "score": 0.873,
+        "cardinality": 3,
+        "total": 24,
+        "useful": true,
+        "reason": null,
+        "top3": {
+          "<1K": 14,
+          "1K-10K": 6,
+          "10K-100K": 4
+        },
+        "type": "numeric",
+        "non_zero_count": 24
+      },
+      "currency": {
+        "entropy": 0.0,
+        "score": 0.0,
+        "cardinality": 1,
+        "total": 32,
+        "useful": false,
+        "reason": "USD占100.0%",
+        "top3": {
+          "USD": 32
+        },
+        "type": "categorical"
+      },
+      "direction": {
+        "entropy": 0.756,
+        "score": 0.756,
+        "cardinality": 3,
+        "total": 32,
+        "useful": true,
+        "reason": null,
+        "top3": {
+          "inbound": 20,
+          "outbound": 10,
+          "unknown": 2
+        },
+        "type": "categorical"
+      },
+      "status": {
+        "entropy": 0.337,
+        "score": 0.169,
+        "cardinality": 2,
+        "total": 32,
+        "useful": false,
+        "reason": "类别太少(2个)",
+        "top3": {
+          "completed": 30,
+          "pending": 2
+        },
+        "type": "categorical"
+      },
+      "counterparty": {
+        "entropy": 0.981,
+        "score": 0.981,
+        "cardinality": 27,
+        "total": 32,
+        "useful": true,
+        "reason": null,
+        "top3": {
+          "SAGINAW CARBON": 3,
+          "SPACE EXPLORATION TECHNOLOGIES": 2,
+          "MEISEI INTERNATIONAL": 2
+        },
+        "type": "categorical"
+      },
+      "counterparty_role": {
+        "entropy": 0.769,
+        "score": 0.769,
+        "cardinality": 3,
+        "total": 32,
+        "useful": true,
+        "reason": null,
+        "top3": {
+          "customer": 21,
+          "supplier": 8,
+          "other": 3
+        },
+        "type": "categorical"
+      }
+    },
+    "Quotation": {
+      "event_type": {
+        "entropy": 0.0,
+        "score": 0.0,
+        "cardinality": 1,
+        "total": 30,
+        "useful": false,
+        "reason": "Quotation占100.0%",
+        "top3": {
+          "Quotation": 30
+        },
+        "type": "categorical"
+      },
+      "event_date": {
+        "entropy": 0.993,
+        "score": 0.993,
+        "cardinality": 28,
+        "total": 30,
+        "useful": true,
+        "reason": null,
+        "top3": {
+          "2024-02-22": 2,
+          "2024-10-01": 2,
+          "2025-03-20": 1
+        },
+        "type": "categorical"
+      },
+      "amount": {
+        "entropy": 0.944,
+        "score": 0.944,
+        "cardinality": 4,
+        "total": 25,
+        "useful": true,
+        "reason": null,
+        "top3": {
+          "<1K": 9,
+          "1K-10K": 8,
+          "10K-100K": 5
+        },
+        "type": "numeric",
+        "non_zero_count": 25
+      },
+      "currency": {
+        "entropy": 0.0,
+        "score": 0.0,
+        "cardinality": 1,
+        "total": 30,
+        "useful": false,
+        "reason": "USD占100.0%",
+        "top3": {
+          "USD": 30
+        },
+        "type": "categorical"
+      },
+      "direction": {
+        "entropy": 0.756,
+        "score": 0.756,
+        "cardinality": 3,
+        "total": 30,
+        "useful": true,
+        "reason": null,
+        "top3": {
+          "outbound": 19,
+          "inbound": 9,
+          "unknown": 2
+        },
+        "type": "categorical"
+      },
+      "status": {
+        "entropy": 0.0,
+        "score": 0.0,
+        "cardinality": 1,
+        "total": 30,
+        "useful": false,
+        "reason": "completed占100.0%",
+        "top3": {
+          "completed": 30
+        },
+        "type": "categorical"
+      },
+      "counterparty": {
+        "entropy": 0.967,
+        "score": 0.967,
+        "cardinality": 23,
+        "total": 30,
+        "useful": true,
+        "reason": null,
+        "top3": {
+          "TÜV SÜD PSB": 4,
+          "PDS INTERNATIONAL": 2,
+          "FRAUNHOFER ISC": 2
+        },
+        "type": "categorical"
+      },
+      "counterparty_role": {
+        "entropy": 1.0,
+        "score": 1.0,
+        "cardinality": 3,
+        "total": 30,
+        "useful": true,
+        "reason": null,
+        "top3": {
+          "customer": 10,
+          "supplier": 10,
+          "other": 10
+        },
+        "type": "categorical"
+      }
+    },
+    "Payment": {
+      "event_type": {
+        "entropy": 0.0,
+        "score": 0.0,
+        "cardinality": 1,
+        "total": 193,
+        "useful": false,
+        "reason": "Payment占100.0%",
+        "top3": {
+          "Payment": 193
+        },
+        "type": "categorical"
+      },
+      "event_date": {
+        "entropy": 0.988,
+        "score": 0.593,
+        "cardinality": 161,
+        "total": 193,
+        "useful": true,
+        "reason": "类别过多(161个)",
+        "top3": {
+          "2025-07-31": 3,
+          "2024-09-16": 3,
+          "2025-05-31": 3
+        },
+        "type": "categorical"
+      },
+      "amount": {
+        "entropy": 0.683,
+        "score": 0.683,
+        "cardinality": 5,
+        "total": 169,
+        "useful": true,
+        "reason": null,
+        "top3": {
+          "<1K": 87,
+          "1K-10K": 60,
+          "10K-100K": 13
+        },
+        "type": "numeric",
+        "non_zero_count": 169
+      },
+      "currency": {
+        "entropy": 0.0,
+        "score": 0.0,
+        "cardinality": 1,
+        "total": 193,
+        "useful": false,
+        "reason": "USD占100.0%",
+        "top3": {
+          "USD": 193
+        },
+        "type": "categorical"
+      },
+      "direction": {
+        "entropy": 0.504,
+        "score": 0.504,
+        "cardinality": 4,
+        "total": 193,
+        "useful": true,
+        "reason": null,
+        "top3": {
+          "outbound": 155,
+          "inbound": 18,
+          "unknown": 13
+        },
+        "type": "categorical"
+      },
+      "status": {
+        "entropy": 0.083,
+        "score": 0.004,
+        "cardinality": 2,
+        "total": 193,
+        "useful": false,
+        "reason": "completed占99.0%",
+        "top3": {
+          "completed": 191,
+          "pending": 2
+        },
+        "type": "categorical"
+      },
+      "counterparty": {
+        "entropy": 0.905,
+        "score": 0.543,
+        "cardinality": 106,
+        "total": 193,
+        "useful": true,
+        "reason": "类别过多(106个)",
+        "top3": {
+          "BEST PETROL & DIESEL SUPPLY": 29,
+          "AXS": 6,
+          "TUAS POWER SUPPLY": 6
+        },
+        "type": "categorical"
+      },
+      "counterparty_role": {
+        "entropy": 0.78,
+        "score": 0.78,
+        "cardinality": 5,
+        "total": 193,
+        "useful": true,
+        "reason": null,
+        "top3": {
+          "other": 86,
+          "supplier": 69,
+          "customer": 17
+        },
+        "type": "categorical"
+      }
+    },
+    "Shipment": {
+      "event_type": {
+        "entropy": 0.0,
+        "score": 0.0,
+        "cardinality": 1,
+        "total": 175,
+        "useful": false,
+        "reason": "Shipment占100.0%",
+        "top3": {
+          "Shipment": 175
+        },
+        "type": "categorical"
+      },
+      "event_date": {
+        "entropy": 0.978,
+        "score": 0.587,
+        "cardinality": 125,
+        "total": 175,
+        "useful": true,
+        "reason": "类别过多(125个)",
+        "top3": {
+          "2025-08-21": 5,
+          "2025-07-11": 3,
+          "2025-09-15": 3
+        },
+        "type": "categorical"
+      },
+      "amount": {
+        "entropy": 0.648,
+        "score": 0.648,
+        "cardinality": 4,
+        "total": 117,
+        "useful": true,
+        "reason": null,
+        "top3": {
+          "<1K": 80,
+          "1K-10K": 18,
+          "10K-100K": 17
+        },
+        "type": "numeric",
+        "non_zero_count": 117
+      },
+      "currency": {
+        "entropy": 0.0,
+        "score": 0.0,
+        "cardinality": 1,
+        "total": 175,
+        "useful": false,
+        "reason": "USD占100.0%",
+        "top3": {
+          "USD": 175
+        },
+        "type": "categorical"
+      },
+      "direction": {
+        "entropy": 0.649,
+        "score": 0.649,
+        "cardinality": 4,
+        "total": 175,
+        "useful": true,
+        "reason": null,
+        "top3": {
+          "outbound": 117,
+          "inbound": 34,
+          "unknown": 22
+        },
+        "type": "categorical"
+      },
+      "status": {
+        "entropy": 0.09,
+        "score": 0.004,
+        "cardinality": 2,
+        "total": 175,
+        "useful": false,
+        "reason": "completed占98.9%",
+        "top3": {
+          "completed": 173,
+          "pending": 2
+        },
+        "type": "categorical"
+      },
+      "counterparty": {
+        "entropy": 0.885,
+        "score": 0.531,
+        "cardinality": 95,
+        "total": 175,
+        "useful": true,
+        "reason": "类别过多(95个)",
+        "top3": {
+          "Rong Rong New Materials Technology Co.,": 24,
+          "Rong Rong New Materials Technology Co.": 15,
+          "SPACE EXPLORATION TECHNOLOGIES": 12
+        },
+        "type": "categorical"
+      },
+      "counterparty_role": {
+        "entropy": 0.772,
+        "score": 0.772,
+        "cardinality": 5,
+        "total": 175,
+        "useful": true,
+        "reason": null,
+        "top3": {
+          "customer": 89,
+          "supplier": 42,
+          "logistics": 28
+        },
+        "type": "categorical"
+      }
+    }
+  },
+  "summary": {
+    "Contract": {
+      "recommended": [
+        "amount",
+        "direction",
+        "counterparty_role"
+      ],
+      "avoid": [
+        "event_type",
+        "currency",
+        "status"
+      ]
+    },
+    "Order": {
+      "recommended": [
+        "counterparty",
+        "amount",
+        "counterparty_role"
+      ],
+      "avoid": [
+        "event_type",
+        "currency",
+        "status"
+      ]
+    },
+    "Quotation": {
+      "recommended": [
+        "counterparty_role",
+        "event_date",
+        "counterparty"
+      ],
+      "avoid": [
+        "event_type",
+        "currency",
+        "status"
+      ]
+    },
+    "Payment": {
+      "recommended": [
+        "counterparty_role",
+        "amount",
+        "event_date"
+      ],
+      "avoid": [
+        "event_type",
+        "currency",
+        "status"
+      ]
+    },
+    "Shipment": {
+      "recommended": [
+        "counterparty_role",
+        "direction",
+        "amount"
+      ],
+      "avoid": [
+        "event_type",
+        "currency",
+        "status"
+      ]
+    }
+  }
+}

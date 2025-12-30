@@ -1,0 +1,9 @@
+{
+  "model": "gemini-3-pro-preview",
+  "temperature": 0.6,
+  "max_tokens": 20000,
+  "features": {
+    "web_search": false
+  },
+  "description": "高级前端架构师 - 酷炫/现代/科技感UI设计"
+}

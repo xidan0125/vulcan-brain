@@ -16,6 +16,7 @@ from typing import List, Dict, Any, Optional, Tuple
 from motor.motor_asyncio import AsyncIOMotorClient
 import httpx
 from bs4 import BeautifulSoup
+from vulcan_libs.date_utils import get_report_time_range
 import re
 
 logger = logging.getLogger("EmailStore")
@@ -481,9 +482,8 @@ class EmailStore:
         return formatted, total
     
     async def get_emails_by_date(self, date: datetime) -> List[Dict]:
-        """获取指定日期的所有邮件"""
-        start = date.replace(hour=0, minute=0, second=0, microsecond=0)
-        end = start + timedelta(days=1)
+        """获取指定日期的所有邮件 (7AM-7AM 时间范围)"""
+        start, end = get_report_time_range(date)
         
         cursor = self.emails.find({
             "received_at": {"$gte": start, "$lt": end}
@@ -492,9 +492,8 @@ class EmailStore:
         return await cursor.to_list(length=1000)
     
     async def get_email_stats(self, date: datetime) -> Dict:
-        """获取指定日期的邮件统计"""
-        start = date.replace(hour=0, minute=0, second=0, microsecond=0)
-        end = start + timedelta(days=1)
+        """获取指定日期的邮件统计 (7AM-7AM 时间范围)"""
+        start, end = get_report_time_range(date)
         
         # 收件统计
         received = await self.emails.count_documents({

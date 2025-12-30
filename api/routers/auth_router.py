@@ -40,7 +40,13 @@ class UserProfile(BaseModel):
     soul: Optional[dict] = None
 
 class GenesisSubmit(BaseModel):
-    answers: Dict[int, str]  # {question_id: selected_value}
+    # V1 format
+    answers: Optional[Dict[int, str]] = None  # {question_id: selected_value}
+    # V2 format (genome-based)
+    genome: Optional[Dict[str, int]] = None   # {dimension: score 0-100}
+    questions_answered: Optional[int] = None
+    version: Optional[str] = None
+    skipped: Optional[bool] = False
 
 class ConstitutionItem(BaseModel):
     id: str
@@ -94,11 +100,20 @@ def create_token(user_id: str, username: str) -> str:
 
 def decode_token(token: str) -> Optional[dict]:
     """解码JWT token"""
+    import traceback
+    print(f"DEBUG decode_token: JWT_SECRET hash={hash(JWT_SECRET)}, len={len(JWT_SECRET)}")
+    print(f"DEBUG decode_token: token={token[:20]}...")
+
+    """解码JWT token"""
     try:
-        return jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
-    except jwt.ExpiredSignatureError:
+        result = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
+        print(f"DEBUG: decode OK, payload={result}")
+        return result
+    except jwt.ExpiredSignatureError as e:
+        print(f"DEBUG: EXPIRED {e}")
         return None
-    except jwt.InvalidTokenError:
+    except jwt.InvalidTokenError as e:
+        print(f"DEBUG: INVALID {e}")
         return None
 
 async def get_current_user(authorization: str = Header(None)) -> dict:
@@ -187,8 +202,46 @@ async def get_soul_status(current_user: dict = Depends(get_current_user)):
 
 @router.post("/soul/genesis")
 async def submit_genesis(req: GenesisSubmit, current_user: dict = Depends(get_current_user)):
-    """提交创世20问答案"""
+    """提交创世校准答案 - 支持 V1 和 V2 格式"""
     user_id = current_user["user_id"]
+
+    # V2.0 格式处理 (genome-based)
+    if req.genome is not None:
+        # 直接使用前端计算的 genome 分数
+        genome_data = req.genome
+
+        # 保存创世记录
+        genesis_data = {
+            "user_id": user_id,
+            "genome": genome_data,
+            "version": req.version or "2.0",
+            "questions_answered": req.questions_answered or 0,
+            "skipped": req.skipped or False,
+            "completed_at": datetime.now()
+        }
+        await store.update_user_genesis(user_id, genesis_data)
+
+        # 更新 user_souls - 设置 genesis_completed = True
+        soul_update = {
+            "genesis_completed": True,
+            "genome": genome_data,
+            "sync_rate": 30.0 if req.skipped else 50.0,
+            "updated_at": datetime.now()
+        }
+        await store.update_soul(user_id, soul_update)
+
+        logging.info(f"Genesis v2.0 completed for user {user_id}, skipped={req.skipped}")
+
+        return {
+            "status": "success",
+            "genesis_completed": True,
+            "genome": genome_data,
+            "version": "2.0"
+        }
+
+    # V1 格式处理 (answers-based) - 保持向后兼容
+    if req.answers is None:
+        raise HTTPException(status_code=400, detail="Missing answers or genome data")
 
     # 计算用户画像
     answers_list = []
@@ -374,3 +427,13 @@ async def reset_genesis(current_user: dict = Depends(get_current_user)):
     await store.delete_user_constitution(user_id)
     
     return {"success": True, "message": "校准状态已重置"}
+
+
+async def get_current_user_optional(authorization: str = Header(None)) -> Optional[dict]:
+    """可选的用户认证 - 未登录时返回None而不是抛出异常"""
+    if not authorization:
+        return None
+    try:
+        return await get_current_user(authorization)
+    except:
+        return None

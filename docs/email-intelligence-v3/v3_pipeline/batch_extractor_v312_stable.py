@@ -293,7 +293,12 @@ def extract_email(email_id: str, body: str, attachments: List[Dict]) -> tuple:
 
     start = time.time()
     resp = requests.post(VLLM_URL, json=payload, timeout=REQUEST_TIMEOUT)
-    resp.raise_for_status()
+    if resp.status_code != 200:
+        try:
+            err_detail = resp.json().get("error", {}).get("message", resp.text[:200])
+        except:
+            err_detail = resp.text[:200]
+        raise ValueError(f"{resp.status_code}: {err_detail}")
     duration = time.time() - start
 
     resp_json = resp.json()
@@ -304,10 +309,8 @@ def extract_email(email_id: str, body: str, attachments: List[Dict]) -> tuple:
         raise ValueError(f"Output truncated (finish_reason=length)")
 
     msg = choice["message"]
-    raw = msg.get("content", "")
+    raw = msg.get("content", "").strip()
 
-    if "</think>" in raw:
-        raw = raw.split("</think>")[-1].strip()
 
     if not raw.rstrip().endswith("}"):
         raise ValueError(f"Incomplete JSON, ends with: ...{raw[-50:]}")

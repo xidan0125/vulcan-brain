@@ -76,10 +76,26 @@ class VulcanStore:
         """
         获取用户的灵魂配置 (Soul)
         策略：优先读 MongoDB -> 降级读 YAML (兼容旧配置) -> 返回默认值
+        始终确保返回完整的默认字段
         """
+        # 默认字段 - 确保所有必要字段都存在
+        defaults = {
+            "user_id": user_id,
+            "core_values": [],
+            "redlines": [],
+            "genesis_completed": False,
+            "sync_rate": 0,
+            "dimensions": None,
+            "communication_style": {"tone": "professional", "language": "zh-CN"}
+        }
+
         # 1. 尝试从 DB 读取
         soul = await self.db.user_souls.find_one({"user_id": user_id})
         if soul:
+            # 合并默认值，确保所有字段存在
+            for key, value in defaults.items():
+                if key not in soul:
+                    soul[key] = value
             return soul
 
         # 2. 降级：尝试读取本地静态 YAML (作为默认模板)
@@ -88,7 +104,10 @@ class VulcanStore:
             try:
                 with open(yaml_path, "r", encoding="utf-8") as f:
                     default_config = yaml.safe_load(f)
-                    # 可以在这里做个自动迁移：把 YAML 存入 DB
+                    # 合并默认值
+                    for key, value in defaults.items():
+                        if key not in default_config:
+                            default_config[key] = value
                     default_config["user_id"] = user_id
                     default_config["source"] = "yaml_migration"
                     await self.update_soul(user_id, default_config)
@@ -96,8 +115,8 @@ class VulcanStore:
             except Exception as e:
                 logger.warning(f"Failed to load yaml constitution: {e}")
 
-        # 3. 返回空默认值
-        return {"user_id": user_id, "core_values": [], "redlines": []}
+        # 3. 返回默认值
+        return defaults
 
     async def update_soul(self, user_id: str, soul_data: Dict):
         """更新灵魂配置 (Upsert)"""

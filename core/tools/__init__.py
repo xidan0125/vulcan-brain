@@ -1,6 +1,8 @@
 """
 Vulcan Brain - Core Tools Package
 工具层核心模块
+
+v2: 添加工具初始化器
 """
 
 from .base import (
@@ -19,11 +21,10 @@ from .executor import (
     ToolExecutor,
     execute_tool,
 )
-from .legacy_adapter import (
-    LegacyToolWrapper,
-    register_legacy_tools,
-    get_legacy_tool_definitions,
-    init_from_old_definitions,
+from .init import (
+    init_tools,
+    get_tool_schemas,
+    get_tool_names,
 )
 
 __all__ = [
@@ -40,9 +41,8 @@ __all__ = [
     # Executor
     "ToolExecutor",
     "execute_tool",
-    # Legacy Adapter
-    "LegacyToolWrapper",
-    "register_legacy_tools",
-    "get_legacy_tool_definitions",
-    "init_from_old_definitions",
+    # Initializer
+    "init_tools",
+    "get_tool_schemas",
+    "get_tool_names",
 ]

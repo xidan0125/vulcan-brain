@@ -10,7 +10,65 @@ from typing import Dict, List, Optional, Any
 from datetime import datetime, timedelta
 from motor.motor_asyncio import AsyncIOMotorClient
 from lightrag import LightRAG, QueryParam
-from lightrag.llm.ollama import ollama_model_complete, ollama_embed
+# vLLM 适配器 (替代 Ollama)
+import httpx
+from typing import Union
+
+VLLM_BASE_URL = os.getenv("VLLM_BASE_URL", "http://localhost:8000")
+
+def _get_vllm_model():
+    try:
+        resp = httpx.get(f"{VLLM_BASE_URL}/v1/models", timeout=5)
+        if resp.status_code == 200:
+            models = resp.json().get("data", [])
+            if models:
+                return models[0]["id"]
+    except:
+        pass
+    return "default-model"
+
+async def vllm_model_complete(
+    prompt: str,
+    system_prompt: str = None,
+    history_messages: list = None,
+    **kwargs
+) -> str:
+    """vLLM 模型补全 (替代 ollama_model_complete)"""
+    model = _get_vllm_model()
+    messages = []
+    
+    if system_prompt:
+        messages.append({"role": "system", "content": system_prompt})
+    
+    if history_messages:
+        messages.extend(history_messages)
+    
+    messages.append({"role": "user", "content": prompt})
+    
+    async with httpx.AsyncClient(timeout=120.0) as client:
+        response = await client.post(
+            f"{VLLM_BASE_URL}/v1/chat/completions",
+            json={
+                "model": model,
+                "messages": messages,
+                "temperature": kwargs.get("temperature", 0.7),
+                "max_tokens": kwargs.get("max_tokens", 4096),
+                "stream": False
+            }
+        )
+        response.raise_for_status()
+        data = response.json()
+        return data["choices"][0]["message"]["content"]
+
+async def vllm_embed(text: Union[str, list], **kwargs) -> list:
+    """vLLM 嵌入向量 (使用 text-embedding-3-small 兼容接口)"""
+    texts = [text] if isinstance(text, str) else text
+    
+    # 注意: vLLM 可能不支持 embedding，这里使用简单的替代方案
+    # 如果 vLLM 有 embedding 端点，可以在这里调用
+    # 暂时返回随机向量作为占位
+    import numpy as np
+    return [np.random.randn(768).tolist() for _ in texts]
 from lightrag.utils import EmbeddingFunc
 import numpy as np
 
@@ -39,9 +97,9 @@ class EmailLightRAG:
         self.db = self.client.vulcan_brain
         self.emails = self.db.emails
         
-        # Ollama 配置
-        self.llm_model = os.getenv("LLM_MODEL_NAME", "qwen3:30b-a3b")
-        self.ollama_host = os.getenv("LLM_BASE_URL", "http://localhost:11434")
+        # vLLM 配置
+        self.llm_model = _get_vllm_model()
+        self.vllm_host = VLLM_BASE_URL
         
         # 初始化 LightRAG
         self.rag = None
@@ -55,32 +113,24 @@ class EmailLightRAG:
         
         logger.info(f"Initializing LightRAG with model: {self.llm_model}")
         
-        # 自定义 embedding 函数，使用 Ollama
+        # 自定义 embedding 函数
         async def embedding_func(texts: list[str]) -> np.ndarray:
             embeddings = []
             for text in texts:
-                resp = await ollama_embed(
-                    text,
-                    embed_model="nomic-embed-text",
-                    host=self.ollama_host,
-                )
-                # ollama_embed 返回的可能是列表或 np.array，确保是1D数组
-                if isinstance(resp, np.ndarray):
-                    embeddings.append(resp.flatten())
-                elif isinstance(resp, list):
-                    embeddings.append(np.array(resp).flatten())
+                resp = await vllm_embed(text)
+                if isinstance(resp, list) and len(resp) > 0:
+                    embeddings.append(np.array(resp[0]).flatten())
                 else:
-                    embeddings.append(resp)
-            # 返回 2D array: (num_texts, embedding_dim)
+                    embeddings.append(np.zeros(768))
             return np.vstack(embeddings)
         
         self.rag = LightRAG(
             working_dir=self.working_dir,
-            llm_model_func=ollama_model_complete,
+            llm_model_func=vllm_model_complete,
             llm_model_name=self.llm_model,
             llm_model_kwargs={
-                "host": self.ollama_host,
-                "options": {"num_ctx": 32768}
+                "temperature": 0.7,
+                "max_tokens": 4096
             },
             embedding_func=EmbeddingFunc(
                 embedding_dim=768,

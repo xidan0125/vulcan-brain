@@ -1,16 +1,23 @@
 """
-Vulcan Brain - 记忆提取器 v4.0
+Vulcan Brain - 记忆提取器 v4.2
 分层记忆：Core / Contextual / Background
+直接调用 llama.cpp (Qwen3-8B CPU)
 """
 
 import json
 import re
-import logging
+import os
 from typing import List, Dict, Any, Optional
+import httpx
 
-logger = logging.getLogger("MemoryExtractor")
+from vulcan_libs.logger import get_logger
 
-# 分层提取 Prompt
+logger = get_logger("MemoryExtractor")
+
+# llama.cpp 配置
+LLAMA_BASE_URL = os.getenv("LLAMA_BASE_URL", "http://127.0.0.1:8002/v1")
+LLAMA_MODEL = os.getenv("LLAMA_MODEL", "qwen3-8b")
+
 EXTRACTION_PROMPT = """从用户消息中提取值得记忆的信息，并判断记忆的重要程度。
 
 ## 记忆分层
@@ -65,7 +72,7 @@ class MemoryExtractor:
         pass
 
     async def extract(self, message: str) -> List[Dict[str, Any]]:
-        """从消息中提取记忆 (带分层)"""
+        """从消息中提取记忆 (带分层) - 直接调用 vLLM"""
         # 过短消息跳过
         if not message or len(message.strip()) < 5:
             return []
@@ -83,32 +90,61 @@ class MemoryExtractor:
             if re.match(pattern, msg_lower, re.IGNORECASE):
                 return []
 
-        prompt = EXTRACTION_PROMPT.format(message=message) + " /no_think"
+        prompt = EXTRACTION_PROMPT.format(message=message)
 
         try:
-            from vulcan_libs.llm_client import get_llm_client, ChatMessage, ModelType
+            async with httpx.AsyncClient(timeout=60.0) as client:
+                response = await client.post(
+                    f"{LLAMA_BASE_URL}/chat/completions",
+                    json={
+                        "model": LLAMA_MODEL,
+                        "messages": [
+                            {"role": "system", "content": """You are a tool-calling and extraction engine.
 
-            client = get_llm_client()
-            messages = [ChatMessage(role="user", content=prompt)]
+Rules:
+- Do NOT explain your reasoning.
+- Do NOT output analysis, thoughts, or plans.
+- Do NOT include any text outside the required JSON.
+- Output ONLY valid JSON.
+- If you cannot decide, output an empty JSON object.
 
-            response = await client.chat(
-                messages=messages,
-                model=ModelType.CPU,
-                temperature=0.1,
-                max_tokens=800,
-                enable_thinking=False
-            )
+This is a hard requirement."""},
+                            {"role": "user", "content": prompt}
+                        ],
+                        "temperature": 0.1,
+                        "max_tokens": 300
+                    }
+                )
+                response.raise_for_status()
+                
+                result = response.json()
+                msg = result["choices"][0]["message"]
+                # Qwen3 可能把内容放在 reasoning_content 或 content
+                content = msg.get("content") or msg.get("reasoning_content") or ""
 
-            content = response.content
-            extractions = self._parse_response(content)
+                # 提取 </think> 后面的实际内容（如果有thinking）
+                if '</think>' in content:
+                    content = content.split('</think>')[-1].strip()
+                # 移除空的 <think></think> 标签
+                content = re.sub(r'<think>\s*</think>\s*', '', content)
 
-            if extractions:
-                logger.info(f"Extracted {len(extractions)} memories: {[e['key'] for e in extractions]}")
+                extractions = self._parse_response(content)
 
-            return extractions
+                if extractions:
+                    logger.info(f"Extracted {len(extractions)} memories: {[e['key'] for e in extractions]}")
 
+                return extractions
+
+        except httpx.TimeoutException:
+            logger.warning("Memory extraction timed out")
+            return []
+        except httpx.HTTPStatusError as e:
+            logger.error(f"HTTP error during extraction: {e}")
+            return []
         except Exception as e:
-            logger.error(f"Memory extraction failed: {e}")
+            import traceback
+            logger.error(f"Memory extraction failed: {type(e).__name__}: {e}")
+            logger.error(traceback.format_exc())
             return []
 
     def _parse_response(self, content: str) -> List[Dict[str, Any]]:
@@ -126,8 +162,28 @@ class MemoryExtractor:
                 if start >= 0:
                     content = content[start:]
 
-            data = json.loads(content)
-            extractions = data.get("extractions", [])
+            # 尝试解析 JSON
+            extractions = []
+            try:
+                data = json.loads(content)
+                extractions = data.get("extractions", [])
+                # 如果是单个对象格式
+                if not extractions and "key" in data:
+                    extractions = [data]
+            except json.JSONDecodeError:
+                # 可能是多行 JSON 对象格式
+                for line in content.split("\n"):
+                    line = line.strip()
+                    if line.startswith("{"):
+                        # 去除可能的逗号和列表符号
+                        line = line.rstrip(",").strip("- ")
+                        if line.endswith("}"):
+                            try:
+                                obj = json.loads(line)
+                                if "key" in obj and "value" in obj:
+                                    extractions.append(obj)
+                            except:
+                                pass
 
             valid_extractions = []
             for ext in extractions:

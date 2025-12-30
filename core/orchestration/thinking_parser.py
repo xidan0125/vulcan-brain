@@ -242,3 +242,37 @@ async def test_parser():
 if __name__ == "__main__":
     import asyncio
     asyncio.run(test_parser())
+
+
+# ==================== 非流式 Thinking 分离 ====================
+
+def parse_thinking_content(raw_content: str):
+    """
+    解析原始内容，分离 thinking 和 final content
+    
+    支持两种格式:
+    1. <think>思考内容</think>最终回复
+    2. 思考内容</think>最终回复 (无开始标签，vLLM 常见行为)
+    
+    Returns: (thinking_text, content_text)
+    """
+    if not raw_content:
+        return None, raw_content
+    
+    # 检查是否有 </think> 标签
+    if "</think>" in raw_content:
+        # 情况1: 有完整的 <think>...</think>
+        if "<think>" in raw_content:
+            match = re.search(r"<think>(.*?)</think>", raw_content, re.DOTALL)
+            if match:
+                thinking = match.group(1).strip()
+                final_content = raw_content.split("</think>", 1)[-1].strip()
+                return thinking, final_content
+        else:
+            # 情况2: 只有 </think> 结束标签 (vLLM 常见行为)
+            parts = raw_content.split("</think>", 1)
+            thinking = parts[0].strip()
+            final_content = parts[1].strip() if len(parts) > 1 else ""
+            return thinking, final_content
+    
+    return None, raw_content

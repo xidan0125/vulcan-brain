@@ -53,14 +53,15 @@ class FeishuSendMessageTool(BaseTool):
     def run(self, params: FeishuSendMessageInput, context: ToolContext) -> ToolResult:
         """同步执行（内部使用 asyncio）"""
         import asyncio
+        import concurrent.futures
         
         try:
-            loop = asyncio.get_event_loop()
+            loop = asyncio.get_running_loop()
+            with concurrent.futures.ThreadPoolExecutor() as pool:
+                future = pool.submit(asyncio.run, self.arun(params, context))
+                return future.result(timeout=30)
         except RuntimeError:
-            loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(loop)
-        
-        return loop.run_until_complete(self.arun(params, context))
+            return asyncio.run(self.arun(params, context))
     
     async def arun(self, params: FeishuSendMessageInput, context: ToolContext) -> ToolResult:
         """异步执行"""

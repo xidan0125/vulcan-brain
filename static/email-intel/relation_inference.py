@@ -15,7 +15,7 @@ import json
 import httpx
 from datetime import datetime
 
-OLLAMA_HOST = os.getenv("LLM_BASE_URL", "http://localhost:11434")
+OLLAMA_HOST = os.getenv("LLM_BASE_URL", "http://localhost:8000")
 MODEL = os.getenv("LLM_MODEL_NAME", "qwen3:30b-a3b")
 
 

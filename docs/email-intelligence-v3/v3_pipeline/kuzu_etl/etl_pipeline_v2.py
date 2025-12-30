@@ -7,8 +7,35 @@ import kuzu
 import pymongo
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 import sys
+import json
+import re
+
+# Identifier Blocklist
+_blocklist = None
+def get_blocklist() -> Dict:
+    global _blocklist
+    if _blocklist is None:
+        bl_path = Path(__file__).parent / "data" / "identifier_blocklist.json"
+        if bl_path.exists():
+            with open(bl_path) as f:
+                _blocklist = json.load(f)
+                print(f"  Loaded blocklist: {len(_blocklist.get("blocked", []))} blocked IDs")
+        else:
+            _blocklist = {"blocked": [], "patterns": []}
+    return _blocklist
+
+def is_blocked(norm_val: str) -> Tuple[bool, str]:
+    bl = get_blocklist()
+    for item in bl.get("blocked", []):
+        if item["value"].upper().replace(" ", "") == norm_val:
+            return True, item.get("reason", "blocked")
+    for pattern in bl.get("patterns", []):
+        if re.match(pattern["regex"], norm_val):
+            return True, pattern.get("reason", "pattern")
+    return False, ""
+
 
 # Add parent to path for utils import
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -154,6 +181,12 @@ def etl_single_email(email: Dict, conn: kuzu.Connection, resolver) -> Dict:
                 continue
             norm_val = normalize_identifier(raw_val)
             id_type = classify_identifier_type(ident.get("key", ""))
+
+            # Check blocklist
+            blocked, reason = is_blocked(norm_val)
+            if blocked:
+                stats["blocked"] = stats.get("blocked", 0) + 1
+                continue
 
             conn.execute("MERGE (i:Identifier {val: $val}) SET i.id_type = $type",
                         {"val": norm_val, "type": id_type})

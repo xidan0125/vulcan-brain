@@ -19,7 +19,7 @@ app = FastAPI(
 )
 
 # ==================== CORS 配置 ====================
-ALLOWED_ORIGINS = CORS_ORIGINS + ["http://127.0.0.1:3000", "https://api.vsg-brain.com"]
+ALLOWED_ORIGINS = CORS_ORIGINS + ["http://127.0.0.1:3000", "https://api.vsg-brain.com", "https://vsg-brain.com"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -60,6 +60,14 @@ async def initialize_app():
     from vulcan_libs.store import store
     await store.initialize_indexes()
     api_logger.info("[Startup] MongoDB indexes initialized")
+    # 初始化工具系统
+    try:
+        from core.tools import init_tools
+        init_tools()
+        api_logger.info("[Startup] Tool system initialized")
+    except Exception as e:
+        api_logger.warning(f"[Startup] Tool system initialization failed: {e}")
+
     
     # 启动飞书定时任务
     try:
@@ -76,6 +84,7 @@ from api.routers.core_router import router as core_router
 from api.routers.memory_basic_router import router as memory_basic_router
 from api.routers.agent_router import router as agent_router
 from api.routers.knowledge_router import router as knowledge_router
+from talent_graph_api import router as talent_graph_router
 from api.routers.soul_router import router as soul_router_new
 
 app.include_router(system_router)
@@ -85,6 +94,7 @@ app.include_router(memory_basic_router)
 app.include_router(agent_router)
 app.include_router(knowledge_router)
 app.include_router(soul_router_new)
+app.include_router(talent_graph_router)
 
 # ==================== 已有独立模块 ====================
 
@@ -99,9 +109,11 @@ from api.routers.message_router import router as message_router
 from api.routers.info_hub import router as info_hub_router
 from api.routers.email_router import router as email_router
 from api.routers.email_intel_router import router as email_intel_router
+from api.routers.wecom_email_router import router as wecom_email_router
 from api.routers.approval_router import router as approval_router
 from api.routers.memory_advanced_router import router as memory_advanced_router
 from api.routers.monitor_router import router as monitor_router
+from api.routers.feed_router import router as feed_router
 
 # Mounts
 app.include_router(auth_router, prefix='/api')
@@ -113,7 +125,9 @@ app.include_router(message_router, prefix='/api', tags=['Messages'])
 app.include_router(info_hub_router, prefix='/api', tags=['InfoHub'])
 app.include_router(email_router, prefix='/api', tags=['Email'])
 app.include_router(email_intel_router, prefix='/api', tags=['Email Intel'])
+app.include_router(wecom_email_router, prefix='/api', tags=['WeCom Email'])
 app.include_router(approval_router, prefix='/api', tags=['Approval'])
+app.include_router(feed_router, tags=["Feed"])
 app.include_router(memory_advanced_router, prefix='/api', tags=['Memory Advanced'])
 app.include_router(monitor_router, prefix='/api', tags=['V3 Monitor'])
 
@@ -127,8 +141,14 @@ except ImportError as e:
 
 from api.routers.soul_extended_router import router as soul_extended_router
 app.include_router(soul_extended_router, prefix='/api', tags=['Soul Extended'])
-
-if __name__ == '__main__':
+# Graph API for Data Explorer
+from graph_api import router as graph_router
+app.include_router(graph_router, tags=["Graph"])
+from email_intel_agent_api import router as email_intel_agent_router
+app.include_router(email_intel_agent_router, tags=["Email-Intel-Agent"])
+from code_executor_api import router as code_executor_router
+app.include_router(code_executor_router, tags=["Code-Executor"])
+if __name__ == "__main__":
     import uvicorn
     from config import LLM_MODEL_NAME
     
@@ -146,3 +166,11 @@ if __name__ == '__main__':
         port=8001,
         log_level='info'
     )
+
+# Employee Profile API
+from employee_profile_api import router as employee_profile_router
+app.include_router(employee_profile_router, tags=["Employee-Profile"])
+
+# Rongrong Daily Report
+from api.routers.rongrong_router import router as rongrong_router
+app.include_router(rongrong_router, prefix='/api', tags=['Rongrong'])

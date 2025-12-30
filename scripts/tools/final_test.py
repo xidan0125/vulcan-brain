@@ -29,7 +29,7 @@ def test():
     # 关键配置：添加stop tokens
     llm_cfg = {
         'model': 'qwen3-thinking:latest', 
-        'model_server': 'http://localhost:11434/v1', 
+        'model_server': 'http://localhost:8000/v1', 
         'api_key': 'EMPTY',
         'generate_cfg': {
             'stop': ['</tool_call>', '<|im_end|>', 'Observation:'],

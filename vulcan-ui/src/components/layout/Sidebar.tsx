@@ -1,6 +1,6 @@
 "use client";
 
-import { Brain, Users, Settings, Home, Cloud, MessageSquare, Target, Zap, Activity, LogOut, Presentation, Newspaper } from "lucide-react";
+import { Brain, Users, Settings, Home, Cloud, MessageSquare, Target, Zap, Activity, LogOut, Presentation, Newspaper, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -47,12 +47,11 @@ export default function Sidebar() {
 
   // 所有导航项 - 使用 i18n keys
   const allNavItems: NavItem[] = [
-    { icon: Home, labelKey: "nav.agent", href: "/" },
-    { icon: MessageSquare, labelKey: "nav.chat", href: "/chat", highlight: true },
+    { icon: FileText, labelKey: "nav.wecomReport", href: "/wecom-report", highlight: true },
+    { icon: MessageSquare, labelKey: "nav.chat", href: "/chat" },
     { icon: Target, labelKey: "nav.projects", href: "/projects", badge: blockedCount },
     { icon: Brain, labelKey: "nav.soul", href: "/soul" },
     { icon: Users, labelKey: "nav.memory", href: "/memory", desktopOnly: true },
-    { icon: Newspaper, labelKey: "nav.infoHub", href: "/info-hub", highlight: true },
   ];
 
   // 移动端只显示4个核心页面

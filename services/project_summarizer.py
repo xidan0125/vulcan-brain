@@ -10,8 +10,21 @@ from typing import Dict, List, Any, Optional
 # LLM 调用
 import httpx
 
-OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
-OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "qwen3:30b-a3b")
+VLLM_BASE_URL = os.getenv("VLLM_BASE_URL", "http://localhost:8000")
+# 动态获取 vLLM 模型名
+def _get_vllm_model():
+    try:
+        import httpx
+        resp = httpx.get(f"{VLLM_BASE_URL}/v1/models", timeout=5)
+        if resp.status_code == 200:
+            models = resp.json().get("data", [])
+            if models:
+                return models[0]["id"]
+    except:
+        pass
+    return "default-model"
+
+VLLM_MODEL = _get_vllm_model()
 
 
 # ===== LLM 提示词 =====
@@ -67,25 +80,28 @@ PROJECT_ANALYSIS_PROMPT = """你是一位资深的项目管理专家，负责分
 """
 
 
-async def call_ollama(prompt: str) -> str:
-    """调用本地Ollama模型"""
+async def call_vllm(prompt: str) -> str:
+    """调用本地 vLLM 模型"""
+    model = _get_vllm_model()
     async with httpx.AsyncClient(timeout=120) as client:
         response = await client.post(
-            f"{OLLAMA_URL}/api/generate",
+            f"{VLLM_BASE_URL}/v1/chat/completions",
             json={
-                "model": OLLAMA_MODEL,
-                "prompt": prompt,
-                "stream": False,
-                "options": {
-                    "temperature": 0.3,
-                    "num_predict": 4000
-                }
+                "model": model,
+                "messages": [{"role": "user", "content": prompt}],
+                "temperature": 0.3,
+                "max_tokens": 4000,
+                "stream": False
             }
         )
         if response.status_code == 200:
-            return response.json().get("response", "")
+            data = response.json()
+            return data["choices"][0]["message"]["content"]
         else:
-            raise Exception(f"Ollama调用失败: {response.status_code}")
+            raise Exception(f"vLLM调用失败: {response.status_code}")
+
+# 兼容旧接口
+call_ollama = call_vllm
 
 
 def extract_json_from_response(text: str) -> Dict:

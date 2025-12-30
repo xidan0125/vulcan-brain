@@ -7,7 +7,7 @@ from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 
 from tools.code_executor import VulcanCodeSandbox
-from auth_api import get_current_user
+from api.routers.auth_router import get_current_user
 
 router = APIRouter(tags=["Code Execution"])
 

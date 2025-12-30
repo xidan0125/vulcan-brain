@@ -95,10 +95,11 @@ async def extract_entities_batch(
 async def list_emails(
     folder: str = Query(None, description="文件夹: inbox, sentitems"),
     category: str = Query(None, description="分类: external, internal, finance, sales, hr, technical, legal, marketing, procurement"),
+    user_email: str = Query(None, description="按用户邮箱筛选"),
     limit: int = Query(30, ge=1, le=100),
     offset: int = Query(0, ge=0),
 ):
-    """获取邮件列表，支持分类筛选"""
+    """获取邮件列表，支持分类和用户筛选"""
     db = get_db()
     
     query = {}
@@ -107,9 +108,17 @@ async def list_emails(
     if category:
         query["category"] = category
     
+    # 按用户筛选：发件人或收件人匹配
+    if user_email:
+        query["$or"] = [
+            {"from.address": {"$regex": user_email, "$options": "i"}},
+            {"to.address": {"$regex": user_email, "$options": "i"}},
+            {"user_id": {"$regex": user_email, "$options": "i"}}
+        ]
+    
     cursor = db.emails.find(
         query,
-        {"email_id": 1, "subject": 1, "from": 1, "to": 1, "received_at": 1, "folder": 1, "category": 1, "entities": 1}
+        {"email_id": 1, "subject": 1, "from": 1, "to": 1, "received_at": 1, "folder": 1, "category": 1, "entities": 1, "user_id": 1}
     ).sort("received_at", -1).skip(offset).limit(limit)
     
     emails = []
@@ -125,6 +134,7 @@ async def list_emails(
         "offset": offset,
         "limit": limit,
     }
+
 
 
 # ===== LightRAG Q&A API (Phase 4) =====

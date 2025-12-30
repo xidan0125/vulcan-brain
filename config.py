@@ -30,9 +30,25 @@ if JWT_SECRET == "dev-only-fallback-secret":
     print("[WARNING] Using fallback JWT_SECRET! Set JWT_SECRET env var in production!")
 
 # === LLM Configuration ===
-LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "qwen3:30b-a3b")
-LLM_BASE_URL = os.getenv("LLM_BASE_URL", "http://localhost:11434") if not _USE_NEW_SETTINGS else _settings.ollama_base_url
-LLM_API_URL = os.getenv("LLM_API_URL", f"{LLM_BASE_URL}/api/generate")
+# vLLM 配置 (替代 Ollama)
+VLLM_BASE_URL = os.getenv("VLLM_BASE_URL", "http://localhost:8000")
+
+def _get_vllm_model():
+    import httpx
+    try:
+        resp = httpx.get(f"{VLLM_BASE_URL}/v1/models", timeout=5)
+        if resp.status_code == 200:
+            models = resp.json().get("data", [])
+            if models:
+                return models[0]["id"]
+    except:
+        pass
+    return "default-model"
+
+# 兼容旧变量名 (逐步废弃)
+LLM_MODEL_NAME = os.getenv("LLM_MODEL_NAME", "auto")  # auto = 从 vLLM 获取
+LLM_BASE_URL = VLLM_BASE_URL  # 指向 vLLM
+LLM_API_URL = f"{VLLM_BASE_URL}/v1/chat/completions"
 LLM_PREDICTION_MODEL = os.getenv("LLM_PREDICTION_MODEL", "qwen2.5:7b")
 
 # === Database ===

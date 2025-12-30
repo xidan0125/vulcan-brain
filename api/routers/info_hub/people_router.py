@@ -2,11 +2,13 @@
 信息中心 - 人员 API
 """
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Optional, List
 from fastapi import APIRouter, Query, HTTPException, BackgroundTasks
 from ._common import get_db, UpdatePersonRequest
 from pydantic import BaseModel
+from services.people_store import get_people_store
+import os
 
 router = APIRouter(tags=["InfoHub-People"])
 
@@ -77,6 +79,53 @@ async def get_person(user_id: str):
     if not person:
         raise HTTPException(status_code=404, detail="Person not found")
     return {"person": person}
+
+
+@router.get("/people/{user_id}/chat-activity")
+async def get_person_chat_activity(user_id: str):
+    """获取人员的群聊参与情况"""
+    from motor.motor_asyncio import AsyncIOMotorClient
+
+    client = AsyncIOMotorClient(os.getenv("MONGO_URI", "mongodb://localhost:27017"))
+    db = client.vulcan_brain
+
+    # 先获取用户信息
+    person = await db.people.find_one({"user_id": user_id})
+    if not person:
+        raise HTTPException(status_code=404, detail="Person not found")
+
+    person_name = person.get("name")
+    if not person_name:
+        return {"chats": []}
+
+    # 聚合该用户在各群聊的消息数量
+    pipeline = [
+        {"$match": {"sender.name": person_name}},
+        {"$group": {
+            "_id": "$chat_id",
+            "message_count": {"$sum": 1},
+            "last_message": {"$last": "$content"},
+            "last_timestamp": {"$max": "$timestamp"}
+        }},
+        {"$sort": {"last_timestamp": -1}},
+        {"$limit": 20}
+    ]
+
+    chat_stats = []
+    async for doc in db.feishu_messages.aggregate(pipeline):
+        chat_id = doc["_id"]
+        # 获取群聊名称
+        chat_info = await db.feishu_chats.find_one({"chat_id": chat_id})
+        chat_name = chat_info.get("name", "未知群聊") if chat_info else "未知群聊"
+
+        chat_stats.append({
+            "chat_id": chat_id,
+            "chat_name": chat_name,
+            "message_count": doc["message_count"],
+            "last_message": doc.get("last_message", "")[:100] if doc.get("last_message") else None,
+        })
+
+    return {"chats": chat_stats}
 
 
 @router.patch("/people/{user_id}")

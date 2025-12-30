@@ -8,7 +8,7 @@ from pydantic import BaseModel
 from typing import Optional
 
 from vulcan_libs.store import store
-from auth_api import get_current_user
+from api.routers.auth_router import get_current_user
 
 router = APIRouter(tags=["Memory"])
 

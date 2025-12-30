@@ -1,24 +1,33 @@
 """
-Vulcan Brain - 统一记忆服务 v3.0
-基于 2025 最佳实践：简单 > 复杂，显式 > 隐式，用户控制
+Vulcan Brain - 统一记忆服务 v4.0
+分层记忆注入：Core (总是) / Contextual (相关时) / Background (仅检索)
 """
 
+import json
 import logging
+import re
 from datetime import datetime, timedelta, timezone
 from typing import List, Optional, Dict, Any
 from bson import ObjectId
 
 logger = logging.getLogger("MemoryService")
 
+# 摘要生成 Prompt
+DIGEST_PROMPT = """请为以下对话生成一个简洁的摘要。
+
+对话内容:
+{conversation}
+
+请输出JSON格式:
+{{"title": "简短标题(10字以内)", "key_points": ["要点1", "要点2", "要点3"]}}
+
+只输出JSON，无其他文字。"""
+
 
 class MemoryService:
-    """统一记忆服务 - 单一入口"""
+    """统一记忆服务 - 分层注入"""
 
     def __init__(self, db):
-        """
-        Args:
-            db: MongoDB 数据库实例 (AsyncIOMotorDatabase)
-        """
         self.db = db
         self.memories = db.user_memories
         self.pending = db.pending_memories
@@ -32,86 +41,73 @@ class MemoryService:
         key: str,
         value: str,
         category: str = "fact",
-        source: str = "user_confirmed"
+        source: str = "user_confirmed",
+        tier: str = "contextual",
+        relevance_tags: List[str] = None
     ) -> Dict[str, Any]:
         """
         存储或更新一条记忆
 
         Args:
             user_id: 用户ID
-            key: 记忆键 (如 name, role, pref_style)
+            key: 记忆键
             value: 记忆值
             category: 分类 (identity | preference | fact)
             source: 来源 (user_confirmed | ai_extracted | manual)
-
-        Returns:
-            保存结果
+            tier: 层级 (core | contextual | background)
+            relevance_tags: 相关性标签列表
         """
         now = datetime.now(timezone.utc)
 
+        update_doc = {
+            "$set": {
+                "value": value,
+                "category": category,
+                "source": source,
+                "tier": tier,
+                "relevance_tags": relevance_tags or [],
+                "updated_at": now
+            },
+            "$setOnInsert": {"created_at": now}
+        }
+
         result = await self.memories.update_one(
             {"user_id": user_id, "key": key},
-            {
-                "$set": {
-                    "value": value,
-                    "category": category,
-                    "source": source,
-                    "updated_at": now
-                },
-                "$setOnInsert": {"created_at": now}
-            },
+            update_doc,
             upsert=True
         )
 
-        logger.info(f"Memory saved: user={user_id}, key={key}")
-        return {"key": key, "value": value, "category": category, "status": "saved"}
+        logger.info(f"Memory saved: user={user_id}, key={key}, tier={tier}")
+        return {"key": key, "value": value, "category": category, "tier": tier, "status": "saved"}
 
     async def recall(
         self,
         user_id: str,
         key: Optional[str] = None,
         category: Optional[str] = None,
+        tier: Optional[str] = None,
         limit: int = 100
     ) -> List[Dict[str, Any]]:
-        """
-        查询记忆
-
-        Args:
-            user_id: 用户ID
-            key: 可选，模糊匹配键名
-            category: 可选，按分类筛选
-            limit: 最大返回数量
-
-        Returns:
-            记忆列表
-        """
+        """查询记忆"""
         query = {"user_id": user_id}
 
         if key:
             query["key"] = {"$regex": key, "$options": "i"}
         if category:
             query["category"] = category
+        if tier:
+            query["tier"] = tier
 
         cursor = self.memories.find(query).limit(limit)
         results = await cursor.to_list(length=limit)
 
-        # 转换 ObjectId
         for r in results:
             r["_id"] = str(r["_id"])
 
         return results
 
     async def forget(self, user_id: str, key: str) -> bool:
-        """
-        删除一条记忆
-
-        Args:
-            user_id: 用户ID
-            key: 记忆键
-
-        Returns:
-            是否删除成功
-        """
+        """删除一条记忆"""
         result = await self.memories.delete_one({
             "user_id": user_id,
             "key": key
@@ -142,23 +138,11 @@ class MemoryService:
         value: str,
         category: str,
         confidence: float,
-        context: str
+        context: str,
+        tier: str = "contextual",
+        relevance_tags: List[str] = None
     ) -> Dict[str, Any]:
-        """
-        添加待确认记忆
-
-        Args:
-            user_id: 用户ID
-            session_id: 来源会话ID
-            key: 提取的键
-            value: 提取的值
-            category: 建议分类
-            confidence: 置信度 0-1
-            context: 提取时的用户消息
-
-        Returns:
-            待确认记忆文档
-        """
+        """添加待确认记忆 (带分层)"""
         now = datetime.now(timezone.utc)
 
         doc = {
@@ -167,18 +151,20 @@ class MemoryService:
             "key": key,
             "value": value,
             "category": category,
+            "tier": tier,
+            "relevance_tags": relevance_tags or [],
             "confidence": confidence,
             "context": context[:500] if context else "",
             "status": "pending",
             "created_at": now,
-            "expires_at": now + timedelta(days=7)  # 7天过期
+            "expires_at": now + timedelta(days=7)
         }
 
         result = await self.pending.insert_one(doc)
         doc["id"] = str(result.inserted_id)
         doc["_id"] = doc["id"]
 
-        logger.info(f"Pending memory added: user={user_id}, key={key}, confidence={confidence}")
+        logger.info(f"Pending memory added: user={user_id}, key={key}, tier={tier}")
         return doc
 
     async def get_pending(self, user_id: str) -> List[Dict[str, Any]]:
@@ -196,15 +182,7 @@ class MemoryService:
         return results
 
     async def confirm_pending(self, pending_id: str) -> Optional[Dict[str, Any]]:
-        """
-        确认一条待确认记忆
-
-        Args:
-            pending_id: 待确认记忆ID
-
-        Returns:
-            确认后的正式记忆，失败返回 None
-        """
+        """确认一条待确认记忆"""
         try:
             pending = await self.pending.find_one({"_id": ObjectId(pending_id)})
         except Exception:
@@ -213,16 +191,17 @@ class MemoryService:
         if not pending:
             return None
 
-        # 存入正式记忆
+        # 存入正式记忆 (保留分层信息)
         memory = await self.remember(
             user_id=pending["user_id"],
             key=pending["key"],
             value=pending["value"],
             category=pending["category"],
-            source="ai_extracted"
+            source="ai_extracted",
+            tier=pending.get("tier", "contextual"),
+            relevance_tags=pending.get("relevance_tags", [])
         )
 
-        # 更新待确认状态
         await self.pending.update_one(
             {"_id": ObjectId(pending_id)},
             {"$set": {"status": "confirmed"}}
@@ -250,131 +229,17 @@ class MemoryService:
         pending_id: str,
         new_value: str
     ) -> Optional[Dict[str, Any]]:
-        """
-        编辑待确认记忆的值，然后确认
-
-        Args:
-            pending_id: 待确认记忆ID
-            new_value: 新的值
-
-        Returns:
-            确认后的正式记忆
-        """
+        """编辑待确认记忆的值，然后确认"""
         try:
-            # 更新值
             await self.pending.update_one(
                 {"_id": ObjectId(pending_id)},
                 {"$set": {"value": new_value}}
             )
-            # 然后确认
             return await self.confirm_pending(pending_id)
         except Exception:
             return None
 
     # ==================== 对话摘要 ====================
-
-
-    async def generate_digest(
-        self,
-        user_id: str,
-        session_id: str,
-        messages: List[Dict[str, str]]
-    ) -> Optional[Dict[str, Any]]:
-        """
-        自动生成对话摘要（调用 LLM）
-        
-        Args:
-            user_id: 用户ID
-            session_id: 会话ID  
-            messages: 对话消息列表 [{role, content}, ...]
-            
-        Returns:
-            摘要文档 {title, key_points, user_intent}
-        """
-        if not messages or len(messages) < 2:
-            return None
-            
-        # 构建对话文本
-        conv_text = "\n".join([
-            f"{m.get('role', 'user')}: {m.get('content', '')[:200]}"
-            for m in messages[-20:]  # 最多取最后20轮
-        ])
-        
-        prompt = f"""为以下对话生成简洁摘要。
-
-对话内容:
-{conv_text}
-
-输出 JSON（无其他文字）:
-{{"title": "10字以内的标题", "key_points": ["关键点1", "关键点2"], "user_intent": "用户的主要目的"}}
-
-注意：
-- title 必须在10字以内
-- key_points 最多3条，每条20字以内
-- 如果对话太短或无实质内容，返回 {{"skip": true}}
-"""
-        
-        try:
-            import httpx
-            import json
-            import os
-            
-            qwen_url = os.getenv("QWEN3_BASE_URL", "http://localhost:8000/v1")
-            
-            async with httpx.AsyncClient(timeout=30) as client:
-                # 获取模型名
-                models_resp = await client.get(f"{qwen_url}/models")
-                model_name = "default"
-                if models_resp.status_code == 200:
-                    models = models_resp.json().get("data", [])
-                    if models:
-                        model_name = models[0]["id"]
-                
-                resp = await client.post(
-                    f"{qwen_url}/chat/completions",
-                    json={
-                        "model": model_name,
-                        "messages": [{"role": "user", "content": prompt}],
-                        "temperature": 0.3,
-                        "max_tokens": 300
-                    }
-                )
-                
-                if resp.status_code != 200:
-                    logger.error(f"Digest generation failed: {resp.status_code}")
-                    return None
-                    
-                content = resp.json()["choices"][0]["message"]["content"]
-                
-                # 解析 JSON
-                if "```" in content:
-                    import re
-                    match = re.search(r"```(?:json)?\s*(.*?)\s*```", content, re.DOTALL)
-                    if match:
-                        content = match.group(1)
-                
-                content = content.strip()
-                if not content.startswith("{"):
-                    start = content.find("{")
-                    if start >= 0:
-                        content = content[start:]
-                
-                data = json.loads(content)
-                
-                if data.get("skip"):
-                    return None
-                    
-                # 保存摘要
-                return await self.save_digest(
-                    user_id=user_id,
-                    session_id=session_id,
-                    title=data.get("title", "对话")[:10],
-                    key_points=data.get("key_points", [])[:3]
-                )
-                
-        except Exception as e:
-            logger.error(f"Digest generation error: {e}")
-            return None
 
     async def save_digest(
         self,
@@ -383,18 +248,7 @@ class MemoryService:
         title: str,
         key_points: List[str]
     ) -> Dict[str, Any]:
-        """
-        保存对话摘要
-
-        Args:
-            user_id: 用户ID
-            session_id: 会话ID
-            title: 标题 (10字以内)
-            key_points: 关键点 (最多3条)
-
-        Returns:
-            摘要文档
-        """
+        """保存对话摘要"""
         doc = {
             "user_id": user_id,
             "session_id": session_id,
@@ -427,33 +281,170 @@ class MemoryService:
 
         return results
 
-    # ==================== 上下文构建 ====================
-
-    async def build_context(self, user_id: str) -> str:
+    async def generate_digest(
+        self,
+        user_id: str,
+        session_id: str,
+        messages: List[Dict[str, str]]
+    ) -> Optional[Dict[str, Any]]:
         """
-        构建记忆上下文块（用于 System Prompt 注入）
+        使用 LLM 生成对话摘要
 
         Args:
             user_id: 用户ID
+            session_id: 会话ID
+            messages: 对话消息列表 [{"role": "user/assistant", "content": "..."}]
+
+        Returns:
+            保存的摘要文档，失败返回 None
+        """
+        if not messages or len(messages) < 2:
+            logger.warning("Not enough messages to generate digest")
+            return None
+
+        # 格式化对话
+        conversation_lines = []
+        for msg in messages[-20:]:  # 最多取最后20条
+            role = "用户" if msg.get("role") == "user" else "助手"
+            content = msg.get("content", "")[:200]  # 截断长消息
+            conversation_lines.append(f"{role}: {content}")
+
+        conversation_text = "\n".join(conversation_lines)
+        prompt = DIGEST_PROMPT.format(conversation=conversation_text)
+
+        try:
+            from vulcan_libs.llm_client import get_llm_client, ChatMessage, ModelType
+
+            client = get_llm_client()
+            llm_messages = [ChatMessage(role="user", content=prompt + " /no_think")]
+
+            response = await client.chat(
+                messages=llm_messages,
+                model=ModelType.CPU,
+                temperature=0.3,
+                max_tokens=300,
+                enable_thinking=False
+            )
+
+            content = response.content
+
+            # 解析 JSON
+            if "```" in content:
+                match = re.search(r"```(?:json)?\s*(.*?)\s*```", content, re.DOTALL)
+                if match:
+                    content = match.group(1)
+
+            content = content.strip()
+            if not content.startswith("{"):
+                start = content.find("{")
+                if start >= 0:
+                    content = content[start:]
+
+            data = json.loads(content)
+            title = data.get("title", "对话")[:20]
+            key_points = data.get("key_points", [])[:3]
+
+            # 保存摘要
+            digest = await self.save_digest(
+                user_id=user_id,
+                session_id=session_id,
+                title=title,
+                key_points=key_points
+            )
+
+            logger.info(f"Digest generated: user={user_id}, title={title}")
+            return digest
+
+        except json.JSONDecodeError as e:
+            logger.error(f"Failed to parse digest JSON: {e}")
+            return None
+        except Exception as e:
+            logger.error(f"Failed to generate digest: {e}")
+            return None
+
+    # ==================== 分层上下文构建 ====================
+
+    def _check_relevance(self, message: str, tags: List[str]) -> bool:
+        """检查消息是否与标签相关"""
+        if not tags:
+            return False
+
+        message_lower = message.lower()
+        for tag in tags:
+            if tag.lower() in message_lower:
+                return True
+        return False
+
+    async def build_context(
+        self,
+        user_id: str,
+        current_message: str = ""
+    ) -> str:
+        """
+        构建分层记忆上下文（用于 System Prompt 注入）
+
+        Args:
+            user_id: 用户ID
+            current_message: 当前用户消息（用于判断 contextual 记忆是否相关）
 
         Returns:
             格式化的上下文文本
         """
-        # 获取显式记忆
         memories = await self.get_all(user_id)
+        digests = await self.get_recent_digests(user_id, limit=5)
 
-        # 获取最近摘要
+        # 分层筛选
+        core_memories = []
+        contextual_memories = []
+
+        for m in memories:
+            tier = m.get("tier", "contextual")  # 兼容旧数据
+
+            if tier == "core":
+                core_memories.append(m)
+            elif tier == "contextual":
+                # 检查是否与当前消息相关
+                tags = m.get("relevance_tags", [])
+                if current_message and self._check_relevance(current_message, tags):
+                    contextual_memories.append(m)
+            # background 记忆不主动注入
+
+        lines = []
+
+        # 核心记忆 (总是注入)
+        if core_memories:
+            lines.append("【用户核心信息】")
+            for m in core_memories:
+                lines.append(f"- {m['key']}: {m['value']}")
+
+        # 相关的情境记忆
+        if contextual_memories:
+            lines.append("\n【相关背景】")
+            for m in contextual_memories:
+                lines.append(f"- {m['key']}: {m['value']}")
+
+        # 最近对话 (只保留标题，不过多干扰)
+        if digests:
+            lines.append("\n【最近话题】")
+            for d in digests[:3]:
+                lines.append(f"- {d['title']}")
+
+        return "\n".join(lines) if lines else ""
+
+    async def build_context_legacy(self, user_id: str) -> str:
+        """
+        旧版上下文构建（兼容）- 注入所有记忆
+        """
+        memories = await self.get_all(user_id)
         digests = await self.get_recent_digests(user_id, limit=10)
 
         lines = []
 
-        # 用户记忆
         if memories:
             lines.append("【用户记忆】")
             for m in memories:
                 lines.append(f"- {m['key']}: {m['value']}")
 
-        # 最近对话
         if digests:
             lines.append("\n【最近对话】")
             for d in digests:

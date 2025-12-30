@@ -47,8 +47,8 @@ class Settings(BaseSettings):
     acontext_bearer_token: Optional[str] = Field(default=None)
     
     # === AI 模型配置 ===
-    ollama_base_url: str = Field(default="http://localhost:11434")
-    ollama_model: str = Field(default="qwen3:30b-a3b")
+    vllm_base_url: str = Field(default="http://localhost:8000")
+    vllm_model: str = Field(default="auto")  # auto = 从 vLLM 获取
     gemini_api_key: Optional[str] = Field(default=None)
     
     @validator("cors_origins")
@@ -117,3 +117,11 @@ if __name__ == "__main__":
     # 测试配置加载
     s = get_settings()
     print_config_summary(s)
+
+# ===== 日报配置 =====
+# 日报时间边界 (24小时制)
+# 默认7点：每天7:00生成前一天7:00到今天7:00的日报
+DAILY_REPORT_HOUR: int = 7
+
+# 时区 (用于日报生成)
+TIMEZONE_OFFSET: int = 8  # UTC+8 (新加坡/中国)

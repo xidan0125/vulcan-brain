@@ -1,20 +1,34 @@
 """
-飞书机器人 LLM 客户端
-- 封装本地 Ollama 调用
+飞书机器人 LLM 客户端 (vLLM 版本)
+- 封装 vLLM API 调用
 - 支持同步和异步接口
 """
 
-from typing import List, Dict, Any
-from llama_index.llms.ollama import Ollama
+import os
+import httpx
+from typing import List, Dict
 
-# 默认模型配置
-DEFAULT_MODEL = "qwen3:30b-a3b"
-DEFAULT_TIMEOUT = 60.0
+# vLLM 配置
+VLLM_BASE_URL = os.getenv("VLLM_BASE_URL", "http://localhost:8000")
+DEFAULT_TIMEOUT = 120.0
 DEFAULT_TEMPERATURE = 0.7
 
 
+def _get_model_name() -> str:
+    """动态获取 vLLM 模型名"""
+    try:
+        resp = httpx.get(f"{VLLM_BASE_URL}/v1/models", timeout=5)
+        if resp.status_code == 200:
+            models = resp.json().get("data", [])
+            if models:
+                return models[0]["id"]
+    except:
+        pass
+    return "default-model"
+
+
 class LLMClient:
-    """轻量 LLM 客户端"""
+    """轻量 LLM 客户端 (vLLM)"""
     
     _instance = None
     
@@ -27,50 +41,37 @@ class LLMClient:
     def __init__(self):
         if self._initialized:
             return
-        self.llm = Ollama(
-            model=DEFAULT_MODEL,
-            temperature=DEFAULT_TEMPERATURE,
-            request_timeout=DEFAULT_TIMEOUT,
-        )
+        
+        self.base_url = VLLM_BASE_URL
+        self.model = _get_model_name()
+        self.timeout = DEFAULT_TIMEOUT
+        self.temperature = DEFAULT_TEMPERATURE
         self._initialized = True
-        print("[LLMClient] 初始化完成")
+        print(f"[LLMClient] 初始化完成: model={self.model}")
     
     async def chat(self, messages: List[Dict[str, str]]) -> str:
         """
         异步聊天接口
         messages: [{"role": "system/user/assistant", "content": "..."}]
         """
-        # 构建提示
-        prompt_parts = []
-        for msg in messages:
-            role = msg.get("role", "user")
-            content = msg.get("content", "")
-            if role == "system":
-                prompt_parts.append(f"System: {content}")
-            elif role == "user":
-                prompt_parts.append(f"User: {content}")
-            elif role == "assistant":
-                prompt_parts.append(f"Assistant: {content}")
-        
-        prompt = "\n\n".join(prompt_parts) + "\n\nAssistant:"
-        
-        # 调用 LLM
-        response = await self.llm.acomplete(prompt)
-        result = str(response).strip()
-        
-        # 清理 think 标签
-        if "</think>" in result:
-            result = result.split("</think>")[-1].strip()
-        
-        return result
+        async with httpx.AsyncClient(timeout=self.timeout) as client:
+            response = await client.post(
+                f"{self.base_url}/v1/chat/completions",
+                json={
+                    "model": self.model,
+                    "messages": messages,
+                    "temperature": self.temperature,
+                    "max_tokens": 2048,
+                    "stream": False
+                }
+            )
+            response.raise_for_status()
+            data = response.json()
+            return data["choices"][0]["message"]["content"]
     
     async def complete(self, prompt: str) -> str:
         """简单补全接口"""
-        response = await self.llm.acomplete(prompt)
-        result = str(response).strip()
-        if "</think>" in result:
-            result = result.split("</think>")[-1].strip()
-        return result
+        return await self.chat([{"role": "user", "content": prompt}])
 
 
 # 单例获取

@@ -1,0 +1,9 @@
+{
+  "name": "talent_analyst",
+  "display_name": "组织情报分析师",
+  "description": "分析组织关键人物的资源边界、能力范围和战略价值",
+  "model": "gemini-2.0-flash",
+  "temperature": 0.7,
+  "max_tokens": 4096,
+  "web_search": false
+}

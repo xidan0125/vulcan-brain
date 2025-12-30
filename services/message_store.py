@@ -529,3 +529,6 @@ async def scheduled_collect_job(chat_ids: List[str]):
             results[chat_id] = {"error": str(e)}
     
     return results
+
+# Singleton instance
+store = MessageStore()

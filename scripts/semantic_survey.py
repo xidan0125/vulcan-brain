@@ -15,7 +15,7 @@ import httpx
 
 # ===== 配置 =====
 MONGO_URI = os.getenv('MONGO_URI', 'mongodb://localhost:27017')
-OLLAMA_URL = 'http://localhost:11434/api/generate'
+OLLAMA_URL = 'http://localhost:8000/api/generate'
 MODEL = 'qwen3:30b-a3b'
 
 # 分层抽样配置 - 基于实际数据

@@ -357,18 +357,18 @@ async def get_daily_v2(date: str):
 async def get_daily_by_date(date: str):
     """直接从数据库读取日报"""
     db = get_db()
-    
+
     # 从数据库读取
     report = await db.daily_reports.find_one({"date": date})
-    
+
     if report:
-        # 从 dimensions 结构读取数据
+        # 从 dimensions 结构读取数据，如果没有则从根级别读取
         dims = report.get("dimensions", {})
-        chat_data = dims.get("chat", {})
-        email_data = dims.get("email", {})
-        project_data = dims.get("project", {})
-        approval_data = dims.get("approval", {})
-        people_data = dims.get("people", {})
+        chat_data = dims.get("chat") or report.get("chat", {})
+        email_data = dims.get("email") or report.get("email", {})
+        project_data = dims.get("project") or report.get("projects", {})
+        approval_data = dims.get("approval") or report.get("approval", {})
+        people_data = dims.get("people") or report.get("people", {})
         
         # 转换 chat 格式
         chat_totals = chat_data.get("totals", {})

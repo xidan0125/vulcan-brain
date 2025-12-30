@@ -270,3 +270,46 @@ if __name__ == "__main__":
     for company in test_companies:
         result = normalize_company(company)
         print(f"  {company:25} -> {result.normalized_name:30} [{result.match_type}]")
+
+
+# ============================================
+# Identifier Blocklist
+# ============================================
+
+_identifier_blocklist: Optional[Dict] = None
+
+def get_identifier_blocklist() -> Dict:
+    """Load identifier blocklist (super-connectors to exclude)"""
+    global _identifier_blocklist
+    if _identifier_blocklist is None:
+        blocklist_path = Path(__file__).parent / "data" / "identifier_blocklist.json"
+        if blocklist_path.exists():
+            with open(blocklist_path) as f:
+                _identifier_blocklist = json.load(f)
+                blocked_count = len(_identifier_blocklist.get("blocked", []))
+                pattern_count = len(_identifier_blocklist.get("patterns", []))
+                print(f"🚫 Loaded identifier blocklist: {blocked_count} values, {pattern_count} patterns")
+        else:
+            _identifier_blocklist = {"blocked": [], "patterns": []}
+    return _identifier_blocklist
+
+
+def is_identifier_blocked(value: str) -> Tuple[bool, Optional[str]]:
+    """Check if identifier should be blocked. Returns (is_blocked, reason)"""
+    if not value:
+        return False, None
+    
+    blocklist = get_identifier_blocklist()
+    norm_val = normalize_identifier(value)
+    
+    # Check exact matches
+    for item in blocklist.get("blocked", []):
+        if normalize_identifier(item["value"]) == norm_val:
+            return True, item.get("reason", "blocked")
+    
+    # Check patterns
+    for pattern in blocklist.get("patterns", []):
+        if re.match(pattern["regex"], norm_val):
+            return True, pattern.get("reason", "pattern match")
+    
+    return False, None

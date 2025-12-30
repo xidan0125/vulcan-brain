@@ -16,7 +16,7 @@ load_dotenv('/home/xinyue/vulcan-brain/.env')
 import httpx
 from datetime import datetime
 
-OLLAMA_HOST = os.getenv("LLM_BASE_URL", "http://localhost:11434")
+OLLAMA_HOST = os.getenv("LLM_BASE_URL", "http://localhost:8000")
 MODEL = "qwen3:30b-a3b"
 GRAPH_FILE = "/home/xinyue/vulcan-brain/static/email-intel/smart_graph_v4.json"
 OUTPUT_FILE = "/home/xinyue/vulcan-brain/static/email-intel/graph_with_relations.json"

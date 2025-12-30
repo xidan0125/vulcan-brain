@@ -418,7 +418,7 @@ class StableExtractor:
             return parsed
         return None
 
-    async def run(self, fresh_start: bool = True):
+    async def run(self, fresh_start: bool = False):
         logger.info(f"Extractor v4 - {self.company} {self.date_str}")
 
         run_doc = self.get_run_doc()
@@ -518,12 +518,15 @@ class StableExtractor:
 
 
 async def main():
-    import sys
-    company = sys.argv[1] if len(sys.argv) > 1 else "shanghai"
-    date_str = sys.argv[2] if len(sys.argv) > 2 else "2025-12-26"
+    import argparse
+    parser = argparse.ArgumentParser(description='Email extraction pipeline')
+    parser.add_argument('company', nargs='?', default='shanghai', help='Company name')
+    parser.add_argument('date', nargs='?', default='2025-12-26', help='Date string YYYY-MM-DD')
+    parser.add_argument('--fresh', action='store_true', help='Reset and start fresh')
+    args = parser.parse_args()
 
-    extractor = StableExtractor(company, date_str)
-    await extractor.run(fresh_start=True)
+    extractor = StableExtractor(args.company, args.date)
+    await extractor.run(fresh_start=args.fresh)
 
 
 if __name__ == "__main__":

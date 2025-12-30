@@ -36,9 +36,9 @@ EMAIL_ANALYSIS_PROMPT = """你是一位专业的企业邮件分析助手。请�
 请以JSON格式输出分析结果，包含以下字段:
 {{
     "summary": "今日邮件的整体概述（2-3句话，用中文）",
-    "action_items": ["需要处理的待办事项列表（用中文）"],
-    "vip_updates": ["重要客户相关邮件摘要（用中文）"],
-    "urgent_matters": ["紧急事项或需要立即关注的问题（用中文）"],
+    "action_items": ["需要处理的待办事项，末尾标注来源邮件编号如（邮件3）或（邮件2、5）"],
+    "vip_updates": ["重要客户相关邮件摘要，末尾标注邮件编号"],
+    "urgent_matters": ["紧急事项或需要立即关注的问题，末尾标注邮件编号"],
     "key_topics": ["今日邮件涉及的主要话题（用中文）"],
     "sentiment": "positive/negative/neutral/mixed"
 }}
@@ -49,6 +49,7 @@ EMAIL_ANALYSIS_PROMPT = """你是一位专业的企业邮件分析助手。请�
 3. 识别任何紧急或时间敏感的事项
 4. 如果是内部邮件系统测试或垃圾邮件，可以忽略
 5. 所有输出使用中文
+6. 【重要】每个action_item、vip_update、urgent_matter末尾必须标注来源邮件编号，格式如（邮件3）或（邮件1、5、7）
 """
 
 
@@ -66,10 +67,12 @@ class EmailSummarizer:
     ) -> Dict[str, Any]:
         """AI 分析邮件内容"""
         if not emails:
-            return self._empty_analysis()
+            result = self._empty_analysis()
+            result["email_index_map"] = {}
+            return result
 
         # 构建邮件摘要文本（使用完整正文，限制总长度）
-        email_list = self._format_emails_for_analysis(emails[:30])  # 最多分析30封
+        email_list, email_index_map = self._format_emails_for_analysis(emails[:30])  # 最多分析30封
         
         prompt = EMAIL_ANALYSIS_PROMPT.format(
             date=date.strftime("%Y-%m-%d"),
@@ -79,20 +82,38 @@ class EmailSummarizer:
 
         try:
             result = await self.ai.generate_json(prompt, temperature=0.3)
+            # 添加邮件索引映射，供前端溯源使用
+            result["email_index_map"] = email_index_map
             return result
         except Exception as e:
             logger.error(f"AI 分析邮件失败: {e}")
-            return self._empty_analysis(error=str(e))
+            result = self._empty_analysis(error=str(e))
+            result["email_index_map"] = email_index_map
+            return result
 
-    def _format_emails_for_analysis(self, emails: List[Dict], max_body_len: int = 1000) -> str:
-        """格式化邮件列表供 AI 分析（使用完整正文）"""
+    def _format_emails_for_analysis(self, emails: List[Dict], max_body_len: int = 1000) -> tuple:
+        """格式化邮件列表供 AI 分析（使用完整正文）
+        
+        Returns:
+            tuple: (formatted_text, email_index_map)
+            - formatted_text: 格式化的邮件文本
+            - email_index_map: 索引到email_id的映射 {1: {...}, 2: {...}, ...}
+        """
         lines = []
+        email_index_map = {}  # 索引到email_id的映射
         total_len = 0
         max_total = 15000  # 总长度限制
         
         for i, email in enumerate(emails, 1):
             if total_len > max_total:
                 break
+            
+            # 保存索引映射
+            email_index_map[str(i)] = {
+                "email_id": email.get("email_id"),
+                "subject": email.get("subject", "无主题"),
+                "from": email.get("from", {})
+            }
                 
             from_addr = email.get("from", {}).get("address", "未知")
             from_name = email.get("from", {}).get("name", "")
@@ -121,7 +142,7 @@ class EmailSummarizer:
             lines.append(entry)
             total_len += len(entry)
         
-        return "\n".join(lines)
+        return "\n".join(lines), email_index_map
 
     def _empty_analysis(self, error: str = None) -> Dict:
         """返回空的分析结果"""

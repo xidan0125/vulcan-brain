@@ -7,6 +7,7 @@ from typing import Optional, List
 from fastapi import APIRouter, Query, HTTPException, BackgroundTasks
 from ._common import get_db, CollectApprovalsRequest
 from pydantic import BaseModel
+from services.approval_store import get_approval_store
 
 router = APIRouter(tags=["InfoHub-Approval"])
 
@@ -73,16 +74,27 @@ async def list_approvals(
     # 格式化输出
     result = []
     for ap in approvals:
+        # 获取 form_data 内容
+        form_data = ap.get("form_data", {})
+        title = form_data.get("title", "") if isinstance(form_data, dict) else ""
+        form_content = form_data.get("content", "") if isinstance(form_data, dict) else ""
+        
+        # 如果有 type_name，用它替代 approval_name
+        display_name = ap.get("type_name") or ap.get("approval_name") or "未知审批"
+        
         result.append({
-            "instance_code": ap.get("instance_code"),
-            "approval_code": ap.get("approval_code"),
-            "approval_name": ap.get("approval_name"),
-            "status": ap.get("status"),
-            "user_id": ap.get("user_id"),
-            "open_id": ap.get("open_id"),
-            "start_time": ap.get("start_time"),
-            "end_time": ap.get("end_time"),
-            "serial_number": ap.get("serial_number")
+            "instance_code": ap.get("instance_code") or ap.get("_id"),
+            "approval_code": ap.get("approval_code") or ap.get("type"),
+            "approval_name": display_name,
+            "status": ap.get("status", "pending").upper(),
+            "user_id": ap.get("user_id") or ap.get("applicant_id"),
+            "open_id": ap.get("open_id") or ap.get("applicant_id"),
+            "applicant_name": ap.get("applicant_name", ""),
+            "start_time": ap.get("start_time") or (ap.get("created_at").isoformat() if ap.get("created_at") else None),
+            "end_time": ap.get("end_time") or (ap.get("updated_at").isoformat() if ap.get("updated_at") and ap.get("status") != "pending" else None),
+            "serial_number": ap.get("serial_number", str(ap.get("_id", ""))[-6:]),
+            "title": title,
+            "content": form_content
         })
 
     return {"approvals": result, "count": len(result)}

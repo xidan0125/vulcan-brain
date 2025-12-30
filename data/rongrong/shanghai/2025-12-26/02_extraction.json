@@ -1,0 +1,1890 @@
+{
+  "date": "2025-12-26",
+  "company": "shanghai",
+  "created_at": "2025-12-29T07:27:38.083759Z",
+  "version": "v2.0",
+  "stats": {
+    "input_emails": 103,
+    "success": 100,
+    "failed": 3,
+    "by_category": {
+      "SALES": 15,
+      "GOVERNANCE": 17,
+      "DELIVERY": 6,
+      "OPERATIONS": 3,
+      "ADMIN": 40,
+      "FILE": 28
+    }
+  },
+  "events": {
+    "SALES": [
+      {
+        "category": "SALES",
+        "tag": "样件确认",
+        "style": "GAIN",
+        "summary": "北京石墨烯研究院确认氧化铝纤维针刺毯需求信息，要求备货",
+        "highlights": {
+          "entities": [
+            "上海榕融新材料技术有限公司",
+            "北京石墨烯研究院",
+            "氧化铝纤维针刺毯",
+            "客户需求信息确认表"
+          ],
+          "numbers": [
+            "1kg",
+            "2025/12/26",
+            "2025-12-25"
+          ]
+        },
+        "source_id": "15b42a52457c5c0b729cb3c77b49fe4c"
+      },
+      {
+        "category": "SALES",
+        "tag": "文件更新",
+        "style": "INSIGHT",
+        "summary": "谢紫婳按孙总指示更新公司介绍PPT并同步发送，用于后续客户接待",
+        "highlights": {
+          "entities": [
+            "谢紫婳",
+            "孙总",
+            "王姝姝",
+            "榕融新材料",
+            "PPT"
+          ],
+          "numbers": [
+            "58.78M",
+            "2025/01/09"
+          ]
+        },
+        "source_id": "1acc434d6d165b23f5fc7cc0e8295cae"
+      },
+      {
+        "category": "SALES",
+        "tag": "开票通过",
+        "style": "GAIN",
+        "summary": "董雪瑞的开票流程申请已通过，涉及销售合同RRJS-YXHT-202512-0028及广东纵胜新材料股份有限公司的订单",
+        "highlights": {
+          "entities": [
+            "张全喜",
+            "销售合同号",
+            "上海榕融新材料技术有限公司",
+            "广东纵胜新材料股份有限公司",
+            "氧化铝连续纤维"
+          ],
+          "numbers": [
+            "294800.00元",
+            "134千克",
+            "147.06KG",
+            "2025/12/25",
+            "2025/12/26"
+          ]
+        },
+        "source_id": "258f6f89ecf5b58f1ce765ecc9291e5c"
+      },
+      {
+        "category": "SALES",
+        "tag": "样件通过",
+        "style": "GAIN",
+        "summary": "董雪瑞的免费样件申请已通过，客户为常州格睿克斯能源科技有限公司，产品为氧化铝纤维针刺毯2块。",
+        "highlights": {
+          "entities": [
+            "董雪瑞",
+            "常州格睿克斯能源科技有限公司",
+            "氧化铝纤维针刺毯",
+            "营销部",
+            "孙涛"
+          ],
+          "numbers": [
+            "2块",
+            "2025/12/26"
+          ]
+        },
+        "source_id": "3e9bbc75f15f0d345d4eb2b3f8167a5f"
+      },
+      {
+        "category": "SALES",
+        "tag": "申请用章",
+        "style": "GAIN",
+        "summary": "董雪瑞的用章申请（用于客户对账）在上海榕融新材料技术有限公司已通过审批",
+        "highlights": {
+          "entities": [
+            "董雪瑞",
+            "梁伟彬",
+            "孙树人",
+            "王姝姝",
+            "娄嘉",
+            "营销部",
+            "上海榕融新材料技术有限公司",
+            "公章",
+            "对账单",
+            "上海",
+            "用章申请"
+          ],
+          "numbers": [
+            "2份",
+            "2个",
+            "2025/12/25",
+            "2025/12/25 15:17"
+          ]
+        },
+        "source_id": "d6a426ab052a30aa461c0f6b75ce65e3"
+      },
+      {
+        "category": "SALES",
+        "tag": "客户审厂",
+        "style": "INSIGHT",
+        "summary": "通知广州国机审厂会议地点变更及资料准备要求",
+        "highlights": {
+          "entities": [
+            "广州国机",
+            "科技项目组",
+            "吕静",
+            "销售部",
+            "一期会议室2",
+            "二期会议厅"
+          ],
+          "numbers": [
+            "11月25日",
+            "14:00",
+            "16:30-17:30",
+            "4:30-5:30"
+          ]
+        },
+        "source_id": "4c170dcb376cdf4b190ab2dd925f5a66"
+      },
+      {
+        "category": "SALES",
+        "tag": "审批通过",
+        "style": "GAIN",
+        "summary": "朱帅的车间参观流程已获批准。",
+        "highlights": {
+          "entities": [
+            "朱帅",
+            "贾庆龙"
+          ],
+          "numbers": [
+            "6",
+            "0.5"
+          ]
+        },
+        "source_id": "86e3527d47a5c97ced82c41fc06aa946"
+      },
+      {
+        "category": "SALES",
+        "tag": "样件通过",
+        "style": "GAIN",
+        "summary": "杨力的免费样件申请（财资部）已通过审批，涉及赢胜节能集团的氧化铝纤维毯样件",
+        "highlights": {
+          "entities": [
+            "杨力",
+            "陆敏敏",
+            "孙树人",
+            "关克田",
+            "顾毅敏",
+            "陈燕",
+            "赵旭英",
+            "王建花",
+            "赢胜节能集团",
+            "投融资部",
+            "氧化铝纤维毯"
+          ],
+          "numbers": [
+            "8",
+            "2025/12/25",
+            "2025/12/26"
+          ]
+        },
+        "source_id": "8a1ffc5a08d575b53f1af5e926b1656a"
+      },
+      {
+        "category": "SALES",
+        "tag": "样件审批",
+        "style": "GAIN",
+        "summary": "董雪瑞的免费样件申请已通过，用于北京石墨烯研究院的样件测试。",
+        "highlights": {
+          "entities": [
+            "董雪瑞",
+            "北京石墨烯研究院",
+            "氧化铝纤维针刺毯",
+            "营销部"
+          ],
+          "numbers": [
+            "1kg",
+            "2025/12/25",
+            "2025/12/26"
+          ]
+        },
+        "source_id": "91c1a131814a4cd48e00686f31b332be"
+      },
+      {
+        "category": "SALES",
+        "tag": "样件确认",
+        "style": "GAIN",
+        "summary": "董雪瑞发送青岛康复大学氧化铝连续纤维客户需求信息确认表，要求备货。",
+        "highlights": {
+          "entities": [
+            "青岛康复大学",
+            "氧化铝连续纤维",
+            "客户需求信息确认表",
+            "董雪瑞",
+            "潘建东"
+          ],
+          "numbers": [
+            "1米",
+            "66 tex",
+            "90 tex",
+            "110 tex",
+            "2025/12/26",
+            "2025.12.25",
+            "1"
+          ]
+        },
+        "source_id": "a3ccc1aaa187a6ec2dda3c943caf5505"
+      },
+      {
+        "category": "SALES",
+        "tag": "样件确认",
+        "style": "GAIN",
+        "summary": "要求同事根据客户需求信息确认表准备氧化铝纤维布样件材料",
+        "highlights": {
+          "entities": [
+            "榕融新材料",
+            "Fenner Precision Polymers",
+            "氧化铝纤维布",
+            "客户需求信息确认表"
+          ],
+          "numbers": [
+            "2",
+            "3 块",
+            "5000cn-6000cn",
+            "2026/1/6"
+          ]
+        },
+        "source_id": "c58049fb839127a1c4bc0361987cabd4"
+      },
+      {
+        "category": "SALES",
+        "tag": "申请通过",
+        "style": "GAIN",
+        "summary": "杨力的免费样件申请已通过审批，将向尚辰公司发送氧化铝纤维毯样件",
+        "highlights": {
+          "entities": [
+            "杨力",
+            "陆敏敏",
+            "尚辰（浙江绍兴）复合材料科技有限公司",
+            "氧化铝纤维毯",
+            "投融资部"
+          ],
+          "numbers": [
+            "4",
+            "2025/12/25",
+            "2025/12/26"
+          ]
+        },
+        "source_id": "e8908633a203f3ec081d05d4da7b400d"
+      },
+      {
+        "category": "SALES",
+        "tag": "申请通过",
+        "style": "GAIN",
+        "summary": "高天成的免费样件申请已通过审批。",
+        "highlights": {
+          "entities": [
+            "高天成",
+            "VSG",
+            "Satish",
+            "新加坡驻场",
+            "张维",
+            "梁伟彬",
+            "陆敏敏",
+            "氧化铝连续纤维"
+          ],
+          "numbers": [
+            "202512220024",
+            "2025/12/22 16:41",
+            "2025/12/7"
+          ]
+        },
+        "source_id": "eae3dd7ff8529ae3f4383e73737c674b"
+      },
+      {
+        "category": "SALES",
+        "tag": "样件通过",
+        "style": "GAIN",
+        "summary": "董雪瑞的免费样件申请已通过，用于青岛康复大学样件测试。",
+        "highlights": {
+          "entities": [
+            "青岛康复大学",
+            "董雪瑞",
+            "张文",
+            "梁伟彬",
+            "陆敏敏",
+            "营销部",
+            "氧化铝连续纤维"
+          ],
+          "numbers": [
+            "2025/12/25",
+            "2025/12/26",
+            "20m",
+            "10m"
+          ]
+        },
+        "source_id": "fe728588e9e204f2781a8887ee791e98"
+      },
+      {
+        "category": "SALES",
+        "tag": "需求确认",
+        "style": "GAIN",
+        "summary": "邮件发送客户需求信息确认表，要求备货",
+        "highlights": {
+          "entities": [
+            "常州格睿克斯能源科技有限公司",
+            "氧化铝纤维针刺毯"
+          ],
+          "numbers": [
+            "2块",
+            "2025/12/26"
+          ]
+        },
+        "source_id": "fe98a68f5a702882265fc21ec2cb5d5a"
+      }
+    ],
+    "GOVERNANCE": [
+      {
+        "category": "GOVERNANCE",
+        "tag": "考核自评",
+        "style": "INSIGHT",
+        "summary": "杨力作为投融资总监提交试用期考核表自评部分",
+        "highlights": {
+          "entities": [
+            "杨力",
+            "陈水根",
+            "榕融新材料",
+            "试用期考核表"
+          ],
+          "numbers": [
+            "2025年8月4日",
+            "2026年2月3日",
+            "2025年12月25日"
+          ]
+        },
+        "source_id": "0b536cd8d21752e180c2484b28aeb428"
+      },
+      {
+        "category": "GOVERNANCE",
+        "tag": "安全整改",
+        "style": "RISK",
+        "summary": "安全员发现设备维修部员工登高作业未佩戴安全带及未开具高处作业票，责令整改后再次违规",
+        "highlights": {
+          "entities": [
+            "榕融新材料",
+            "王强",
+            "瞿烨",
+            "杨瑞东",
+            "曲朝军",
+            "设备维修部",
+            "安全员",
+            "《高处作业票》"
+          ],
+          "numbers": [
+            "2025年12月25日"
+          ]
+        },
+        "source_id": "146dfe4038b9f5732bb53829ad2e9850"
+      },
+      {
+        "category": "GOVERNANCE",
+        "tag": "审批通过",
+        "style": "GAIN",
+        "summary": "瞿烨的请购单（非生产采购）申请已通过审批。",
+        "highlights": {
+          "entities": [
+            "请购单",
+            "安全警示类物品"
+          ],
+          "numbers": [
+            1
+          ]
+        },
+        "source_id": "2fbb2d5230c2fcefd45584644e79446a"
+      },
+      {
+        "category": "GOVERNANCE",
+        "tag": "付款审批",
+        "style": "INSIGHT",
+        "summary": "邮件通知付款流程审批提交时间调整为每月1日和15日，遇节假日顺延，要求使用附件模板提报",
+        "highlights": {
+          "entities": [
+            "王姝姝",
+            "榕融新材料",
+            "付款流程审批模板"
+          ],
+          "numbers": [
+            "1日",
+            "15日",
+            "10日",
+            "20日"
+          ]
+        },
+        "source_id": "28006d872af0f96c698e9131ed538c93"
+      },
+      {
+        "category": "GOVERNANCE",
+        "tag": "任务布置",
+        "style": "INSIGHT",
+        "summary": "12.19制造部例会要求各部门跟进安全、生产、质量等事项",
+        "highlights": {
+          "entities": [
+            "刘燕",
+            "各部门负责人",
+            "制造部",
+            "EHS",
+            "供应链-仓储",
+            "短纤",
+            "质量部",
+            "设备维修部"
+          ],
+          "numbers": [
+            "12月19日"
+          ]
+        },
+        "source_id": "47c99436ee56cda411c7516b7b7623a3"
+      },
+      {
+        "category": "GOVERNANCE",
+        "tag": "财务回复",
+        "style": "GAIN",
+        "summary": "公司回复平安银行关于财务明细的请求，提供2025年11月财务报表及相关数据",
+        "highlights": {
+          "entities": [
+            "陈燕",
+            "陆勤",
+            "上海榕融新材料技术有限公司",
+            "平安银行上海分行瑞虹支行",
+            "财务三大报表",
+            "科目前5大余额",
+            "收入明细表"
+          ],
+          "numbers": [
+            "2025年11月",
+            "2025-12-22"
+          ]
+        },
+        "source_id": "428ff84007dc7e19316a74e17e53331d"
+      },
+      {
+        "category": "GOVERNANCE",
+        "tag": "离岗体检",
+        "style": "INSIGHT",
+        "summary": "榕融新材料通知谢天福进行离岗职业健康检查",
+        "highlights": {
+          "entities": [
+            "谢天福",
+            "榕融新材料",
+            "长丝整理操作工",
+            "上海市职业健康检查表"
+          ],
+          "numbers": [
+            "2025年12月25日",
+            "7:30-10:30",
+            "14年7月",
+            "0年5月"
+          ]
+        },
+        "source_id": "4c5fc1cbc665fa16069497f0c2f2e770"
+      },
+      {
+        "category": "GOVERNANCE",
+        "tag": "安全整改",
+        "style": "RISK",
+        "summary": "设备维修部人员登高作业未佩戴安全带，安全员没收作业票并要求整改",
+        "highlights": {
+          "entities": [
+            "杨瑞东",
+            "曲朝军",
+            "设备维修部",
+            "安全员",
+            "王主管",
+            "榕融新材料",
+            "《高处作业票》"
+          ],
+          "numbers": [
+            "2025年12月25日"
+          ]
+        },
+        "source_id": "5f8437e74cd73838a7a83e6399269037"
+      },
+      {
+        "category": "GOVERNANCE",
+        "tag": "自评确认",
+        "style": "INSIGHT",
+        "summary": "陈水根确认收到杨力完成的试用期考核表自评部分",
+        "highlights": {
+          "entities": [
+            "杨力",
+            "陈水根",
+            "试用期考核表"
+          ],
+          "numbers": [
+            "2025.12.25"
+          ]
+        },
+        "source_id": "90729ce08965ef26ddf44cf1ddeddf14"
+      },
+      {
+        "category": "GOVERNANCE",
+        "tag": "预算提交",
+        "style": "INSIGHT",
+        "summary": "行政副经理王姝姝提交2026年1月总裁办办公和行政管理部的费用预算表",
+        "highlights": {
+          "entities": [
+            "王姝姝",
+            "上海榕融新材料",
+            "总裁办办公",
+            "行政管理部",
+            "预算表"
+          ],
+          "numbers": []
+        },
+        "source_id": "6d3f168f11164017f5b2bc8e6142defa"
+      },
+      {
+        "category": "GOVERNANCE",
+        "tag": "考评审批",
+        "style": "INSIGHT",
+        "summary": "投融资部杨力试用期考评需陆总签字确认后同步至人资部",
+        "highlights": {
+          "entities": [
+            "杨力",
+            "试用期考核表",
+            "陆总"
+          ],
+          "numbers": [
+            "2026.1.9"
+          ]
+        },
+        "source_id": "82ea0657f1a89cd16f194e6312631be5"
+      },
+      {
+        "category": "GOVERNANCE",
+        "tag": "提交报表",
+        "style": "INSIGHT",
+        "summary": "孙雪情提交2025年11月人力成本分类汇总表给陈经理",
+        "highlights": {
+          "entities": [
+            "人力成本分类汇总表"
+          ],
+          "numbers": [
+            "实际人数105",
+            "总工资1076779.941"
+          ]
+        },
+        "source_id": "84573ef12114ef6d1dffb9405cd05700"
+      },
+      {
+        "category": "GOVERNANCE",
+        "tag": "审批通过",
+        "style": "LOG",
+        "summary": "出纳1的往来款项及货款流程已通过审批。",
+        "highlights": {
+          "entities": [
+            "上海榕融新材料技术有限公司",
+            "上海财资部",
+            "孙树人",
+            "工商银行自贸试验区新片区分行营业厅",
+            "出纳1",
+            "陈俊男",
+            "顾毅敏",
+            "陆敏敏"
+          ],
+          "numbers": [
+            "20万",
+            "2025/12/25",
+            "202512250020"
+          ]
+        },
+        "source_id": "92607a5984ec672372c863e80283a95d"
+      },
+      {
+        "category": "GOVERNANCE",
+        "tag": "预算规划",
+        "style": "INSIGHT",
+        "summary": "转发2026年1月总裁办办公和行政管理部的费用预算表",
+        "highlights": {
+          "entities": [
+            "顾毅敏",
+            "王姝姝",
+            "娄嘉",
+            "上海榕融新材料",
+            "总裁办办公",
+            "行政管理部",
+            "预算表"
+          ],
+          "numbers": [
+            "2025年12月25日",
+            "2026年1月"
+          ]
+        },
+        "source_id": "a6e799e50c50ee4614d00001748b49b9"
+      },
+      {
+        "category": "GOVERNANCE",
+        "tag": "固废清理",
+        "style": "INSIGHT",
+        "summary": "EHS主管要求清理车间工业废物，胡娟娟回复已安排下周一处理并请财务协同",
+        "highlights": {
+          "entities": [
+            "瞿主管",
+            "胡娟娟",
+            "陈经理",
+            "瞿烨",
+            "EHS主管",
+            "工业废物",
+            "可回收废物"
+          ],
+          "numbers": []
+        },
+        "source_id": "c1063ae11da2303f5bbd49fbb30fdfac"
+      },
+      {
+        "category": "GOVERNANCE",
+        "tag": "查看结果",
+        "style": "INSIGHT",
+        "summary": "公司通知员工在三个工作日内到EHS部查看职业健康体检结果并签字确认。",
+        "highlights": {
+          "entities": [
+            "员工",
+            "体检结果",
+            "体检报告",
+            "EHS部"
+          ],
+          "numbers": [
+            "3"
+          ]
+        },
+        "source_id": "d03a8bbf2927ac1e018b2aed150fda22"
+      },
+      {
+        "category": "GOVERNANCE",
+        "tag": "续签审批",
+        "style": "INSIGHT",
+        "summary": "邮件要求小迪处理劳动合同续签审批表，于2025年12月31日前提交上海人资部。",
+        "highlights": {
+          "entities": [
+            "江帆",
+            "小迪",
+            "领导",
+            "上海人资部",
+            "劳动合同续签审批表",
+            "待续签人员名单"
+          ],
+          "numbers": [
+            "2025.12.31"
+          ]
+        },
+        "source_id": "dccacb062e7a530cf337bcb2e944a078"
+      }
+    ],
+    "DELIVERY": [
+      {
+        "category": "DELIVERY",
+        "tag": "订舱提货",
+        "style": "INSIGHT",
+        "summary": "确认货物已备好并通知提货，提供货物信息及提货地址",
+        "highlights": {
+          "entities": [
+            "上海榕融新材料技术有限公司",
+            "Expeditors",
+            "仝占凤",
+            "Karling Lu",
+            "氧化铝连续纤维",
+            "广西壮族自治区百色市右江区百东新区百贤路BD11-02-02-01地块",
+            "滕宏建"
+          ],
+          "numbers": [
+            "11托",
+            "8托",
+            "3托",
+            "1.3*1*1.38m",
+            "1.3*1.15*1.22m",
+            "1441.5kg",
+            "15296261986",
+            "2025年12月23日"
+          ]
+        },
+        "source_id": "0475c7a5e45b54ef1120523906710e11"
+      },
+      {
+        "category": "DELIVERY",
+        "tag": "空运订舱",
+        "style": "INSIGHT",
+        "summary": "邮件确认空运订舱货物贴单号要求及托盘数量细节",
+        "highlights": {
+          "entities": [
+            "仝占凤",
+            "Karling Lu",
+            "榕融新材料",
+            "Expeditors",
+            "托盘",
+            "单号"
+          ],
+          "numbers": [
+            "6 PLTS",
+            "5 PLTS"
+          ]
+        },
+        "source_id": "353b8c40e4808f89f3325ade88bc6e53"
+      },
+      {
+        "category": "DELIVERY",
+        "tag": "空运订舱",
+        "style": "INSIGHT",
+        "summary": "榕融新材料与货代就空运订舱条款及费用承担进行确认，要求提供货物图片并等待国外客户批复",
+        "highlights": {
+          "entities": [
+            "Karling Lu",
+            "仝占凤",
+            "Expeditors",
+            "榕融新材料",
+            "BOOKING"
+          ],
+          "numbers": [
+            "6 PLTS",
+            "5 PLTS",
+            "11 PLTS"
+          ]
+        },
+        "source_id": "40180e77f9dfefe0fc48566420ae8b19"
+      },
+      {
+        "category": "DELIVERY",
+        "tag": "订舱安排",
+        "style": "INSIGHT",
+        "summary": "物流商要求拆分空运订舱并确认FCA工厂条款下责任归属",
+        "highlights": {
+          "entities": [
+            "Expeditors",
+            "榕融新材料",
+            "滕宏建",
+            "托书"
+          ],
+          "numbers": [
+            "20 CBM",
+            "1441.5kg"
+          ]
+        },
+        "source_id": "4716ae8e4cb90f3ad9d1a2027a0a7850"
+      },
+      {
+        "category": "DELIVERY",
+        "tag": "订舱安排",
+        "style": "INSIGHT",
+        "summary": "榕融新材料向货代发送11托货物的空运订舱信息，确认FCA条款下工厂不承担出口运输和报关费用。",
+        "highlights": {
+          "entities": [
+            "仝占凤",
+            "Karling Lu",
+            "上海榕融新材料技术有限公司",
+            "Expeditors",
+            "BOOKING",
+            "托书",
+            "广西壮族自治区百色市右江区百东新区百贤路BD11-02-02-01地块"
+          ],
+          "numbers": [
+            "11托",
+            "8托：1.3*1*1.38m（H）",
+            "3托：1.3*1.15*1.22m（H）",
+            "总毛重：1441.5kg"
+          ]
+        },
+        "source_id": "562d0f617de249517d35fa1aa1582052"
+      },
+      {
+        "category": "DELIVERY",
+        "tag": "订舱协调",
+        "style": "INSIGHT",
+        "summary": "仝占凤回复Karling关于空运订舱细节确认，包括产品图片、进仓编号及托盘堆叠要求",
+        "highlights": {
+          "entities": [
+            "仝占凤",
+            "Karling Lu",
+            "上海榕融新材料技术有限公司",
+            "Expeditors"
+          ],
+          "numbers": [
+            "41X0122131",
+            "41X0122135",
+            "6 PLTS",
+            "5 PLTS",
+            "11托"
+          ]
+        },
+        "source_id": "e8aad14c0d1a65c7dfd1b708363e065a"
+      }
+    ],
+    "OPERATIONS": [
+      {
+        "category": "OPERATIONS",
+        "tag": "审厂准备",
+        "style": "INSIGHT",
+        "summary": "邮件要求各负责人准备广州国机审厂资料并参加沟通会议",
+        "highlights": {
+          "entities": [
+            "广州国机",
+            "榕融新材料",
+            "科技项目组",
+            "吕静",
+            "各负责人",
+            "供应商现场评审记录表"
+          ],
+          "numbers": [
+            "11月25日",
+            "下午2点",
+            "下午4点半-5点半"
+          ]
+        },
+        "source_id": "14afca8868308bdd22e25653bbaa1197"
+      },
+      {
+        "category": "OPERATIONS",
+        "tag": "审厂准备",
+        "style": "INSIGHT",
+        "summary": "转发广州国机审厂事宜，要求各负责人准备资料并参加沟通会议",
+        "highlights": {
+          "entities": [
+            "广州国机",
+            "科技项目组",
+            "吕静",
+            "供应商现场评审记录表"
+          ],
+          "numbers": [
+            "11月25日",
+            "下午2点前",
+            "下午4点半-5点半"
+          ]
+        },
+        "source_id": "274426e59da1f8e38718cd817a63b074"
+      },
+      {
+        "category": "OPERATIONS",
+        "tag": "制造例会",
+        "style": "LOG",
+        "summary": "12.19制造部例会纪要，要求各部门跟进噪音防护、废品清理、设备维修等生产运营事项",
+        "highlights": {
+          "entities": [
+            "瞿烨",
+            "赵东亮",
+            "吴其彤",
+            "张秀丽",
+            "杨瑞冬",
+            "EHS",
+            "供应链-仓储",
+            "质量部",
+            "设备维修部",
+            "G22胶",
+            "G28胶",
+            "99胶体纤维",
+            "反应釜",
+            "收卷机",
+            "纺丝箱体"
+          ],
+          "numbers": [
+            "2000米",
+            "4000米",
+            "3天",
+            "8台",
+            "10台",
+            "6个"
+          ]
+        },
+        "source_id": "47c99436ee56cda411c7516b7b7623a3"
+      }
+    ],
+    "ADMIN": [
+      {
+        "category": "ADMIN",
+        "tag": "同步更新",
+        "summary": "谢紫婳发送更新后的PPT以同步更新内容。",
+        "entities": [
+          "谢紫婳",
+          "PPT",
+          "澳洲营销中心"
+        ],
+        "numbers": [
+          "58.78",
+          "2026/01/09"
+        ],
+        "source_id": "1acc434d6d165b23f5fc7cc0e8295cae"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "审批申请",
+        "summary": "覃遵胜申请广州至南京的机票审批",
+        "entities": [
+          "覃遵胜",
+          "广州",
+          "南京"
+        ],
+        "numbers": [
+          "1132542764428672"
+        ],
+        "source_id": "343e74b639f721a798161a2618e1a228"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "审批通过",
+        "summary": "瞿烨的请购单（非生产采购）申请已通过",
+        "entities": [
+          "请购单",
+          "EHS部",
+          "刘广平",
+          "常晓密",
+          "赵旭英"
+        ],
+        "numbers": [
+          "1个"
+        ],
+        "source_id": "2fbb2d5230c2fcefd45584644e79446a"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "凭证转发",
+        "summary": "王姝姝转发机票电子报销凭证至公司邮箱",
+        "entities": [
+          "机票电子报销凭证",
+          "上海榕融新材料",
+          "携程商旅预订部"
+        ],
+        "numbers": [],
+        "source_id": "3405ba89fb5a026452e2c1ca6f8c5394"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "报销凭证",
+        "summary": "转发机票电子报销凭证",
+        "entities": [
+          "上海榕融新材料",
+          "携程商旅预订部",
+          "电子报销凭证"
+        ],
+        "numbers": [],
+        "source_id": "342a103a64dde769c10097d2dd1e9453"
+      },
+      {
+        "category": "ADMIN",
+        "summary": "替票说明申请使用其他发票代替淘宝技术账号2025.12月采购配件，订单号20251118312，金额7477.64元。",
+        "entities": [
+          "淘宝技术账号"
+        ],
+        "numbers": [
+          "7477.64元",
+          "2025.12"
+        ],
+        "source_id": "cb5b95da347c16adaf2a57ee2d8e714d"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "用章申请",
+        "summary": "高海军的用章申请已通过",
+        "entities": [
+          "上海榕融新材料技术有限公司",
+          "EHS部",
+          "上海市职业健康检查",
+          "公章",
+          "谢天福"
+        ],
+        "numbers": [
+          "2份"
+        ],
+        "source_id": "39446d35056c41985101fa69806164c1"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "电子报销",
+        "summary": "收到携程商旅预订部发送的机票电子报销凭证",
+        "entities": [
+          "上海榕融新材料技术有限公司"
+        ],
+        "numbers": [
+          "800.00 CNY"
+        ],
+        "source_id": "3a0ccee4a072aa6e2356cef40247b1db"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "审批申请",
+        "summary": "覃遵胜申请广州至南京机票审批",
+        "entities": [
+          "覃遵胜",
+          "广州",
+          "南京",
+          "机票"
+        ],
+        "numbers": [],
+        "source_id": "3f42ddeadec69853271e2ba61068250d"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "确认扣除",
+        "summary": "通知员工在个人所得税APP上确认2026年度专项附加扣除，要求2025年12月31日前完成",
+        "entities": [
+          "员工",
+          "各部门负责人",
+          "人力资源部",
+          "个人所得税APP"
+        ],
+        "numbers": [
+          "2026年度",
+          "2025年12月31日"
+        ],
+        "source_id": "4077a8d054116a835a3d161f6ed749f0"
+      },
+      {
+        "category": "ADMIN",
+        "summary": "江帆通知小迪提交劳动合同续签审批表，要求在2025.12.31前完成续签评定表签字提交。",
+        "entities": [
+          "江帆",
+          "小迪",
+          "榕融新材料",
+          "劳动合同续签审批表",
+          "待续签人员名单",
+          "上海人资部",
+          "上海制造中心",
+          "劳动合同续签审批"
+        ],
+        "numbers": [
+          "2025.12.31",
+          "3年",
+          "12月份",
+          "2022/12/29",
+          "1/10/2023",
+          "1/9/2026"
+        ],
+        "source_id": "dccacb062e7a530cf337bcb2e944a078"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "报销处理",
+        "summary": "收到携程商旅发送的机票电子报销凭证",
+        "entities": [
+          "携程商旅",
+          "榕融新材料"
+        ],
+        "numbers": [],
+        "source_id": "4c4f16431735e310d409ab73ebfa7d4c"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "确认接收",
+        "summary": "王姝姝确认收到更新后的公司介绍PPT。",
+        "entities": [
+          "PPT"
+        ],
+        "numbers": [],
+        "source_id": "586a6ad6c2f64fcb289144732fb513b7"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "参保报送",
+        "summary": "发送参保人员信息表给相关人员",
+        "entities": [
+          "参保人员信息表",
+          "张老师",
+          "周老师"
+        ],
+        "numbers": [],
+        "source_id": "58942e1183f397899dd144232f6362a2"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "出票确认",
+        "summary": "李兆权上海-唐山航班机票出票确认",
+        "entities": [
+          "李兆权",
+          "携程商旅",
+          "东方航空",
+          "上海",
+          "唐山"
+        ],
+        "numbers": [
+          "730.00元",
+          "40.00元",
+          "50.00元",
+          "820.00元",
+          "20公斤"
+        ],
+        "source_id": "59daf9a6b8a06b0cacf5c13f10643624"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "电子报销",
+        "summary": "转发机票电子报销凭证",
+        "entities": [
+          "上海榕融新材料",
+          "携程商旅预订部",
+          "电子报销凭证"
+        ],
+        "numbers": [
+          "CNY 1091.74",
+          "CNY 36.70",
+          "9%",
+          "CNY 101.56",
+          "CNY 50.00",
+          "CNY 0",
+          "CNY 1280.00"
+        ],
+        "source_id": "5a353e83d5b28325644f0fafe1ebe09f"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "文件更新",
+        "summary": "谢紫婳更新榕融公司介绍PPT并通知王姝姝同步使用",
+        "entities": [
+          "榕融新材料",
+          "PPT",
+          "澳洲营销中心"
+        ],
+        "numbers": [],
+        "source_id": "667bc2d2f8a85a4bd90247dfabfcee35"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "体检报告",
+        "summary": "卢冬艳的职业健康体检报告已由高海军发送",
+        "entities": [
+          "卢冬艳",
+          "高海军",
+          "榕融新材料",
+          "上海市临港熙康医院"
+        ],
+        "numbers": [
+          "2025-12-13",
+          "43岁",
+          "4年10个月",
+          "57kg",
+          "166cm",
+          "111mmHg"
+        ],
+        "source_id": "6e0f1282857292206e0ac3fdb7a906fd"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "机票审批",
+        "summary": "覃遵胜申请广州至南京的机票审批",
+        "entities": [
+          "覃遵胜",
+          "广州",
+          "南京",
+          "机票"
+        ],
+        "numbers": [],
+        "source_id": "73afc8245864fa09895330162941c9fc"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "调岗调薪",
+        "summary": "员工调岗调薪审批流程及相关信息",
+        "entities": [
+          "李陈龙",
+          "设备维修部",
+          "维修组",
+          "厂长",
+          "部门意见",
+          "人力资源部"
+        ],
+        "numbers": [
+          500,
+          1500,
+          1600,
+          "2023.6.2",
+          "2023.2.25",
+          "2023.6.1",
+          "2024.1.9",
+          "2024.1.1",
+          "2025/9/1"
+        ],
+        "source_id": "8277637b99ee6cb8cfdeda092a030ef8"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "审批确认",
+        "summary": "覃遵胜的广州-南京机票待审批确认单",
+        "entities": [
+          "覃遵胜",
+          "广州",
+          "南京",
+          "机票"
+        ],
+        "numbers": [],
+        "source_id": "7708212af9ca0fe86435d17ccb152453"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "确认扣除",
+        "summary": "员工已提交2026年度个人所得税专项附加扣除确认。",
+        "entities": [
+          "个人所得税APP",
+          "员工",
+          "专项附加扣除"
+        ],
+        "numbers": [
+          "2025年12月31日"
+        ],
+        "source_id": "8219456100117d8ba76bea26a56094a7"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "电子报销",
+        "summary": "发送机票电子报销凭证",
+        "entities": [
+          "携程商旅预订部",
+          "上海榕融新材料技术有限公司"
+        ],
+        "numbers": [
+          "CNY 490.00"
+        ],
+        "source_id": "8b2b7a49beee8b44de9ebb2a0871f964"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "审批申请",
+        "summary": "李兆权申请上海至唐山的机票审批",
+        "entities": [
+          "李兆权",
+          "上海",
+          "唐山",
+          "机票"
+        ],
+        "numbers": [],
+        "source_id": "8f04a81b0b18796cbe4049319583e00b"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "查询明细",
+        "summary": "工商银行向上海吉木娜装修工程有限公司发送对公账户历史明细文件。",
+        "entities": [
+          "上海吉木娜装修工程有限公司",
+          "中国工商银行",
+          "对公账户",
+          "历史明细文件"
+        ],
+        "numbers": [],
+        "source_id": "8f7d1ea2b598670bd500271f3502ac4f"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "完成自评",
+        "summary": "杨力完成试用期考核表自评部分。",
+        "entities": [
+          "杨力",
+          "陈水根",
+          "榕融新材料"
+        ],
+        "numbers": [],
+        "source_id": "90729ce08965ef26ddf44cf1ddeddf14"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "机票审批",
+        "summary": "李兆权申请上海至唐山的机票审批",
+        "entities": [
+          "李兆权",
+          "上海",
+          "唐山",
+          "1132542764581035"
+        ],
+        "numbers": [
+          "1132542764581035"
+        ],
+        "source_id": "a57668022db35ab76d28a581c925d612"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "出票确认",
+        "summary": "覃遵胜广州-南京航班机票出票确认",
+        "entities": [
+          "覃遵胜",
+          "广州",
+          "南京",
+          "携程商旅"
+        ],
+        "numbers": [
+          "2025年12月25日",
+          "18:05",
+          "20:30",
+          "¥789.00"
+        ],
+        "source_id": "b0f680430379d6d42d4b813d8d8bbf82"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "凭证接收",
+        "summary": "接收机票电子报销凭证",
+        "entities": [
+          "上海榕融新材料",
+          "王姝姝",
+          "携程商旅预订部",
+          "电子报销凭证"
+        ],
+        "numbers": [],
+        "source_id": "b5f18d680145833e6fffd87835210ec7"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "凭证转发",
+        "summary": "转发机票电子报销凭证",
+        "entities": [
+          "机票电子报销凭证",
+          "上海榕融新材料",
+          "携程商旅预订部",
+          "订单号",
+          "商旅卡号"
+        ],
+        "numbers": [],
+        "source_id": "b84ae0539b27afdda28e4a77f98ed708"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "凭证接收",
+        "summary": "王姝姝转发机票电子报销凭证至上海榕融新材料行政部",
+        "entities": [
+          "上海榕融新材料",
+          "携程商旅预订部",
+          "机票电子报销凭证"
+        ],
+        "numbers": [],
+        "source_id": "c2585b26517c326d405c8afbb3bb489a"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "待审处理",
+        "summary": "机票待审批确认单已发送",
+        "entities": [
+          "李兆权",
+          "上海",
+          "唐山"
+        ],
+        "numbers": [
+          1132542764581035
+        ],
+        "source_id": "cd763bee0ea38a32fa02d922cf7fd51a"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "发送明细",
+        "summary": "中国工商银行发送对公账户历史明细文件",
+        "entities": [
+          "上海吉木娜装修工程有限公司",
+          "中国工商银行",
+          "历史明细"
+        ],
+        "numbers": [],
+        "source_id": "d0301c542eda3469c9248ce909c06290"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "查看结果",
+        "summary": "通知员工在三个工作日内到EHS部查看职业健康体检结果并签字确认",
+        "entities": [
+          "榕融新材料",
+          "EHS部",
+          "榕融一期办公楼"
+        ],
+        "numbers": [
+          {
+            "number": 3,
+            "unit": "工作日"
+          }
+        ],
+        "source_id": "d03a8bbf2927ac1e018b2aed150fda22"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "审批确认",
+        "summary": "覃遵胜的广州至南京机票确认单待审批",
+        "entities": [
+          "覃遵胜",
+          "广州",
+          "南京",
+          "确认单"
+        ],
+        "numbers": [
+          "1132542763834688"
+        ],
+        "source_id": "d6098f121894841487c195be8ff48b35"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "用章审批",
+        "summary": "董雪瑞的用章申请已通过",
+        "entities": [
+          "董雪瑞",
+          "上海榕融新材料技术有限公司",
+          "公章",
+          "对账单-纵胜、榕融技术收款账号",
+          "营销部"
+        ],
+        "numbers": [
+          "2份",
+          "2个"
+        ],
+        "source_id": "d6a426ab052a30aa461c0f6b75ce65e3"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "机票报销",
+        "summary": "机票电子报销凭证已发送",
+        "entities": [
+          "上海榕融新材料技术有限公司"
+        ],
+        "numbers": [
+          "2025-12-25",
+          "670.00"
+        ],
+        "source_id": "f8b2b3659dad72b0d3fb4edb35bf8fa6"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "审批通过",
+        "summary": "吴其彤的出差申请已通过",
+        "entities": [
+          "吴其彤",
+          "生产工艺组",
+          "贾庆龙",
+          "天津工业大学"
+        ],
+        "numbers": [
+          "9小时"
+        ],
+        "source_id": "e1d81821db3ebc7772df348a026e0997"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "审批通过",
+        "summary": "证照使用申请已通过",
+        "entities": [
+          "上海榕融新材料科技有限公司",
+          "法人身份证件"
+        ],
+        "numbers": [
+          "0份"
+        ],
+        "source_id": "e78c476e68da64f725559c746d365a27"
+      },
+      {
+        "category": "ADMIN",
+        "tag": "发票发送",
+        "summary": "中国农业银行发送电子发票",
+        "entities": [
+          "中国农业银行",
+          "电子发票"
+        ],
+        "numbers": [
+          "2025-12-25 15:54",
+          "25317000003263675154"
+        ],
+        "source_id": "ff9385969775e95f75b6da28ee0d9dc0"
+      }
+    ],
+    "FILE": [
+      {
+        "category": "FILE",
+        "tag": "任务确认",
+        "summary": "任务确认书及任务完成情况文档的传输与确认",
+        "entities": [
+          "任务确认书",
+          "任务完成情况",
+          "附件完成清单",
+          "上海红巨星新能源科技有限公司",
+          "河南亢五网络科技有限公司"
+        ],
+        "numbers": [
+          "2025年11月16日",
+          "2025年10月",
+          "4人",
+          "14790元",
+          "9910元",
+          "49400元"
+        ],
+        "source_id": "11f838b210eae39925609b3aaab8009b"
+      },
+      {
+        "category": "FILE",
+        "tag": "签订保密",
+        "summary": "上海榕融新材料技术有限公司与员工签订保密协议",
+        "entities": [
+          "上海榕融新材料技术有限公司",
+          "员工"
+        ],
+        "numbers": [
+          "20%",
+          "1个月"
+        ],
+        "source_id": "25b58d2f024b3b9b2b9117c002440890"
+      },
+      {
+        "category": "FILE",
+        "tag": "凭证提交",
+        "summary": "携程商旅预订部发送机票电子报销凭证",
+        "entities": [
+          "电子报销凭证",
+          "携程商旅预订部"
+        ],
+        "numbers": [
+          "690.00元"
+        ],
+        "source_id": "2c5f3a85a7e6e736819f3bc075b33f65"
+      },
+      {
+        "category": "FILE",
+        "tag": "回复请求",
+        "summary": "陈燕回复陆勤的财务报表请求",
+        "entities": [
+          "陈燕",
+          "陆勤",
+          "财务报表"
+        ],
+        "numbers": [],
+        "source_id": "428ff84007dc7e19316a74e17e53331d"
+      },
+      {
+        "category": "FILE",
+        "tag": "文件扫描",
+        "summary": "发送员工调岗调薪表的扫描文件",
+        "entities": [
+          "员工调岗调薪表"
+        ],
+        "numbers": [],
+        "source_id": "3d22e107afc76f57346f9086e32abbe3"
+      },
+      {
+        "category": "FILE",
+        "tag": "文件扫描",
+        "summary": "扫描传输12张图像文件",
+        "entities": [
+          "DocuCentre-IV C3375 RZB",
+          "syscan2025@163.com",
+          "20251225180409-0001.pdf"
+        ],
+        "numbers": [
+          "12"
+        ],
+        "source_id": "452a416e6a1ebd3a140d0917327e4f4c"
+      },
+      {
+        "category": "FILE",
+        "tag": "调岗调薪",
+        "summary": "员工牛赛男岗位及薪资调整获批",
+        "entities": [
+          "供应链管理部",
+          "牛赛男",
+          "仓库仓管员",
+          "绩效"
+        ],
+        "numbers": [
+          "500元/月",
+          "700元/月"
+        ],
+        "source_id": "4a1e85edc5314cdac60bbeb567ce4771"
+      },
+      {
+        "category": "FILE",
+        "tag": "数据扫描",
+        "summary": "扫描20张图像数据，包含员工档案明细表。",
+        "entities": [
+          "员工档案明细表",
+          "DocuCentre-IV C3375 RZB",
+          "PDF文件"
+        ],
+        "numbers": [
+          "20张"
+        ],
+        "source_id": "4da4787d46cf6d455fd307b386a7e902"
+      },
+      {
+        "category": "FILE",
+        "tag": "查看下载",
+        "summary": "委托书授权联系人查看下载大用户电子账单",
+        "entities": [
+          "上海浦利科索化工有限公司",
+          "李晓婉",
+          "国网上海奉贤供电公司",
+          "电子账单",
+          "户号"
+        ],
+        "numbers": [
+          "20户"
+        ],
+        "source_id": "4ec96f66e49736fb9c7a60fdbbad6680"
+      },
+      {
+        "category": "FILE",
+        "tag": "扫描件传输",
+        "summary": "扫描数据传输完成",
+        "entities": [
+          "扫描件",
+          "DocuCentre-IV C3370"
+        ],
+        "numbers": [],
+        "source_id": "89dff03cccc282f7f34850f6868bd253"
+      },
+      {
+        "category": "FILE",
+        "tag": "扫描归档",
+        "summary": "发送上海市职业健康检查表扫描件",
+        "entities": [
+          "上海市职业健康检查表",
+          "上海榕融新材料有限公司",
+          "谢天福"
+        ],
+        "numbers": [
+          "14年7月",
+          "0年5月"
+        ],
+        "source_id": "95e35cf9b71267b0bd9afc55a3d0ea6d"
+      },
+      {
+        "category": "FILE",
+        "tag": "文件扫描",
+        "summary": "扫描数据文件已通过邮件发送",
+        "entities": [
+          "PDF文件",
+          "DocuCentre-IV C3370"
+        ],
+        "numbers": [
+          "1张"
+        ],
+        "source_id": "9bfe3b7c892bc148203bbcd318710a73"
+      },
+      {
+        "category": "FILE",
+        "tag": "文件扫描",
+        "summary": "扫描数据并发送PDF附件",
+        "entities": [
+          "扫描设备",
+          "PDF附件"
+        ],
+        "numbers": [
+          "7张图片"
+        ],
+        "source_id": "a229424790740a6789d2dbf465aabc68"
+      },
+      {
+        "category": "FILE",
+        "tag": "扫描文件",
+        "summary": "扫描3张图片并作为PDF附件发送",
+        "entities": [
+          "Scan Data",
+          "PDF",
+          "Images",
+          "Attachment File"
+        ],
+        "numbers": [
+          {
+            "number": 3,
+            "unit": "张"
+          }
+        ],
+        "source_id": "a70128af07a228a77f477b58a3af3a05"
+      },
+      {
+        "category": "FILE",
+        "tag": "扫描文件",
+        "summary": "邮件发送扫描数据文件",
+        "entities": [
+          "DocuCentre-IV C3375 RZB",
+          "20251225180050-0001.pdf"
+        ],
+        "numbers": [
+          {
+            "value": "12",
+            "unit": "张"
+          }
+        ],
+        "source_id": "bd973cec46119454dfc343f77bb9bb4a"
+      },
+      {
+        "category": "FILE",
+        "tag": "扫描传输",
+        "summary": "扫描数据传输文件",
+        "entities": [
+          "DocuCentre-IV C3375 RZB",
+          "PDF",
+          "Scan Data"
+        ],
+        "numbers": [
+          {
+            "value": "12",
+            "unit": "张"
+          }
+        ],
+        "source_id": "c2868b31fa6baf349175870094eae4ba"
+      },
+      {
+        "category": "FILE",
+        "tag": "扫描传输",
+        "summary": "扫描数据传输至系统",
+        "entities": [
+          "DocuCentre-IV C3375 RZB",
+          "20251225180112-0001.pdf"
+        ],
+        "numbers": [
+          "6张"
+        ],
+        "source_id": "d3c9612fcf32fed90d5652ee805e9592"
+      },
+      {
+        "category": "FILE",
+        "tag": "数据扫描",
+        "summary": "邮件发送扫描数据PDF文件，包含1张图像。",
+        "entities": [
+          "扫描设备",
+          "PDF文件"
+        ],
+        "numbers": [
+          "1张"
+        ],
+        "source_id": "d5f8a6cc4341a7d1ef61b4c8b886a1ca"
+      },
+      {
+        "category": "FILE",
+        "tag": "扫描数据",
+        "summary": "扫描数据传输至系统",
+        "entities": [
+          "扫描数据",
+          "ApeosPort-IV C3375",
+          "RR1QXZ"
+        ],
+        "numbers": [
+          "20251225"
+        ],
+        "source_id": "ec844da2b8159eb54986ae00a7ae04d7"
+      },
+      {
+        "category": "FILE",
+        "tag": "档案扫描",
+        "summary": "扫描员工档案明细表",
+        "entities": [
+          "员工档案明细表"
+        ],
+        "numbers": [
+          "1份",
+          "2份",
+          "2.1份",
+          "3份",
+          "3+份"
+        ],
+        "source_id": "dbe32148ae32fe3b88414da8490f97cb"
+      },
+      {
+        "category": "FILE",
+        "tag": "电子发票",
+        "summary": "中国农业银行发送电子发票给客户",
+        "entities": [
+          "电子发票",
+          "中国农业银行",
+          "客户"
+        ],
+        "numbers": [
+          "2025-12-25 15:53"
+        ],
+        "source_id": "ef05c4d1d2bb55fc0f14b5ef02284e9e"
+      },
+      {
+        "category": "FILE",
+        "tag": "扫描件传输",
+        "summary": "扫描件传输邮件",
+        "entities": [
+          "扫描件",
+          "SYSCAN2025@163.COM"
+        ],
+        "numbers": [
+          "20251225"
+        ],
+        "source_id": "f0f4049847bbe1fd43a366690f3d0fb6"
+      },
+      {
+        "category": "FILE",
+        "tag": "扫描传输",
+        "summary": "扫描传输保密协议文档",
+        "entities": [
+          "上海榕融新材料技术有限公司",
+          "张婷婷",
+          "保密协议"
+        ],
+        "numbers": [],
+        "source_id": "dc65cdfd3d83fc89e1bc9e4cb99c12eb"
+      },
+      {
+        "category": "FILE",
+        "tag": "数据扫描",
+        "summary": "扫描了1张数据文件",
+        "entities": [
+          "DocuCentre-IV C3370",
+          "PDF文件"
+        ],
+        "numbers": [
+          "1张"
+        ],
+        "source_id": "dda5faf0e27eb107163b605180241715"
+      },
+      {
+        "category": "FILE",
+        "tag": "文件扫描",
+        "summary": "扫描数据文件已通过设备发送",
+        "entities": [
+          "扫描设备",
+          "扫描文件",
+          "DocuCentre-IV C3375 RZB"
+        ],
+        "numbers": [
+          "6张"
+        ],
+        "source_id": "e58c5e8c8fe53828fe83082a134da67c"
+      },
+      {
+        "category": "FILE",
+        "tag": "文档扫描",
+        "summary": "扫描传输12张文档至系统",
+        "entities": [
+          "DocuCentre-IV C3375 RZB",
+          "PDF",
+          "20251225180320-0001.pdf"
+        ],
+        "numbers": [
+          "12张"
+        ],
+        "source_id": "ebc82423d8ce10af37ff13679f29ba2c"
+      },
+      {
+        "category": "FILE",
+        "tag": "文件扫描",
+        "summary": "邮件发送扫描的员工调岗调薪表文件",
+        "entities": [
+          "员工调岗调薪表"
+        ],
+        "numbers": [
+          "300",
+          "400",
+          "6500元/月"
+        ],
+        "source_id": "ec00bf042adf849624088f7dbeb76037"
+      },
+      {
+        "category": "FILE",
+        "tag": "扫描传输",
+        "summary": "扫描数据传输至指定邮箱",
+        "entities": [
+          "DocuCentre-IV C3370",
+          "SYSCAN2025@163.COM",
+          "img-Z25153847-0001.pdf"
+        ],
+        "numbers": [
+          "15张"
+        ],
+        "source_id": "fc7d954af62f9844bb7e25fe0d5e2545"
+      }
+    ]
+  },
+  "failed_ids": []
+}

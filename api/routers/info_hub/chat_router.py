@@ -7,6 +7,8 @@ from typing import Optional, List
 from fastapi import APIRouter, Query, HTTPException
 from pydantic import BaseModel
 from ._common import get_db, AnalyzeChatRequest
+from services.chat_summary_store import get_chat_summary_store
+from services.message_store import get_message_store
 
 router = APIRouter(tags=["InfoHub-Chat"])
 

@@ -14,6 +14,7 @@ from datetime import datetime, timedelta
 from typing import Dict, List, Any, Optional
 
 from services.message_store import get_message_store
+from vulcan_libs.date_utils import get_report_time_range
 from vulcan_libs.ai_service import get_ai_service, analyze_chat
 
 logger = logging.getLogger("ChatSummarizer")
@@ -81,9 +82,8 @@ class ChatSummarizer:
         if date is None:
             date = datetime.now() - timedelta(days=1)
 
-        # 设置时间范围 (当天 00:00 - 23:59)
-        start = date.replace(hour=0, minute=0, second=0, microsecond=0)
-        end = date.replace(hour=23, minute=59, second=59, microsecond=999999)
+        # 设置时间范围 (7AM-7AM)
+        start, end = get_report_time_range(date)
 
         # 获取所有群聊统计
         stats = await self.store.get_stats()

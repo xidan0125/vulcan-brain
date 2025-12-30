@@ -13,7 +13,7 @@ from config import LLM_MODEL_NAME
 from agent_prompts import AGENT_PROMPTS, AGENT_METADATA, get_agent_prompt, list_agents
 from agent_session_store import get_agent_session, save_agent_session, delete_agent_session, list_user_sessions
 from api.dependencies import get_kernel
-from auth_api import get_current_user
+from api.routers.auth_router import get_current_user
 
 router = APIRouter(tags=["Agents"])
 
@@ -68,7 +68,7 @@ async def api_agent_chat(agent_type: str, request: AgentChatRequest, current_use
         agent_name = AGENT_METADATA[agent_type]['name']
 
         from openai import OpenAI
-        client = OpenAI(base_url="http://localhost:11434/v1", api_key="not-needed")
+        client = OpenAI(base_url="http://localhost:8000/v1", api_key="not-needed")
 
         messages = [{"role": "system", "content": system_prompt}]
         for msg in history:
@@ -111,7 +111,7 @@ async def api_agent_chat_stream(agent_type: str, request: AgentChatRequest, curr
     async def generate():
         try:
             from openai import OpenAI
-            client = OpenAI(base_url="http://localhost:11434/v1", api_key="not-needed")
+            client = OpenAI(base_url="http://localhost:8000/v1", api_key="not-needed")
 
             history = await get_agent_session(current_user['user_id'], session_id)
             history.append({'role': 'user', 'content': request.message})

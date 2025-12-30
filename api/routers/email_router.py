@@ -312,11 +312,29 @@ async def list_contacts(
     from services.email_store import get_email_store
 
     store = get_email_store()
-    since = datetime.now() - timedelta(days=days)
-    
-    contacts = await store.get_top_contacts(since, limit=limit)
 
-    return {
-        "contacts": contacts,
-        "days": days
-    }
+
+@router.get("/detail/{email_id:path}")
+async def get_email_detail(email_id: str):
+    """获取邮件详情"""
+    from motor.motor_asyncio import AsyncIOMotorClient
+    import os
+    from datetime import datetime
+
+    client = AsyncIOMotorClient(os.getenv("MONGO_URI", "mongodb://localhost:27017"))
+    db = client.vulcan_brain
+
+    email = await db.emails.find_one({"email_id": email_id})
+    if not email:
+        raise HTTPException(status_code=404, detail="Email not found")
+
+    # 转换ObjectId为字符串
+    email["_id"] = str(email["_id"])
+
+    # 转换日期为ISO格式
+    if "received_at" in email and isinstance(email["received_at"], datetime):
+        email["received_at"] = email["received_at"].isoformat()
+    if "synced_at" in email and isinstance(email["synced_at"], datetime):
+        email["synced_at"] = email["synced_at"].isoformat()
+
+    return email

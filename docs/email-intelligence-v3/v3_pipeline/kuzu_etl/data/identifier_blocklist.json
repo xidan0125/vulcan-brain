@@ -1,0 +1,22 @@
+{
+  "_comment": "Identifiers to exclude from graph stitching (super-connectors)",
+  "blocked": [
+    {
+      "value": "6806109001",
+      "reason": "HS Code (海关编码) - 氧化铝纤维，会强行缝合67个不相关事件",
+      "type": "hs_code"
+    },
+    {
+      "value": "202216425K",
+      "reason": "UEN (新加坡公司注册号) - Vulcan Shield自身，会缝合所有自身业务",
+      "type": "company_uen"
+    }
+  ],
+  "patterns": [
+    {
+      "regex": "^68[0-9]{8}$",
+      "reason": "HS Code pattern (Chapter 68 = Ceramic/Stone products)",
+      "type": "hs_code"
+    }
+  ]
+}

@@ -210,7 +210,7 @@ class UnifiedLLMClient:
         # 启用思考模式
         if enable_thinking:
             config_dict["thinking_config"] = genai_types.ThinkingConfig(
-                thinking_budget_tokens=8192  # 思考 token 预算
+                thinking_level="high", include_thoughts=True
             )
 
         # 搜索工具

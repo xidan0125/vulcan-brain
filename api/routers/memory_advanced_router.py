@@ -3,12 +3,14 @@ Vulcan Brain - 记忆 API v3.0
 统一记忆管理接口
 """
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, BackgroundTasks
 from pydantic import BaseModel
 from typing import List, Optional
 import logging
+import asyncio
+import httpx
 
-from auth_api import get_current_user
+from api.routers.auth_router import get_current_user
 from services.memory_service import MemoryService, get_memory_service
 from services.memory_extractor import MemoryExtractor, get_memory_extractor
 
@@ -113,43 +115,62 @@ async def forget(
 
 # ==================== 记忆提取 ====================
 
+
+async def background_extract_and_store(
+    message: str,
+    session_id: str,
+    user_id: str,
+    extractor,
+    svc
+):
+    """后台执行记忆提取，不阻塞主链路"""
+    logger.info(f"Background task started for user {user_id}, message: {message[:50]}...")
+    try:
+        extractions = await extractor.extract(message)
+        
+        if not extractions:
+            return
+            
+        for ext in extractions:
+            await svc.add_pending(
+                user_id=user_id,
+                session_id=session_id,
+                key=ext["key"],
+                value=ext["value"],
+                category=ext.get("category", "fact"),
+                confidence=ext.get("confidence", 0.8),
+                context=message
+            )
+        logger.info(f"Background extracted {len(extractions)} memories for user {user_id}")
+    except Exception as e:
+        logger.error(f"Background memory extraction failed: {e}")
+
 @router.post("/extract")
 async def extract_memories(
     req: ExtractRequest,
-    user_id: str = Depends(get_user_id),
-    svc: MemoryService = Depends(get_memory_service),
-    extractor: MemoryExtractor = Depends(get_memory_extractor)
+    user_id: str = Depends(get_user_id)
 ):
     """
-    从消息提取记忆 (LLM-first)
-
-    返回待确认记忆列表，前端显示确认卡片
-
-    - **message**: 用户消息
-    - **session_id**: 会话ID
+    从消息提取记忆 (异步调用 worker)
+    
+    Fire-and-forget 调用独立 worker 服务
     """
-    # LLM 提取
-    extractions = await extractor.extract(req.message)
-
-    if not extractions:
-        return {"pending": []}
-
-    # 存入待确认
-    pending_list = []
-    for ext in extractions:
-        pending = await svc.add_pending(
-            user_id=user_id,
-            session_id=req.session_id,
-            key=ext["key"],
-            value=ext["value"],
-            category=ext.get("category", "fact"),
-            confidence=ext.get("confidence", 0.8),
-            context=req.message
-        )
-        pending_list.append(pending)
-
-    logger.info(f"Extracted {len(pending_list)} pending memories for user {user_id}")
-    return {"pending": pending_list}
+    async def call_worker():
+        try:
+            async with httpx.AsyncClient(timeout=5.0) as client:
+                await client.post(
+                    "http://localhost:8003/extract",
+                    json={
+                        "message": req.message,
+                        "session_id": req.session_id,
+                        "user_id": user_id
+                    }
+                )
+        except Exception as e:
+            logger.warning(f"Worker call failed (non-blocking): {e}")
+    
+    asyncio.create_task(call_worker())
+    return {"status": "queued", "message": "Memory extraction delegated to worker"}
 
 
 # ==================== 待确认记忆管理 ====================
@@ -306,3 +327,27 @@ async def get_memory_context(
 async def health_check():
     """记忆服务健康检查"""
     return {"status": "ok", "service": "memory_v3"}
+
+
+# ==================== 完整认知上下文 ====================
+
+@router.get("/cognitive-context")
+async def get_cognitive_context(
+    user_id: str = Depends(get_user_id)
+):
+    """
+    获取完整认知上下文 (调试用)
+    
+    返回 L0+L1+L2 层的完整上下文
+    """
+    from services.cognitive_context_service import get_cognitive_context_service
+    
+    service = get_cognitive_context_service()
+    context = await service.build_full_context(user_id)
+    stats = await service.get_context_stats(user_id)
+    
+    return {
+        "user_id": user_id,
+        "context": context,
+        "stats": stats
+    }

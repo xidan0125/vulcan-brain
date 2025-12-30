@@ -38,12 +38,17 @@ class FeishuSearchUserTool(BaseTool):
     
     def run(self, params: FeishuSearchUserInput, context: ToolContext) -> ToolResult:
         import asyncio
+        import concurrent.futures
+        
         try:
-            loop = asyncio.get_event_loop()
+            loop = asyncio.get_running_loop()
+            # 已在事件循环中，使用线程池执行
+            with concurrent.futures.ThreadPoolExecutor() as pool:
+                future = pool.submit(asyncio.run, self.arun(params, context))
+                return future.result(timeout=30)
         except RuntimeError:
-            loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(loop)
-        return loop.run_until_complete(self.arun(params, context))
+            # 没有运行中的事件循环，直接运行
+            return asyncio.run(self.arun(params, context))
     
     async def arun(self, params: FeishuSearchUserInput, context: ToolContext) -> ToolResult:
         client = get_feishu_client()

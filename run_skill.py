@@ -56,6 +56,12 @@ SKILL_ALIASES = {
     "feishu": "enterprise_integrator",
     "integrate": "enterprise_integrator",
     "ms365": "enterprise_integrator",
+    "ui": "frontend_expert",
+    "fe": "frontend_expert",
+    "talent": "talent_analyst",
+    "talent_analyst": "talent_analyst",
+    "org": "talent_analyst",
+    "frontend": "frontend_expert",
 }
 
 
