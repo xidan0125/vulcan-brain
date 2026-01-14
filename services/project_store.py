@@ -1,13 +1,17 @@
 """
-项目管理数据存储层 - MongoDB版
+项目管理数据存储层 - MongoDB版 (Motor Async)
 复用现有vulcan_brain数据库
 注意: pm_employees 是独立的员工表，与系统用户(users)完全分离
+
+v2.0 - 2026-01-13: 从 PyMongo (sync) 迁移到 Motor (async)
+解决了事件循环阻塞问题，提升并发性能
 """
 
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import List, Optional, Dict, Any
-from pymongo import MongoClient, ASCENDING, DESCENDING
+from motor.motor_asyncio import AsyncIOMotorClient
+from pymongo import ASCENDING, DESCENDING
 from bson import ObjectId
 
 # 导入模型
@@ -21,9 +25,10 @@ from models.kpi import ProjectKPI, calculate_project_kpi
 
 
 class ProjectStore:
-    """项目管理存储 - MongoDB"""
+    """项目管理存储 - MongoDB (Async Motor)"""
     
     _instance = None
+    _indexes_created = False
     
     def __new__(cls):
         if cls._instance is None:
@@ -35,9 +40,9 @@ class ProjectStore:
         if self._initialized:
             return
         
-        # MongoDB连接
+        # MongoDB连接 - Motor async client
         mongo_uri = os.getenv("MONGO_URI", "mongodb://localhost:27017")
-        self.client = MongoClient(mongo_uri)
+        self.client = AsyncIOMotorClient(mongo_uri)
         self.db = self.client["vulcan_brain"]
         
         # Collections - 注意: pm_employees 独立于系统用户
@@ -46,42 +51,48 @@ class ProjectStore:
         self.tasks_col = self.db["pm_tasks"]
         self.reports_col = self.db["pm_reports"]
         
-        # 创建索引
-        self._create_indexes()
-        
         self._initialized = True
-        
-        stats = f"{self.employees_col.count_documents({})}员工, {self.projects_col.count_documents({})}项目, {self.tasks_col.count_documents({})}任务"
-        print(f"[ProjectStore MongoDB] 初始化完成: {stats}")
+        print(f"[ProjectStore Motor] 异步客户端初始化完成")
     
-    def _create_indexes(self):
-        """创建索引"""
+    async def ensure_indexes(self):
+        """创建索引 (首次查询时调用)"""
+        if ProjectStore._indexes_created:
+            return
+        
         # 员工索引 - 用飞书open_id作为主键
-        self.employees_col.create_index("feishu_open_id", unique=True)
-        self.employees_col.create_index("name")
+        await self.employees_col.create_index("feishu_open_id", unique=True)
+        await self.employees_col.create_index("name")
         
         # 项目索引
-        self.projects_col.create_index("owner_id")
-        self.projects_col.create_index("status")
+        await self.projects_col.create_index("owner_id")
+        await self.projects_col.create_index("status")
         
         # 任务索引 - assignee_feishu_id 直接关联飞书员工
-        self.tasks_col.create_index("project_id")
-        self.tasks_col.create_index("assignee_feishu_id")
-        self.tasks_col.create_index("status")
-        self.tasks_col.create_index("deadline")
+        await self.tasks_col.create_index("project_id")
+        await self.tasks_col.create_index("assignee_feishu_id")
+        await self.tasks_col.create_index("status")
+        await self.tasks_col.create_index("deadline")
         
         # 汇报索引
-        self.reports_col.create_index("task_id")
-        self.reports_col.create_index("message_id", sparse=True, unique=True)
-        self.reports_col.create_index([("reported_at", DESCENDING)])
+        await self.reports_col.create_index("task_id")
+        await self.reports_col.create_index("message_id", sparse=True, unique=True)
+        await self.reports_col.create_index([("reported_at", DESCENDING)])
+        
+        ProjectStore._indexes_created = True
+        
+        # 打印统计
+        emp_count = await self.employees_col.count_documents({})
+        proj_count = await self.projects_col.count_documents({})
+        task_count = await self.tasks_col.count_documents({})
+        print(f"[ProjectStore Motor] 索引创建完成: {emp_count}员工, {proj_count}项目, {task_count}任务")
     
     # ===== Employee CRUD (飞书员工，独立于系统用户) =====
     
-    
     async def update_employee(self, feishu_open_id: str, updates: dict):
         """更新员工信息"""
+        await self.ensure_indexes()
         updates["updated_at"] = datetime.now().isoformat()
-        result = self.employees_col.update_one(
+        result = await self.employees_col.update_one(
             {"feishu_open_id": feishu_open_id},
             {"$set": updates}
         )
@@ -89,17 +100,20 @@ class ProjectStore:
 
     async def get_employee(self, feishu_open_id: str) -> Optional[Dict]:
         """通过飞书open_id获取员工"""
-        return self.employees_col.find_one({"feishu_open_id": feishu_open_id}, {"_id": 0})
+        await self.ensure_indexes()
+        return await self.employees_col.find_one({"feishu_open_id": feishu_open_id}, {"_id": 0})
     
     async def get_employee_by_name(self, name: str) -> Optional[Dict]:
         """通过名字获取员工(模糊匹配)"""
-        return self.employees_col.find_one(
-            {"name": {"$set": name, "off on off off off off off off off off on off on off on off off off on off off off on on off off off on on off off off off off off off on off off off off on off on off off off off off on off on on off off off on off on on off on on off off on on on off on on off on off off off off on off off off on off off on off on off off off on on off on off on off off on off off off on off off off off off off off off on off on off on on on off on on off off on off on on on off on on off on off on off off off off off on on off off on off off off off off on off off on on off on off off on off off off on off off off off on on off on off off off off off on off on off off off off off off off off off off on on off on off off off": "i"}},
+        await self.ensure_indexes()
+        return await self.employees_col.find_one(
+            {"name": {"$regex": name, "$options": "i"}},
             {"_id": 0}
         )
     
     async def create_employee(self, employee_data: Dict) -> Dict:
         """创建或更新员工"""
+        await self.ensure_indexes()
         feishu_id = employee_data.get("feishu_open_id")
         if not feishu_id:
             raise ValueError("员工必须有飞书open_id")
@@ -108,7 +122,7 @@ class ProjectStore:
         employee_data["updated_at"] = datetime.now().isoformat()
         
         # upsert: 存在则更新，不存在则创建
-        self.employees_col.update_one(
+        await self.employees_col.update_one(
             {"feishu_open_id": feishu_id},
             {"$set": employee_data},
             upsert=True
@@ -117,56 +131,67 @@ class ProjectStore:
     
     async def list_employees(self, department: Optional[str] = None) -> List[Dict]:
         """列出所有员工"""
+        await self.ensure_indexes()
         query = {"department": department} if department else {}
-        return list(self.employees_col.find(query, {"_id": 0}))
+        cursor = self.employees_col.find(query, {"_id": 0})
+        return await cursor.to_list(length=None)
     
     async def delete_employee(self, feishu_open_id: str) -> bool:
         """删除员工"""
-        result = self.employees_col.delete_one({"feishu_open_id": feishu_open_id})
+        await self.ensure_indexes()
+        result = await self.employees_col.delete_one({"feishu_open_id": feishu_open_id})
         return result.deleted_count > 0
     
     # ===== Project CRUD =====
     
     async def list_projects(self, owner_id: Optional[str] = None, status: Optional[str] = None) -> List[Dict]:
+        await self.ensure_indexes()
         query = {}
         if owner_id:
             query["owner_id"] = owner_id
         if status:
             query["status"] = status
-        return list(self.projects_col.find(query, {"_id": 0}))
+        cursor = self.projects_col.find(query, {"_id": 0})
+        return await cursor.to_list(length=None)
     
     async def get_project(self, project_id: str) -> Optional[Dict]:
-        return self.projects_col.find_one({"id": project_id}, {"_id": 0})
+        await self.ensure_indexes()
+        return await self.projects_col.find_one({"id": project_id}, {"_id": 0})
     
     async def get_project_by_name(self, name: str) -> Optional[Dict]:
-        # 模糊匹配
-        return self.projects_col.find_one(
-            {"name": {"$set": name, "off on off off off off off off off off on off on off on off off off on off off off on on off off off on on off off off off off off off on off off off off on off on off off off off off on off on on off off off on off on on off on on off off on on on off on on off on off off off off on off off off on off off on off on off off off on on off on off on off off on off off off on off off off off off off off off on off on off on on on off on on off off on off on on on off on on off on off on off off off off off on on off off on off off off off off on off off on on off on off off on off off off on off off off off on on off on off off off off off on off on off off off off off off off off off off on on off on off off off": "i"}},
+        """模糊匹配项目名"""
+        await self.ensure_indexes()
+        return await self.projects_col.find_one(
+            {"name": {"$regex": name, "$options": "i"}},
             {"_id": 0}
         )
     
     async def create_project(self, project_data: Dict) -> Dict:
+        await self.ensure_indexes()
         if "created_at" not in project_data:
             project_data["created_at"] = datetime.now().isoformat()
-        self.projects_col.insert_one(project_data)
+        await self.projects_col.insert_one(project_data)
         project_data.pop("_id", None)
         return project_data
     
     async def update_project(self, project_id: str, updates: Dict) -> Optional[Dict]:
+        await self.ensure_indexes()
         updates["updated_at"] = datetime.now().isoformat()
-        self.projects_col.update_one({"id": project_id}, {"$set": updates})
+        await self.projects_col.update_one({"id": project_id}, {"$set": updates})
         return await self.get_project(project_id)
     
-
     async def delete_project(self, project_id: str) -> bool:
         """删除项目"""
-        result = self.projects_col.delete_one({"id": project_id})
+        await self.ensure_indexes()
+        result = await self.projects_col.delete_one({"id": project_id})
         return result.deleted_count > 0
+    
     # ===== Task CRUD =====
     
     async def list_tasks(self, project_id: Optional[str] = None, 
                         assignee_feishu_id: Optional[str] = None,
                         status: Optional[str] = None) -> List[Dict]:
+        await self.ensure_indexes()
         query = {}
         if project_id:
             query["project_id"] = project_id
@@ -175,32 +200,37 @@ class ProjectStore:
         if status:
             query["status"] = status
         
-        return list(self.tasks_col.find(query, {"_id": 0}).sort([
+        cursor = self.tasks_col.find(query, {"_id": 0}).sort([
             ("priority", ASCENDING),
             ("deadline", ASCENDING)
-        ]))
+        ])
+        return await cursor.to_list(length=None)
     
     async def get_task(self, task_id: str) -> Optional[Dict]:
-        return self.tasks_col.find_one({"id": task_id}, {"_id": 0})
+        await self.ensure_indexes()
+        return await self.tasks_col.find_one({"id": task_id}, {"_id": 0})
 
     async def delete_task(self, task_id: str) -> bool:
         """删除任务"""
-        result = self.tasks_col.delete_one({"id": task_id})
+        await self.ensure_indexes()
+        result = await self.tasks_col.delete_one({"id": task_id})
         return result.deleted_count > 0
     
     async def create_task(self, task_data: Dict) -> Dict:
+        await self.ensure_indexes()
         if "created_at" not in task_data:
             task_data["created_at"] = datetime.now().isoformat()
         if "status" not in task_data:
             task_data["status"] = "pending"
         if "progress" not in task_data:
             task_data["progress"] = 0
-        self.tasks_col.insert_one(task_data)
+        await self.tasks_col.insert_one(task_data)
         task_data.pop("_id", None)
         return task_data
     
     async def update_task(self, task_id: str, updates: Dict) -> Optional[Dict]:
-        self.tasks_col.update_one({"id": task_id}, {"$set": updates})
+        await self.ensure_indexes()
+        await self.tasks_col.update_one({"id": task_id}, {"$set": updates})
         return await self.get_task(task_id)
     
     async def update_task_status(self, task_id: str, new_status: str,
@@ -226,9 +256,10 @@ class ProjectStore:
     
     async def add_report(self, report_data: Dict) -> Optional[Dict]:
         """添加汇报(带幂等)"""
+        await self.ensure_indexes()
         # 幂等检查
         if report_data.get("message_id"):
-            existing = self.reports_col.find_one({"message_id": report_data["message_id"]})
+            existing = await self.reports_col.find_one({"message_id": report_data["message_id"]})
             if existing:
                 print(f"[ProjectStore] 重复消息, 跳过: {report_data['message_id']}")
                 return None
@@ -236,7 +267,7 @@ class ProjectStore:
         if "reported_at" not in report_data:
             report_data["reported_at"] = datetime.now().isoformat()
         
-        self.reports_col.insert_one(report_data)
+        await self.reports_col.insert_one(report_data)
         report_data.pop("_id", None)
         
         # 同步更新任务状态
@@ -253,15 +284,15 @@ class ProjectStore:
     async def get_reports(self, task_id: Optional[str] = None,
                          project_id: Optional[str] = None,
                          limit: int = 50) -> List[Dict]:
+        await self.ensure_indexes()
         query = {}
         if task_id:
             query["task_id"] = task_id
         if project_id:
             query["project_id"] = project_id
         
-        return list(self.reports_col.find(query, {"_id": 0})
-                   .sort("reported_at", DESCENDING)
-                   .limit(limit))
+        cursor = self.reports_col.find(query, {"_id": 0}).sort("reported_at", DESCENDING).limit(limit)
+        return await cursor.to_list(length=None)
     
     # ===== KPI =====
     
@@ -283,25 +314,31 @@ class ProjectStore:
     
     async def get_tasks_needing_reminder(self, hours_before: int = 24) -> List[Dict]:
         """获取需要提醒的任务"""
-        from datetime import timedelta
+        await self.ensure_indexes()
         deadline_threshold = (datetime.now() + timedelta(hours=hours_before)).isoformat()
+        now = datetime.now().isoformat()
         
-        return list(self.tasks_col.find({
-            "status": {"$set": ["pending", "in_progress"]},
-            "deadline": {"$set": deadline_threshold, "": datetime.now().isoformat()}
-        }, {"_id": 0}))
+        cursor = self.tasks_col.find({
+            "status": {"$in": ["pending", "in_progress"]},
+            "deadline": {"$lte": deadline_threshold, "$gte": now}
+        }, {"_id": 0})
+        return await cursor.to_list(length=None)
     
     async def get_overdue_tasks(self) -> List[Dict]:
         """获取已逾期的任务"""
+        await self.ensure_indexes()
         now = datetime.now().isoformat()
-        return list(self.tasks_col.find({
+        cursor = self.tasks_col.find({
             "status": {"$nin": ["completed"]},
             "deadline": {"$lt": now}
-        }, {"_id": 0}))
+        }, {"_id": 0})
+        return await cursor.to_list(length=None)
     
     async def get_blocked_tasks(self) -> List[Dict]:
         """获取阻塞中的任务"""
-        return list(self.tasks_col.find({"status": "blocked"}, {"_id": 0}))
+        await self.ensure_indexes()
+        cursor = self.tasks_col.find({"status": "blocked"}, {"_id": 0})
+        return await cursor.to_list(length=None)
 
 
 # 单例

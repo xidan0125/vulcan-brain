@@ -134,13 +134,25 @@ class CreateEmployeeRequest(BaseModel):
 
 @router.get("/projects")
 async def list_projects(owner_id: Optional[str] = None, status: Optional[str] = None):
-    """获取项目列表"""
+    """获取项目列表 - 优化版：避免N+1查询"""
     store = get_project_store()
     projects = await store.list_projects(owner_id=owner_id, status=status)
     
+    # 获取所有相关项目的任务（单次查询）
+    project_ids = [p["id"] for p in projects]
+    all_tasks = await store.list_tasks()  # 获取全部任务
+    
+    # 按 project_id 分组
+    from collections import defaultdict
+    tasks_by_project = defaultdict(list)
+    for t in all_tasks:
+        if t.get("project_id") in project_ids:
+            tasks_by_project[t["project_id"]].append(t)
+    
+    # 计算统计
     result = []
     for p in projects:
-        tasks = await store.list_tasks(project_id=p["id"])
+        tasks = tasks_by_project.get(p["id"], [])
         p["task_count"] = len(tasks)
         p["completed_count"] = len([t for t in tasks if t.get("status") == "completed"])
         p["at_risk_count"] = len([t for t in tasks if t.get("status") in ["blocked", "overdue"]])
@@ -173,17 +185,27 @@ async def create_project(req: CreateProjectRequest):
 
 @router.get("/projects/archived")
 async def list_archived_projects():
-    """获取归档项目列表"""
+    """获取归档项目列表 - 优化版"""
     store = get_project_store()
     projects = await store.list_projects(status="archived")
-
+    
+    # 单次查询获取所有任务
+    project_ids = [p["id"] for p in projects]
+    all_tasks = await store.list_tasks()
+    
+    from collections import defaultdict
+    tasks_by_project = defaultdict(list)
+    for t in all_tasks:
+        if t.get("project_id") in project_ids:
+            tasks_by_project[t["project_id"]].append(t)
+    
     result = []
     for p in projects:
-        tasks = await store.list_tasks(project_id=p["id"])
+        tasks = tasks_by_project.get(p["id"], [])
         p["task_count"] = len(tasks)
         p["completed_count"] = len([t for t in tasks if t.get("status") == "completed"])
         result.append(p)
-
+    
     return {"projects": result}
 
 @router.get("/projects/{project_id}")
