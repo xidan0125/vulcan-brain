@@ -72,6 +72,27 @@
   .light .border-zinc-800\/50 { border-color: rgba(226,232,240,0.5) !important; }
   
   .light .hover\:bg-white\/5:hover { background-color: rgba(0,0,0,0.05) !important; }
+
+  /* text-zinc-200 在深色背景下接近白色，light mode 需要映射为深色 */
+  .light .text-zinc-200 { color: #1e293b !important; }
+
+  /* placeholder 颜色：placeholder-zinc-600 在深色下偏亮，light mode 要压暗 */
+  .light .placeholder-zinc-600::placeholder { color: #94a3b8 !important; }
+
+  /* bg-zinc-900/80 和 bg-zinc-950/50 是常见的半透明遮罩，light mode 映射为白色系 */
+  .light .bg-zinc-900\/80 { background-color: rgba(255,255,255,0.92) !important; }
+  .light .bg-zinc-950\/50 { background-color: rgba(248,250,252,0.85) !important; }
+
+  /* hover 状态补充 */
+  .light .hover\:bg-zinc-800:hover { background-color: #e2e8f0 !important; }
+  .light .hover\:bg-zinc-900:hover { background-color: #f1f5f9 !important; }
+  .light .hover\:bg-zinc-800\/50:hover { background-color: rgba(226,232,240,0.6) !important; }
+  .light .hover\:text-white:hover { color: #0f172a !important; }
+
+  /* shadow-black 在 light mode 下太重，改用浅灰 */
+  .light .shadow-black { --tw-shadow-color: rgba(0,0,0,0.08) !important; }
+  .light .shadow-black\/50 { --tw-shadow-color: rgba(0,0,0,0.06) !important; }
+  .light .shadow-black\/20 { --tw-shadow-color: rgba(0,0,0,0.04) !important; }
 }
 
 /* Mobile safe area support for iPhone notch/home indicator */
